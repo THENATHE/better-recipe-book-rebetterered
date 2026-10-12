@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "id": "brb",
+  "version": "${version}",
+  "name": "Better Recipe Book",
+  "description": "Adds some quality of life changes to the recipe book",
+  "authors": [
+    "marshmallow"
+  ],
+  "contributors": [
+    "ruvaldak",
+    "Felix14-v2",
+    "buiawpkgew1",
+    "TauCubed",
+    "MehradN",
+    "notlin4"
+  ],
+  "contact": {
+    "issues": "https://github.com/marshamallow/BetterRecipeBook",
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/brb"
+  },
+  "license": "MIT",
+  "icon": "assets/brb/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "main": [
+      "marsh.town.brb.fabric.BetterRecipeBookFabric"
+    ],
+    "modmenu": [
+      "marsh.town.brb.fabric.ModMenuFabric"
+    ]
+  },
+  "mixins": [
+    "mixins.brb.json",
+    "mixins.brb-common.json",
+    "mixins.brb-common-compat.json"
+  ],
+  "accessWidener" : "brb.fabric.accesswidener",
+  "depends": {
+    "fabric": "*",
+    "minecraft": ">=1.21",
+    "architectury": ">=11"
+  }
+}

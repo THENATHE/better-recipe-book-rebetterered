@@ -1,0 +1,44 @@
+[
+  {
+    "id": "wood",
+    "pattern": "^minecraft:(?:stripped_)?(oak|spruce|birch|jungle|acacia|dark_oak|mangrove|cherry|pale_oak|bamboo|crimson|warped)_(?:log|wood|stem|hyphae|planks|stairs|slab|fence|fence_gate|door|trapdoor|pressure_plate|button|sign|hanging_sign|boat|chest_boat|raft|chest_raft|block|mosaic|mosaic_stairs|mosaic_slab)$",
+    "key": "$1",
+    "label": "$1 wood"
+  },
+  {
+    "id": "color",
+    "pattern": "^minecraft:(?:white|orange|magenta|light_blue|yellow|lime|pink|gray|light_gray|cyan|purple|blue|brown|green|red|black)_(wool|carpet|terracotta|glazed_terracotta|concrete|concrete_powder|stained_glass|stained_glass_pane|shulker_box|bed|banner|candle|dye|bundle)$",
+    "key": "$1",
+    "label": "$1 colors"
+  },
+  {
+    "id": "equipment",
+    "pattern": "^minecraft:(?:wooden|stone|copper|iron|golden|diamond|netherite|leather|chainmail)_(sword|pickaxe|axe|shovel|hoe|helmet|chestplate|leggings|boots|horse_armor)$",
+    "key": "$1",
+    "label": "$1 tiers"
+  },
+  {
+    "id": "potions",
+    "pattern": "^minecraft:(potion|splash_potion|lingering_potion|tipped_arrow)$",
+    "key": "$1",
+    "label": "$1 variants"
+  },
+  {
+    "id": "eggs",
+    "pattern": "^minecraft:.*_spawn_egg$",
+    "key": "spawn_eggs",
+    "label": "Spawn eggs"
+  },
+  {
+    "id": "trim",
+    "pattern": "^minecraft:.*_armor_trim_smithing_template$",
+    "key": "armor_trims",
+    "label": "Armor trim templates"
+  },
+  {
+    "id": "copper",
+    "pattern": "^minecraft:(?:waxed_)?(?:exposed_|weathered_|oxidized_)?(?:cut_)?copper(?:_block|_stairs|_slab|_chiseled|_grate|_bulb|_door|_trapdoor|_bars|_chain|_chest|_lantern)?$",
+    "key": "copper",
+    "label": "Copper blocks"
+  }
+]

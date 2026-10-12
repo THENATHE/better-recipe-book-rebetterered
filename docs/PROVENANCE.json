@@ -1,0 +1,46 @@
+{
+  "name": "Better Recipe Book: Rebetterered",
+  "version": "1.11.1+26.3",
+  "mod_id": "brb",
+  "minecraft": "26.3",
+  "loader": "Fabric",
+  "original_source_commit": "ea7c7872d6270d07e3a696e0b56b1e2043028887",
+  "original_source_archive_sha256": "07918fa415fa63f0814d590953bebae3da16eed1b6f614cc25e5746b7f2bb673",
+  "original_modrinth_release_id": "rj0f0Vtq",
+  "original_release_sha256": "7ddc4761bf5ca59c34703d9586e6edaf6c7a7a3939ed7cdb6c103ab9fec6707b",
+  "implementation_base": "original BRB; Extended API/behavior reference only",
+  "dependencies": {
+    "fabric-loader": {
+      "version": "0.19.5",
+      "sha256": "b5a6ef0f608b62b362aacd3367fb2dba69915e0081b88c14f99209e5005dbf1d",
+      "usage": "required external"
+    },
+    "fabric-api": {
+      "version": "0.161.0+26.3",
+      "sha256": "47e1c3602d835929fca6aa879cfc7495a5a15febb5ead29687f84ddcf9015af0",
+      "usage": "required external"
+    },
+    "cloth-config-fabric": {
+      "version": "26.3.159",
+      "sha256": "1716b9964f90d2b885f9bd3887f8824b71b55c32a4123a5853486e722f7c2e4b",
+      "usage": "bundled"
+    },
+    "modmenu": {
+      "version": "21.0.0",
+      "sha256": "837812c6c98d66141db7b5dcae668f27fb78d557e8f4c0c89912985fc26a5e6f",
+      "usage": "optional tested"
+    }
+  },
+  "architectury_removed": true,
+  "local_only": false,
+  "installable_sha256": "1788316a99505b767f6076884469910de62bb04737212bc2a6195e28e143fa04",
+  "source": "Minecraft/better-recipe-book-26.3/ported",
+  "validation": {
+    "combined_client": 192,
+    "packaged_multiplayer": 42,
+    "source_rebuild_byte_identical": true,
+    "original_startup": "Historical 35.1-second 1.21.1 smoke; original artifact unchanged and checksum rechecked"
+  },
+  "repository": "https://github.com/THENATHE/better-recipe-book-rebetterered",
+  "tag": "v1.11.1+26.3"
+}

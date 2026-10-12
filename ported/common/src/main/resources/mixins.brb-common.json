@@ -1,0 +1,43 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "marsh.town.brb.mixins",
+  "compatibilityLevel": "JAVA_25",
+  "client": [
+    "BrewingStandScreenMixin",
+    "DisableBook",
+    "DisableBounce",
+    "RemoveBookButton",
+    "SmithingScreenMixin",
+    "accessors.KeyMappingAccessor",
+    "accessors.OverlayRecipeButtonAccessor",
+    "accessors.OverlayRecipeComponentAccessor",
+    "accessors.RecipeBookComponentAccessor",
+    "accessors.RecipeBookPageAccessor",
+    "alternativerecipes.OverlayRecipeButtonMixin",
+    "centered.RecipeBookComponentMixin",
+    "instantcraft.ClientPacketListenerMixin",
+    "instantcraft.MultiPlayerGameModeMixin",
+    "instantcraft.RecipeBookComponentMixin",
+    "pins.AbstractContainerScreenMixin",
+    "pins.RecipeBookComponentMixin",
+    "pins.RecipeBookPageMixin",
+    "pins.RecipeButtonMixin",
+    "scrollablepages.RecipeBookPageMixin",
+    "settings.RecipeBookComponentMixin",
+    "toasts.RemoveToasts",
+    "ungroup.ClientRecipeBookMixin",
+    "unlockrecipes.ClientPacketListenerMixin",
+    "unlockrecipes.MultiPlayerGameModeMixin",
+    "unlockrecipes.RecipeButtonMixin",
+    "recipegroups.RecipeBookPageMixin",
+    "recipegroups.RecipeButtonMixin",
+    "scrollablepages.RecipeBookComponentMixin",
+    "creative.CreativeInventoryMixin",
+    "creative.CreativeSlotRenderMixin",
+    "creative.ItemPickerMenuAccess"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

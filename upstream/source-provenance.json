@@ -1,0 +1,101 @@
+{
+  "sha": "ea7c7872d6270d07e3a696e0b56b1e2043028887",
+  "node_id": "C_kwDOFhJl1doAKGVhN2M3ODcyZDYyNzBkMDdlM2E2OTZlMGI1NmIxZTIwNDMwMjg4ODc",
+  "commit": {
+    "author": {
+      "name": "marshmallow",
+      "email": "marshycity@gmail.com",
+      "date": "2024-07-07T05:36:02Z"
+    },
+    "committer": {
+      "name": "marshmallow",
+      "email": "marshycity@gmail.com",
+      "date": "2024-07-07T05:36:02Z"
+    },
+    "message": "no fail fast",
+    "tree": {
+      "sha": "3cef307b6fc9155c10a24f8834c74e3f8cf102a2",
+      "url": "https://api.github.com/repos/mrshmllow/BetterRecipeBook/git/trees/3cef307b6fc9155c10a24f8834c74e3f8cf102a2"
+    },
+    "url": "https://api.github.com/repos/mrshmllow/BetterRecipeBook/git/commits/ea7c7872d6270d07e3a696e0b56b1e2043028887",
+    "comment_count": 0,
+    "verification": {
+      "verified": false,
+      "reason": "unsigned",
+      "signature": null,
+      "payload": null,
+      "verified_at": null
+    }
+  },
+  "url": "https://api.github.com/repos/mrshmllow/BetterRecipeBook/commits/ea7c7872d6270d07e3a696e0b56b1e2043028887",
+  "html_url": "https://github.com/mrshmllow/BetterRecipeBook/commit/ea7c7872d6270d07e3a696e0b56b1e2043028887",
+  "comments_url": "https://api.github.com/repos/mrshmllow/BetterRecipeBook/commits/ea7c7872d6270d07e3a696e0b56b1e2043028887/comments",
+  "author": {
+    "login": "mrshmllow",
+    "id": 40532058,
+    "node_id": "MDQ6VXNlcjQwNTMyMDU4",
+    "avatar_url": "https://avatars.githubusercontent.com/u/40532058?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/mrshmllow",
+    "html_url": "https://github.com/mrshmllow",
+    "followers_url": "https://api.github.com/users/mrshmllow/followers",
+    "following_url": "https://api.github.com/users/mrshmllow/following{/other_user}",
+    "gists_url": "https://api.github.com/users/mrshmllow/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/mrshmllow/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/mrshmllow/subscriptions",
+    "organizations_url": "https://api.github.com/users/mrshmllow/orgs",
+    "repos_url": "https://api.github.com/users/mrshmllow/repos",
+    "events_url": "https://api.github.com/users/mrshmllow/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/mrshmllow/received_events",
+    "type": "User",
+    "user_view_type": "public",
+    "site_admin": false
+  },
+  "committer": {
+    "login": "mrshmllow",
+    "id": 40532058,
+    "node_id": "MDQ6VXNlcjQwNTMyMDU4",
+    "avatar_url": "https://avatars.githubusercontent.com/u/40532058?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/mrshmllow",
+    "html_url": "https://github.com/mrshmllow",
+    "followers_url": "https://api.github.com/users/mrshmllow/followers",
+    "following_url": "https://api.github.com/users/mrshmllow/following{/other_user}",
+    "gists_url": "https://api.github.com/users/mrshmllow/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/mrshmllow/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/mrshmllow/subscriptions",
+    "organizations_url": "https://api.github.com/users/mrshmllow/orgs",
+    "repos_url": "https://api.github.com/users/mrshmllow/repos",
+    "events_url": "https://api.github.com/users/mrshmllow/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/mrshmllow/received_events",
+    "type": "User",
+    "user_view_type": "public",
+    "site_admin": false
+  },
+  "parents": [
+    {
+      "sha": "4b9c86cbc8c535adb5b5a136b45f921974ed0bf0",
+      "url": "https://api.github.com/repos/mrshmllow/BetterRecipeBook/commits/4b9c86cbc8c535adb5b5a136b45f921974ed0bf0",
+      "html_url": "https://github.com/mrshmllow/BetterRecipeBook/commit/4b9c86cbc8c535adb5b5a136b45f921974ed0bf0"
+    }
+  ],
+  "stats": {
+    "total": 1,
+    "additions": 1,
+    "deletions": 0
+  },
+  "files": [
+    {
+      "sha": "20c9ee0a5311748b57b11690d6eca85280c6f3c6",
+      "filename": ".github/workflows/build.yml",
+      "status": "modified",
+      "additions": 1,
+      "deletions": 0,
+      "changes": 1,
+      "blob_url": "https://github.com/mrshmllow/BetterRecipeBook/blob/ea7c7872d6270d07e3a696e0b56b1e2043028887/.github%2Fworkflows%2Fbuild.yml",
+      "raw_url": "https://github.com/mrshmllow/BetterRecipeBook/raw/ea7c7872d6270d07e3a696e0b56b1e2043028887/.github%2Fworkflows%2Fbuild.yml",
+      "contents_url": "https://api.github.com/repos/mrshmllow/BetterRecipeBook/contents/.github%2Fworkflows%2Fbuild.yml?ref=ea7c7872d6270d07e3a696e0b56b1e2043028887",
+      "patch": "@@ -27,6 +27,7 @@ jobs:\n         loader:\n           - fabric\n           - neoforge\n+      fail-fast: false\n     steps:\n       - name: Checkout repository\n         uses: actions/checkout@v4"
+    }
+  ]
+}

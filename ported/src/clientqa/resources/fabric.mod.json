@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "id": "brb_clientqa",
+  "version": "1",
+  "name": "BRB Development Client QA",
+  "environment": "client",
+  "entrypoints": {
+    "fabric-client-gametest": [
+      "marsh.town.brb.clientqa.ClientQa"
+    ]
+  },
+  "depends": {
+    "brb": "*",
+    "fabric-client-gametest-api-v1": "*"
+  }
+}

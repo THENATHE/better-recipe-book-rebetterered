@@ -1,0 +1,16 @@
+{
+  "result": "PASS",
+  "command": "JAVA_HOME=<complete Java 25 JDK> bash gradlew --offline --no-daemon clean check build clientqaJar",
+  "artifacts": [
+    {
+      "file": "better-recipe-book-rebetterered-1.11.1+26.3-sources.jar",
+      "sha256": "80992861c0df24799211a320defb0c3a72689baa9fc760162b0bb7aed977bda1",
+      "byte_identical": true
+    },
+    {
+      "file": "better-recipe-book-rebetterered-1.11.1+26.3.jar",
+      "sha256": "1788316a99505b767f6076884469910de62bb04737212bc2a6195e28e143fa04",
+      "byte_identical": true
+    }
+  ]
+}

@@ -1,0 +1,199 @@
+PASS: real recipe grouping, pagination, scrolling and exact pins
+PASS: creative model groups matching variants without discarding duplicates
+PASS: creative model expands a real header
+PASS: expanded creative children retain exact stack objects and component identity
+PASS: creative model refuses child and out-of-range toggles
+PASS: creative vanilla mode preserves duplicates and original interleaving
+PASS: creative expansion choice survives a source refresh
+PASS: empty creative lists remain empty
+PASS: invalid resource-pack group capture is rejected safely
+SCREENSHOT: screenshots/0000_brb-creative-collapsed.png
+PASS: colored creative tab has stable expandable headers
+PASS: creative expansion inserts every child, including the representative
+PASS: creative header click never takes an item
+PASS: creative group representative does not cycle or change on expansion
+PASS: expanded child uses the vanilla creative pickup path
+PASS: Shift-click collapses creative header without a vanilla shift action
+PASS: header drag/release outside preserves an already-carried stack
+PASS: Enter expands a hovered creative header
+PASS: Space collapses a hovered creative header
+PASS: number-key shortcut cannot put a group header into the hotbar
+PASS: creative grouped scrolling stays finite
+PASS: scrolled creative entry maps to visible slot 0
+PASS: scrolled creative entry maps to visible slot 1
+PASS: scrolled creative entry maps to visible slot 2
+PASS: scrolled creative entry maps to visible slot 3
+PASS: scrolled creative entry maps to visible slot 4
+PASS: scrolled creative entry maps to visible slot 5
+PASS: scrolled creative entry maps to visible slot 6
+PASS: scrolled creative entry maps to visible slot 7
+PASS: scrolled creative entry maps to visible slot 8
+PASS: scrolled creative entry maps to visible slot 9
+PASS: scrolled creative entry maps to visible slot 10
+PASS: scrolled creative entry maps to visible slot 11
+PASS: scrolled creative entry maps to visible slot 12
+PASS: scrolled creative entry maps to visible slot 13
+PASS: scrolled creative entry maps to visible slot 14
+PASS: scrolled creative entry maps to visible slot 15
+PASS: scrolled creative entry maps to visible slot 16
+PASS: scrolled creative entry maps to visible slot 17
+PASS: scrolled creative entry maps to visible slot 18
+PASS: scrolled creative entry maps to visible slot 19
+PASS: scrolled creative entry maps to visible slot 20
+PASS: scrolled creative entry maps to visible slot 21
+PASS: scrolled creative entry maps to visible slot 22
+PASS: scrolled creative entry maps to visible slot 23
+PASS: scrolled creative entry maps to visible slot 24
+PASS: scrolled creative entry maps to visible slot 25
+PASS: scrolled creative entry maps to visible slot 26
+PASS: scrolled creative entry maps to visible slot 27
+PASS: scrolled creative entry maps to visible slot 28
+PASS: scrolled creative entry maps to visible slot 29
+PASS: scrolled creative entry maps to visible slot 30
+PASS: scrolled creative entry maps to visible slot 31
+PASS: scrolled creative entry maps to visible slot 32
+PASS: scrolled creative entry maps to visible slot 33
+PASS: scrolled creative entry maps to visible slot 34
+PASS: scrolled creative entry maps to visible slot 35
+PASS: scrolled creative entry maps to visible slot 36
+PASS: scrolled creative entry maps to visible slot 37
+PASS: scrolled creative entry maps to visible slot 38
+PASS: scrolled creative entry maps to visible slot 39
+PASS: scrolled creative entry maps to visible slot 40
+PASS: scrolled creative entry maps to visible slot 41
+PASS: scrolled creative entry maps to visible slot 42
+PASS: scrolled creative entry maps to visible slot 43
+PASS: scrolled creative entry maps to visible slot 44
+PASS: typed creative search reveals fixed individual matches
+PASS: grouped mode preserves vanilla search results and order exactly
+PASS: vanilla creative mode preserves every original tab entry and order
+SCREENSHOT: screenshots/0001_brb-creative-vanilla.png
+SCREENSHOT: screenshots/0002_brb-creative-expanded.png
+PASS: saved-hotbar tab is unaffected by grouping
+PASS: survival inventory tab is unaffected by grouping
+PASS: 2x2 inventory: left-click places ingredients without crafting
+PASS: 2x2 inventory: left-click places one ingredient
+PASS: 2x2 inventory: right-click on a prepared local recipe crafts once without a new placement packet
+PASS: 2x2 fresh local recipe, inventory source=1, maximum=false: ordinary placement and crafting conserve server ingredients
+PASS: 2x2 fresh local recipe, inventory source=1, maximum=false: cursor is empty
+PASS: 2x2 fresh local recipe, inventory source=8, maximum=false: ordinary placement and crafting conserve server ingredients
+PASS: 2x2 fresh local recipe, inventory source=8, maximum=false: cursor is empty
+PASS: 2x2 fresh local recipe, inventory source=8, maximum=true: ordinary placement and crafting conserve server ingredients
+PASS: 2x2 fresh local recipe, inventory source=8, maximum=true: cursor is empty
+PASS: 2x2 grid redistribution: local left redistributes without crafting
+PASS: 2x2 grid redistribution: scenario 0 leaves the cursor empty
+PASS: 2x2 grid redistribution: local Shift-left redistributes without crafting
+PASS: 2x2 grid redistribution: scenario 1 leaves the cursor empty
+PASS: 2x2 grid redistribution: local right redistributes grid planks and crafts 1 table batches
+PASS: 2x2 grid redistribution: scenario 2 leaves the cursor empty
+PASS: 2x2 grid redistribution: redistribution refuses valuable ingredients
+PASS: 2x2 grid redistribution: refused redistribution preserves all grid ingredients
+PASS: 2x2 grid redistribution: refused redistribution preserves the custom name
+PASS: 2x2 grid redistribution: scenario 3 leaves the cursor empty
+PASS: 2x2 grid redistribution: redistribution refuses insufficient temporary storage
+PASS: 2x2 grid redistribution: refused redistribution preserves all grid ingredients
+PASS: 2x2 grid redistribution: scenario 4 leaves the cursor empty
+PASS: 2x2 grid redistribution: local Shift-right redistributes grid planks and crafts 2 table batches
+PASS: 2x2 grid redistribution: scenario 5 leaves the cursor empty
+PASS: 2x2 inventory: local item ingredients accept a manually prepared renamed log and consume one batch
+PASS: 2x2 inventory: unconsumed renamed logs retain their custom name
+PASS: 2x2 inventory: automatic local placement protects renamed inventory ingredients
+PASS: 2x2 inventory: protected inventory ingredients remain unconsumed after an automatic refill attempt
+PASS: 2x2 inventory: an unresolved required ingredient refuses placement
+PASS: 2x2 inventory: unresolved ingredient placement preserves the prepared grid and all inventory items
+PASS: 2x2 inventory: Shift-left-click retains vanilla maximum grid fill
+PASS: 2x2 inventory: right-click creates precisely one four-plank batch
+PASS: 2x2 inventory: single batch leaves cursor empty
+PASS: 2x2 inventory: Shift-right-click crafts all eight batches
+PASS: 2x2 inventory: maximum craft leaves cursor empty
+PASS: 2x2 inventory: maximum crafting survives a batch split between a partial stack and an empty slot
+PASS: 2x2 inventory: split storage confirmations leave no output on the cursor
+PASS: 2x2 inventory: maximum crafting refills beyond the first 64-batch grid placement
+PASS: 2x2 inventory: full inventory refuses a batch without consuming ingredients
+PASS: 2x2 inventory: full inventory leaves cursor empty
+PASS: 2x2 inventory: maximum craft stops at storage capacity and preserves 48 unconsumed ingredients
+PASS: 2x2 inventory: capacity-limited maximum craft leaves cursor empty
+PASS: 2x2 inventory: disabled instant crafting never crafts on right-click
+PASS: 2x2 inventory: occupied cursor refuses automatic crafting
+PASS: 2x2 inventory: closing the menu cancels a pending craft
+PASS: 3x3 table: left-click places ingredients without crafting
+PASS: 3x3 table: left-click places one ingredient
+PASS: 3x3 table: right-click on a prepared local recipe crafts once without a new placement packet
+PASS: 3x3 fresh local recipe, inventory source=1, maximum=false: ordinary placement and crafting conserve server ingredients
+PASS: 3x3 fresh local recipe, inventory source=1, maximum=false: cursor is empty
+PASS: 3x3 fresh local recipe, inventory source=8, maximum=false: ordinary placement and crafting conserve server ingredients
+PASS: 3x3 fresh local recipe, inventory source=8, maximum=false: cursor is empty
+PASS: 3x3 fresh local recipe, inventory source=8, maximum=true: ordinary placement and crafting conserve server ingredients
+PASS: 3x3 fresh local recipe, inventory source=8, maximum=true: cursor is empty
+PASS: 3x3 grid redistribution: local left redistributes without crafting
+PASS: 3x3 grid redistribution: scenario 0 leaves the cursor empty
+PASS: 3x3 grid redistribution: local Shift-left redistributes without crafting
+PASS: 3x3 grid redistribution: scenario 1 leaves the cursor empty
+PASS: 3x3 grid redistribution: local right redistributes grid planks and crafts 1 table batches
+PASS: 3x3 grid redistribution: scenario 2 leaves the cursor empty
+PASS: 3x3 grid redistribution: redistribution refuses valuable ingredients
+PASS: 3x3 grid redistribution: refused redistribution preserves all grid ingredients
+PASS: 3x3 grid redistribution: refused redistribution preserves the custom name
+PASS: 3x3 grid redistribution: scenario 3 leaves the cursor empty
+PASS: 3x3 grid redistribution: redistribution refuses insufficient temporary storage
+PASS: 3x3 grid redistribution: refused redistribution preserves all grid ingredients
+PASS: 3x3 grid redistribution: scenario 4 leaves the cursor empty
+PASS: 3x3 grid redistribution: local Shift-right redistributes grid planks and crafts 2 table batches
+PASS: 3x3 grid redistribution: scenario 5 leaves the cursor empty
+PASS: 3x3 table: local item ingredients accept a manually prepared renamed log and consume one batch
+PASS: 3x3 table: unconsumed renamed logs retain their custom name
+PASS: 3x3 table: automatic local placement protects renamed inventory ingredients
+PASS: 3x3 table: protected inventory ingredients remain unconsumed after an automatic refill attempt
+PASS: 3x3 table: an unresolved required ingredient refuses placement
+PASS: 3x3 table: unresolved ingredient placement preserves the prepared grid and all inventory items
+PASS: 3x3 table: Shift-left-click retains vanilla maximum grid fill
+PASS: 3x3 table: right-click creates precisely one four-plank batch
+PASS: 3x3 table: single batch leaves cursor empty
+PASS: 3x3 table: Shift-right-click crafts all eight batches
+PASS: 3x3 table: maximum craft leaves cursor empty
+PASS: 3x3 table: maximum crafting survives a batch split between a partial stack and an empty slot
+PASS: 3x3 table: split storage confirmations leave no output on the cursor
+PASS: 3x3 table: maximum crafting refills beyond the first 64-batch grid placement
+PASS: 3x3 table: full inventory refuses a batch without consuming ingredients
+PASS: 3x3 table: full inventory leaves cursor empty
+PASS: 3x3 table: maximum craft stops at storage capacity and preserves 48 unconsumed ingredients
+PASS: 3x3 table: capacity-limited maximum craft leaves cursor empty
+PASS: 3x3 table: disabled instant crafting never crafts on right-click
+PASS: 3x3 table: occupied cursor refuses automatic crafting
+PASS: 3x3 table: closing the menu cancels a pending craft
+PASS: Armor slots reject ordinary crafting output during storage preflight
+PASS: Container sequence comparison handles rollover, stale packets, and duplicates
+PASS: native trim recipe computes a concrete output
+SCREENSHOT: screenshots/0003_brb-smithing-fixed-variant.png
+PASS: left-click prepares the exact named/damaged trim variant on the server
+PASS: workstation pin records the exact trim variant
+PASS: Pins tab retains the selected concrete trim variant
+PASS: right-click crafts one prepared trim directly into authoritative inventory
+PASS: smithing instant craft leaves no item on the cursor
+PASS: already-trimmed named/damaged armor can be re-trimmed without losing unrelated components
+PASS: Shift-left respects the unstackable smithing base slot limit
+DEBUG: smithing maximum after 30 ticks; A=1; B=1; cursor=0 minecraft:air; inputs=[0 minecraft:air, 0 minecraft:air, 0 minecraft:air, 0 minecraft:air]; pending=none
+PASS: Shift-right crafts both smithing bases and preserves each distinct custom component set
+PASS: workstation All mode exposes fixed individual variants
+PASS: workstation pin prefers the hovered variant over the previously focused tile
+PASS: workstation expandable mode condenses native variant groups
+PASS: workstation plus control expands fixed individual children
+PASS: workstation minus control collapses without a Shift-right craft
+PASS: workstation expansion/collapse preserves every menu slot and the cursor
+PASS: workstation vanilla mode contains cycling entries without expansion headers
+PASS: Shift-right fills three bottles and starts normal-duration brewing instead of instant output
+SCREENSHOT: screenshots/0004_brb-brewing-normal-duration.png
+PASS: three vanilla brewed outputs finish in the authoritative brewing block entity
+PASS: workstation All mode exposes fixed individual variants
+PASS: workstation pin prefers the hovered variant over the previously focused tile
+PASS: workstation expandable mode condenses native variant groups
+PASS: workstation vanilla mode contains cycling entries without expansion headers
+PASS: dimension fixture retains a server-learned recipe
+PASS: unlock disabled starts without local recipe entries
+PASS: actual dimension change retains vanilla recipe book identity
+PASS: dimension change preserves the complete local recipe catalogue without duplicates
+PASS: disabling unlock after dimension change removes every injected entry
+PASS: dimension cleanup preserves server-learned entries
+PASS: re-enabling unlock after dimension cleanup preserves learned entries
+PASS: repeated unlock toggle removes re-created local entries
+RESULT: PASS; 192 recorded checks

@@ -1,0 +1,16 @@
+{
+  "name": "Better Recipe Book: Rebetterered",
+  "dimensions": [
+    180,
+    180
+  ],
+  "changed_pixels": 1002,
+  "changed_pixel_bounds": [
+    114,
+    147,
+    169,
+    175
+  ],
+  "unchanged_outside_badge": true,
+  "original_icon_sha256": "4c9be6851e34a23675a88a9b554f0e0336af373071f3479b61a3a23e15b39c8f"
+}

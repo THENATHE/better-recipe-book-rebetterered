@@ -1,0 +1,55 @@
+> Task :clean
+> Task :compileJava
+> Task :processResources
+> Task :classes
+> Task :compileRegressionJava
+> Task :processRegressionResources NO-SOURCE
+> Task :regressionClasses
+> Task :craftingRegression
+PASS: 131072 sequence assertions and 6 ingredient assignment regression cases
+> Task :creativeRegression
+PASS: default selector oak_planks
+PASS: default selector stripped_oak_log
+PASS: default selector dark_oak_stairs
+PASS: default selector bamboo_mosaic_stairs
+PASS: default selector warped_hyphae
+PASS: default selector pale_oak_hanging_sign
+PASS: default selector light_blue_wool
+PASS: default selector red_wool
+PASS: default selector blue_stained_glass_pane
+PASS: default selector yellow_concrete_powder
+PASS: default selector diamond_pickaxe
+PASS: default selector netherite_helmet
+PASS: default selector copper_sword
+PASS: default selector potion
+PASS: default selector splash_potion
+PASS: default selector tipped_arrow
+PASS: default selector zombie_spawn_egg
+PASS: default selector sentry_armor_trim_smithing_template
+PASS: default selector waxed_weathered_cut_copper_stairs
+PASS: unmatched items stay visible individually
+PASS: custom namespace not silently grouped by vanilla rules
+PASS: labels use stable captures
+PASS: invalid replacement $9
+PASS: invalid replacement $
+PASS: invalid replacement $x
+PASS: invalid replacement \
+PASS: first resource rule deterministically owns overlapping matches
+> Task :pinRegression
+PASS: pin migration, latest ordered save, temporary cleanup, malformed preservation, component and ingredient identity (11 checks)
+> Task :compileClientqaJava
+> Task :processClientqaResources
+> Task :clientqaClasses
+> Task :clientqaJar
+> Task :processIncludeJars
+> Task :sourcesJar
+> Task :compileTestJava NO-SOURCE
+> Task :processTestResources NO-SOURCE
+> Task :testClasses UP-TO-DATE
+> Task :test NO-SOURCE
+> Task :validateAccessWidener UP-TO-DATE
+> Task :check
+> Task :jar
+> Task :assemble
+> Task :build
+BUILD SUCCESSFUL in 43s

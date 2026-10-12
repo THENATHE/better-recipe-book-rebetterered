@@ -1,0 +1,10 @@
+{
+  "minecraft": "26.3",
+  "server": "unmodified Mojang bundled server",
+  "server_sha1": "33680f5f2ac32864d6d7cf5e56a705fdb3e05f4c",
+  "server_url": "https://piston-data.mojang.com/v1/objects/33680f5f2ac32864d6d7cf5e56a705fdb3e05f4c/server.jar",
+  "listen": "127.0.0.1:25593",
+  "server_mods": [],
+  "test_world": "qa/vanilla-server/qa-world",
+  "scope": "owned disposable loopback world; offline profile; peaceful difficulty"
+}

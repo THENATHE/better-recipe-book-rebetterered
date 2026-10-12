@@ -1,0 +1,51 @@
+{
+  "game_versions": [
+    "1.21",
+    "1.21.1"
+  ],
+  "loaders": [
+    "fabric"
+  ],
+  "environment": "client_only",
+  "id": "rj0f0Vtq",
+  "project_id": "vWIaVOTE",
+  "author_id": "ilwiia9i",
+  "featured": true,
+  "name": "[Fabric] 1.10.0-rc5+1.21",
+  "version_number": "1.10.0-rc5+1.21",
+  "changelog": "- Update to 1.21",
+  "changelog_url": null,
+  "date_published": "2024-07-08T00:33:01.412672Z",
+  "downloads": 4863194,
+  "version_type": "beta",
+  "status": "listed",
+  "requested_status": null,
+  "files": [
+    {
+      "id": "XfOMXsCd",
+      "hashes": {
+        "sha1": "5831fc725b9834cef7b445913a701310536b17ab",
+        "sha512": "0044ca62ec077034ac3c1bd7d592cc3dfe1bfd94fdab51bb0f23a28d3cefcad97261c6c0407a8afde15636137d49ab73d6af8b3f6ddbee216dc8540ea2940640"
+      },
+      "url": "https://cdn.modrinth.com/data/vWIaVOTE/versions/rj0f0Vtq/brb-1.10.0-rc5%2B1.21.jar",
+      "filename": "brb-1.10.0-rc5+1.21.jar",
+      "primary": true,
+      "size": 1213168,
+      "file_type": null
+    }
+  ],
+  "dependencies": [
+    {
+      "version_id": null,
+      "project_id": "lhGA9TYQ",
+      "file_name": null,
+      "dependency_type": "required"
+    },
+    {
+      "version_id": null,
+      "project_id": "P7dR8mSH",
+      "file_name": null,
+      "dependency_type": "required"
+    }
+  ]
+}

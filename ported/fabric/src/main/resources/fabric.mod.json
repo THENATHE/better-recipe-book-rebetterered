@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "id": "brb",
+  "version": "${version}",
+  "name": "Better Recipe Book: Rebetterered",
+  "description": "Unofficial original-BRB port with configurable recipe and creative groups, exact pins and right-click crafting.",
+  "authors": [
+    "marshmallow"
+  ],
+  "contributors": [
+    "ruvaldak",
+    "Felix14-v2",
+    "buiawpkgew1",
+    "TauCubed",
+    "MehradN",
+    "notlin4",
+    "THENATHE (26.3 port and controls)"
+  ],
+  "contact": {
+    "issues": "https://github.com/THENATHE/better-recipe-book-rebetterered/issues",
+    "homepage": "https://github.com/THENATHE/better-recipe-book-rebetterered",
+    "sources": "https://github.com/THENATHE/better-recipe-book-rebetterered"
+  },
+  "license": "MIT",
+  "icon": "assets/brb/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "modmenu": [
+      "marsh.town.brb.fabric.ModMenuFabric"
+    ],
+    "client": [
+      "marsh.town.brb.fabric.BetterRecipeBookFabric"
+    ]
+  },
+  "mixins": [
+    "mixins.brb-common.json",
+    "mixins.brb-common-compat.json"
+  ],
+  "accessWidener": "brb.common.accesswidener",
+  "depends": {
+    "fabricloader": ">=0.19.5",
+    "java": ">=25",
+    "minecraft": "26.3",
+    "fabric-api": ">=0.161.0+26.3",
+    "cloth-config": ">=26.3.159"
+  }
+}
