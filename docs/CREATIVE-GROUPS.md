@@ -18,6 +18,6 @@ Optional `icon` chooses a representative from the group's existing members. If t
 }
 ```
 
-Collapsed headers never take items. Expanded headers darken and display the same recipe-book minus badge; clicking them collapses the group. Individual children use normal creative pickup and retain their item components.
+Collapsed headers never take items. Expanded headers darken and display the same recipe-book minus badge; clicking them collapses the group. Expanded individual children have a subtle darker tint (`0x40000000`), between ordinary entries and the expanded-header shade (`0x99000000`). The same shades apply to expanded recipe-book and workstation rows. Individual children remain selectable, use normal creative pickup and retain their item components. Ordinary items, search results and pinned recipes do not receive this group-child tint.
 
 Chalk rules target the known `chalk:<color>_chalk` and `chalk:<color>_glow_chalk` IDs. They do not require Chalk to be installed. Unknown namespaces remain individual unless explicitly matched by a rule.

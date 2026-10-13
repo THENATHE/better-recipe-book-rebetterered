@@ -11,4 +11,8 @@ public class InstantCraft implements ConfigData {
     @ConfigEntry.Gui.Tooltip
     public boolean enabled = true;
 
+    @ConfigEntry.Gui.Tooltip
+    @ConfigEntry.Gui.EnumHandler(option = ConfigEntry.Gui.EnumHandler.EnumDisplayOption.BUTTON)
+    public CraftAllMethod craftAllMethod = CraftAllMethod.SINGLE_BATCHES;
+
 }

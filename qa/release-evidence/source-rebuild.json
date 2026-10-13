@@ -1,16 +1,9 @@
 {
-  "result": "PASS",
-  "command": "JAVA_HOME=<complete Java 25 JDK> bash gradlew --offline --no-daemon clean check build clientqaJar",
-  "artifacts": [
-    {
-      "file": "better-recipe-book-rebetterered-1.11.4+26.3-sources.jar",
-      "sha256": "823332cf113b645636162de22408176c4a8a7fdcd4bac9895b42882da5efedcb",
-      "byte_identical": true
-    },
-    {
-      "file": "better-recipe-book-rebetterered-1.11.4+26.3.jar",
-      "sha256": "475088b5e8f4c6b30b1f3f648f103a847a1ad8fab7d410d6f3fd6dabc608864c",
-      "byte_identical": true
-    }
-  ]
+  "version": "1.11.5+26.3",
+  "clean_check_build_clientqaJar": "PASS",
+  "byte_identical": true,
+  "artifacts": {
+    "better-recipe-book-rebetterered-1.11.5+26.3-sources.jar": "982b1d0424c98d841851a5bdf81c7da5a6d4ceab1174022617001045f86bf08a",
+    "better-recipe-book-rebetterered-1.11.5+26.3.jar": "3621bcb3f6eceb1c9031b4313f354d38a67acb6366f0e2c378a8c7d7f63ee544"
+  }
 }

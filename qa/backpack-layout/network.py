@@ -32,6 +32,7 @@ def main():
     parser.add_argument('--delay-grid', action='store_true')
     parser.add_argument('--baseline', action='store_true')
     parser.add_argument('--cycles', type=int, default=1)
+    parser.add_argument('--craft-all-method', choices=('single_batches', 'fill_grid'), default='single_batches')
     parser.add_argument('--compile-only', action='store_true', help='Compile/package observation fixtures without launching any runtime')
     args = parser.parse_args()
     if args.profiles != 'suite': parser.error('This fixture requires the native suite client; vanilla boundary is tested separately')
@@ -112,6 +113,7 @@ def main():
             mods=[api,fixtures/'client.jar'] if profile=='fabric' else [suite,*dependencies,fixtures/'client.jar']
             command=launch.base_command('native',clientdir,port);command[0]='/usr/lib/jvm/java-25-openjdk/bin/java';command.insert(1,'-Dcrafting.qa.control='+str(control))
             command[command.index('--username')+1]=name
+            command.insert(1, '-Dcrafting.qa.craftAllMethod='+args.craft_all_method)
             if args.brbr: mods.append(args.brbr.resolve())
             if args.delay_grid: command.insert(1, '-Dcrafting.qa.delayGrid=true')
             client=start(clientdir,command,mods)
@@ -165,7 +167,7 @@ def main():
         stop(server,True)
         delayed_checks=sum((run/('FeatureNet'+profile.title())/'console.log').read_text().count('CRAFTING_QA_DELAYED_GRID') for profile in args.profiles.split(','))
         if args.delay_grid: assert delayed_checks >= 3, 'synthetic unsettled-grid mode did not execute'
-        (run/'result.json').write_text(json.dumps({'passed':True,'version':version,'bundle_sha256':sha(suite),'backpack_ingredients':args.backpack,'delayed_grid':args.delay_grid,'delayed_predicate_checks':delayed_checks,'baseline':args.baseline,'cycles':args.cycles,'brbr_sha256':sha(args.brbr) if args.brbr else None,'polymer':not args.without_polymer,'profiles':args.profiles.split(','),'observations':observations,'scope':'BRB buttons follow the actual backpack recipe-book origin in wide and narrow layouts; mouse settings Save/Cancel and instant-toggle preserve storage. Connected recipe placement/crafting and server ingredient conservation.'},indent=2)+'\n')
+        (run/'result.json').write_text(json.dumps({'passed':True,'version':version,'bundle_sha256':sha(suite),'backpack_ingredients':args.backpack,'delayed_grid':args.delay_grid,'delayed_predicate_checks':delayed_checks,'baseline':args.baseline,'cycles':args.cycles,'craft_all_method':args.craft_all_method,'brbr_sha256':sha(args.brbr) if args.brbr else None,'polymer':not args.without_polymer,'profiles':args.profiles.split(','),'observations':observations,'scope':'Pinned tabs follow the native book origin and their mouse selection restores crafting tabs without changing storage. Selected craft-all strategy is recorded. BRB buttons follow the actual backpack recipe-book origin in wide and narrow layouts; mouse settings Save/Cancel and instant-toggle preserve storage. Connected recipe placement/crafting and server ingredient conservation.'},indent=2)+'\n')
         print('PASS backpack crafting GUI checks',flush=True)
     finally:
         for process,log in reversed(children):

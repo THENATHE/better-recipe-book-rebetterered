@@ -4,6 +4,7 @@ import com.mojang.blaze3d.platform.InputConstants;
 
 import marsh.town.brb.BetterRecipeBook;
 import marsh.town.brb.CraftRequestChecks;
+import marsh.town.brb.config.CraftAllMethod;
 import marsh.town.brb.mixins.accessors.RecipeBookComponentAccessor;
 import marsh.town.brb.mixins.accessors.RecipeBookPageAccessor;
 import marsh.town.brb.recipegroups.RecipeDisplayMode;
@@ -25,6 +26,13 @@ import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.inventory.AbstractCraftingMenu;
 import net.minecraft.world.inventory.CraftingMenu;
 import net.minecraft.world.inventory.ContainerLevelAccess;
+import net.minecraft.world.inventory.ContainerInput;
+import net.minecraft.network.protocol.game.ServerboundContainerClickPacket;
+import net.minecraft.world.entity.item.ItemEntity;
+import io.netty.channel.Channel;
+import io.netty.channel.ChannelDuplexHandler;
+import io.netty.channel.ChannelHandlerContext;
+import io.netty.channel.ChannelPromise;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -37,6 +45,8 @@ import net.minecraft.world.level.block.Blocks;
 
 import java.lang.reflect.Field;
 import java.util.List;
+import java.util.Queue;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 /** Exercises actual recipe widgets and server-authoritative inventories in the QA world. */
 public final class CraftingChecks {
@@ -50,8 +60,42 @@ public final class CraftingChecks {
         });
         world.getServer().runCommand("recipe give @a *");
         world.getConnection().waitForClientboundPackets();
+        CraftAllMethod originalMethod = context.computeOnClient(client -> BetterRecipeBook.config.instantCraft.craftAllMethod);
+        CraftPacketTrace trace = context.computeOnClient(CraftPacketTrace::new);
+        try {
+            for (CraftAllMethod method : CraftAllMethod.values()) {
+                context.runOnClient(client -> BetterRecipeBook.config.instantCraft.craftAllMethod = method);
+                runMethodChecks(context, world, evidence, method, trace);
+                cakeRemainders(context, world, method, evidence);
+            }
+        } finally {
+            context.runOnClient(client -> {
+                trace.close();
+                BetterRecipeBook.config.instantCraft.craftAllMethod = originalMethod;
+                BetterRecipeBook.instantCraftingManager.cancelPending();
+            });
+        }
+        prepare(context, world, false, 8, false);
+        context.runOnClient(client -> {
+            ItemStack output = new ItemStack(Items.OAK_PLANKS, 4);
+            require(!ClientInventoryUtil.canStore(output, client.player.containerMenu, index -> index >= 5 && index <= 8),
+                    "Armor slots reject ordinary crafting output during storage preflight", evidence);
+        });
+        require(CraftRequestChecks.newerState(0, 32767) && !CraftRequestChecks.newerState(32767, 0)
+                        && !CraftRequestChecks.newerState(5, 5),
+                "Container sequence comparison handles rollover, stale packets, and duplicates", evidence);
+        context.runOnClient(client -> {
+            BetterRecipeBook.instantCraftingManager.cancelPending();
+            client.player.closeContainer();
+            client.gui.setScreen(null);
+        });
+    }
+
+    private static void runMethodChecks(ClientGameTestContext context, TestSingleplayerContext world,
+                                        List<String> evidence, CraftAllMethod method, CraftPacketTrace trace) throws Exception {
         for (boolean table : new boolean[] {false, true}) {
-            String menu = table ? "3x3 table" : "2x2 inventory";
+            String menu = method + ": " + (table ? "3x3 table" : "2x2 inventory");
+            int droppedBefore;
             prepare(context, world, table, 8, false);
             clickRecipe(context, InputConstants.MOUSE_BUTTON_LEFT, false);
             synchronize(context, world);
@@ -91,6 +135,7 @@ public final class CraftingChecks {
                 localInventoryCraft(context, world, table, original, localId, available, false, evidence);
             }
             localInventoryCraft(context, world, table, original, localId, 8, true, evidence);
+            localInventoryCraft(context, world, table, original, localId, 68, true, evidence);
             localGridRedistribution(context, world, table, evidence);
 
             prepare(context, world, table, 8, false);
@@ -163,15 +208,23 @@ public final class CraftingChecks {
             synchronize(context, world);
             require(count(world, Items.OAK_PLANKS) == 4 && count(world, Items.OAK_LOG) + gridCount(world) == 7,
                     menu + ": right-click creates precisely one four-plank batch", evidence);
-            require(context.computeOnClient(client -> client.player.containerMenu.getCarried().isEmpty()), menu + ": single batch leaves cursor empty", evidence);
+            require(cursorEmpty(context, world), menu + ": single batch leaves cursor empty", evidence);
 
             prepare(context, world, table, 8, false);
+            trace.resultActions.clear();
+            droppedBefore = droppedItems(world);
             clickRecipe(context, InputConstants.MOUSE_BUTTON_RIGHT, true);
             world.getServer().waitFor(server -> countServer(server.getPlayerList().getPlayers().getFirst().getInventory().getNonEquipmentItems(), Items.OAK_PLANKS) == 32, 250);
             synchronize(context, world);
             require(count(world, Items.OAK_PLANKS) == 32 && gridCount(world) == 0,
                     menu + ": Shift-right-click crafts all eight batches", evidence);
-            require(context.computeOnClient(client -> client.player.containerMenu.getCarried().isEmpty()), menu + ": maximum craft leaves cursor empty", evidence);
+            require(method == CraftAllMethod.FILL_GRID
+                            ? trace.resultActions.contains(ContainerInput.QUICK_MOVE)
+                            : !trace.resultActions.contains(ContainerInput.QUICK_MOVE)
+                                    && trace.resultActions.stream().filter(action -> action == ContainerInput.PICKUP).count() == 8,
+                    menu + ": selected craft-all method uses " + (method == CraftAllMethod.FILL_GRID ? "a bulk result transfer" : "eight single result pickups"), evidence);
+            require(cursorEmpty(context, world), menu + ": maximum craft leaves cursor empty", evidence);
+            require(droppedItems(world) == droppedBefore, menu + ": maximum craft never overflows output or ingredients into the world", evidence);
 
             prepare(context, world, table, 8, true);
             world.getServer().runOnServer(server -> {
@@ -180,13 +233,15 @@ public final class CraftingChecks {
                 player.containerMenu.broadcastFullState();
             });
             synchronize(context, world);
+            droppedBefore = droppedItems(world);
             clickRecipe(context, InputConstants.MOUSE_BUTTON_RIGHT, true);
             world.getServer().waitFor(server -> countServer(server.getPlayerList().getPlayers().getFirst().getInventory().getNonEquipmentItems(), Items.OAK_PLANKS) == 95, 250);
             synchronize(context, world);
             require(count(world, Items.OAK_PLANKS) == 95 && gridCount(world) == 0,
                     menu + ": maximum crafting survives a batch split between a partial stack and an empty slot", evidence);
-            require(context.computeOnClient(client -> client.player.containerMenu.getCarried().isEmpty()),
+            require(cursorEmpty(context, world),
                     menu + ": split storage confirmations leave no output on the cursor", evidence);
+            require(droppedItems(world) == droppedBefore, menu + ": maximum craft never overflows output or ingredients into the world", evidence);
 
             prepare(context, world, table, 64, false);
             world.getServer().runOnServer(server -> {
@@ -195,11 +250,13 @@ public final class CraftingChecks {
                 player.inventoryMenu.broadcastFullState();
             });
             synchronize(context, world);
+            droppedBefore = droppedItems(world);
             clickRecipe(context, InputConstants.MOUSE_BUTTON_RIGHT, true);
             world.getServer().waitFor(server -> countServer(server.getPlayerList().getPlayers().getFirst().getInventory().getNonEquipmentItems(), Items.OAK_PLANKS) == 272, 500);
             synchronize(context, world);
             require(count(world, Items.OAK_PLANKS) == 272 && gridCount(world) == 0,
                     menu + ": maximum crafting refills beyond the first 64-batch grid placement", evidence);
+            require(droppedItems(world) == droppedBefore, menu + ": maximum craft never overflows output or ingredients into the world", evidence);
 
             prepare(context, world, table, 8, true);
             clickRecipe(context, InputConstants.MOUSE_BUTTON_RIGHT, false);
@@ -207,17 +264,21 @@ public final class CraftingChecks {
             synchronize(context, world);
             require(count(world, Items.OAK_PLANKS) == 0 && count(world, Items.OAK_LOG) + gridCount(world) == 8,
                     menu + ": full inventory refuses a batch without consuming ingredients", evidence);
-            require(context.computeOnClient(client -> client.player.containerMenu.getCarried().isEmpty()), menu + ": full inventory leaves cursor empty", evidence);
+            require(cursorEmpty(context, world), menu + ": full inventory leaves cursor empty", evidence);
 
             prepare(context, world, table, 64, true);
+            droppedBefore = droppedItems(world);
             clickRecipe(context, InputConstants.MOUSE_BUTTON_RIGHT, true);
             world.getServer().waitFor(server -> countServer(server.getPlayerList().getPlayers().getFirst().getInventory().getNonEquipmentItems(), Items.OAK_PLANKS) == 64, 300);
             context.waitTicks(15);
             synchronize(context, world);
             require(count(world, Items.OAK_PLANKS) == 64 && gridCount(world) == 48,
                     menu + ": maximum craft stops at storage capacity and preserves 48 unconsumed ingredients", evidence);
-            require(context.computeOnClient(client -> client.player.containerMenu.getCarried().isEmpty()),
+            require(cursorEmpty(context, world),
                     menu + ": capacity-limited maximum craft leaves cursor empty", evidence);
+            require(droppedItems(world) == droppedBefore, menu + ": maximum craft never overflows output or ingredients into the world", evidence);
+
+            partialBatchRefusal(context, world, table, menu, evidence);
 
             prepare(context, world, table, 8, false);
             context.runOnClient(client -> BetterRecipeBook.config.instantCraft.enabled = false);
@@ -242,21 +303,107 @@ public final class CraftingChecks {
             synchronize(context, world);
             context.waitTicks(10);
             require(count(world, Items.OAK_PLANKS) == 0, menu + ": closing the menu cancels a pending craft", evidence);
+
         }
-        prepare(context, world, false, 8, false);
-        context.runOnClient(client -> {
-            ItemStack output = new ItemStack(Items.OAK_PLANKS, 4);
-            require(!ClientInventoryUtil.canStore(output, client.player.containerMenu, index -> index >= 5 && index <= 8),
-                    "Armor slots reject ordinary crafting output during storage preflight", evidence);
+    }
+
+    private static void partialBatchRefusal(ClientGameTestContext context, TestSingleplayerContext world,
+                                            boolean table, String menu, List<String> evidence) throws Exception {
+        prepare(context, world, table, 64, true);
+        world.getServer().runOnServer(server -> {
+            var player = server.getPlayerList().getPlayers().getFirst();
+            ((AbstractCraftingMenu) player.containerMenu).getInputGridSlots().getFirst().set(new ItemStack(Items.OAK_LOG, 64));
+            player.getInventory().setItem(0, new ItemStack(Items.STONE, 64));
+            player.getInventory().setItem(1, new ItemStack(Items.OAK_PLANKS, 63));
+            player.containerMenu.broadcastFullState();
         });
-        require(CraftRequestChecks.newerState(0, 32767) && !CraftRequestChecks.newerState(32767, 0)
-                        && !CraftRequestChecks.newerState(5, 5),
-                "Container sequence comparison handles rollover, stale packets, and duplicates", evidence);
-        context.runOnClient(client -> {
-            BetterRecipeBook.instantCraftingManager.cancelPending();
-            client.player.closeContainer();
-            client.gui.setScreen(null);
+        synchronize(context, world);
+        int droppedBefore = droppedItems(world);
+        clickRecipe(context, InputConstants.MOUSE_BUTTON_RIGHT, true);
+        context.waitTicks(20);
+        synchronize(context, world);
+        require(count(world, Items.OAK_PLANKS) == 63 && gridCount(world) == 64 && count(world, Items.OAK_LOG) == 0,
+                menu + ": one free output space refuses a four-item batch and conserves all prepared ingredients", evidence);
+        require(cursorEmpty(context, world), menu + ": partial-batch refusal leaves both client and server cursors empty", evidence);
+        require(droppedItems(world) == droppedBefore, menu + ": partial-batch refusal drops no output or ingredients", evidence);
+    }
+
+    private static void cakeRemainders(ClientGameTestContext context, TestSingleplayerContext world,
+                                       CraftAllMethod method, List<String> evidence) throws Exception {
+        prepare(context, world, true, 0, false);
+        world.getServer().runOnServer(server -> {
+            var player = server.getPlayerList().getPlayers().getFirst();
+            for (int slot = 0; slot < 9; slot++) player.getInventory().setItem(slot, new ItemStack(Items.MILK_BUCKET));
+            player.getInventory().setItem(9, new ItemStack(Items.SUGAR, 6));
+            player.getInventory().setItem(10, new ItemStack(Items.WHEAT, 9));
+            player.getInventory().setItem(11, new ItemStack(Items.EGG, 3));
+            player.containerMenu.broadcastFullState();
         });
+        synchronize(context, world);
+        int droppedBefore = droppedItems(world);
+        context.runOnClient(client -> {
+            var accessor = (RecipeBookComponentAccessor) component(client);
+            accessor.getSearchBox().setValue("cake");
+            accessor.updateCollectionsInvoker(true, false);
+        });
+        context.waitTicks(3);
+        context.runOnClient(client -> click(client, InputConstants.MOUSE_BUTTON_RIGHT, true, Items.CAKE));
+        world.getServer().waitFor(server -> countServer(server.getPlayerList().getPlayers().getFirst()
+                .getInventory().getNonEquipmentItems(), Items.CAKE) == 3, 300);
+        synchronize(context, world);
+        int gridBuckets = world.getServer().computeOnServer(server -> ((AbstractCraftingMenu) server.getPlayerList().getPlayers()
+                .getFirst().containerMenu).getInputGridSlots().stream()
+                .filter(slot -> slot.getItem().is(Items.BUCKET)).mapToInt(slot -> slot.getItem().getCount()).sum());
+        String actual = world.getServer().computeOnServer(server -> {
+            var player = server.getPlayerList().getPlayers().getFirst();
+            return "; inventory=" + player.getInventory().getNonEquipmentItems().stream().filter(stack -> !stack.isEmpty()).toList()
+                    + "; grid=" + ((AbstractCraftingMenu) player.containerMenu).getInputGridSlots().stream().map(slot -> slot.getItem()).toList();
+        });
+        require(count(world, Items.CAKE) == 3 && count(world, Items.BUCKET) == 6 && gridBuckets == 3 && count(world, Items.MILK_BUCKET) == 0,
+                method + ": three cakes conserve all nine buckets, six returned and three vanilla grid remainders" + actual, evidence);
+        require(count(world, Items.SUGAR) == 0 && count(world, Items.WHEAT) == 0 && count(world, Items.EGG) == 0 && gridCount(world) == 3,
+                method + ": cake crafting consumes exactly three batches and leaves only the final bucket remainders" + actual, evidence);
+        require(cursorEmpty(context, world) && droppedItems(world) == droppedBefore,
+                method + ": cake outputs and remainders leave no cursor items or dropped items", evidence);
+    }
+
+    private static boolean cursorEmpty(ClientGameTestContext context, TestSingleplayerContext world) {
+        return context.computeOnClient(client -> client.player.containerMenu.getCarried().isEmpty())
+                && world.getServer().computeOnServer(server -> server.getPlayerList().getPlayers().getFirst().containerMenu.getCarried().isEmpty());
+    }
+
+    private static int droppedItems(TestSingleplayerContext world) {
+        return world.getServer().computeOnServer(server -> {
+            var player = server.getPlayerList().getPlayers().getFirst();
+            return player.level().getEntitiesOfClass(ItemEntity.class, player.getBoundingBox().inflate(32)).stream()
+                    .mapToInt(entity -> entity.getItem().getCount()).sum();
+        });
+    }
+
+    /** Observes vanilla result-slot packets so the two selected strategies cannot silently behave identically. */
+    private static final class CraftPacketTrace implements AutoCloseable {
+        private final Channel channel;
+        private final Queue<ContainerInput> resultActions = new ConcurrentLinkedQueue<>();
+
+        private CraftPacketTrace(Minecraft client) throws ReflectiveOperationException {
+            Field field = net.minecraft.network.Connection.class.getDeclaredField("channel");
+            field.setAccessible(true);
+            channel = (Channel) field.get(client.getConnection().getConnection());
+            channel.pipeline().addLast("brb_craft_qa", new ChannelDuplexHandler() {
+                @Override
+                public void write(ChannelHandlerContext context, Object message, ChannelPromise promise) throws Exception {
+                    if (message instanceof ServerboundContainerClickPacket click && click.slotNum() == 0) {
+                        resultActions.add(click.containerInput());
+                    }
+                    super.write(context, message, promise);
+                }
+            });
+        }
+
+        @Override
+        public void close() {
+            channel.pipeline().remove("brb_craft_qa");
+        }
     }
 
     private static void localGridRedistribution(ClientGameTestContext context, TestSingleplayerContext world,
@@ -267,7 +414,8 @@ public final class CraftingChecks {
                         .stream().anyMatch(stack -> stack.is(Items.CRAFTING_TABLE))).findFirst().orElseThrow());
         RecipeDisplayEntry local = new RecipeDisplayEntry(new RecipeDisplayId(-987655), original.display(), original.group(),
                 original.category(), original.craftingRequirements());
-        String name = table ? "3x3 grid redistribution" : "2x2 grid redistribution";
+        String name = context.computeOnClient(client -> BetterRecipeBook.config.instantCraft.craftAllMethod)
+                + ": " + (table ? "3x3 grid redistribution" : "2x2 grid redistribution");
         for (int scenario = 0; scenario < 6; scenario++) {
             int selected = scenario;
             int planks = scenario == 1 || scenario == 5 ? 8 : 4;
@@ -344,7 +492,15 @@ public final class CraftingChecks {
     private static void localInventoryCraft(ClientGameTestContext context, TestSingleplayerContext world, boolean table,
                                             RecipeDisplayEntry original, RecipeDisplayId localId, int available, boolean maximum,
                                             List<String> evidence) throws Exception {
-        prepare(context, world, table, available, false);
+        prepare(context, world, table, Math.min(available, 64), false);
+        if (available > 64) {
+            world.getServer().runOnServer(server -> {
+                var player = server.getPlayerList().getPlayers().getFirst();
+                player.getInventory().setItem(1, new ItemStack(Items.OAK_LOG, available - 64));
+                player.containerMenu.broadcastFullState();
+            });
+            synchronize(context, world);
+        }
         context.runOnClient(client -> {
             var book = client.player.getRecipeBook();
             book.remove(original.id());
@@ -354,14 +510,17 @@ public final class CraftingChecks {
             component(client).recipesUpdated();
         });
         context.waitTicks(3);
+        int droppedBefore = droppedItems(world);
         clickRecipe(context, InputConstants.MOUSE_BUTTON_RIGHT, maximum);
         int expected = maximum ? available * 4 : 4;
-        world.getServer().waitFor(server -> countServer(server.getPlayerList().getPlayers().getFirst().getInventory().getNonEquipmentItems(), Items.OAK_PLANKS) == expected, 200);
+        world.getServer().waitFor(server -> countServer(server.getPlayerList().getPlayers().getFirst().getInventory().getNonEquipmentItems(), Items.OAK_PLANKS) == expected, available > 64 ? 600 : 200);
         synchronize(context, world);
-        String name = (table ? "3x3" : "2x2") + " fresh local recipe, inventory source=" + available + ", maximum=" + maximum;
+        String name = context.computeOnClient(client -> BetterRecipeBook.config.instantCraft.craftAllMethod)
+                + ": " + (table ? "3x3" : "2x2") + " fresh local recipe, inventory source=" + available + ", maximum=" + maximum;
         require(count(world, Items.OAK_PLANKS) == expected && count(world, Items.OAK_LOG) + gridCount(world) == available - expected / 4,
                 name + ": ordinary placement and crafting conserve server ingredients", evidence);
-        require(context.computeOnClient(client -> client.player.containerMenu.getCarried().isEmpty()), name + ": cursor is empty", evidence);
+        require(cursorEmpty(context, world), name + ": both client and server cursors are empty", evidence);
+        require(droppedItems(world) == droppedBefore, name + ": crafting drops no output or ingredients", evidence);
         context.runOnClient(client -> {
             var book = client.player.getRecipeBook();
             book.remove(localId);
@@ -382,6 +541,8 @@ public final class CraftingChecks {
         world.getServer().runOnServer(server -> {
             var player = server.getPlayerList().getPlayers().getFirst();
             player.setGameMode(GameType.SURVIVAL);
+            // Closing the preceding full-inventory fixture can spill its leftover grid inputs.
+            player.level().getEntitiesOfClass(ItemEntity.class, player.getBoundingBox().inflate(32)).forEach(ItemEntity::discard);
             player.getInventory().clearContent();
             player.getInventory().setItem(0, new ItemStack(Items.OAK_LOG, logs));
             if (full) {

@@ -2,6 +2,7 @@ package marsh.town.brb.clientqa;
 
 import com.mojang.blaze3d.platform.InputConstants;
 import marsh.town.brb.BetterRecipeBook;
+import marsh.town.brb.config.CraftAllMethod;
 import marsh.town.brb.mixins.accessors.RecipeBookComponentAccessor;
 import marsh.town.brb.mixins.accessors.RecipeBookPageAccessor;
 import marsh.town.brb.recipegroups.RecipeDisplayMode;
@@ -42,7 +43,14 @@ public final class RemoteClientQa implements ClientModInitializer {
     private boolean finished;
 
     private record Scenario(String name, int button, boolean shift, boolean undiscovered,
-                            int expectedGrid, int expectedInventoryLogs, int expectedPlanks) {}
+                            int expectedGrid, int expectedInventoryLogs, int expectedPlanks,
+                            CraftAllMethod method, int initialLogs) {
+        private Scenario(String name, int button, boolean shift, boolean undiscovered,
+                         int expectedGrid, int expectedInventoryLogs, int expectedPlanks) {
+            this(name, button, shift, undiscovered, expectedGrid, expectedInventoryLogs, expectedPlanks,
+                    CraftAllMethod.SINGLE_BATCHES, 8);
+        }
+    }
 
     private static final List<Scenario> SCENARIOS = List.of(
             new Scenario("left-click normal placement", InputConstants.MOUSE_BUTTON_LEFT, false, false, 1, 7, 0),
@@ -50,7 +58,14 @@ public final class RemoteClientQa implements ClientModInitializer {
             new Scenario("right-click one batch", InputConstants.MOUSE_BUTTON_RIGHT, false, false, 0, 7, 4),
             new Scenario("Shift-right-click maximum crafting", InputConstants.MOUSE_BUTTON_RIGHT, true, false, 0, 0, 32),
             new Scenario("undiscovered local placement", InputConstants.MOUSE_BUTTON_LEFT, false, true, 1, 7, 0),
-            new Scenario("undiscovered local right-click crafting", InputConstants.MOUSE_BUTTON_RIGHT, false, true, 0, 7, 4));
+            new Scenario("undiscovered local right-click crafting", InputConstants.MOUSE_BUTTON_RIGHT, false, true, 0, 7, 4),
+            new Scenario("single-batch undiscovered local craft-all", InputConstants.MOUSE_BUTTON_RIGHT, true, true, 0, 0, 32),
+            new Scenario("fill-grid right-click stays one batch", InputConstants.MOUSE_BUTTON_RIGHT, false, false, 0, 7, 4,
+                    CraftAllMethod.FILL_GRID, 8),
+            new Scenario("fill-grid native craft-all reloads after 64 batches", InputConstants.MOUSE_BUTTON_RIGHT, true, false, 0, 0, 272,
+                    CraftAllMethod.FILL_GRID, 68),
+            new Scenario("fill-grid undiscovered local craft-all reloads after 64 batches", InputConstants.MOUSE_BUTTON_RIGHT, true, true, 0, 0, 272,
+                    CraftAllMethod.FILL_GRID, 68));
 
     @Override
     public void onInitializeClient() {
@@ -61,7 +76,7 @@ public final class RemoteClientQa implements ClientModInitializer {
     private void tick(Minecraft client) {
         if (finished) return;
         try {
-            if (++ticks > 2500) throw new AssertionError("Remote QA timeout at stage " + stage + ", scenario " + caseIndex);
+            if (++ticks > 4000) throw new AssertionError("Remote QA timeout at stage " + stage + ", scenario " + caseIndex);
             if (client.player == null || client.level == null || client.gameMode == null || ticks < nextTick) return;
             if (stage == 0 && client.player.isDeadOrDying()) {
                 client.player.respawn();
@@ -99,7 +114,7 @@ public final class RemoteClientQa implements ClientModInitializer {
                     advance(2, 8);
                 }
                 case 2 -> {
-                    if (!seen(client, "SETUP-" + caseIndex) || count(client, Items.OAK_LOG) != 8 || count(client, Items.OAK_PLANKS) != 0) return;
+                    if (!seen(client, "SETUP-" + caseIndex) || count(client, Items.OAK_LOG) != scenario().initialLogs() || count(client, Items.OAK_PLANKS) != 0) return;
                     check(client.gameMode.getPlayerMode() == net.minecraft.world.level.GameType.SURVIVAL, "scenario runs in survival: " + scenario().name());
                     client.gui.setScreen(new InventoryScreen(client.player));
                     RecipeBookComponent<?> component = component(client);
@@ -123,7 +138,7 @@ public final class RemoteClientQa implements ClientModInitializer {
                     Scenario test = scenario();
                     if (gridCount(client) != test.expectedGrid() || count(client, Items.OAK_LOG) != test.expectedInventoryLogs()
                             || count(client, Items.OAK_PLANKS) != test.expectedPlanks()) {
-                        if (ticks - actionStarted > 250) throw new AssertionError("Recipe action did not settle: " + test.name()
+                        if (ticks - actionStarted > 500) throw new AssertionError("Recipe action did not settle: " + test.name()
                                 + "; grid=" + gridCount(client) + "; logs=" + count(client, Items.OAK_LOG) + "; planks=" + count(client, Items.OAK_PLANKS));
                         return;
                     }
@@ -179,7 +194,8 @@ public final class RemoteClientQa implements ClientModInitializer {
         client.player.closeContainer();
         client.gui.setScreen(null);
         command(client, "clear @s");
-        command(client, "give @s minecraft:oak_log 8");
+        BetterRecipeBook.config.instantCraft.craftAllMethod = scenario().method();
+        command(client, "give @s minecraft:oak_log " + scenario().initialLogs());
         command(client, "recipe " + (scenario().undiscovered() ? "take" : "give") + " @s minecraft:oak_planks");
         marker(client, "SETUP-" + caseIndex);
     }

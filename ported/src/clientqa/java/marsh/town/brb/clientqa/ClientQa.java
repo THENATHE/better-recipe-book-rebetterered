@@ -32,6 +32,7 @@ public final class ClientQa implements FabricClientGameTest {
             }
             if (suite.equals("all") || suite.equals("creative")) CreativeChecks.run(context, world, evidence);
             if (suite.equals("all") || suite.equals("crafting")) CraftingChecks.run(context, world, evidence);
+            if (suite.equals("all") || suite.equals("pins")) PinnedTabChecks.run(context, world, evidence);
             if (suite.equals("all") || suite.equals("workstation")) WorkstationChecks.run(context, world, evidence);
             if (suite.equals("all") || suite.equals("lifecycle")) RecipeLifecycleChecks.run(context, world, evidence);
             if (suite.equals("all") || suite.equals("config")) ConfigScreenChecks.run(context, evidence);

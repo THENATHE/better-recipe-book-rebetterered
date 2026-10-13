@@ -25,6 +25,7 @@ public abstract class CreativeSlotRenderMixin {
         if (entry.header()) {
             GroupControlRenderer.renderHeader(graphics, slot.x, slot.y, 16, 16, 0, entry.expanded());
         } else if (entry.groupKey() != null) {
+            GroupControlRenderer.renderChild(graphics, slot.x, slot.y, 16, 16);
             graphics.fill(slot.x - 1, slot.y, slot.x, slot.y + 16, 0xFF609879);
         }
     }

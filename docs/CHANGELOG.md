@@ -1,3 +1,10 @@
+# 1.11.5+26.3
+
+- Give expanded recipe/creative children a shared subtle tint, lighter than the dark group header. Apply it to brewing/smithing groups too, while leaving ordinary lists and pins unaffected.
+- Add a native-style Pinned Recipes tab to inventory/crafting-table books and their crafting-book subclasses, with exact variants, search and craftable filtering.
+- Add a Craft all method setting: One at a time (default) or Fill grid. The latter max-loads ingredients, safely transfers a complete ordinary crafting load where possible, waits for server confirmation and repeats.
+- Keep guarded individual transfers for remainders, limited output space and custom menus, preserving all ingredients and output. Normal right-click remains one batch.
+
 # 1.11.4+26.3
 
 - Add tab-specific Natural Blocks leaves/logs, matching leaves in wood families, ores, sherds, banner patterns, coral colors including dead variants, anvils, paintings, lightning rods, horns, discs, Chalk, heads and infested stone.

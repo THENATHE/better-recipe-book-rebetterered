@@ -1156,6 +1156,6 @@ PASS: invalid replacement $
 PASS: invalid replacement $x
 PASS: invalid replacement \
 PASS: first resource rule deterministically owns overlapping matches
+RESULT: PASS; 1155 assertions
 > Task :pinRegression
 PASS: pin migration, latest ordered save, temporary cleanup, malformed preservation, component and ingredient identity (11 checks)
-BUILD SUCCESSFUL in 2m 44s

@@ -4,7 +4,7 @@
 
 ![Better Recipe Book: Rebetterered icon](ported/fabric/src/main/resources/assets/brb/icon.png)
 
-The **1.11.4** update fixes button placement in wider backpack books, restores direct Escape closing for smithing/brewing, unifies group badges with dark expanded headers, and adds the requested natural, decorative and copper-state groups. See the [changelog](docs/CHANGELOG.md) for this update and the [latest release](https://github.com/THENATHE/better-recipe-book-rebetterered/releases/latest) for downloads.
+The **1.11.5** update shades expanded child entries, adds a Pinned Recipes tab to the normal crafting book, and lets you choose the Shift-right-click craft-all method. See the [changelog](docs/CHANGELOG.md) for this update and the [latest release](https://github.com/THENATHE/better-recipe-book-rebetterered/releases/latest) for downloads.
 
 ## What it is
 
@@ -51,7 +51,7 @@ Choose the presentation that works best for you:
 
 Recipes producing the same item and components share an expandable group, even when they use different ingredients or produce different counts. Each expanded recipe keeps its own ingredients and crafting behavior.
 
-Expanded group headers darken to distinguish them from selectable recipes/items; their **−** remains available to collapse the group. Both inventories share the recipe-book badge style.
+Expanded group headers darken to distinguish them from selectable recipes/items; their **−** remains available to collapse the group. Expanded children have a subtle darker tint, between ordinary entries and the header. Both inventories share the recipe-book badge style.
 
 Expansion headers only change which recipes are visible. Clicking a **+ / −** header never places ingredients or crafts an item. **Expandable** is the default.
 
@@ -70,7 +70,8 @@ Expansion headers only change which recipes are visible. Clicking a **+ / −** 
 ### Craft straight into your inventory
 
 - **Right-click** a recipe to craft one recipe batch directly into your inventory.
-- **Shift + right-click** to keep crafting while ingredients and inventory space allow.
+- **Shift + right-click** to keep crafting while ingredients and inventory space allow. Choose **One at a time** (default) or **Fill grid** in settings.
+- **Fill grid** max-loads ingredients, transfers a complete ordinary crafting load when safe, and repeats after server confirmation. Remainders, limited space and custom menus use guarded individual transfers.
 - Keep normal **left-click** placement and **Shift + left-click** maximum ingredient placement.
 - Automatically stop when the menu changes, crafting is disabled, or the expected server state no longer matches.
 - Check storage before taking the result, so overflow is not dropped on the ground.
@@ -82,7 +83,7 @@ A batch means one recipe execution: for example, one log produces four planks. D
 - Search and browse brewing and smithing recipes from their workstation panels.
 - Use the same recipe display choices in those panels.
 - Preserve native names, damage, enchantments, and trims when smithing.
-- Pin a specific variant and find it again from the pins view.
+- Pin a specific variant and find it again from the Pinned Recipes tab in the normal crafting book or workstation pins view.
 - Choose the hovered recipe when pinning, with keyboard focus as a fallback.
 
 ### Settings your way
@@ -121,7 +122,7 @@ Server rules still apply, including limited crafting. Recipes supplied only by a
 
 1. Use **Minecraft 26.3**, **Java 25 or newer**, and **Fabric Loader 0.19.5 or newer**.
 2. Install **Fabric API 0.161.0+26.3** for this release.
-3. Download `better-recipe-book-rebetterered-1.11.4+26.3.jar` from [Releases](https://github.com/THENATHE/better-recipe-book-rebetterered/releases/latest) and put it in your client's `mods/` folder.
+3. Download `better-recipe-book-rebetterered-1.11.5+26.3.jar` from [Releases](https://github.com/THENATHE/better-recipe-book-rebetterered/releases/latest) and put it in your client's `mods/` folder.
 4. Remove other BRB variants from that instance. Keep a backup of your existing settings and pins when upgrading.
 5. Launch Minecraft and choose your preferred display and crafting settings from the recipe-book settings button or Mod Menu.
 
@@ -158,6 +159,6 @@ The first command runs the standard regression checks and builds the mod and sep
 
 ### Verification and compatibility limits
 
-Version **1.11.4+26.3** passed **1,477 recorded singleplayer checks**, including 1,005 creative grouping checks and 225 settings checks, **42 packaged multiplayer assertions** against an unmodified vanilla server, and the standard regression checks. A separate source build reproduced both JARs byte-for-byte. See [validation](docs/VALIDATION.md) for evidence and scope.
+Version **1.11.5+26.3** passed **1,705 recorded singleplayer checks**, including 1,005 creative checks, 243 settings checks across all 14 controls, 244 crafting checks covering both craft-all methods, and 58 checks of the native Pinned Recipes tab. Standard regressions passed, both JARs were reproduced byte-for-byte from a sanitized source build, and 16 backpack scenarios passed across native and Polymer profiles with Fill grid selected. **66 packaged multiplayer assertions across ten scenarios** passed against an unmodified vanilla server. Public delivery checks are performed after upload; packaged evidence covers the candidate tested above. See [validation](docs/VALIDATION.md) for current evidence and scope.
 
 See [validation](docs/VALIDATION.md), [packaged multiplayer QA](qa/REMOTE-QA.md), and the [changelog](docs/CHANGELOG.md) for coverage and remaining limits. No compatible Minecraft 26.3 Mouse Wheelie release was available to test its optional integration. Other mod combinations and custom datapacks have not been exhaustively tested.

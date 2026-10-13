@@ -29,7 +29,8 @@ public final class ConfigScreenChecks {
     private static final List<String> OPTIONS = List.of(
             "enableBook", "recipeDisplayMode", "creativeDisplayMode", "enablePinning", "keepCentered",
             "settingsButton", "newRecipes.unlockAll", "newRecipes.enableBounce", "instantCraft.showButton",
-            "instantCraft.enabled", "alternativeRecipes.onHover", "scrolling.enableScrolling", "scrolling.scrollAround");
+            "instantCraft.enabled", "instantCraft.craftAllMethod", "alternativeRecipes.onHover",
+            "scrolling.enableScrolling", "scrolling.scrollAround");
 
     private ConfigScreenChecks() { }
 
@@ -73,11 +74,12 @@ public final class ConfigScreenChecks {
             check(settings.getCategorizedEntries().size() == 1 && !settings.isShowingTabs(),
                     size + ": one settings list without tabs", evidence);
             var entries = settings.getCategorizedEntries().values().iterator().next();
-            check(entries.size() == OPTIONS.size(), size + ": all 13 settings are visible entries", evidence);
+            check(entries.size() == OPTIONS.size(), size + ": all " + OPTIONS.size() + " settings are visible entries", evidence);
             check(entries.getFirst() == entry(settings, "enableBook"), size + ": master switch comes first", evidence);
             check(entry(settings, "recipeDisplayMode") instanceof SelectionListEntry<?>
-                            && entry(settings, "creativeDisplayMode") instanceof SelectionListEntry<?>,
-                    size + ": both modes use cycling buttons", evidence);
+                            && entry(settings, "creativeDisplayMode") instanceof SelectionListEntry<?>
+                            && entry(settings, "instantCraft.craftAllMethod") instanceof SelectionListEntry<?>,
+                    size + ": all modes use cycling buttons", evidence);
             return settings;
         });
         context.waitTicks(2);
@@ -121,7 +123,7 @@ public final class ConfigScreenChecks {
             return settings;
         });
         context.waitTicks(2);
-        for (String mode : List.of("recipeDisplayMode", "creativeDisplayMode")) {
+        for (String mode : List.of("recipeDisplayMode", "creativeDisplayMode", "instantCraft.craftAllMethod")) {
             reveal(context, reopened, mode);
             context.runOnClient(client -> {
                 var selection = entry(reopened, mode);

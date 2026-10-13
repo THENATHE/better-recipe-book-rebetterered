@@ -1,6 +1,6 @@
 {
   "name": "Better Recipe Book: Rebetterered",
-  "version": "1.11.4+26.3",
+  "version": "1.11.5+26.3",
   "mod_id": "brb",
   "minecraft": "26.3",
   "loader": "Fabric",
@@ -33,18 +33,36 @@
   },
   "architectury_removed": true,
   "local_only": false,
-  "installable_sha256": "475088b5e8f4c6b30b1f3f648f103a847a1ad8fab7d410d6f3fd6dabc608864c",
+  "installable_sha256": "3621bcb3f6eceb1c9031b4313f354d38a67acb6366f0e2c378a8c7d7f63ee544",
   "source": "Minecraft/better-recipe-book-26.3/ported",
   "validation": {
-    "combined_client": 1477,
-    "packaged_multiplayer": 42,
+    "combined_client": 1705,
+    "settings_checks": 243,
+    "settings_controls": 14,
+    "native_pinned_tab_checks": 58,
+    "crafting_checks": 244,
+    "packaged_multiplayer": 66,
     "source_rebuild_byte_identical": true,
-    "original_startup": "Historical 35.1-second 1.21.1 smoke; original artifact unchanged and checksum rechecked",
     "backpack_native_scenarios": 8,
     "backpack_polymer_scenarios": 8,
+    "standard_container_sequences": 131072,
+    "standard_ingredient_assignments": 6,
+    "standard_pin_checks": 11,
+    "standard_creative_selectors": 1155,
+    "visual_screenshots": 18,
     "backpack_suite_version": "1.4.0-beta.1+26.3",
-    "backpack_suite_sha256": "23459d1ba1ffcb87790475e58a8c195f838d879360cbf17bd0295eded45cb40b"
+    "backpack_suite_sha256": "23459d1ba1ffcb87790475e58a8c195f838d879360cbf17bd0295eded45cb40b",
+    "public_delivery_checks": "Performed after upload; packaged evidence covers the tested candidate",
+    "packaged_multiplayer_scenarios": 10
   },
   "repository": "https://github.com/THENATHE/better-recipe-book-rebetterered",
-  "tag": "v1.11.4+26.3"
+  "tag": "v1.11.5+26.3",
+  "changes": {
+    "expanded_child_tint": "0x40000000",
+    "expanded_header_tint": "0x99000000",
+    "native_crafting_pins": "Exact variant tab with native grid selection, search and craftable filtering",
+    "craft_all_method_default": "SINGLE_BATCHES",
+    "craft_all_method_optional": "FILL_GRID; max placement with guarded native bulk transfers and fallback for remainders, limited space and custom menus"
+  },
+  "sources_sha256": "982b1d0424c98d841851a5bdf81c7da5a6d4ceab1174022617001045f86bf08a"
 }

@@ -2,6 +2,7 @@ package marsh.town.brb.workstation;
 
 import marsh.town.brb.BetterRecipeBook;
 import marsh.town.brb.config.Config;
+import marsh.town.brb.config.CraftAllMethod;
 import marsh.town.brb.recipegroups.RecipeDisplayMode;
 import marsh.town.brb.util.BRBTextures;
 import marsh.town.brb.util.GroupControlRenderer;
@@ -228,7 +229,7 @@ public final class WorkstationBookPanel extends AbstractContainerEventHandler im
                 boolean header = mode == RecipeDisplayMode.EXPANDABLE && group.size() > 1;
                 boolean open = header && expanded.contains(group.getFirst().groupId());
                 result.add(new Row(List.copyOf(group), header, open));
-                if (open) for (var recipe : group) result.add(new Row(List.of(recipe), false, false));
+                if (open) for (var recipe : group) result.add(new Row(List.of(recipe), false, true));
             }
         }
         rows = List.copyOf(result);
@@ -442,9 +443,10 @@ public final class WorkstationBookPanel extends AbstractContainerEventHandler im
         ghost = null;
         if (rightClick && recipe.kind() == WorkstationRecipe.Kind.SMITHING
                 && BetterRecipeBook.config.instantCraft.enabled) {
+            boolean fillGrid = maximum && BetterRecipeBook.config.instantCraft.craftAllMethod == CraftAllMethod.FILL_GRID;
             BetterRecipeBook.instantCraftingManager.requestSmithing(
                     () -> WorkstationTransfer.expectedResult(menu, recipe),
-                    () -> WorkstationTransfer.place(menu, recipe, false), maximum);
+                    () -> WorkstationTransfer.place(menu, recipe, fillGrid), maximum);
         } else {
             WorkstationTransfer.place(menu, recipe, maximum);
         }
@@ -549,6 +551,9 @@ public final class WorkstationBookPanel extends AbstractContainerEventHandler im
             graphics.blitSprite(RenderPipelines.GUI_TEXTURED, Identifier.withDefaultNamespace(sprite),
                     getX(), getY(), width, height);
             graphics.fakeItem(displayed.preview(), getX() + 4, getY() + 4);
+            if (!row.header() && row.expanded()) {
+                GroupControlRenderer.renderChild(graphics, getX(), getY(), width, height);
+            }
             if (isFocused()) graphics.outline(getX(), getY(), width, height, 0xFFFFFFFF);
             if (row.header()) {
                 GroupControlRenderer.renderHeader(graphics, getX(), getY(), width, height, 3, row.expanded());

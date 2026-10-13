@@ -1,5 +1,6 @@
 package marsh.town.brb;
 
+import marsh.town.brb.config.CraftAllMethod;
 import marsh.town.brb.util.ClientInventoryUtil;
 import marsh.town.brb.util.RecipePlacement;
 import net.minecraft.client.Minecraft;
@@ -70,6 +71,7 @@ public class InstantCraftingManager {
         pending = new Pending(menu, client.gui.screen(), client.getConnection(), crafting.getResultSlot().index, maximum,
                 stack -> outputs.stream().anyMatch(output -> sameBatch(stack, output)),
                 () -> matchesGrid(crafting, entry, context));
+        pending.bulkSafeDisplay = hasNoRemainders(entry);
         if (maximum) {
             pending.placement = () -> {
                 StackedItemContents available = new StackedItemContents();
@@ -82,7 +84,7 @@ public class InstantCraftingManager {
                 return true;
             };
         }
-        if (isPrepared(entry, crafting, context)) {
+        if (!pending.fillGrid && isPrepared(entry, crafting, context)) {
             pending.receivedResult = true;
             return true;
         }
@@ -119,7 +121,8 @@ public class InstantCraftingManager {
         if (outputs.isEmpty()) return false;
         pending = new Pending(menu, client.gui.screen(), client.getConnection(), menu.getResultSlot().index, maximum,
                 stack -> outputs.stream().anyMatch(output -> sameBatch(stack, output)), () -> matchesGrid(menu, entry, context));
-        pending.placement = placement;
+        pending.bulkSafeDisplay = hasNoRemainders(entry);
+        pending.placement = pending.fillGrid ? () -> RecipePlacement.place(entry, true) : placement;
         return placeLocal();
     }
 
@@ -211,6 +214,16 @@ public class InstantCraftingManager {
         if (request == null || (containerId != 0 && containerId != request.menu.containerId)) return;
         // Vanilla may resynchronize chained clicks after its result update increments the menu state.
         // Accept only an exact state produced by this batch's own predicted transfers.
+        if (containerId == request.menu.containerId && request.awaitingBulkTransfer) {
+            for (TransferState state : request.bulkStates) {
+                if (!state.matches(request.menu, request.resultSlot)) continue;
+                request.lastState = stateId;
+                request.receivedResult = state == request.bulkStates.getLast();
+                return;
+            }
+            cancelPending();
+            return;
+        }
         if (containerId == request.menu.containerId && request.awaitingNextBatch) {
             for (TransferState state : request.transferStates) {
                 if (!state.matches(request.menu, request.resultSlot)) continue;
@@ -275,8 +288,13 @@ public class InstantCraftingManager {
         Minecraft client = Minecraft.getInstance();
         if (!isEnabled() || client.player == null || client.gameMode == null || client.level == null
                 || client.getConnection() != request.connection || client.player.containerMenu != request.menu
+                || request.maximum && request.method != BetterRecipeBook.config.instantCraft.craftAllMethod
                 || client.gui.screen() != request.screen || System.nanoTime() - request.lastProgress > TIMEOUT_NANOS) {
             cancelPending();
+            return;
+        }
+        if (request.awaitingBulkTransfer) {
+            finishBulkTransfer(request);
             return;
         }
         if (request.awaitingPlacement) {
@@ -316,6 +334,7 @@ public class InstantCraftingManager {
             cancelPending();
             return;
         }
+        if (request.fillGrid && request.menu instanceof AbstractCraftingMenu crafting && transferLoadedGrid(client, request, crafting, result)) return;
         Predicate<Integer> storage = index -> isPlayerStorage(client, request.menu.getSlot(index));
         List<ItemStack> toStore = new ArrayList<>();
         if (request.menu instanceof AbstractCraftingMenu crafting) {
@@ -348,6 +367,84 @@ public class InstantCraftingManager {
             request.trackingBatch = false;
             applying = false;
         }
+    }
+
+    private void finishBulkTransfer(Pending request) {
+        // Client quick-move prediction takes one batch; the server loops over the whole grid.
+        // Wait for its result acknowledgement and exact final inventory before refilling it.
+        if (request.receivedResult && request.menu.getSlot(request.resultSlot).getItem().isEmpty()
+                && request.bulkStates.getLast().matches(request.menu, request.resultSlot)) {
+            request.awaitingBulkTransfer = false;
+            request.awaitingNextBatch = false;
+            request.receivedResult = false;
+            if (request.remainingBatches > 0 && request.placement != null) placeLocal();
+            else cancelPending();
+        }
+    }
+
+    private boolean transferLoadedGrid(Minecraft client, Pending request, AbstractCraftingMenu crafting, ItemStack result) {
+        // Other mods can change quick-move destinations. Their menus retain validated per-batch transfers.
+        if (!request.bulkSafeDisplay || crafting.getClass() != InventoryMenu.class && crafting.getClass() != CraftingMenu.class) return false;
+        List<Slot> inputs = crafting.getInputGridSlots().stream().filter(slot -> !slot.getItem().isEmpty()).toList();
+        if (inputs.isEmpty()) return false;
+        int batches = inputs.getFirst().getItem().getCount();
+        if (batches <= 1 || batches > 64 || batches > request.remainingBatches || result.getCount() > result.getMaxStackSize()) return false;
+        // A quick-move loops until the result changes. Only a balanced, fully consumed grid
+        // guarantees termination and prevents a later partial output or remainder from dropping.
+        if (inputs.stream().anyMatch(slot -> slot.getItem().getCount() != batches
+                || slot.getItem().getItem().getCraftingRemainder() != null
+                || ItemStack.isSameItem(slot.getItem(), result))) return false;
+        List<ItemStack> items = request.menu.slots.stream().map(slot -> slot.getItem().copy())
+                .collect(java.util.stream.Collectors.toCollection(ArrayList::new));
+        List<TransferState> states = new ArrayList<>();
+        for (int batch = 0; batch < batches; batch++) {
+            if (!simulateQuickMove(client, request.menu, items, result)) return false;
+            for (Slot input : inputs) items.get(input.index).shrink(1);
+            states.add(new TransferState(items.stream().map(ItemStack::copy).toList(), ItemStack.EMPTY));
+        }
+        request.bulkStates = states;
+        request.awaitingBulkTransfer = true;
+        request.receivedResult = false;
+        request.lastProgress = System.nanoTime();
+        applying = true;
+        try {
+            client.gameMode.handleContainerInput(request.menu.containerId, request.resultSlot, 0, ContainerInput.QUICK_MOVE, client.player);
+            request.remainingBatches -= batches;
+        } finally {
+            applying = false;
+        }
+        return true;
+    }
+
+    private static boolean hasNoRemainders(RecipeDisplayEntry entry) {
+        if (entry.display() instanceof ShapedCraftingRecipeDisplay shaped) return shaped.ingredients().stream().noneMatch(InstantCraftingManager::hasRemainder);
+        if (entry.display() instanceof ShapelessCraftingRecipeDisplay shapeless) return shapeless.ingredients().stream().noneMatch(InstantCraftingManager::hasRemainder);
+        return false;
+    }
+
+    private static boolean hasRemainder(SlotDisplay ingredient) {
+        if (ingredient instanceof SlotDisplay.WithRemainder) return true;
+        return ingredient instanceof SlotDisplay.Composite composite && composite.contents().stream().anyMatch(InstantCraftingManager::hasRemainder);
+    }
+
+    private static boolean simulateQuickMove(Minecraft client, AbstractContainerMenu menu, List<ItemStack> items, ItemStack output) {
+        int remaining = output.getCount();
+        // Vanilla crafting menus insert from the hotbar backwards, merging before using empty slots.
+        for (int pass = 0; pass < 2 && remaining > 0; pass++) {
+            for (int index = menu.slots.size() - 1; index >= 0 && remaining > 0; index--) {
+                Slot slot = menu.getSlot(index);
+                ItemStack stored = items.get(index);
+                if (!isPlayerStorage(client, slot) || !slot.isActive() || !slot.mayPlace(output)
+                        || (pass == 0) == stored.isEmpty()
+                        || !stored.isEmpty() && !ItemStack.isSameItemSameComponents(stored, output)) continue;
+                int amount = Math.min(remaining, Math.max(0, Math.min(output.getMaxStackSize(), slot.getMaxStackSize(output)) - stored.getCount()));
+                if (amount == 0) continue;
+                if (stored.isEmpty()) items.set(index, output.copyWithCount(amount));
+                else stored.grow(amount);
+                remaining -= amount;
+            }
+        }
+        return remaining == 0;
     }
 
     private static boolean isPlayerStorage(Minecraft client, Slot slot) {
@@ -444,6 +541,8 @@ public class InstantCraftingManager {
         final ClientPacketListener connection;
         final int resultSlot;
         final boolean maximum;
+        final CraftAllMethod method;
+        final boolean fillGrid;
         Predicate<ItemStack> matchesOutput;
         final BooleanSupplier matchesGrid;
         BooleanSupplier placement;
@@ -455,6 +554,9 @@ public class InstantCraftingManager {
         boolean trackingBatch;
         boolean confirmedIntermediate;
         boolean transferConfirmed;
+        boolean awaitingBulkTransfer;
+        boolean bulkSafeDisplay;
+        List<TransferState> bulkStates = List.of();
         final List<TransferState> transferStates = new ArrayList<>();
         final List<TransferState> placementStates = new ArrayList<>();
         TransferState finalPlacement;
@@ -471,12 +573,14 @@ public class InstantCraftingManager {
             this.connection = connection;
             this.resultSlot = resultSlot;
             this.maximum = maximum;
+            method = BetterRecipeBook.config.instantCraft.craftAllMethod;
+            fillGrid = maximum && method == CraftAllMethod.FILL_GRID;
             this.matchesOutput = matchesOutput;
             this.matchesGrid = matchesGrid;
             lastState = menu.getStateId();
             // A custom recipe whose output can refill its own inputs must not run forever.
-            remainingBatches = Math.max(1L, menu.slots.stream().filter(slot -> slot.index != resultSlot)
-                    .mapToLong(slot -> Math.max(0, slot.getItem().getCount())).sum());
+            remainingBatches = Math.max(1L, Math.min(10_000L, menu.slots.stream().filter(slot -> slot.index != resultSlot)
+                    .mapToLong(slot -> Math.max(0, slot.getItem().getCount())).sum()));
         }
     }
 }

@@ -7,7 +7,8 @@
   "delayed_predicate_checks": 0,
   "baseline": false,
   "cycles": 2,
-  "brbr_sha256": "475088b5e8f4c6b30b1f3f648f103a847a1ad8fab7d410d6f3fd6dabc608864c",
+  "craft_all_method": "fill_grid",
+  "brbr_sha256": "3621bcb3f6eceb1c9031b4313f354d38a67acb6366f0e2c378a8c7d7f63ee544",
   "polymer": false,
   "profiles": [
     "suite"
@@ -20,7 +21,7 @@
           "tier": "leather",
           "size": 2,
           "client": {
-            "ticks": 245,
+            "ticks": 240,
             "screen": "com.thenathe.backpackcrafting.client.BackpackCraftingScreen",
             "actions": [
               {
@@ -35,6 +36,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -64,6 +66,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -85,6 +88,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -119,6 +123,7 @@
                 "larger_recipe_filtered": true
               }
             ],
+            "craft_all_method": "FILL_GRID",
             "chalk_grouping": true,
             "chalk_grouping_members": 32,
             "brbr_pending": false,
@@ -136,6 +141,7 @@
             "ghost_slots": 0,
             "book_left": 105,
             "button_layout_verified": true,
+            "pinned_tab_layout_verified": true,
             "narrow": false
           },
           "server": {
@@ -156,7 +162,7 @@
           "tier": "leather",
           "size": 3,
           "client": {
-            "ticks": 445,
+            "ticks": 440,
             "screen": "com.thenathe.backpackcrafting.client.BackpackCraftingScreen",
             "actions": [
               {
@@ -171,6 +177,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -200,6 +207,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -221,6 +229,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -266,6 +275,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -295,6 +305,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -316,6 +327,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -356,6 +368,7 @@
                 "maximum": false
               }
             ],
+            "craft_all_method": "FILL_GRID",
             "chalk_grouping": true,
             "chalk_grouping_members": 32,
             "brbr_pending": false,
@@ -373,6 +386,7 @@
             "ghost_slots": 10,
             "book_left": 96,
             "button_layout_verified": true,
+            "pinned_tab_layout_verified": true,
             "narrow": false
           },
           "server": {
@@ -393,7 +407,7 @@
           "tier": "netherite",
           "size": 2,
           "client": {
-            "ticks": 635,
+            "ticks": 630,
             "screen": "com.thenathe.backpackcrafting.client.BackpackCraftingScreen",
             "actions": [
               {
@@ -408,6 +422,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -437,6 +452,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -458,6 +474,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -503,6 +520,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -532,6 +550,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -553,6 +572,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -604,6 +624,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -633,6 +654,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -654,6 +676,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -688,6 +711,7 @@
                 "larger_recipe_filtered": true
               }
             ],
+            "craft_all_method": "FILL_GRID",
             "chalk_grouping": true,
             "chalk_grouping_members": 32,
             "brbr_pending": false,
@@ -705,6 +729,7 @@
             "ghost_slots": 0,
             "book_left": 69,
             "button_layout_verified": true,
+            "pinned_tab_layout_verified": true,
             "narrow": false
           },
           "server": {
@@ -725,7 +750,7 @@
           "tier": "netherite",
           "size": 3,
           "client": {
-            "ticks": 835,
+            "ticks": 830,
             "screen": "com.thenathe.backpackcrafting.client.BackpackCraftingScreen",
             "actions": [
               {
@@ -740,6 +765,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -769,6 +795,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -790,6 +817,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -835,6 +863,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -864,6 +893,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -885,6 +915,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -936,6 +967,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -965,6 +997,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -986,6 +1019,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -1031,6 +1065,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -1060,6 +1095,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -1081,6 +1117,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -1121,6 +1158,7 @@
                 "maximum": false
               }
             ],
+            "craft_all_method": "FILL_GRID",
             "chalk_grouping": true,
             "chalk_grouping_members": 32,
             "brbr_pending": false,
@@ -1138,6 +1176,7 @@
             "ghost_slots": 10,
             "book_left": 60,
             "button_layout_verified": true,
+            "pinned_tab_layout_verified": true,
             "narrow": false
           },
           "server": {
@@ -1158,7 +1197,7 @@
           "tier": "leather",
           "size": 2,
           "client": {
-            "ticks": 1025,
+            "ticks": 1020,
             "screen": "com.thenathe.backpackcrafting.client.BackpackCraftingScreen",
             "actions": [
               {
@@ -1173,6 +1212,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -1202,6 +1242,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -1223,6 +1264,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -1268,6 +1310,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -1297,6 +1340,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -1318,6 +1362,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -1369,6 +1414,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -1398,6 +1444,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -1419,6 +1466,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -1464,6 +1512,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -1493,6 +1542,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -1514,6 +1564,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -1565,6 +1616,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -1594,6 +1646,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -1615,6 +1668,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -1649,6 +1703,7 @@
                 "larger_recipe_filtered": true
               }
             ],
+            "craft_all_method": "FILL_GRID",
             "chalk_grouping": true,
             "chalk_grouping_members": 32,
             "brbr_pending": false,
@@ -1666,6 +1721,7 @@
             "ghost_slots": 0,
             "book_left": 105,
             "button_layout_verified": true,
+            "pinned_tab_layout_verified": true,
             "narrow": false
           },
           "server": {
@@ -1686,7 +1742,7 @@
           "tier": "leather",
           "size": 3,
           "client": {
-            "ticks": 1225,
+            "ticks": 1220,
             "screen": "com.thenathe.backpackcrafting.client.BackpackCraftingScreen",
             "actions": [
               {
@@ -1701,6 +1757,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -1730,6 +1787,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -1751,6 +1809,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -1796,6 +1855,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -1825,6 +1885,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -1846,6 +1907,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -1897,6 +1959,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -1926,6 +1989,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -1947,6 +2011,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -1992,6 +2057,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -2021,6 +2087,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -2042,6 +2109,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -2093,6 +2161,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -2122,6 +2191,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -2143,6 +2213,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -2188,6 +2259,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -2217,6 +2289,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -2238,6 +2311,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -2278,6 +2352,7 @@
                 "maximum": false
               }
             ],
+            "craft_all_method": "FILL_GRID",
             "chalk_grouping": true,
             "chalk_grouping_members": 32,
             "brbr_pending": false,
@@ -2295,6 +2370,7 @@
             "ghost_slots": 10,
             "book_left": 96,
             "button_layout_verified": true,
+            "pinned_tab_layout_verified": true,
             "narrow": false
           },
           "server": {
@@ -2315,7 +2391,7 @@
           "tier": "netherite",
           "size": 2,
           "client": {
-            "ticks": 1415,
+            "ticks": 1410,
             "screen": "com.thenathe.backpackcrafting.client.BackpackCraftingScreen",
             "actions": [
               {
@@ -2330,6 +2406,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -2359,6 +2436,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -2380,6 +2458,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -2425,6 +2504,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -2454,6 +2534,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -2475,6 +2556,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -2526,6 +2608,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -2555,6 +2638,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -2576,6 +2660,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -2621,6 +2706,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -2650,6 +2736,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -2671,6 +2758,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -2722,6 +2810,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -2751,6 +2840,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -2772,6 +2862,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -2817,6 +2908,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -2846,6 +2938,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -2867,6 +2960,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -2918,6 +3012,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -2947,6 +3042,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -2968,6 +3064,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -3002,6 +3099,7 @@
                 "larger_recipe_filtered": true
               }
             ],
+            "craft_all_method": "FILL_GRID",
             "chalk_grouping": true,
             "chalk_grouping_members": 32,
             "brbr_pending": false,
@@ -3019,6 +3117,7 @@
             "ghost_slots": 0,
             "book_left": 69,
             "button_layout_verified": true,
+            "pinned_tab_layout_verified": true,
             "narrow": false
           },
           "server": {
@@ -3039,7 +3138,7 @@
           "tier": "netherite",
           "size": 3,
           "client": {
-            "ticks": 1615,
+            "ticks": 1610,
             "screen": "com.thenathe.backpackcrafting.client.BackpackCraftingScreen",
             "actions": [
               {
@@ -3054,6 +3153,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -3083,6 +3183,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -3104,6 +3205,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -3149,6 +3251,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -3178,6 +3281,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -3199,6 +3303,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -3250,6 +3355,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -3279,6 +3385,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -3300,6 +3407,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -3345,6 +3453,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -3374,6 +3483,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -3395,6 +3505,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -3446,6 +3557,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -3475,6 +3587,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -3496,6 +3609,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -3541,6 +3655,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -3570,6 +3685,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -3591,6 +3707,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -3642,6 +3759,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -3671,6 +3789,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -3692,6 +3811,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -3737,6 +3857,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -3766,6 +3887,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -3787,6 +3909,7 @@
                 "right": false,
                 "maximum": false,
                 "instant_toggle_preserves_storage": true,
+                "pinned_tab_mouse_selection_preserves_storage": true,
                 "actual_book_scroll_changes_page": true
               },
               {
@@ -3827,6 +3950,7 @@
                 "maximum": false
               }
             ],
+            "craft_all_method": "FILL_GRID",
             "chalk_grouping": true,
             "chalk_grouping_members": 32,
             "brbr_pending": false,
@@ -3844,6 +3968,7 @@
             "ghost_slots": 10,
             "book_left": 60,
             "button_layout_verified": true,
+            "pinned_tab_layout_verified": true,
             "narrow": false
           },
           "server": {
@@ -3863,5 +3988,5 @@
       ]
     }
   ],
-  "scope": "BRB buttons follow the actual backpack recipe-book origin in wide and narrow layouts; mouse settings Save/Cancel and instant-toggle preserve storage. Connected recipe placement/crafting and server ingredient conservation."
+  "scope": "Pinned tabs follow the native book origin and their mouse selection restores crafting tabs without changing storage. Selected craft-all strategy is recorded. BRB buttons follow the actual backpack recipe-book origin in wide and narrow layouts; mouse settings Save/Cancel and instant-toggle preserve storage. Connected recipe placement/crafting and server ingredient conservation."
 }

@@ -1,6 +1,7 @@
 package marsh.town.brb.mixins.recipegroups;
 
 import marsh.town.brb.BetterRecipeBook;
+import marsh.town.brb.interfaces.PinnedRecipeBook;
 import com.mojang.blaze3d.platform.InputConstants;
 import marsh.town.brb.mixins.accessors.RecipeBookComponentAccessor;
 import marsh.town.brb.recipegroups.GroupedRecipePage;
@@ -49,6 +50,7 @@ public abstract class RecipeBookPageMixin implements GroupedRecipePage {
                                                           List<RecipeCollection> ignored, boolean resetPage, boolean filtering) {
         brb$sources = sources;
         brb$filtering = filtering;
+        if (parent instanceof PinnedRecipeBook book && book.brb$isPinnedTabSelected()) return sources;
         RecipeDisplayMode mode = BetterRecipeBook.config.recipeDisplayMode;
         if (mode == RecipeDisplayMode.VANILLA) return sources;
         List<RecipeCollection> tiles = new ArrayList<>();
@@ -82,6 +84,7 @@ public abstract class RecipeBookPageMixin implements GroupedRecipePage {
                     .map(entry -> String.valueOf(BetterRecipeBook.pinnedRecipeManager.identity(entry)))
                     .sorted().collect(java.util.stream.Collectors.joining("|"));
             boolean expanded = searching ? !brb$searchCollapsed.contains(key) : brb$expanded.contains(key);
+            boolean expandedChildren = mode == RecipeDisplayMode.EXPANDABLE && entries.size() > 1 && expanded;
             if (mode == RecipeDisplayMode.EXPANDABLE && entries.size() > 1) {
                 RecipeDisplayEntry representative = entries.stream()
                         .filter(entry -> sourcesByEntry.get(entry).isCraftable(entry.id())).findFirst().orElse(entries.getFirst());
@@ -89,7 +92,7 @@ public abstract class RecipeBookPageMixin implements GroupedRecipePage {
                 if (!expanded) continue;
             }
             for (RecipeDisplayEntry entry : entries) {
-                tiles.add(new RecipeTileCollection(sourcesByEntry.get(entry), entry, false, false, key));
+                tiles.add(new RecipeTileCollection(sourcesByEntry.get(entry), entry, false, expandedChildren, key));
             }
         }
         if (BetterRecipeBook.config.enablePinning) {

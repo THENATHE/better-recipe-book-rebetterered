@@ -3,11 +3,15 @@ package marsh.town.brb.util;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 
-/** Shared presentation for group headers, which expand and collapse rather than select an item. */
+/** Shared presentation for expandable groups and their individual choices. */
 public final class GroupControlRenderer {
     private static final int BADGE_SIZE = 9;
 
     private GroupControlRenderer() {}
+
+    public static void renderChild(GuiGraphicsExtractor graphics, int x, int y, int width, int height) {
+        graphics.fill(x, y, x + width, y + height, 0x40000000);
+    }
 
     public static void renderHeader(GuiGraphicsExtractor graphics, int x, int y, int width, int height,
                                     int inset, boolean expanded) {

@@ -35,8 +35,12 @@ public abstract class RecipeButtonMixin extends AbstractWidget {
 
     @Inject(method = "extractWidgetRenderState", at = @At("RETURN"))
     private void brb$groupIndicator(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float delta, CallbackInfo ci) {
-        if (getCollection() instanceof RecipeTileCollection tile && tile.isGroupHeader()) {
-            GroupControlRenderer.renderHeader(graphics, getX(), getY(), width, height, 3, tile.isExpanded());
+        if (getCollection() instanceof RecipeTileCollection tile) {
+            if (tile.isGroupHeader()) {
+                GroupControlRenderer.renderHeader(graphics, getX(), getY(), width, height, 3, tile.isExpanded());
+            } else if (tile.isExpanded()) {
+                GroupControlRenderer.renderChild(graphics, getX(), getY(), width, height);
+            }
         }
     }
 

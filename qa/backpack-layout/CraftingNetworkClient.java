@@ -36,6 +36,7 @@ public final class CraftingNetworkClient implements ClientModInitializer {
     private int settingsPhase;
     private boolean originalPinning;
     private int chalkMembers = -1;
+    private boolean craftAllMethodConfigured;
     @Override public void onInitializeClient() {
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             if (client.player == null || ++ticks % 5 != 0) return;
@@ -90,6 +91,13 @@ public final class CraftingNetworkClient implements ClientModInitializer {
                 row.addProperty("screen", client.gui.screen() == null ? "none" : client.gui.screen().getClass().getName());
                 row.add("actions", actions.deepCopy());
                 if (net.fabricmc.loader.api.FabricLoader.getInstance().isModLoaded("brb")) {
+                    if (!craftAllMethodConfigured) {
+                        configureCraftAllMethod();
+                        craftAllMethodConfigured = true;
+                    }
+                    Object config = Class.forName("marsh.town.brb.BetterRecipeBook").getField("config").get(null);
+                    Object instant = config.getClass().getField("instantCraft").get(config);
+                    row.addProperty("craft_all_method", String.valueOf(instant.getClass().getField("craftAllMethod").get(instant)));
                     if (chalkMembers < 0) chalkMembers = checkChalkGrouping();
                     row.addProperty("chalk_grouping", true);
                     row.addProperty("chalk_grouping_members", chalkMembers);
@@ -146,6 +154,8 @@ public final class CraftingNetworkClient implements ClientModInitializer {
                         assertButton(book, "brb$settingsButton", bookLeft + 11, bookTop + 137, 18, 18);
                         assertButton(book, "betterRecipeBook$instantCraftButton", bookLeft + 110, bookTop + 137, 26, 18);
                         row.addProperty("button_layout_verified", true);
+                        assertPinnedTab(book, bookLeft, bookTop, tabs.stream().filter(tab -> tab.visible).count());
+                        row.addProperty("pinned_tab_layout_verified", true);
                         row.addProperty("narrow", narrow);
                     }
                     Path request = control.resolve(name + "-action.json");
@@ -185,6 +195,22 @@ public final class CraftingNetworkClient implements ClientModInitializer {
                             if ((Boolean) enabled.invoke(manager) != original) throw new AssertionError("Instant button did not toggle back");
                             assertContents(menu, before, carried);
                             action.addProperty("instant_toggle_preserves_storage", true);
+                            var pinned = (AbstractWidget) book.getClass().getMethod("brb$getPinnedTab").invoke(book);
+                            var nativeTab = (AbstractWidget) field(book, "selectedTab");
+                            String searchBeforePins = ((EditBox) field(book, "searchBox")).getValue();
+                            click(client.gui.screen(), pinned);
+                            if (!Boolean.TRUE.equals(book.getClass().getMethod("brb$isPinnedTabSelected").invoke(book))) {
+                                throw new AssertionError("Pinned tab mouse click did not select pins");
+                            }
+                            assertContents(menu, before, carried);
+                            click(client.gui.screen(), nativeTab);
+                            if (Boolean.TRUE.equals(book.getClass().getMethod("brb$isPinnedTabSelected").invoke(book))
+                                    || field(book, "selectedTab") != nativeTab
+                                    || !((EditBox) field(book, "searchBox")).getValue().equals(searchBeforePins)) {
+                                throw new AssertionError("Native tab did not restore selected category and search after pins");
+                            }
+                            assertContents(menu, before, carried);
+                            action.addProperty("pinned_tab_mouse_selection_preserves_storage", true);
                             EditBox search = (EditBox) field(book, "searchBox");
                             String oldSearch = search.getValue();
                             search.setValue("");
@@ -277,6 +303,23 @@ public final class CraftingNetworkClient implements ClientModInitializer {
             }
         });
     }
+    @SuppressWarnings({"rawtypes", "unchecked"})
+    private static void configureCraftAllMethod() throws Exception {
+        Object config = Class.forName("marsh.town.brb.BetterRecipeBook").getField("config").get(null);
+        Object instant = config.getClass().getField("instantCraft").get(config);
+        var method = instant.getClass().getField("craftAllMethod");
+        String selected = System.getProperty("crafting.qa.craftAllMethod", "single_batches").toUpperCase(java.util.Locale.ROOT);
+        method.set(instant, Enum.valueOf((Class<? extends Enum>) method.getType(), selected));
+    }
+
+    private static void assertPinnedTab(Object book, int left, int top, long visibleTabs) throws Exception {
+        AbstractWidget pinned = (AbstractWidget) book.getClass().getMethod("brb$getPinnedTab").invoke(book);
+        if (pinned == null || !pinned.visible || pinned.getX() != left - 30 || pinned.getY() != top + 3 + 27 * visibleTabs
+                || pinned.getWidth() != 35 || pinned.getHeight() != 27) {
+            throw new AssertionError("Pinned tab does not follow the actual recipe book origin and visible category count");
+        }
+    }
+
     private static int checkChalkGrouping() throws Exception {
         var source = new java.util.ArrayList<ItemStack>();
         String pattern = "^(?:white|orange|magenta|light_blue|yellow|lime|pink|gray|light_gray|cyan|purple|blue|brown|green|red|black)_(?:glow_)?chalk$";
