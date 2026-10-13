@@ -5,6 +5,7 @@
   "compatibilityLevel": "JAVA_25",
   "plugin": "marsh.town.brb.compat.CompatMixinPlugin",
   "client": [
+    "backpack.BackpackBulkCraftingMixin",
     "mousewheelie.MixinMWClient"
   ],
   "injectors": {

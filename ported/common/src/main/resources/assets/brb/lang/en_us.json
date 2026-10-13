@@ -51,7 +51,7 @@
   "brb.craftAllMethod.single_batches": "One at a time",
   "brb.craftAllMethod.fill_grid": "Fill grid",
   "text.autoconfig.brb.option.instantCraft.craftAllMethod": "Craft all method",
-  "text.autoconfig.brb.option.instantCraft.craftAllMethod.@Tooltip": "Choose how Shift + right-click crafts all. One at a time: transfer individual batches. Fill grid: load as many ingredients as fit, craft that load, then repeat. Recipes with remainders or custom menus use guarded individual transfers. Normal right-click still crafts one batch.",
+  "text.autoconfig.brb.option.instantCraft.craftAllMethod.@Tooltip": "Choose how Shift + right-click crafts all. One at a time: transfer individual batches. Fill grid: fill the crafting grid, Shift-click its output to craft the loaded recipes together, then refill and repeat. Normal right-click still crafts one batch.",
   "key.category.brb.keys": "Better Recipe Book: Rebetterered",
   "brb.gui.workstation.no_recipes": "No recipes",
   "brb.gui.workstation.pins": "Pinned recipe variants",
@@ -61,5 +61,10 @@
   "brb.gui.workstation.splash_potions": "Splash potions",
   "brb.gui.workstation.lingering_potions": "Lingering potions",
   "text.autoconfig.brb.option.enableBook.@Tooltip": "Enable the recipe book and the brewing and smithing recipe panels.",
-  "text.autoconfig.brb.option.keepCentered.@Tooltip": "Keep the inventory or crafting screen centered when the recipe book is open."
+  "text.autoconfig.brb.option.keepCentered.@Tooltip": "Keep the inventory or crafting screen centered when the recipe book is open.",
+  "brb.craftingOverflow.stop_before_drop": "Stop before dropping",
+  "brb.craftingOverflow.drop_and_continue": "Drop and continue",
+  "brb.craftingOverflow.stop_after_drop": "Stop after first drop",
+  "text.autoconfig.brb.option.instantCraft.overflow": "Craft overflow",
+  "text.autoconfig.brb.option.instantCraft.overflow.@Tooltip": "Choose what Shift + right-click does when outputs or returned ingredients do not fit. Stop before dropping: preserve everything. Keep crafting and drop overflow: continue while dropping items that do not fit. Stop after the first drop: stop after the first recipe batch that drops anything. Normal right-click still requires room in inventory."
 }

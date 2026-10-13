@@ -9,3 +9,7 @@ The client verifies the Pins tab position against the native book origin and vis
 These sources are development-only and never shipped in the mod JAR. Generated run directories remain ignored. The optional integration launcher expects the retained Vanilla++ workspace and its local launch helpers. Merely preparing these fixtures does not establish a passing run.
 
 The client also checks all 32 registered normal/glowing Chalk items from the suite with its colorful addon. Their group preserves the original stack objects and order. Test logs and result JSON identify the exact suite and BRB JAR hashes.
+
+Use `--output-to-backpack --backpack` to fill player storage and verify that output enters backpack storage, including its item component update. Fill grid maximum actions require one actual QUICK_MOVE and zero result PICKUP packets for each loaded grid.
+
+Set `--ingredients 272 --cycles 2 --craft-all-method fill_grid` to verify two output Shift-clicks refill beyond 64 crafting-table recipes. Combine it with `--output-to-backpack --backpack` to check the holder component and output-storage route across both loads.

@@ -3,6 +3,9 @@ package marsh.town.brb.clientqa;
 import com.mojang.blaze3d.platform.InputConstants;
 import com.mojang.serialization.JsonOps;
 import marsh.town.brb.BetterRecipeBook;
+import marsh.town.brb.config.CraftAllMethod;
+import marsh.town.brb.config.CraftingOverflow;
+import net.minecraft.world.inventory.ContainerInput;
 import marsh.town.brb.recipegroups.RecipeDisplayMode;
 import marsh.town.brb.workstation.WorkstationBookPanel;
 import marsh.town.brb.workstation.WorkstationRecipe;
@@ -38,6 +41,7 @@ import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.PotionContents;
 import net.minecraft.world.item.alchemy.Potions;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BrewingStandBlockEntity;
 
@@ -54,6 +58,8 @@ public final class WorkstationChecks {
     public static void run(ClientGameTestContext context, TestSingleplayerContext world, List<String> evidence) {
         RecipeDisplayMode originalMode = BetterRecipeBook.config.recipeDisplayMode;
         boolean originalInstant = BetterRecipeBook.config.instantCraft.enabled;
+        CraftAllMethod originalCraftMethod = BetterRecipeBook.config.instantCraft.craftAllMethod;
+        CraftingOverflow originalOverflow = BetterRecipeBook.config.instantCraft.overflow;
         boolean originalEnableBook = BetterRecipeBook.config.enableBook;
         boolean originalBrewingOpen = BetterRecipeBook.config.brewingBookOpen;
         boolean originalSmithingOpen = BetterRecipeBook.config.smithingBookOpen;
@@ -116,35 +122,7 @@ public final class WorkstationChecks {
             check(world.getServer().computeOnServer(server -> countAcrossRegistries(server.getPlayerList().getPlayers().getFirst().getInventory(), retrimmed) == 1),
                     "already-trimmed named/damaged armor can be re-trimmed without losing unrelated components", evidence);
 
-            ItemStack firstBase = helmet("QA Max Trim A");
-            ItemStack secondBase = helmet("QA Max Trim B");
-            openSmithing(context, world, List.of(firstBase, secondBase, new ItemStack(template, 2), new ItemStack(Items.IRON_INGOT, 2)));
-            WorkstationRecipe maximum = context.computeOnClient(client -> matchingSmithing(template, firstBase, Items.IRON_INGOT));
-            ItemStack firstExpected = maximum.resultFor(List.of(new ItemStack(template), firstBase, new ItemStack(Items.IRON_INGOT)));
-            ItemStack secondExpected = maximum.resultFor(List.of(new ItemStack(template), secondBase, new ItemStack(Items.IRON_INGOT)));
-            showRecipe(context, maximum);
-            clickRecipe(context, 0, true);
-            sync(context, world);
-            check(context.computeOnClient(client -> client.player.containerMenu.getSlot(1).getItem().getCount() == 1),
-                    "Shift-left respects the unstackable smithing base slot limit", evidence);
-            clickRecipe(context, 1, true);
-            context.waitTicks(30);
-            context.runOnClient(client -> {
-                var menu = client.player.containerMenu;
-                Object pending = field(BetterRecipeBook.instantCraftingManager, "pending");
-                evidence.add("DEBUG: smithing maximum after 30 ticks; A=" + count(client.player.getInventory(), firstExpected)
-                        + "; B=" + count(client.player.getInventory(), secondExpected) + "; cursor=" + menu.getCarried()
-                        + "; inputs=" + menu.slots.subList(0, 4).stream().map(slot -> slot.getItem().toString()).toList()
-                        + "; pending=" + (pending == null ? "none" : "maximum=" + field(pending, "maximum")
-                        + ", received=" + field(pending, "receivedResult") + ", state=" + field(pending, "lastState")));
-            });
-            context.waitFor(client -> count(client.player.getInventory(), firstExpected) == 1
-                    && count(client.player.getInventory(), secondExpected) == 1, 300);
-            sync(context, world);
-            check(world.getServer().computeOnServer(server -> {
-                var inventory = server.getPlayerList().getPlayers().getFirst().getInventory();
-                return countAcrossRegistries(inventory, firstExpected) == 1 && countAcrossRegistries(inventory, secondExpected) == 1;
-            }), "Shift-right crafts both smithing bases and preserves each distinct custom component set", evidence);
+            smithingMaximumChecks(context, world, template, evidence);
             context.runOnClient(client -> inspectModes(panel(client.gui.screen()), evidence));
 
             BlockPos brewPos = openBrewing(context, world);
@@ -187,6 +165,8 @@ public final class WorkstationChecks {
                 BetterRecipeBook.instantCraftingManager.cancelPending();
                 BetterRecipeBook.config.recipeDisplayMode = originalMode;
                 BetterRecipeBook.config.instantCraft.enabled = originalInstant;
+                BetterRecipeBook.config.instantCraft.craftAllMethod = originalCraftMethod;
+                BetterRecipeBook.config.instantCraft.overflow = originalOverflow;
                 BetterRecipeBook.config.enableBook = originalEnableBook;
                 BetterRecipeBook.config.brewingBookOpen = originalBrewingOpen;
                 BetterRecipeBook.config.smithingBookOpen = originalSmithingOpen;
@@ -206,6 +186,181 @@ public final class WorkstationChecks {
             });
             world.getConnection().waitForClientboundPackets();
         }
+    }
+
+    private static void smithingMaximumChecks(ClientGameTestContext context, TestSingleplayerContext world,
+                                              Item template, List<String> evidence) {
+        CraftingChecks.CraftPacketTrace trace = context.computeOnClient(client -> {
+            try {
+                return new CraftingChecks.CraftPacketTrace(client, 3);
+            } catch (ReflectiveOperationException exception) {
+                throw new AssertionError("Cannot observe smithing result packets", exception);
+            }
+        });
+        try {
+            for (CraftAllMethod method : CraftAllMethod.values()) {
+                CraftingChecks.selectCraftSettings(context, method, CraftingOverflow.STOP_BEFORE_DROP, evidence);
+                ItemStack firstBase = helmet("QA Max Trim A");
+                ItemStack secondBase = helmet("QA Max Trim B");
+                openSmithing(context, world, List.of(firstBase, secondBase, new ItemStack(template, 2), new ItemStack(Items.IRON_INGOT, 2)));
+                WorkstationRecipe maximum = context.computeOnClient(client -> matchingSmithing(template, firstBase, Items.IRON_INGOT));
+                ItemStack firstExpected = maximum.resultFor(List.of(new ItemStack(template), firstBase, new ItemStack(Items.IRON_INGOT)));
+                ItemStack secondExpected = maximum.resultFor(List.of(new ItemStack(template), secondBase, new ItemStack(Items.IRON_INGOT)));
+                showRecipe(context, maximum);
+                clickRecipe(context, 0, true);
+                sync(context, world);
+                check(context.computeOnClient(client -> client.player.containerMenu.getSlot(1).getItem().getCount() == 1),
+                        method + ": Shift-left respects the unstackable smithing base slot limit", evidence);
+                trace.resultActions.clear();
+                clickRecipe(context, 1, true);
+                context.waitFor(client -> count(client.player.getInventory(), firstExpected) == 1
+                        && count(client.player.getInventory(), secondExpected) == 1, 300);
+                sync(context, world);
+                check(world.getServer().computeOnServer(server -> {
+                    var inventory = server.getPlayerList().getPlayers().getFirst().getInventory();
+                    return countAcrossRegistries(inventory, firstExpected) == 1 && countAcrossRegistries(inventory, secondExpected) == 1;
+                }), method + ": Shift-right crafts both smithing bases and preserves each distinct custom component set", evidence);
+                check(trace.resultActions.size() == 2 && trace.resultActions.stream().allMatch(action -> action ==
+                                (method == CraftAllMethod.FILL_GRID ? ContainerInput.QUICK_MOVE : ContainerInput.PICKUP)),
+                        method + ": two unstackable smithing loads use " + (method == CraftAllMethod.FILL_GRID
+                                ? "two true Shift-clicks and zero result pickups" : "two individual result pickups"), evidence);
+                check(context.computeOnClient(client -> client.player.containerMenu.getCarried().isEmpty())
+                                && world.getServer().computeOnServer(server -> server.getPlayerList().getPlayers().getFirst().containerMenu.getCarried().isEmpty()),
+                        method + ": smithing maximum leaves both cursors empty", evidence);
+
+                // Component-based stacks are valid native items and let the ordinary trim recipe
+                // exercise a multi-batch smithing grid without installing a synthetic recipe.
+                ItemStack stackableBase = helmet("QA Stackable Trim");
+                stackableBase.remove(DataComponents.MAX_DAMAGE);
+                stackableBase.remove(DataComponents.DAMAGE);
+                stackableBase.set(DataComponents.MAX_STACK_SIZE, 16);
+                openSmithing(context, world, List.of(stackableBase.copyWithCount(3), new ItemStack(template, 3), new ItemStack(Items.IRON_INGOT, 3)));
+                WorkstationRecipe stackableRecipe = context.computeOnClient(client -> matchingSmithing(template, stackableBase, Items.IRON_INGOT));
+                ItemStack expected = stackableRecipe.resultFor(List.of(new ItemStack(template), stackableBase, new ItemStack(Items.IRON_INGOT)));
+                showRecipe(context, stackableRecipe);
+                clickRecipe(context, 0, true);
+                sync(context, world);
+                check(world.getServer().computeOnServer(server -> server.getPlayerList().getPlayers().getFirst().containerMenu.getSlot(1).getItem().getCount() == 3),
+                        method + ": Shift-left max-loads all three valid stackable smithing bases", evidence);
+                trace.resultActions.clear();
+                clickRecipe(context, 1, true);
+                context.waitTicks(5);
+                recordSmithingState(context, world, expected, trace, method + " stackable after five ticks", evidence);
+                try {
+                    context.waitFor(client -> count(client.player.getInventory(), expected) == 3, 300);
+                } catch (AssertionError failure) {
+                    recordSmithingState(context, world, expected, trace, method + " stackable timeout", evidence);
+                    throw failure;
+                }
+                sync(context, world);
+                check(world.getServer().computeOnServer(server -> {
+                    var player = server.getPlayerList().getPlayers().getFirst();
+                    return countAcrossRegistries(player.getInventory(), expected) == 3
+                            && player.containerMenu.slots.subList(0, 3).stream().allMatch(slot -> slot.getItem().isEmpty());
+                }), method + ": stackable smithing conserves all three outputs and consumes precisely three input sets", evidence);
+                check(method == CraftAllMethod.FILL_GRID
+                                ? trace.resultActions.size() == 1 && trace.resultActions.peek() == ContainerInput.QUICK_MOVE
+                                : trace.resultActions.size() == 3 && trace.resultActions.stream().allMatch(action -> action == ContainerInput.PICKUP),
+                        method + ": three loaded smithing batches use " + (method == CraftAllMethod.FILL_GRID
+                                ? "one true Shift-click with zero result pickups" : "three individual result pickups"), evidence);
+                smithingOverflowChecks(context, world, template, stackableBase, method, evidence);
+            }
+        } finally {
+            context.runOnClient(client -> trace.close());
+        }
+    }
+
+    private static void recordSmithingState(ClientGameTestContext context, TestSingleplayerContext world,
+                                            ItemStack expected, CraftingChecks.CraftPacketTrace trace,
+                                            String label, List<String> evidence) {
+        String clientState = context.computeOnClient(client -> {
+            var menu = client.player.containerMenu;
+            Object pending = field(BetterRecipeBook.instantCraftingManager, "pending");
+            List<String> flags = new ArrayList<>();
+            if (pending != null) {
+                for (String name : List.of("receivedResult", "awaitingNextBatch", "transferConfirmed", "confirmedIntermediate",
+                        "awaitingPlacement", "placementConfirmed", "placementNeedsFullConfirmation", "remainingBatches",
+                        "lastState", "awaitingBulkTransfer", "bulkConfirmed")) flags.add(name + "=" + field(pending, name));
+            }
+            return "expected=" + describeStack(expected) + "; matchingOutput=" + count(client.player.getInventory(), expected)
+                    + "; state=" + menu.getStateId() + "; slots=" + menu.slots.subList(0, 4).stream()
+                    .map(slot -> slot.index + "=" + describeStack(slot.getItem())).toList()
+                    + "; cursor=" + describeStack(menu.getCarried()) + "; inventory="
+                    + client.player.getInventory().getNonEquipmentItems().stream().filter(stack -> !stack.isEmpty())
+                    .map(WorkstationChecks::describeStack).toList() + "; packets=" + trace.resultActions
+                    + "; pending=" + (pending == null ? "none" : flags);
+        });
+        String serverState = world.getServer().computeOnServer(server -> {
+            var player = server.getPlayerList().getPlayers().getFirst();
+            var menu = player.containerMenu;
+            return "matchingOutput=" + countAcrossRegistries(player.getInventory(), expected) + "; state=" + menu.getStateId()
+                    + "; slots=" + menu.slots.subList(0, 4).stream().map(slot -> slot.index + "=" + describeStack(slot.getItem())).toList()
+                    + "; cursor=" + describeStack(menu.getCarried()) + "; inventory="
+                    + player.getInventory().getNonEquipmentItems().stream().filter(stack -> !stack.isEmpty())
+                    .map(WorkstationChecks::describeStack).toList();
+        });
+        String diagnostic = "DEBUG: " + label + "; client={" + clientState + "}; server={" + serverState + "}";
+        evidence.add(diagnostic);
+        BetterRecipeBook.LOGGER.info("{}", diagnostic);
+    }
+
+    private static String describeStack(ItemStack stack) {
+        return stack.isEmpty() ? "empty" : stack + " components=" + stack.getComponents();
+    }
+
+    private static void smithingOverflowChecks(ClientGameTestContext context, TestSingleplayerContext world,
+                                               Item template, ItemStack base, CraftAllMethod method, List<String> evidence) {
+        for (CraftingOverflow overflow : CraftingOverflow.values()) {
+            CraftingChecks.selectCraftSettings(context, method, overflow, evidence);
+            openSmithing(context, world, List.of(base.copyWithCount(3), new ItemStack(template, 3), new ItemStack(Items.IRON_INGOT, 3)));
+            WorkstationRecipe recipe = context.computeOnClient(client -> matchingSmithing(template, base, Items.IRON_INGOT));
+            ItemStack expected = recipe.resultFor(List.of(new ItemStack(template), base, new ItemStack(Items.IRON_INGOT)));
+            showRecipe(context, recipe);
+            clickRecipe(context, 0, true);
+            sync(context, world);
+            world.getServer().runOnServer(server -> {
+                var player = server.getPlayerList().getPlayers().getFirst();
+                player.level().getEntitiesOfClass(ItemEntity.class, player.getBoundingBox().inflate(32)).forEach(ItemEntity::discard);
+                for (int index = 0; index < 36; index++) player.getInventory().setItem(index, new ItemStack(Items.STONE, 64));
+                player.containerMenu.broadcastFullState();
+            });
+            sync(context, world);
+            int batches = switch (overflow) {
+                case STOP_BEFORE_DROP -> 0;
+                case DROP_AND_CONTINUE -> 3;
+                case STOP_AFTER_DROP -> 1;
+            };
+            clickRecipe(context, 1, true);
+            if (batches > 0) world.getServer().waitFor(server -> droppedSmithingOutput(server, expected) == batches, 300);
+            context.waitTicks(20);
+            sync(context, world);
+            String name = method + "/" + overflow + "/smithing full storage";
+            check(world.getServer().computeOnServer(server -> {
+                var player = server.getPlayerList().getPlayers().getFirst();
+                return droppedSmithingOutput(server, expected) == batches && countAcrossRegistries(player.getInventory(), expected) == 0;
+            }), name + ": drops precisely the selected number of exact trimmed outputs", evidence);
+            check(world.getServer().computeOnServer(server -> {
+                var menu = server.getPlayerList().getPlayers().getFirst().containerMenu;
+                return menu.slots.subList(0, 3).stream().allMatch(slot -> slot.getItem().getCount() == 3 - batches);
+            }), name + ": consumes one complete input set per output and preserves all remaining sets", evidence);
+            check(context.computeOnClient(client -> client.player.containerMenu.getCarried().isEmpty())
+                            && world.getServer().computeOnServer(server -> server.getPlayerList().getPlayers().getFirst().containerMenu.getCarried().isEmpty()),
+                    name + ": leaves both cursors empty", evidence);
+            check(world.getServer().computeOnServer(server -> {
+                var player = server.getPlayerList().getPlayers().getFirst();
+                return player.getInventory().getNonEquipmentItems().stream()
+                        .allMatch(stack -> stack.is(Items.STONE) && stack.getCount() == 64)
+                        && player.level().getEntitiesOfClass(ItemEntity.class, player.getBoundingBox().inflate(32)).stream()
+                        .allMatch(entity -> sameAcrossRegistries(entity.getItem(), expected));
+            }), name + ": keeps every unrelated storage stack and drops no ingredients", evidence);
+        }
+        CraftingChecks.selectCraftSettings(context, method, CraftingOverflow.STOP_BEFORE_DROP, evidence);
+    }
+
+    private static int droppedSmithingOutput(net.minecraft.server.MinecraftServer server, ItemStack expected) {
+        var player = server.getPlayerList().getPlayers().getFirst();
+        return player.level().getEntitiesOfClass(ItemEntity.class, player.getBoundingBox().inflate(32)).stream()
+                .map(ItemEntity::getItem).filter(stack -> sameAcrossRegistries(stack, expected)).mapToInt(ItemStack::getCount).sum();
     }
 
     private static void inspectRememberedState(ClientGameTestContext context, Runnable reopen,

@@ -15,4 +15,8 @@ public class InstantCraft implements ConfigData {
     @ConfigEntry.Gui.EnumHandler(option = ConfigEntry.Gui.EnumHandler.EnumDisplayOption.BUTTON)
     public CraftAllMethod craftAllMethod = CraftAllMethod.SINGLE_BATCHES;
 
+    @ConfigEntry.Gui.Tooltip
+    @ConfigEntry.Gui.EnumHandler(option = ConfigEntry.Gui.EnumHandler.EnumDisplayOption.BUTTON)
+    public CraftingOverflow overflow = CraftingOverflow.STOP_BEFORE_DROP;
+
 }

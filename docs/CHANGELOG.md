@@ -1,3 +1,9 @@
+# 1.11.6+26.3
+
+- Make Fill grid perform real bulk output actions in crafting, smithing and the supported Vanilla++ backpack menu, including recipes that return ingredients.
+- Add a Craft all overflow setting: Stop before dropping (default), Drop and continue, or Stop after first drop. Apply it only to Shift-right-click crafting.
+- Verify the selected settings through actual configuration Save and assert the output packet type, alongside server inventory/grid/drop conservation.
+
 # 1.11.5+26.3
 
 - Give expanded recipe/creative children a shared subtle tint, lighter than the dark group header. Apply it to brewing/smithing groups too, while leaving ordinary lists and pins unaffected.

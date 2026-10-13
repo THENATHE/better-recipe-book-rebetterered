@@ -41,6 +41,7 @@ public final class RemoteClientQa implements ClientModInitializer {
     private int caseIndex;
     private int actionStarted;
     private boolean finished;
+    private final java.util.concurrent.ConcurrentLinkedQueue<net.minecraft.world.inventory.ContainerInput> resultInputs = new java.util.concurrent.ConcurrentLinkedQueue<>();
 
     private record Scenario(String name, int button, boolean shift, boolean undiscovered,
                             int expectedGrid, int expectedInventoryLogs, int expectedPlanks,
@@ -89,6 +90,17 @@ public final class RemoteClientQa implements ClientModInitializer {
                     var server = client.getCurrentServer();
                     check(server != null && (server.ip.startsWith("127.0.0.1:") || server.ip.startsWith("localhost:")), "fixture is restricted to the owned loopback server");
                     client.options.pauseOnLostFocus = false;
+                    var channelField = net.minecraft.network.Connection.class.getDeclaredField("channel");
+                    channelField.setAccessible(true);
+                    var channel = (io.netty.channel.Channel) channelField.get(client.getConnection().getConnection());
+                    channel.pipeline().addLast("brb_remote_result_trace", new io.netty.channel.ChannelDuplexHandler() {
+                        @Override
+                        public void write(io.netty.channel.ChannelHandlerContext context, Object message, io.netty.channel.ChannelPromise promise) throws Exception {
+                            if (message instanceof net.minecraft.network.protocol.game.ServerboundContainerClickPacket packet && packet.slotNum() == 0)
+                                resultInputs.add(packet.containerInput());
+                            super.write(context, message, promise);
+                        }
+                    });
                     if (net.fabricmc.loader.api.FabricLoader.getInstance().isModLoaded("modmenu")) {
                         check(com.terraformersmc.modmenu.ModMenu.hasConfigScreen("brb"), "optional Mod Menu registers BRB settings");
                         var settings = com.terraformersmc.modmenu.ModMenu.getConfigScreen("brb", client.gui.screen());
@@ -128,6 +140,7 @@ public final class RemoteClientQa implements ClientModInitializer {
                     if (tile == null || (tile.getCurrentRecipe().index() < 0) != scenario().undiscovered()) return;
                     check((tile.getCurrentRecipe().index() < 0) == scenario().undiscovered(),
                             "recipe display provenance matches scenario: " + scenario().name());
+                    resultInputs.clear();
                     var event = new MouseButtonEvent(tile.getX() + 12, tile.getY() + 12,
                             new MouseButtonInfo(scenario().button(), scenario().shift() ? InputConstants.MOD_SHIFT : 0));
                     check(component(client).mouseClicked(event, false), "real recipe widget consumes " + scenario().name());
@@ -143,6 +156,11 @@ public final class RemoteClientQa implements ClientModInitializer {
                         return;
                     }
                     check(client.player.containerMenu.getCarried().isEmpty(), "cursor is empty after " + test.name());
+                    if (test.method() == CraftAllMethod.FILL_GRID && test.shift()) {
+                        check(resultInputs.stream().filter(input -> input == net.minecraft.world.inventory.ContainerInput.QUICK_MOVE).count() == 2
+                                        && resultInputs.stream().noneMatch(input -> input == net.minecraft.world.inventory.ContainerInput.PICKUP),
+                                "Fill grid sends exactly two Shift-output transfers and no individual pickups for " + test.name());
+                    }
                     // Vanilla clear ... 0 counts player inventory, crafting inputs and the carried item.
                     queryCount(client, "oak_log", test.expectedInventoryLogs() + test.expectedGrid(), "LOGS-" + caseIndex);
                     queryCount(client, "oak_planks", test.expectedPlanks(), "PLANKS-" + caseIndex);
@@ -195,6 +213,7 @@ public final class RemoteClientQa implements ClientModInitializer {
         client.gui.setScreen(null);
         command(client, "clear @s");
         BetterRecipeBook.config.instantCraft.craftAllMethod = scenario().method();
+        BetterRecipeBook.config.instantCraft.overflow = marsh.town.brb.config.CraftingOverflow.STOP_BEFORE_DROP;
         command(client, "give @s minecraft:oak_log " + scenario().initialLogs());
         command(client, "recipe " + (scenario().undiscovered() ? "take" : "give") + " @s minecraft:oak_planks");
         marker(client, "SETUP-" + caseIndex);

@@ -2,7 +2,7 @@
 
 The opt-in `RemoteClientQa` is packaged by `run_remote_client.py` as a separate development fixture. It is absent from the production release and only registers its tick runner when `-Dbrb.remoteQa=true` is set. It connects to an owned, offline localhost server as `brbremoteqa`, which needs operator permission for the test commands. The server can remain the unmodified Mojang 26.3 server.
 
-The fixture checks that no integrated server exists, loads the packaged vanilla recipe catalogue and remote brewing/smithing adapters, then drives ten actual survival recipe-widget scenarios: left placement, Shift-left maximum placement, right single batch, Shift-right maximum crafting, undiscovered local placement/crafting, and Fill grid crafting/refill for learned and undiscovered recipes. Operator commands count items on the authoritative server through `clear ... 0`, which does not remove items. Unique command-response markers synchronize the assertions. Closing each menu then checks that every unconsumed crafting input returned to server inventory.
+The fixture checks that no integrated server exists, loads the packaged vanilla recipe catalogue and remote brewing/smithing adapters, then drives ten actual survival recipe-widget scenarios: left placement, Shift-left maximum placement, right single batch, Shift-right maximum crafting, undiscovered local placement/crafting, and Fill grid crafting/refill for learned and undiscovered recipes. Operator commands count items on the authoritative server through `clear ... 0`, which does not remove items. Unique command-response markers synchronize the assertions. Closing each menu then checks that every unconsumed crafting input returned to server inventory. Fill grid also requires exactly two real QUICK_MOVE result packets and zero result PICKUP packets for each 68-batch test.
 
 Prepare or run with a fresh directory:
 
@@ -11,7 +11,7 @@ python3 qa/run_remote_client.py \
   --server 127.0.0.1:25593 \
   --username brbremoteqa \
   --run qa/remote-packaged-final \
-  --jar ported/build/libs/better-recipe-book-rebetterered-1.11.5+26.3.jar \
+  --jar ported/build/libs/better-recipe-book-rebetterered-1.11.6+26.3.jar \
   --launch
 ```
 

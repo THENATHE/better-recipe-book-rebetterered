@@ -29,7 +29,7 @@ public final class ConfigScreenChecks {
     private static final List<String> OPTIONS = List.of(
             "enableBook", "recipeDisplayMode", "creativeDisplayMode", "enablePinning", "keepCentered",
             "settingsButton", "newRecipes.unlockAll", "newRecipes.enableBounce", "instantCraft.showButton",
-            "instantCraft.enabled", "instantCraft.craftAllMethod", "alternativeRecipes.onHover",
+            "instantCraft.enabled", "instantCraft.craftAllMethod", "instantCraft.overflow", "alternativeRecipes.onHover",
             "scrolling.enableScrolling", "scrolling.scrollAround");
 
     private ConfigScreenChecks() { }
@@ -78,7 +78,8 @@ public final class ConfigScreenChecks {
             check(entries.getFirst() == entry(settings, "enableBook"), size + ": master switch comes first", evidence);
             check(entry(settings, "recipeDisplayMode") instanceof SelectionListEntry<?>
                             && entry(settings, "creativeDisplayMode") instanceof SelectionListEntry<?>
-                            && entry(settings, "instantCraft.craftAllMethod") instanceof SelectionListEntry<?>,
+                            && entry(settings, "instantCraft.craftAllMethod") instanceof SelectionListEntry<?>
+                            && entry(settings, "instantCraft.overflow") instanceof SelectionListEntry<?>,
                     size + ": all modes use cycling buttons", evidence);
             return settings;
         });
@@ -123,7 +124,7 @@ public final class ConfigScreenChecks {
             return settings;
         });
         context.waitTicks(2);
-        for (String mode : List.of("recipeDisplayMode", "creativeDisplayMode", "instantCraft.craftAllMethod")) {
+        for (String mode : List.of("recipeDisplayMode", "creativeDisplayMode", "instantCraft.craftAllMethod", "instantCraft.overflow")) {
             reveal(context, reopened, mode);
             context.runOnClient(client -> {
                 var selection = entry(reopened, mode);

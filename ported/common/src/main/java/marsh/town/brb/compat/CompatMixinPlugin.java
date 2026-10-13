@@ -20,6 +20,9 @@ public class CompatMixinPlugin implements IMixinConfigPlugin {
 
     @Override
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
+        if (mixinClassName.equals("marsh.town.brb.compat.mixins.backpack.BackpackBulkCraftingMixin")) {
+            return FabricLoader.getInstance().isModLoaded("vpp_backpack_crafting");
+        }
         // mousewheelie compat
         if (mixinClassName.equals("marsh.town.brb.compat.mixins.mousewheelie.MixinMWClient")) {
             return FabricLoader.getInstance().isModLoaded("mousewheelie"); //TODO isModLoaded fails on neoforge

@@ -1012,6 +1012,8 @@ PASS: Creeper header selection preserves the original egg child order
 PASS: missing configured representative falls back to the first available source stack
 PASS: saved-hotbar tab is unaffected by grouping
 PASS: survival inventory tab is unaffected by grouping
+PASS: Actual config clicks and Save select FILL_GRID with STOP_BEFORE_DROP before crafting
+PASS: Actual config clicks and Save select SINGLE_BATCHES with STOP_BEFORE_DROP before crafting
 PASS: SINGLE_BATCHES: 2x2 inventory: left-click places ingredients without crafting
 PASS: SINGLE_BATCHES: 2x2 inventory: left-click places one ingredient
 PASS: SINGLE_BATCHES: 2x2 inventory: right-click on a prepared local recipe crafts once without a new placement packet
@@ -1059,6 +1061,7 @@ PASS: SINGLE_BATCHES: 2x2 inventory: maximum crafting survives a batch split bet
 PASS: SINGLE_BATCHES: 2x2 inventory: split storage confirmations leave no output on the cursor
 PASS: SINGLE_BATCHES: 2x2 inventory: maximum craft never overflows output or ingredients into the world
 PASS: SINGLE_BATCHES: 2x2 inventory: maximum crafting refills beyond the first 64-batch grid placement
+PASS: SINGLE_BATCHES: 2x2 inventory: 68 batches use 68 individual result pickups
 PASS: SINGLE_BATCHES: 2x2 inventory: maximum craft never overflows output or ingredients into the world
 PASS: SINGLE_BATCHES: 2x2 inventory: full inventory refuses a batch without consuming ingredients
 PASS: SINGLE_BATCHES: 2x2 inventory: full inventory leaves cursor empty
@@ -1118,6 +1121,7 @@ PASS: SINGLE_BATCHES: 3x3 table: maximum crafting survives a batch split between
 PASS: SINGLE_BATCHES: 3x3 table: split storage confirmations leave no output on the cursor
 PASS: SINGLE_BATCHES: 3x3 table: maximum craft never overflows output or ingredients into the world
 PASS: SINGLE_BATCHES: 3x3 table: maximum crafting refills beyond the first 64-batch grid placement
+PASS: SINGLE_BATCHES: 3x3 table: 68 batches use 68 individual result pickups
 PASS: SINGLE_BATCHES: 3x3 table: maximum craft never overflows output or ingredients into the world
 PASS: SINGLE_BATCHES: 3x3 table: full inventory refuses a batch without consuming ingredients
 PASS: SINGLE_BATCHES: 3x3 table: full inventory leaves cursor empty
@@ -1130,9 +1134,64 @@ PASS: SINGLE_BATCHES: 3x3 table: partial-batch refusal drops no output or ingred
 PASS: SINGLE_BATCHES: 3x3 table: disabled instant crafting never crafts on right-click
 PASS: SINGLE_BATCHES: 3x3 table: occupied cursor refuses automatic crafting
 PASS: SINGLE_BATCHES: 3x3 table: closing the menu cancels a pending craft
+PASS: SINGLE_BATCHES: cake remainder loads use three individual result pickups
 PASS: SINGLE_BATCHES: three cakes conserve all nine buckets, six returned and three vanilla grid remainders; inventory=[6 minecraft:bucket, 1 minecraft:cake, 1 minecraft:cake, 1 minecraft:cake]; grid=[1 minecraft:bucket, 1 minecraft:bucket, 1 minecraft:bucket, 0 minecraft:air, 0 minecraft:air, 0 minecraft:air, 0 minecraft:air, 0 minecraft:air, 0 minecraft:air]
 PASS: SINGLE_BATCHES: cake crafting consumes exactly three batches and leaves only the final bucket remainders; inventory=[6 minecraft:bucket, 1 minecraft:cake, 1 minecraft:cake, 1 minecraft:cake]; grid=[1 minecraft:bucket, 1 minecraft:bucket, 1 minecraft:bucket, 0 minecraft:air, 0 minecraft:air, 0 minecraft:air, 0 minecraft:air, 0 minecraft:air, 0 minecraft:air]
 PASS: SINGLE_BATCHES: cake outputs and remainders leave no cursor items or dropped items
+PASS: Actual config clicks and Save select FILL_GRID with STOP_BEFORE_DROP before crafting
+PASS: Actual config clicks and Save select SINGLE_BATCHES with STOP_BEFORE_DROP before crafting
+PASS: SINGLE_BATCHES/STOP_BEFORE_DROP/2x2/full storage: inventory and dropped output conserve every crafted batch
+PASS: SINGLE_BATCHES/STOP_BEFORE_DROP/2x2/full storage: overflow stops at the selected batch and preserves all uncrafted inputs
+PASS: SINGLE_BATCHES/STOP_BEFORE_DROP/2x2/full storage: overflow leaves both authoritative and client cursors empty
+PASS: SINGLE_BATCHES/STOP_BEFORE_DROP/2x2/full storage: overflow never replaces unrelated inventory stacks
+PASS: SINGLE_BATCHES/STOP_BEFORE_DROP/2x2/one free output space: inventory and dropped output conserve every crafted batch
+PASS: SINGLE_BATCHES/STOP_BEFORE_DROP/2x2/one free output space: overflow stops at the selected batch and preserves all uncrafted inputs
+PASS: SINGLE_BATCHES/STOP_BEFORE_DROP/2x2/one free output space: overflow leaves both authoritative and client cursors empty
+PASS: SINGLE_BATCHES/STOP_BEFORE_DROP/2x2/one free output space: overflow never replaces unrelated inventory stacks
+PASS: SINGLE_BATCHES/STOP_BEFORE_DROP/3x3/full storage: inventory and dropped output conserve every crafted batch
+PASS: SINGLE_BATCHES/STOP_BEFORE_DROP/3x3/full storage: overflow stops at the selected batch and preserves all uncrafted inputs
+PASS: SINGLE_BATCHES/STOP_BEFORE_DROP/3x3/full storage: overflow leaves both authoritative and client cursors empty
+PASS: SINGLE_BATCHES/STOP_BEFORE_DROP/3x3/full storage: overflow never replaces unrelated inventory stacks
+PASS: SINGLE_BATCHES/STOP_BEFORE_DROP/3x3/one free output space: inventory and dropped output conserve every crafted batch
+PASS: SINGLE_BATCHES/STOP_BEFORE_DROP/3x3/one free output space: overflow stops at the selected batch and preserves all uncrafted inputs
+PASS: SINGLE_BATCHES/STOP_BEFORE_DROP/3x3/one free output space: overflow leaves both authoritative and client cursors empty
+PASS: SINGLE_BATCHES/STOP_BEFORE_DROP/3x3/one free output space: overflow never replaces unrelated inventory stacks
+PASS: Actual config clicks and Save select SINGLE_BATCHES with DROP_AND_CONTINUE before crafting
+PASS: SINGLE_BATCHES/DROP_AND_CONTINUE/2x2/full storage: inventory and dropped output conserve every crafted batch
+PASS: SINGLE_BATCHES/DROP_AND_CONTINUE/2x2/full storage: overflow stops at the selected batch and preserves all uncrafted inputs
+PASS: SINGLE_BATCHES/DROP_AND_CONTINUE/2x2/full storage: overflow leaves both authoritative and client cursors empty
+PASS: SINGLE_BATCHES/DROP_AND_CONTINUE/2x2/full storage: overflow never replaces unrelated inventory stacks
+PASS: SINGLE_BATCHES/DROP_AND_CONTINUE/2x2/one free output space: inventory and dropped output conserve every crafted batch
+PASS: SINGLE_BATCHES/DROP_AND_CONTINUE/2x2/one free output space: overflow stops at the selected batch and preserves all uncrafted inputs
+PASS: SINGLE_BATCHES/DROP_AND_CONTINUE/2x2/one free output space: overflow leaves both authoritative and client cursors empty
+PASS: SINGLE_BATCHES/DROP_AND_CONTINUE/2x2/one free output space: overflow never replaces unrelated inventory stacks
+PASS: SINGLE_BATCHES/DROP_AND_CONTINUE/3x3/full storage: inventory and dropped output conserve every crafted batch
+PASS: SINGLE_BATCHES/DROP_AND_CONTINUE/3x3/full storage: overflow stops at the selected batch and preserves all uncrafted inputs
+PASS: SINGLE_BATCHES/DROP_AND_CONTINUE/3x3/full storage: overflow leaves both authoritative and client cursors empty
+PASS: SINGLE_BATCHES/DROP_AND_CONTINUE/3x3/full storage: overflow never replaces unrelated inventory stacks
+PASS: SINGLE_BATCHES/DROP_AND_CONTINUE/3x3/one free output space: inventory and dropped output conserve every crafted batch
+PASS: SINGLE_BATCHES/DROP_AND_CONTINUE/3x3/one free output space: overflow stops at the selected batch and preserves all uncrafted inputs
+PASS: SINGLE_BATCHES/DROP_AND_CONTINUE/3x3/one free output space: overflow leaves both authoritative and client cursors empty
+PASS: SINGLE_BATCHES/DROP_AND_CONTINUE/3x3/one free output space: overflow never replaces unrelated inventory stacks
+PASS: Actual config clicks and Save select SINGLE_BATCHES with STOP_AFTER_DROP before crafting
+PASS: SINGLE_BATCHES/STOP_AFTER_DROP/2x2/full storage: inventory and dropped output conserve every crafted batch
+PASS: SINGLE_BATCHES/STOP_AFTER_DROP/2x2/full storage: overflow stops at the selected batch and preserves all uncrafted inputs
+PASS: SINGLE_BATCHES/STOP_AFTER_DROP/2x2/full storage: overflow leaves both authoritative and client cursors empty
+PASS: SINGLE_BATCHES/STOP_AFTER_DROP/2x2/full storage: overflow never replaces unrelated inventory stacks
+PASS: SINGLE_BATCHES/STOP_AFTER_DROP/2x2/one free output space: inventory and dropped output conserve every crafted batch
+PASS: SINGLE_BATCHES/STOP_AFTER_DROP/2x2/one free output space: overflow stops at the selected batch and preserves all uncrafted inputs
+PASS: SINGLE_BATCHES/STOP_AFTER_DROP/2x2/one free output space: overflow leaves both authoritative and client cursors empty
+PASS: SINGLE_BATCHES/STOP_AFTER_DROP/2x2/one free output space: overflow never replaces unrelated inventory stacks
+PASS: SINGLE_BATCHES/STOP_AFTER_DROP/3x3/full storage: inventory and dropped output conserve every crafted batch
+PASS: SINGLE_BATCHES/STOP_AFTER_DROP/3x3/full storage: overflow stops at the selected batch and preserves all uncrafted inputs
+PASS: SINGLE_BATCHES/STOP_AFTER_DROP/3x3/full storage: overflow leaves both authoritative and client cursors empty
+PASS: SINGLE_BATCHES/STOP_AFTER_DROP/3x3/full storage: overflow never replaces unrelated inventory stacks
+PASS: SINGLE_BATCHES/STOP_AFTER_DROP/3x3/one free output space: inventory and dropped output conserve every crafted batch
+PASS: SINGLE_BATCHES/STOP_AFTER_DROP/3x3/one free output space: overflow stops at the selected batch and preserves all uncrafted inputs
+PASS: SINGLE_BATCHES/STOP_AFTER_DROP/3x3/one free output space: overflow leaves both authoritative and client cursors empty
+PASS: SINGLE_BATCHES/STOP_AFTER_DROP/3x3/one free output space: overflow never replaces unrelated inventory stacks
+PASS: Actual config clicks and Save select SINGLE_BATCHES with STOP_BEFORE_DROP before crafting
+PASS: Actual config clicks and Save select FILL_GRID with STOP_BEFORE_DROP before crafting
 PASS: FILL_GRID: 2x2 inventory: left-click places ingredients without crafting
 PASS: FILL_GRID: 2x2 inventory: left-click places one ingredient
 PASS: FILL_GRID: 2x2 inventory: right-click on a prepared local recipe crafts once without a new placement packet
@@ -1173,13 +1232,14 @@ PASS: FILL_GRID: 2x2 inventory: Shift-left-click retains vanilla maximum grid fi
 PASS: FILL_GRID: 2x2 inventory: right-click creates precisely one four-plank batch
 PASS: FILL_GRID: 2x2 inventory: single batch leaves cursor empty
 PASS: FILL_GRID: 2x2 inventory: Shift-right-click crafts all eight batches
-PASS: FILL_GRID: 2x2 inventory: selected craft-all method uses a bulk result transfer
+PASS: FILL_GRID: 2x2 inventory: selected craft-all method uses one true Shift-click result transfer with zero result pickups
 PASS: FILL_GRID: 2x2 inventory: maximum craft leaves cursor empty
 PASS: FILL_GRID: 2x2 inventory: maximum craft never overflows output or ingredients into the world
 PASS: FILL_GRID: 2x2 inventory: maximum crafting survives a batch split between a partial stack and an empty slot
 PASS: FILL_GRID: 2x2 inventory: split storage confirmations leave no output on the cursor
 PASS: FILL_GRID: 2x2 inventory: maximum craft never overflows output or ingredients into the world
 PASS: FILL_GRID: 2x2 inventory: maximum crafting refills beyond the first 64-batch grid placement
+PASS: FILL_GRID: 2x2 inventory: 68 batches use two true Shift-click loads with zero result pickups
 PASS: FILL_GRID: 2x2 inventory: maximum craft never overflows output or ingredients into the world
 PASS: FILL_GRID: 2x2 inventory: full inventory refuses a batch without consuming ingredients
 PASS: FILL_GRID: 2x2 inventory: full inventory leaves cursor empty
@@ -1232,13 +1292,14 @@ PASS: FILL_GRID: 3x3 table: Shift-left-click retains vanilla maximum grid fill
 PASS: FILL_GRID: 3x3 table: right-click creates precisely one four-plank batch
 PASS: FILL_GRID: 3x3 table: single batch leaves cursor empty
 PASS: FILL_GRID: 3x3 table: Shift-right-click crafts all eight batches
-PASS: FILL_GRID: 3x3 table: selected craft-all method uses a bulk result transfer
+PASS: FILL_GRID: 3x3 table: selected craft-all method uses one true Shift-click result transfer with zero result pickups
 PASS: FILL_GRID: 3x3 table: maximum craft leaves cursor empty
 PASS: FILL_GRID: 3x3 table: maximum craft never overflows output or ingredients into the world
 PASS: FILL_GRID: 3x3 table: maximum crafting survives a batch split between a partial stack and an empty slot
 PASS: FILL_GRID: 3x3 table: split storage confirmations leave no output on the cursor
 PASS: FILL_GRID: 3x3 table: maximum craft never overflows output or ingredients into the world
 PASS: FILL_GRID: 3x3 table: maximum crafting refills beyond the first 64-batch grid placement
+PASS: FILL_GRID: 3x3 table: 68 batches use two true Shift-click loads with zero result pickups
 PASS: FILL_GRID: 3x3 table: maximum craft never overflows output or ingredients into the world
 PASS: FILL_GRID: 3x3 table: full inventory refuses a batch without consuming ingredients
 PASS: FILL_GRID: 3x3 table: full inventory leaves cursor empty
@@ -1251,9 +1312,69 @@ PASS: FILL_GRID: 3x3 table: partial-batch refusal drops no output or ingredients
 PASS: FILL_GRID: 3x3 table: disabled instant crafting never crafts on right-click
 PASS: FILL_GRID: 3x3 table: occupied cursor refuses automatic crafting
 PASS: FILL_GRID: 3x3 table: closing the menu cancels a pending craft
+PASS: FILL_GRID: 2x2 inventory: unequal prepared inputs refuse bulk crafting before any result click
+PASS: FILL_GRID: 2x2 inventory: refused unequal grid preserves every prepared ingredient
+PASS: FILL_GRID: 2x2 inventory: unequal-grid refusal leaves empty cursors and drops nothing
+PASS: FILL_GRID: 3x3 table: unequal prepared inputs refuse bulk crafting before any result click
+PASS: FILL_GRID: 3x3 table: refused unequal grid preserves every prepared ingredient
+PASS: FILL_GRID: 3x3 table: unequal-grid refusal leaves empty cursors and drops nothing
+PASS: FILL_GRID: cake remainder loads use three true Shift-clicks and zero result pickups
 PASS: FILL_GRID: three cakes conserve all nine buckets, six returned and three vanilla grid remainders; inventory=[6 minecraft:bucket, 1 minecraft:cake, 1 minecraft:cake, 1 minecraft:cake]; grid=[1 minecraft:bucket, 1 minecraft:bucket, 1 minecraft:bucket, 0 minecraft:air, 0 minecraft:air, 0 minecraft:air, 0 minecraft:air, 0 minecraft:air, 0 minecraft:air]
 PASS: FILL_GRID: cake crafting consumes exactly three batches and leaves only the final bucket remainders; inventory=[6 minecraft:bucket, 1 minecraft:cake, 1 minecraft:cake, 1 minecraft:cake]; grid=[1 minecraft:bucket, 1 minecraft:bucket, 1 minecraft:bucket, 0 minecraft:air, 0 minecraft:air, 0 minecraft:air, 0 minecraft:air, 0 minecraft:air, 0 minecraft:air]
 PASS: FILL_GRID: cake outputs and remainders leave no cursor items or dropped items
+PASS: Actual config clicks and Save select SINGLE_BATCHES with STOP_BEFORE_DROP before crafting
+PASS: Actual config clicks and Save select FILL_GRID with STOP_BEFORE_DROP before crafting
+PASS: FILL_GRID/STOP_BEFORE_DROP/2x2/full storage: inventory and dropped output conserve every crafted batch
+PASS: FILL_GRID/STOP_BEFORE_DROP/2x2/full storage: overflow stops at the selected batch and preserves all uncrafted inputs
+PASS: FILL_GRID/STOP_BEFORE_DROP/2x2/full storage: overflow leaves both authoritative and client cursors empty
+PASS: FILL_GRID/STOP_BEFORE_DROP/2x2/full storage: overflow never replaces unrelated inventory stacks
+PASS: FILL_GRID/STOP_BEFORE_DROP/2x2/one free output space: inventory and dropped output conserve every crafted batch
+PASS: FILL_GRID/STOP_BEFORE_DROP/2x2/one free output space: overflow stops at the selected batch and preserves all uncrafted inputs
+PASS: FILL_GRID/STOP_BEFORE_DROP/2x2/one free output space: overflow leaves both authoritative and client cursors empty
+PASS: FILL_GRID/STOP_BEFORE_DROP/2x2/one free output space: overflow never replaces unrelated inventory stacks
+PASS: FILL_GRID/STOP_BEFORE_DROP/3x3/full storage: inventory and dropped output conserve every crafted batch
+PASS: FILL_GRID/STOP_BEFORE_DROP/3x3/full storage: overflow stops at the selected batch and preserves all uncrafted inputs
+PASS: FILL_GRID/STOP_BEFORE_DROP/3x3/full storage: overflow leaves both authoritative and client cursors empty
+PASS: FILL_GRID/STOP_BEFORE_DROP/3x3/full storage: overflow never replaces unrelated inventory stacks
+PASS: FILL_GRID/STOP_BEFORE_DROP/3x3/one free output space: inventory and dropped output conserve every crafted batch
+PASS: FILL_GRID/STOP_BEFORE_DROP/3x3/one free output space: overflow stops at the selected batch and preserves all uncrafted inputs
+PASS: FILL_GRID/STOP_BEFORE_DROP/3x3/one free output space: overflow leaves both authoritative and client cursors empty
+PASS: FILL_GRID/STOP_BEFORE_DROP/3x3/one free output space: overflow never replaces unrelated inventory stacks
+PASS: Actual config clicks and Save select FILL_GRID with DROP_AND_CONTINUE before crafting
+PASS: FILL_GRID/DROP_AND_CONTINUE/2x2/full storage: inventory and dropped output conserve every crafted batch
+PASS: FILL_GRID/DROP_AND_CONTINUE/2x2/full storage: overflow stops at the selected batch and preserves all uncrafted inputs
+PASS: FILL_GRID/DROP_AND_CONTINUE/2x2/full storage: overflow leaves both authoritative and client cursors empty
+PASS: FILL_GRID/DROP_AND_CONTINUE/2x2/full storage: overflow never replaces unrelated inventory stacks
+PASS: FILL_GRID/DROP_AND_CONTINUE/2x2/one free output space: inventory and dropped output conserve every crafted batch
+PASS: FILL_GRID/DROP_AND_CONTINUE/2x2/one free output space: overflow stops at the selected batch and preserves all uncrafted inputs
+PASS: FILL_GRID/DROP_AND_CONTINUE/2x2/one free output space: overflow leaves both authoritative and client cursors empty
+PASS: FILL_GRID/DROP_AND_CONTINUE/2x2/one free output space: overflow never replaces unrelated inventory stacks
+PASS: FILL_GRID/DROP_AND_CONTINUE/3x3/full storage: inventory and dropped output conserve every crafted batch
+PASS: FILL_GRID/DROP_AND_CONTINUE/3x3/full storage: overflow stops at the selected batch and preserves all uncrafted inputs
+PASS: FILL_GRID/DROP_AND_CONTINUE/3x3/full storage: overflow leaves both authoritative and client cursors empty
+PASS: FILL_GRID/DROP_AND_CONTINUE/3x3/full storage: overflow never replaces unrelated inventory stacks
+PASS: FILL_GRID/DROP_AND_CONTINUE/3x3/one free output space: inventory and dropped output conserve every crafted batch
+PASS: FILL_GRID/DROP_AND_CONTINUE/3x3/one free output space: overflow stops at the selected batch and preserves all uncrafted inputs
+PASS: FILL_GRID/DROP_AND_CONTINUE/3x3/one free output space: overflow leaves both authoritative and client cursors empty
+PASS: FILL_GRID/DROP_AND_CONTINUE/3x3/one free output space: overflow never replaces unrelated inventory stacks
+PASS: Actual config clicks and Save select FILL_GRID with STOP_AFTER_DROP before crafting
+PASS: FILL_GRID/STOP_AFTER_DROP/2x2/full storage: inventory and dropped output conserve every crafted batch
+PASS: FILL_GRID/STOP_AFTER_DROP/2x2/full storage: overflow stops at the selected batch and preserves all uncrafted inputs
+PASS: FILL_GRID/STOP_AFTER_DROP/2x2/full storage: overflow leaves both authoritative and client cursors empty
+PASS: FILL_GRID/STOP_AFTER_DROP/2x2/full storage: overflow never replaces unrelated inventory stacks
+PASS: FILL_GRID/STOP_AFTER_DROP/2x2/one free output space: inventory and dropped output conserve every crafted batch
+PASS: FILL_GRID/STOP_AFTER_DROP/2x2/one free output space: overflow stops at the selected batch and preserves all uncrafted inputs
+PASS: FILL_GRID/STOP_AFTER_DROP/2x2/one free output space: overflow leaves both authoritative and client cursors empty
+PASS: FILL_GRID/STOP_AFTER_DROP/2x2/one free output space: overflow never replaces unrelated inventory stacks
+PASS: FILL_GRID/STOP_AFTER_DROP/3x3/full storage: inventory and dropped output conserve every crafted batch
+PASS: FILL_GRID/STOP_AFTER_DROP/3x3/full storage: overflow stops at the selected batch and preserves all uncrafted inputs
+PASS: FILL_GRID/STOP_AFTER_DROP/3x3/full storage: overflow leaves both authoritative and client cursors empty
+PASS: FILL_GRID/STOP_AFTER_DROP/3x3/full storage: overflow never replaces unrelated inventory stacks
+PASS: FILL_GRID/STOP_AFTER_DROP/3x3/one free output space: inventory and dropped output conserve every crafted batch
+PASS: FILL_GRID/STOP_AFTER_DROP/3x3/one free output space: overflow stops at the selected batch and preserves all uncrafted inputs
+PASS: FILL_GRID/STOP_AFTER_DROP/3x3/one free output space: overflow leaves both authoritative and client cursors empty
+PASS: FILL_GRID/STOP_AFTER_DROP/3x3/one free output space: overflow never replaces unrelated inventory stacks
+PASS: Actual config clicks and Save select FILL_GRID with STOP_BEFORE_DROP before crafting
 PASS: Armor slots reject ordinary crafting output during storage preflight
 PASS: Container sequence comparison handles rollover, stale packets, and duplicates
 PASS: 2x2 inventory: pinned tab is visible
@@ -1383,9 +1504,57 @@ PASS: Pins tab retains the selected concrete trim variant
 PASS: right-click crafts one prepared trim directly into authoritative inventory
 PASS: smithing instant craft leaves no item on the cursor
 PASS: already-trimmed named/damaged armor can be re-trimmed without losing unrelated components
-PASS: Shift-left respects the unstackable smithing base slot limit
-DEBUG: smithing maximum after 30 ticks; A=1; B=1; cursor=0 minecraft:air; inputs=[0 minecraft:air, 0 minecraft:air, 0 minecraft:air, 0 minecraft:air]; pending=none
-PASS: Shift-right crafts both smithing bases and preserves each distinct custom component set
+PASS: Actual config clicks and Save select FILL_GRID with STOP_BEFORE_DROP before crafting
+PASS: Actual config clicks and Save select SINGLE_BATCHES with STOP_BEFORE_DROP before crafting
+PASS: SINGLE_BATCHES: Shift-left respects the unstackable smithing base slot limit
+PASS: SINGLE_BATCHES: Shift-right crafts both smithing bases and preserves each distinct custom component set
+PASS: SINGLE_BATCHES: two unstackable smithing loads use two individual result pickups
+PASS: SINGLE_BATCHES: smithing maximum leaves both cursors empty
+PASS: SINGLE_BATCHES: Shift-left max-loads all three valid stackable smithing bases
+PASS: SINGLE_BATCHES: stackable smithing conserves all three outputs and consumes precisely three input sets
+PASS: SINGLE_BATCHES: three loaded smithing batches use three individual result pickups
+PASS: Actual config clicks and Save select FILL_GRID with STOP_BEFORE_DROP before crafting
+PASS: Actual config clicks and Save select SINGLE_BATCHES with STOP_BEFORE_DROP before crafting
+PASS: SINGLE_BATCHES/STOP_BEFORE_DROP/smithing full storage: drops precisely the selected number of exact trimmed outputs
+PASS: SINGLE_BATCHES/STOP_BEFORE_DROP/smithing full storage: consumes one complete input set per output and preserves all remaining sets
+PASS: SINGLE_BATCHES/STOP_BEFORE_DROP/smithing full storage: leaves both cursors empty
+PASS: SINGLE_BATCHES/STOP_BEFORE_DROP/smithing full storage: keeps every unrelated storage stack and drops no ingredients
+PASS: Actual config clicks and Save select SINGLE_BATCHES with DROP_AND_CONTINUE before crafting
+PASS: SINGLE_BATCHES/DROP_AND_CONTINUE/smithing full storage: drops precisely the selected number of exact trimmed outputs
+PASS: SINGLE_BATCHES/DROP_AND_CONTINUE/smithing full storage: consumes one complete input set per output and preserves all remaining sets
+PASS: SINGLE_BATCHES/DROP_AND_CONTINUE/smithing full storage: leaves both cursors empty
+PASS: SINGLE_BATCHES/DROP_AND_CONTINUE/smithing full storage: keeps every unrelated storage stack and drops no ingredients
+PASS: Actual config clicks and Save select SINGLE_BATCHES with STOP_AFTER_DROP before crafting
+PASS: SINGLE_BATCHES/STOP_AFTER_DROP/smithing full storage: drops precisely the selected number of exact trimmed outputs
+PASS: SINGLE_BATCHES/STOP_AFTER_DROP/smithing full storage: consumes one complete input set per output and preserves all remaining sets
+PASS: SINGLE_BATCHES/STOP_AFTER_DROP/smithing full storage: leaves both cursors empty
+PASS: SINGLE_BATCHES/STOP_AFTER_DROP/smithing full storage: keeps every unrelated storage stack and drops no ingredients
+PASS: Actual config clicks and Save select SINGLE_BATCHES with STOP_BEFORE_DROP before crafting
+PASS: Actual config clicks and Save select FILL_GRID with STOP_BEFORE_DROP before crafting
+PASS: FILL_GRID: Shift-left respects the unstackable smithing base slot limit
+PASS: FILL_GRID: Shift-right crafts both smithing bases and preserves each distinct custom component set
+PASS: FILL_GRID: two unstackable smithing loads use two true Shift-clicks and zero result pickups
+PASS: FILL_GRID: smithing maximum leaves both cursors empty
+PASS: FILL_GRID: Shift-left max-loads all three valid stackable smithing bases
+PASS: FILL_GRID: stackable smithing conserves all three outputs and consumes precisely three input sets
+PASS: FILL_GRID: three loaded smithing batches use one true Shift-click with zero result pickups
+PASS: Actual config clicks and Save select SINGLE_BATCHES with STOP_BEFORE_DROP before crafting
+PASS: Actual config clicks and Save select FILL_GRID with STOP_BEFORE_DROP before crafting
+PASS: FILL_GRID/STOP_BEFORE_DROP/smithing full storage: drops precisely the selected number of exact trimmed outputs
+PASS: FILL_GRID/STOP_BEFORE_DROP/smithing full storage: consumes one complete input set per output and preserves all remaining sets
+PASS: FILL_GRID/STOP_BEFORE_DROP/smithing full storage: leaves both cursors empty
+PASS: FILL_GRID/STOP_BEFORE_DROP/smithing full storage: keeps every unrelated storage stack and drops no ingredients
+PASS: Actual config clicks and Save select FILL_GRID with DROP_AND_CONTINUE before crafting
+PASS: FILL_GRID/DROP_AND_CONTINUE/smithing full storage: drops precisely the selected number of exact trimmed outputs
+PASS: FILL_GRID/DROP_AND_CONTINUE/smithing full storage: consumes one complete input set per output and preserves all remaining sets
+PASS: FILL_GRID/DROP_AND_CONTINUE/smithing full storage: leaves both cursors empty
+PASS: FILL_GRID/DROP_AND_CONTINUE/smithing full storage: keeps every unrelated storage stack and drops no ingredients
+PASS: Actual config clicks and Save select FILL_GRID with STOP_AFTER_DROP before crafting
+PASS: FILL_GRID/STOP_AFTER_DROP/smithing full storage: drops precisely the selected number of exact trimmed outputs
+PASS: FILL_GRID/STOP_AFTER_DROP/smithing full storage: consumes one complete input set per output and preserves all remaining sets
+PASS: FILL_GRID/STOP_AFTER_DROP/smithing full storage: leaves both cursors empty
+PASS: FILL_GRID/STOP_AFTER_DROP/smithing full storage: keeps every unrelated storage stack and drops no ingredients
+PASS: Actual config clicks and Save select FILL_GRID with STOP_BEFORE_DROP before crafting
 PASS: workstation All mode exposes fixed individual variants
 PASS: workstation pin prefers the hovered variant over the previously focused tile
 PASS: workstation expandable mode condenses native variant groups
@@ -1475,7 +1644,7 @@ PASS: re-enabling unlock after dimension cleanup preserves learned entries
 PASS: repeated unlock toggle removes re-created local entries
 PASS: 320x240: config has no custom background texture
 PASS: 320x240: one settings list without tabs
-PASS: 320x240: all 14 settings are visible entries
+PASS: 320x240: all 15 settings are visible entries
 PASS: 320x240: master switch comes first
 PASS: 320x240: all modes use cycling buttons
 PASS: 320x240: enableBook is within the visible list
@@ -1522,6 +1691,10 @@ PASS: 320x240: instantCraft.craftAllMethod is within the visible list
 PASS: 320x240: instantCraft.craftAllMethod label does not overlap its control
 PASS: 320x240: mouse changes instantCraft.craftAllMethod
 PASS: 320x240: instantCraft.craftAllMethod waits for Save
+PASS: 320x240: instantCraft.overflow is within the visible list
+PASS: 320x240: instantCraft.overflow label does not overlap its control
+PASS: 320x240: mouse changes instantCraft.overflow
+PASS: 320x240: instantCraft.overflow waits for Save
 PASS: 320x240: alternativeRecipes.onHover is within the visible list
 PASS: 320x240: alternativeRecipes.onHover label does not overlap its control
 PASS: 320x240: mouse changes alternativeRecipes.onHover
@@ -1545,6 +1718,8 @@ PASS: 320x240: creativeDisplayMode cycles through every mode and wraps
 PASS: 320x240: keyboard changes creativeDisplayMode
 PASS: 320x240: instantCraft.craftAllMethod cycles through every mode and wraps
 PASS: 320x240: keyboard changes instantCraft.craftAllMethod
+PASS: 320x240: instantCraft.overflow cycles through every mode and wraps
+PASS: 320x240: keyboard changes instantCraft.overflow
 PASS: 320x240: Reset restores the default for enablePinning
 PASS: 320x240: Reset waits for Save for enablePinning
 PASS: 320x240: Reset restores the default for recipeDisplayMode
@@ -1556,7 +1731,7 @@ PASS: 320x240: discard returns to the parent screen
 PASS: 320x240: Cancel leaves all saved settings unchanged
 PASS: 427x240: config has no custom background texture
 PASS: 427x240: one settings list without tabs
-PASS: 427x240: all 14 settings are visible entries
+PASS: 427x240: all 15 settings are visible entries
 PASS: 427x240: master switch comes first
 PASS: 427x240: all modes use cycling buttons
 PASS: 427x240: enableBook is within the visible list
@@ -1603,6 +1778,10 @@ PASS: 427x240: instantCraft.craftAllMethod is within the visible list
 PASS: 427x240: instantCraft.craftAllMethod label does not overlap its control
 PASS: 427x240: mouse changes instantCraft.craftAllMethod
 PASS: 427x240: instantCraft.craftAllMethod waits for Save
+PASS: 427x240: instantCraft.overflow is within the visible list
+PASS: 427x240: instantCraft.overflow label does not overlap its control
+PASS: 427x240: mouse changes instantCraft.overflow
+PASS: 427x240: instantCraft.overflow waits for Save
 PASS: 427x240: alternativeRecipes.onHover is within the visible list
 PASS: 427x240: alternativeRecipes.onHover label does not overlap its control
 PASS: 427x240: mouse changes alternativeRecipes.onHover
@@ -1626,6 +1805,8 @@ PASS: 427x240: creativeDisplayMode cycles through every mode and wraps
 PASS: 427x240: keyboard changes creativeDisplayMode
 PASS: 427x240: instantCraft.craftAllMethod cycles through every mode and wraps
 PASS: 427x240: keyboard changes instantCraft.craftAllMethod
+PASS: 427x240: instantCraft.overflow cycles through every mode and wraps
+PASS: 427x240: keyboard changes instantCraft.overflow
 PASS: 427x240: Reset restores the default for enablePinning
 PASS: 427x240: Reset waits for Save for enablePinning
 PASS: 427x240: Reset restores the default for recipeDisplayMode
@@ -1637,7 +1818,7 @@ PASS: 427x240: discard returns to the parent screen
 PASS: 427x240: Cancel leaves all saved settings unchanged
 PASS: 640x360: config has no custom background texture
 PASS: 640x360: one settings list without tabs
-PASS: 640x360: all 14 settings are visible entries
+PASS: 640x360: all 15 settings are visible entries
 PASS: 640x360: master switch comes first
 PASS: 640x360: all modes use cycling buttons
 PASS: 640x360: enableBook is within the visible list
@@ -1684,6 +1865,10 @@ PASS: 640x360: instantCraft.craftAllMethod is within the visible list
 PASS: 640x360: instantCraft.craftAllMethod label does not overlap its control
 PASS: 640x360: mouse changes instantCraft.craftAllMethod
 PASS: 640x360: instantCraft.craftAllMethod waits for Save
+PASS: 640x360: instantCraft.overflow is within the visible list
+PASS: 640x360: instantCraft.overflow label does not overlap its control
+PASS: 640x360: mouse changes instantCraft.overflow
+PASS: 640x360: instantCraft.overflow waits for Save
 PASS: 640x360: alternativeRecipes.onHover is within the visible list
 PASS: 640x360: alternativeRecipes.onHover label does not overlap its control
 PASS: 640x360: mouse changes alternativeRecipes.onHover
@@ -1707,6 +1892,8 @@ PASS: 640x360: creativeDisplayMode cycles through every mode and wraps
 PASS: 640x360: keyboard changes creativeDisplayMode
 PASS: 640x360: instantCraft.craftAllMethod cycles through every mode and wraps
 PASS: 640x360: keyboard changes instantCraft.craftAllMethod
+PASS: 640x360: instantCraft.overflow cycles through every mode and wraps
+PASS: 640x360: keyboard changes instantCraft.overflow
 PASS: 640x360: Reset restores the default for enablePinning
 PASS: 640x360: Reset waits for Save for enablePinning
 PASS: 640x360: Reset restores the default for recipeDisplayMode
@@ -1718,8 +1905,4 @@ PASS: 640x360: discard returns to the parent screen
 PASS: 640x360: Cancel leaves all saved settings unchanged
 SCREENSHOT: screenshots/0024_brb-vanilla-style-settings.png
 SCREENSHOT: screenshots/0025_brb-vanilla-style-settings-lower.png
-SCREENSHOT: screenshots/0000_brb-native-recipe-group-collapsed.png
-SCREENSHOT: screenshots/0001_brb-native-recipe-group-expanded.png
-SCREENSHOT: screenshots/0010_brb-inventory-pinned-tab.png
-SCREENSHOT: screenshots/0011_brb-crafting-table-pinned-tab.png
-RESULT: PASS; 1705 recorded checks
+RESULT: PASS; 1893 recorded checks

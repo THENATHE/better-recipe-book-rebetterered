@@ -1,3 +1,10 @@
+> Task :clean UP-TO-DATE
+> Task :compileJava
+> Task :processResources
+> Task :classes
+> Task :compileRegressionJava
+> Task :processRegressionResources NO-SOURCE
+> Task :regressionClasses
 > Task :craftingRegression
 PASS: 131072 sequence assertions and 6 ingredient assignment regression cases
 > Task :creativeRegression
@@ -1159,3 +1166,19 @@ PASS: first resource rule deterministically owns overlapping matches
 RESULT: PASS; 1155 assertions
 > Task :pinRegression
 PASS: pin migration, latest ordered save, temporary cleanup, malformed preservation, component and ingredient identity (11 checks)
+> Task :compileClientqaJava
+> Task :processClientqaResources
+> Task :clientqaClasses
+> Task :clientqaJar
+> Task :processIncludeJars
+> Task :sourcesJar
+> Task :compileTestJava NO-SOURCE
+> Task :processTestResources NO-SOURCE
+> Task :testClasses UP-TO-DATE
+> Task :test NO-SOURCE
+> Task :jar
+> Task :validateAccessWidener
+> Task :check
+> Task :assemble
+> Task :build
+BUILD SUCCESSFUL in 10s

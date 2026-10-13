@@ -56,12 +56,14 @@ PASS: scenario runs in survival: fill-grid native craft-all reloads after 64 bat
 PASS: recipe display provenance matches scenario: fill-grid native craft-all reloads after 64 batches
 PASS: real recipe widget consumes fill-grid native craft-all reloads after 64 batches
 PASS: cursor is empty after fill-grid native craft-all reloads after 64 batches
+PASS: Fill grid sends exactly two Shift-output transfers and no individual pickups for fill-grid native craft-all reloads after 64 batches
 PASS: vanilla server confirms authoritative item counts for fill-grid native craft-all reloads after 64 batches
 PASS: server menu closure preserves every unconsumed input for fill-grid native craft-all reloads after 64 batches
 PASS: scenario runs in survival: fill-grid undiscovered local craft-all reloads after 64 batches
 PASS: recipe display provenance matches scenario: fill-grid undiscovered local craft-all reloads after 64 batches
 PASS: real recipe widget consumes fill-grid undiscovered local craft-all reloads after 64 batches
 PASS: cursor is empty after fill-grid undiscovered local craft-all reloads after 64 batches
+PASS: Fill grid sends exactly two Shift-output transfers and no individual pickups for fill-grid undiscovered local craft-all reloads after 64 batches
 PASS: vanilla server confirms authoritative item counts for fill-grid undiscovered local craft-all reloads after 64 batches
 PASS: server menu closure preserves every unconsumed input for fill-grid undiscovered local craft-all reloads after 64 batches
-RESULT: PASS; 66 assertions
+RESULT: PASS; 68 assertions

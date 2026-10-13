@@ -1,9 +1,33 @@
 {
-  "version": "1.11.5+26.3",
+  "version": "1.11.6+26.3",
   "clean_check_build_clientqaJar": "PASS",
   "byte_identical": true,
+  "jdk": "Microsoft OpenJDK 25.0.4.1 (25.0.4.1+1-LTS)",
+  "build_command": "bash gradlew --offline --no-daemon clean check build clientqaJar",
+  "source_export": "Independent fresh export of existing Git tracked and ignore-allowlisted untracked files; excluded .git, build outputs, logs, and runtime runs.",
+  "source_export_file_count": 385,
+  "build_input_file_count": 161,
+  "build_input_manifest_sha256": "a15bf25c1982fffbcfa8b1e02f51707179a2f73eefe663723406e7d630afa26c",
+  "checks": {
+    "sequence_assertions": 131072,
+    "ingredient_assignment_cases": 6,
+    "creative_grouping_assertions": 1155,
+    "pin_persistence_checks": 11
+  },
   "artifacts": {
-    "better-recipe-book-rebetterered-1.11.5+26.3-sources.jar": "982b1d0424c98d841851a5bdf81c7da5a6d4ceab1174022617001045f86bf08a",
-    "better-recipe-book-rebetterered-1.11.5+26.3.jar": "3621bcb3f6eceb1c9031b4313f354d38a67acb6366f0e2c378a8c7d7f63ee544"
+    "better-recipe-book-rebetterered-1.11.6+26.3.jar": "c129d74ee023c0de60b17fc960e14abe475d0f8035482d58ce98810eb704ea36",
+    "better-recipe-book-rebetterered-1.11.6+26.3-sources.jar": "33c80adc1b9ad46ed738a3bc343db5015b7f5d192b64be6038096384fffb54c2"
+  },
+  "artifact_verification": {
+    "better-recipe-book-rebetterered-1.11.6+26.3.jar": {
+      "sha256": "c129d74ee023c0de60b17fc960e14abe475d0f8035482d58ce98810eb704ea36",
+      "bytes": 1277974,
+      "byte_identical_to_staged_release": true
+    },
+    "better-recipe-book-rebetterered-1.11.6+26.3-sources.jar": {
+      "sha256": "33c80adc1b9ad46ed738a3bc343db5015b7f5d192b64be6038096384fffb54c2",
+      "bytes": 514152,
+      "byte_identical_to_staged_release": true
+    }
   }
 }

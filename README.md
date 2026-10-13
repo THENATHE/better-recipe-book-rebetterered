@@ -4,7 +4,7 @@
 
 ![Better Recipe Book: Rebetterered icon](ported/fabric/src/main/resources/assets/brb/icon.png)
 
-The **1.11.5** update shades expanded child entries, adds a Pinned Recipes tab to the normal crafting book, and lets you choose the Shift-right-click craft-all method. See the [changelog](docs/CHANGELOG.md) for this update and the [latest release](https://github.com/THENATHE/better-recipe-book-rebetterered/releases/latest) for downloads.
+The **1.11.6** update makes Fill grid use real bulk output actions for crafting, smithing and supported backpack menus, and adds a choice of overflow behavior. See the [changelog](docs/CHANGELOG.md) for this update and the [latest release](https://github.com/THENATHE/better-recipe-book-rebetterered/releases/latest) for downloads.
 
 ## What it is
 
@@ -70,11 +70,12 @@ Expansion headers only change which recipes are visible. Clicking a **+ / −** 
 ### Craft straight into your inventory
 
 - **Right-click** a recipe to craft one recipe batch directly into your inventory.
-- **Shift + right-click** to keep crafting while ingredients and inventory space allow. Choose **One at a time** (default) or **Fill grid** in settings.
-- **Fill grid** max-loads ingredients, transfers a complete ordinary crafting load when safe, and repeats after server confirmation. Remainders, limited space and custom menus use guarded individual transfers.
+- **Shift + right-click** to craft all available ingredients using the selected strategy and overflow policy. Choose **One at a time** (default) or **Fill grid** in settings.
+- **Fill grid** fills the grid, Shift-clicks its output to craft the loaded recipes together, then refills and repeats after server confirmation. It supports vanilla crafting, smithing and the Vanilla++ backpack crafting menu.
+- **Craft overflow** defaults to **Stop before dropping**. Choose **Drop and continue** to keep crafting when items do not fit, or **Stop after first drop** to stop after the first recipe batch that drops output or returned ingredients. Normal right-click still requires inventory space.
+- Fill grid stops conservatively for uneven loaded ingredient counts, smithing recipes with unused optional inputs, and other bulk loads that cannot be predicted safely.
 - Keep normal **left-click** placement and **Shift + left-click** maximum ingredient placement.
 - Automatically stop when the menu changes, crafting is disabled, or the expected server state no longer matches.
-- Check storage before taking the result, so overflow is not dropped on the ground.
 
 A batch means one recipe execution: for example, one log produces four planks. Direct crafting supports the crafting grid and smithing table. Brewing and smelting keep their normal processing times.
 
@@ -122,7 +123,7 @@ Server rules still apply, including limited crafting. Recipes supplied only by a
 
 1. Use **Minecraft 26.3**, **Java 25 or newer**, and **Fabric Loader 0.19.5 or newer**.
 2. Install **Fabric API 0.161.0+26.3** for this release.
-3. Download `better-recipe-book-rebetterered-1.11.5+26.3.jar` from [Releases](https://github.com/THENATHE/better-recipe-book-rebetterered/releases/latest) and put it in your client's `mods/` folder.
+3. Download `better-recipe-book-rebetterered-1.11.6+26.3.jar` from [Releases](https://github.com/THENATHE/better-recipe-book-rebetterered/releases/latest) and put it in your client's `mods/` folder.
 4. Remove other BRB variants from that instance. Keep a backup of your existing settings and pins when upgrading.
 5. Launch Minecraft and choose your preferred display and crafting settings from the recipe-book settings button or Mod Menu.
 
@@ -159,6 +160,4 @@ The first command runs the standard regression checks and builds the mod and sep
 
 ### Verification and compatibility limits
 
-Version **1.11.5+26.3** passed **1,705 recorded singleplayer checks**, including 1,005 creative checks, 243 settings checks across all 14 controls, 244 crafting checks covering both craft-all methods, and 58 checks of the native Pinned Recipes tab. Standard regressions passed, both JARs were reproduced byte-for-byte from a sanitized source build, and 16 backpack scenarios passed across native and Polymer profiles with Fill grid selected. **66 packaged multiplayer assertions across ten scenarios** passed against an unmodified vanilla server. Public delivery checks are performed after upload; packaged evidence covers the candidate tested above. See [validation](docs/VALIDATION.md) for current evidence and scope.
-
-See [validation](docs/VALIDATION.md), [packaged multiplayer QA](qa/REMOTE-QA.md), and the [changelog](docs/CHANGELOG.md) for coverage and remaining limits. No compatible Minecraft 26.3 Mouse Wheelie release was available to test its optional integration. Other mod combinations and custom datapacks have not been exhaustively tested.
+Version **1.11.6+26.3** passed **1,893 recorded singleplayer checks**, including 365 crafting checks, 195 workstation checks, 261 settings checks across all 15 controls, and 58 native pin-tab checks. All 30 crafting/smithing overflow scenarios and six uneven-grid refusal checks passed. An independent clean source build passed standard regressions and reproduced both JARs byte-for-byte. **68 packaged multiplayer assertions across ten scenarios** passed against an unmodified vanilla server. **32 connected backpack scenarios** passed across native and Polymer profiles, including repeated crafting and 16 returned-bucket policy/ordinary-right-click cases. See [validation](docs/VALIDATION.md) for evidence and scope.

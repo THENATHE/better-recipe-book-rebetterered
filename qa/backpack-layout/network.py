@@ -30,11 +30,17 @@ def main():
     parser.add_argument('--brbr', type=Path)
     parser.add_argument('--backpack', action='store_true')
     parser.add_argument('--delay-grid', action='store_true')
+    parser.add_argument('--output-to-backpack', action='store_true', help='Fill player storage to test output transfers into the backpack')
     parser.add_argument('--baseline', action='store_true')
+    parser.add_argument('--bucket-overflow', action='store_true', help='Test player-only cake bucket remainders with all crafting methods and overflow policies')
     parser.add_argument('--cycles', type=int, default=1)
+    parser.add_argument('--ingredients', type=int, default=12, help='Number of planks supplied; 272 checks bulk refill after 64 recipes')
     parser.add_argument('--craft-all-method', choices=('single_batches', 'fill_grid'), default='single_batches')
     parser.add_argument('--compile-only', action='store_true', help='Compile/package observation fixtures without launching any runtime')
     args = parser.parse_args()
+    if args.bucket_overflow and (args.baseline or not args.brbr): parser.error('--bucket-overflow requires --brbr and native backpack menus')
+    if args.ingredients <= 0 or args.ingredients > 1024: parser.error('Ingredient count must be 1..1024')
+    if args.output_to_backpack and not args.backpack: parser.error('--output-to-backpack requires --backpack')
     if args.profiles != 'suite': parser.error('This fixture requires the native suite client; vanilla boundary is tested separately')
     if args.without_polymer and args.profiles != 'suite': parser.error('Without Polymer requires the suite-only profile')
     run = FIXTURES / 'runs' / args.label; run.mkdir(parents=True, exist_ok=False)
@@ -120,15 +126,15 @@ def main():
             wait(lambda:read(name,'client').get('ticks',0)>=40,client,name+' connected')
             click_observations=[]
             action_index=0
+            def act(kind,right=False,maximum=False,**extra):
+                nonlocal action_index
+                action_index+=1
+                (control/(name+'-action.json')).write_text(json.dumps({'type':kind,'id':action_index,'right':right,'maximum':maximum,**extra}))
+                wait(lambda:any(x.get('id')==action_index for x in read(name,'client').get('actions',[])),client,kind)
             for case_index,(tier,size) in enumerate(([('baseline',3)] if args.baseline else [(tier,size) for tier in ('leather','netherite') for size in (2,3)]) * args.cycles):
                 previous_menu=read(name,'client').get('menu_id',-1)
-                (control/(name+'-open.json')).write_text(json.dumps({'size':size,'backpack':args.backpack,'tier':tier,'baseline':args.baseline,'cycles':args.cycles}))
+                (control/(name+'-open.json')).write_text(json.dumps({'size':size,'backpack':args.backpack,'tier':tier,'baseline':args.baseline,'cycles':args.cycles,'outputToBackpack':args.output_to_backpack,'ingredients':args.ingredients}))
                 wait(lambda:read(name,'client').get('menu_id',-1)!=previous_menu and read(name,'client').get('size')==size and read(name,'client').get('capacity')==(0 if args.baseline else 27 if tier=='leather' else 78),client,name+' crafting grid opened')
-                def act(kind,right=False,maximum=False):
-                    nonlocal action_index
-                    action_index+=1
-                    (control/(name+'-action.json')).write_text(json.dumps({'type':kind,'id':action_index,'right':right,'maximum':maximum}))
-                    wait(lambda:any(x.get('id')==action_index for x in read(name,'client').get('actions',[])),client,kind)
                 act('book')
                 act('controls')
                 act('settings-cancel')
@@ -146,28 +152,71 @@ def main():
                 settled_tick=read(name,'client')['ticks']
                 wait(lambda:read(name,'client').get('ticks',0)>=settled_tick+10,client,'settle previous crafting acknowledgement')
                 row=read(name,'server')
-                assert row['crafted_tables']*4+row['planks']+row['grid_planks']+row['stored_planks']==12, row
+                assert row['crafted_tables']*4+row['planks']+row['grid_planks']+row['stored_planks']==args.ingredients, row
                 if args.brbr:
                     previous_tables=row['crafted_tables']
                     maximum=case_index>=4
                     act('recipe',right=True,maximum=maximum)
-                    wait(lambda:read(name,'server').get('crafted_tables',0)>=(3 if maximum else previous_tables+1),client,'BRBR right-click instant crafting')
+                    wait(lambda:read(name,'server').get('crafted_tables',0)>=(args.ingredients//4 if maximum else previous_tables+1),client,'BRBR right-click instant crafting')
+                    wait(lambda: not read(name,'client').get('brbr_pending', True),client,'instant crafting acknowledgement settles')
+                    client_row=read(name,'client')
+                    if maximum and args.craft_all_method == 'fill_grid':
+                        assert client_row.get('result_quick_moves') == (args.ingredients//4 - previous_tables + 63)//64 and client_row.get('result_pickups') == 0, client_row
                     row=read(name,'server')
-                    assert row['crafted_tables']*4+row['planks']+row['grid_planks']+row['stored_planks']==12, row
+                    if args.output_to_backpack: assert row['stored_tables'] == row['crafted_tables'], row
+                    assert row['crafted_tables']*4+row['planks']+row['grid_planks']+row['stored_planks']==args.ingredients, row
                 act('cake')
                 if size==3:
                     wait(lambda:read(name,'client').get('ghost_slots',0)>0,client,'uncraftable recipe shows ghost ingredients')
                     act('snapshot')
                 row=read(name,'server')
-                assert row['crafted_tables']*4+row['planks']+row['grid_planks']+row['stored_planks']==12, row
+                assert row['crafted_tables']*4+row['planks']+row['grid_planks']+row['stored_planks']==args.ingredients, row
                 click_observations.append({'tier':tier,'size':size,'client':read(name,'client'),'server':row})
-            observations.append({'profile':profile,'clicks':click_observations})
+            bucket_observations = []
+            if args.bucket_overflow:
+                bucket_cases = [(method, policy, True) for method in ('single_batches', 'fill_grid')
+                                for policy in ('stop_before_drop', 'drop_and_continue', 'stop_after_drop')]
+                bucket_cases += [(method, 'drop_and_continue', False) for method in ('single_batches', 'fill_grid')]
+                for method, policy, maximum in bucket_cases:
+                    previous_menu = read(name, 'client').get('menu_id', -1)
+                    (control/(name+'-open.json')).write_text(json.dumps({'size':3, 'tier':'leather',
+                            'bucketOverflow':True, 'outputToBackpack':True, 'ingredients':0}))
+                    wait(lambda: read(name, 'client').get('menu_id', -1) != previous_menu
+                            and read(name, 'client').get('size') == 3
+                            and read(name, 'server').get('grid_milk') == 9,
+                         client, 'prepared stackable-milk cake grid opened')
+                    act('book')
+                    started_tick = read(name, 'client')['ticks']
+                    act('bucket-cake', right=True, maximum=maximum, method=method, overflow=policy)
+                    wait(lambda: read(name, 'client').get('ticks', 0) >= started_tick + 40
+                            and not read(name, 'client').get('brbr_pending', True),
+                         client, 'bucket remainder policy settled')
+                    row = read(name, 'server')
+                    crafted = 0 if not maximum or policy == 'stop_before_drop' else 1 if policy == 'stop_after_drop' else 3
+                    dropped = 0 if crafted == 0 else 3 if crafted == 1 else 6
+                    grid_buckets = 3 if crafted == 3 else 0
+                    assert row['stored_cakes'] == crafted and row['inventory_cakes'] == 0, row
+                    assert row['dropped_buckets'] == dropped and row['dropped_cakes'] == 0, row
+                    assert row['grid_milk'] == 9 - crafted * 3 and row['grid_buckets'] == grid_buckets, row
+                    assert row['grid_sugar'] == 6 - crafted * 2 and row['grid_wheat'] == 9 - crafted * 3 and row['grid_eggs'] == 3 - crafted, row
+                    assert row['inventory_buckets'] == 0 and row['stored_buckets'] == 0, row
+                    assert row['cursor_empty'] and read(name, 'client')['cursor_empty'] and row['unrelated_inventory_preserved'], row
+                    client_row = read(name, 'client')
+                    if method == 'fill_grid' and maximum and policy == 'drop_and_continue':
+                        assert client_row['result_quick_moves'] >= 1 and client_row['result_pickups'] == 0, client_row
+                    if crafted == 0:
+                        assert client_row['result_pickups'] == 0 and client_row['result_quick_moves'] == 0, client_row
+                    assert client_row['result_throws'] == 0, client_row
+                    bucket_observations.append({'method':method, 'overflow':policy, 'maximum':maximum,
+                                                'client':read(name, 'client'), 'server':row})
+                print('PASS '+profile+': eight prepared-cake player-only remainder policy cases', flush=True)
+            observations.append({'profile':profile,'clicks':click_observations,'bucket_overflow':bucket_observations})
             stop(client)
             print('PASS '+profile+': recipe book clicks and server conservation',flush=True)
         stop(server,True)
         delayed_checks=sum((run/('FeatureNet'+profile.title())/'console.log').read_text().count('CRAFTING_QA_DELAYED_GRID') for profile in args.profiles.split(','))
         if args.delay_grid: assert delayed_checks >= 3, 'synthetic unsettled-grid mode did not execute'
-        (run/'result.json').write_text(json.dumps({'passed':True,'version':version,'bundle_sha256':sha(suite),'backpack_ingredients':args.backpack,'delayed_grid':args.delay_grid,'delayed_predicate_checks':delayed_checks,'baseline':args.baseline,'cycles':args.cycles,'craft_all_method':args.craft_all_method,'brbr_sha256':sha(args.brbr) if args.brbr else None,'polymer':not args.without_polymer,'profiles':args.profiles.split(','),'observations':observations,'scope':'Pinned tabs follow the native book origin and their mouse selection restores crafting tabs without changing storage. Selected craft-all strategy is recorded. BRB buttons follow the actual backpack recipe-book origin in wide and narrow layouts; mouse settings Save/Cancel and instant-toggle preserve storage. Connected recipe placement/crafting and server ingredient conservation.'},indent=2)+'\n')
+        (run/'result.json').write_text(json.dumps({'passed':True,'version':version,'bundle_sha256':sha(suite),'backpack_ingredients':args.backpack,'delayed_grid':args.delay_grid,'delayed_predicate_checks':delayed_checks,'baseline':args.baseline,'bucket_overflow':args.bucket_overflow,'cycles':args.cycles,'craft_all_method':args.craft_all_method,'output_to_backpack':args.output_to_backpack,'ingredients':args.ingredients,'brbr_sha256':sha(args.brbr) if args.brbr else None,'polymer':not args.without_polymer,'profiles':args.profiles.split(','),'observations':observations,'scope':'Pinned tabs follow the native book origin and their mouse selection restores crafting tabs without changing storage. Selected craft-all strategy is recorded. BRB buttons follow the actual backpack recipe-book origin in wide and narrow layouts; mouse settings Save/Cancel and instant-toggle preserve storage. Connected recipe placement/crafting and server ingredient conservation.'},indent=2)+'\n')
         print('PASS backpack crafting GUI checks',flush=True)
     finally:
         for process,log in reversed(children):

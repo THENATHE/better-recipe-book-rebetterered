@@ -5,6 +5,12 @@ import com.mojang.blaze3d.platform.InputConstants;
 import marsh.town.brb.BetterRecipeBook;
 import marsh.town.brb.CraftRequestChecks;
 import marsh.town.brb.config.CraftAllMethod;
+import marsh.town.brb.config.CraftingOverflow;
+import marsh.town.brb.config.Config;
+import me.shedaniel.autoconfig.AutoConfigClient;
+import me.shedaniel.clothconfig2.gui.ClothConfigScreen;
+import net.minecraft.client.gui.components.Button;
+import net.minecraft.client.gui.screens.Screen;
 import marsh.town.brb.mixins.accessors.RecipeBookComponentAccessor;
 import marsh.town.brb.mixins.accessors.RecipeBookPageAccessor;
 import marsh.town.brb.recipegroups.RecipeDisplayMode;
@@ -61,17 +67,22 @@ public final class CraftingChecks {
         world.getServer().runCommand("recipe give @a *");
         world.getConnection().waitForClientboundPackets();
         CraftAllMethod originalMethod = context.computeOnClient(client -> BetterRecipeBook.config.instantCraft.craftAllMethod);
+        CraftingOverflow originalOverflow = context.computeOnClient(client -> BetterRecipeBook.config.instantCraft.overflow);
         CraftPacketTrace trace = context.computeOnClient(CraftPacketTrace::new);
         try {
             for (CraftAllMethod method : CraftAllMethod.values()) {
-                context.runOnClient(client -> BetterRecipeBook.config.instantCraft.craftAllMethod = method);
+                selectCraftSettings(context, method, CraftingOverflow.STOP_BEFORE_DROP, evidence);
                 runMethodChecks(context, world, evidence, method, trace);
-                cakeRemainders(context, world, method, evidence);
+                if (method == CraftAllMethod.FILL_GRID) unequalGridRefusal(context, world, trace, evidence);
+                cakeRemainders(context, world, method, trace, evidence);
+                overflowChecks(context, world, method, evidence);
             }
         } finally {
             context.runOnClient(client -> {
                 trace.close();
                 BetterRecipeBook.config.instantCraft.craftAllMethod = originalMethod;
+                BetterRecipeBook.config.instantCraft.overflow = originalOverflow;
+                BetterRecipeBook.configHolder.save();
                 BetterRecipeBook.instantCraftingManager.cancelPending();
             });
         }
@@ -89,6 +100,121 @@ public final class CraftingChecks {
             client.player.closeContainer();
             client.gui.setScreen(null);
         });
+    }
+
+    static void selectCraftSettings(ClientGameTestContext context, CraftAllMethod method,
+                                    CraftingOverflow overflow, List<String> evidence) {
+        // Cloth disables Save when the requested values already match the saved defaults.
+        // Save the other strategy first so the requested selection always proves the full UI flow.
+        if (context.computeOnClient(client -> BetterRecipeBook.config.instantCraft.craftAllMethod == method
+                && BetterRecipeBook.config.instantCraft.overflow == overflow)) {
+            CraftAllMethod other = method == CraftAllMethod.SINGLE_BATCHES ? CraftAllMethod.FILL_GRID : CraftAllMethod.SINGLE_BATCHES;
+            selectCraftSettings(context, other, overflow, evidence);
+        }
+        var settings = context.computeOnClient(client -> {
+            Screen parent = client.gui.screen() == null ? new InventoryScreen(client.player) : client.gui.screen();
+            var screen = (ClothConfigScreen) AutoConfigClient.getConfigScreen(Config.class, parent).get();
+            client.gui.setScreen(screen);
+            return screen;
+        });
+        context.waitTicks(2);
+        chooseSetting(context, settings, "instantCraft.craftAllMethod", method);
+        chooseSetting(context, settings, "instantCraft.overflow", overflow);
+        context.waitFor(client -> settings.children().stream().filter(Button.class::isInstance).map(Button.class::cast)
+                .anyMatch(button -> button.active && button.visible && button.getY() > 0
+                        && button.getMessage().equals(Component.translatable("text.cloth-config.save_and_done"))), 100);
+        context.runOnClient(client -> {
+            var save = settings.children().stream().filter(Button.class::isInstance).map(Button.class::cast)
+                    .filter(button -> button.active && button.visible
+                            && button.getMessage().equals(Component.translatable("text.cloth-config.save_and_done")))
+                    .findFirst().orElseThrow();
+            clickSetting(settings, save);
+            require(BetterRecipeBook.config.instantCraft.craftAllMethod == method
+                            && BetterRecipeBook.config.instantCraft.overflow == overflow && client.gui.screen() != settings,
+                    "Actual config clicks and Save select " + method + " with " + overflow + " before crafting", evidence);
+        });
+    }
+
+    private static void chooseSetting(ClientGameTestContext context, ClothConfigScreen settings, String path, Object value) {
+        var entry = context.computeOnClient(client -> settings.getCategorizedEntries().values().stream().flatMap(List::stream)
+                .filter(candidate -> candidate.getFieldName().equals(Component.translatable("text.autoconfig.brb.option." + path)))
+                .findFirst().orElseThrow());
+        context.runOnClient(client -> {
+            int row = settings.listWidget.getRowTop(settings.listWidget.children().indexOf(entry));
+            settings.listWidget.scrollTo(settings.listWidget.getScroll() + row - settings.listWidget.top - 8, false);
+        });
+        context.waitTicks(2);
+        context.runOnClient(client -> {
+            for (int attempts = 0; !entry.getValue().equals(value) && attempts < 4; attempts++) {
+                clickSetting(settings, (Button) entry.children().getFirst());
+            }
+            if (!entry.getValue().equals(value)) throw new AssertionError("Cannot select " + path + " through the rendered control");
+        });
+        context.waitTicks(2);
+    }
+
+    private static void clickSetting(Screen screen, Button button) {
+        var event = new MouseButtonEvent(button.getX() + button.getWidth() / 2.0,
+                button.getY() + button.getHeight() / 2.0, new MouseButtonInfo(InputConstants.MOUSE_BUTTON_LEFT, 0));
+        if (!screen.mouseClicked(event, false)) throw new AssertionError("Settings screen ignored " + button.getMessage());
+        screen.mouseReleased(event);
+    }
+
+    private static void overflowChecks(ClientGameTestContext context, TestSingleplayerContext world,
+                                       CraftAllMethod method, List<String> evidence) throws Exception {
+        for (CraftingOverflow overflow : CraftingOverflow.values()) {
+            selectCraftSettings(context, method, overflow, evidence);
+            for (boolean table : new boolean[] {false, true}) {
+                for (boolean partial : new boolean[] {false, true}) {
+                    prepare(context, world, table, 0, false);
+                    world.getServer().runOnServer(server -> {
+                        var player = server.getPlayerList().getPlayers().getFirst();
+                        player.level().getEntitiesOfClass(ItemEntity.class, player.getBoundingBox().inflate(32)).forEach(ItemEntity::discard);
+                        for (int index = 0; index < 36; index++) player.getInventory().setItem(index, new ItemStack(Items.STONE, 64));
+                        if (partial) player.getInventory().setItem(1, new ItemStack(Items.OAK_PLANKS, 63));
+                        ((AbstractCraftingMenu) player.containerMenu).getInputGridSlots().getFirst().set(new ItemStack(Items.OAK_LOG, 8));
+                        player.containerMenu.broadcastFullState();
+                    });
+                    synchronize(context, world);
+                    int beforeDropped = droppedOutput(world, Items.OAK_PLANKS);
+                    int expectedBatches = switch (overflow) {
+                        case STOP_BEFORE_DROP -> 0;
+                        case DROP_AND_CONTINUE -> 8;
+                        case STOP_AFTER_DROP -> 1;
+                    };
+                    int basePlanks = partial ? 63 : 0;
+                    clickRecipe(context, InputConstants.MOUSE_BUTTON_RIGHT, true);
+                    if (expectedBatches > 0) world.getServer().waitFor(server -> countServer(server.getPlayerList().getPlayers().getFirst()
+                            .getInventory().getNonEquipmentItems(), Items.OAK_PLANKS) + droppedOutputServer(server, Items.OAK_PLANKS)
+                            == basePlanks + beforeDropped + expectedBatches * 4, 300);
+                    context.waitTicks(20);
+                    synchronize(context, world);
+                    String name = method + "/" + overflow + "/" + (table ? "3x3" : "2x2") + (partial ? "/one free output space" : "/full storage");
+                    int actualDropped = droppedOutput(world, Items.OAK_PLANKS) - beforeDropped;
+                    int expectedDropped = expectedBatches * 4 - (partial && expectedBatches > 0 ? 1 : 0);
+                    require(count(world, Items.OAK_PLANKS) + actualDropped == basePlanks + expectedBatches * 4,
+                            name + ": inventory and dropped output conserve every crafted batch", evidence);
+                    require(actualDropped == expectedDropped && gridCount(world) == 8 - expectedBatches,
+                            name + ": overflow stops at the selected batch and preserves all uncrafted inputs", evidence);
+                    require(cursorEmpty(context, world), name + ": overflow leaves both authoritative and client cursors empty", evidence);
+                    require(world.getServer().computeOnServer(server -> server.getPlayerList().getPlayers().getFirst()
+                                    .getInventory().getNonEquipmentItems().stream().filter(stack -> stack.is(Items.STONE))
+                                    .mapToInt(ItemStack::getCount).sum()) == (partial ? 35 : 36) * 64,
+                            name + ": overflow never replaces unrelated inventory stacks", evidence);
+                }
+            }
+        }
+        selectCraftSettings(context, method, CraftingOverflow.STOP_BEFORE_DROP, evidence);
+    }
+
+    private static int droppedOutput(TestSingleplayerContext world, Item item) {
+        return world.getServer().computeOnServer(server -> droppedOutputServer(server, item));
+    }
+
+    private static int droppedOutputServer(net.minecraft.server.MinecraftServer server, Item item) {
+        var player = server.getPlayerList().getPlayers().getFirst();
+        return player.level().getEntitiesOfClass(ItemEntity.class, player.getBoundingBox().inflate(32)).stream()
+                .map(ItemEntity::getItem).filter(stack -> stack.is(item)).mapToInt(ItemStack::getCount).sum();
     }
 
     private static void runMethodChecks(ClientGameTestContext context, TestSingleplayerContext world,
@@ -219,10 +345,10 @@ public final class CraftingChecks {
             require(count(world, Items.OAK_PLANKS) == 32 && gridCount(world) == 0,
                     menu + ": Shift-right-click crafts all eight batches", evidence);
             require(method == CraftAllMethod.FILL_GRID
-                            ? trace.resultActions.contains(ContainerInput.QUICK_MOVE)
+                            ? trace.resultActions.size() == 1 && trace.resultActions.peek() == ContainerInput.QUICK_MOVE
                             : !trace.resultActions.contains(ContainerInput.QUICK_MOVE)
                                     && trace.resultActions.stream().filter(action -> action == ContainerInput.PICKUP).count() == 8,
-                    menu + ": selected craft-all method uses " + (method == CraftAllMethod.FILL_GRID ? "a bulk result transfer" : "eight single result pickups"), evidence);
+                    menu + ": selected craft-all method uses " + (method == CraftAllMethod.FILL_GRID ? "one true Shift-click result transfer with zero result pickups" : "eight single result pickups"), evidence);
             require(cursorEmpty(context, world), menu + ": maximum craft leaves cursor empty", evidence);
             require(droppedItems(world) == droppedBefore, menu + ": maximum craft never overflows output or ingredients into the world", evidence);
 
@@ -251,11 +377,16 @@ public final class CraftingChecks {
             });
             synchronize(context, world);
             droppedBefore = droppedItems(world);
+            trace.resultActions.clear();
             clickRecipe(context, InputConstants.MOUSE_BUTTON_RIGHT, true);
             world.getServer().waitFor(server -> countServer(server.getPlayerList().getPlayers().getFirst().getInventory().getNonEquipmentItems(), Items.OAK_PLANKS) == 272, 500);
             synchronize(context, world);
             require(count(world, Items.OAK_PLANKS) == 272 && gridCount(world) == 0,
                     menu + ": maximum crafting refills beyond the first 64-batch grid placement", evidence);
+            require(method == CraftAllMethod.FILL_GRID
+                            ? trace.resultActions.size() == 2 && trace.resultActions.stream().allMatch(action -> action == ContainerInput.QUICK_MOVE)
+                            : trace.resultActions.size() == 68 && trace.resultActions.stream().allMatch(action -> action == ContainerInput.PICKUP),
+                    menu + ": 68 batches use " + (method == CraftAllMethod.FILL_GRID ? "two true Shift-click loads with zero result pickups" : "68 individual result pickups"), evidence);
             require(droppedItems(world) == droppedBefore, menu + ": maximum craft never overflows output or ingredients into the world", evidence);
 
             prepare(context, world, table, 8, true);
@@ -307,6 +438,49 @@ public final class CraftingChecks {
         }
     }
 
+    private static void unequalGridRefusal(ClientGameTestContext context, TestSingleplayerContext world,
+                                            CraftPacketTrace trace, List<String> evidence) throws Exception {
+        for (boolean table : new boolean[] {false, true}) {
+            prepare(context, world, table, 0, false);
+            world.getServer().runOnServer(server -> {
+                var player = server.getPlayerList().getPlayers().getFirst();
+                var menu = (AbstractCraftingMenu) player.containerMenu;
+                var inputs = menu.getInputGridSlots();
+                int width = menu.getGridWidth();
+                inputs.get(0).set(new ItemStack(Items.OAK_PLANKS, 1));
+                inputs.get(1).set(new ItemStack(Items.OAK_PLANKS, 2));
+                inputs.get(width).set(new ItemStack(Items.OAK_PLANKS, 2));
+                inputs.get(width + 1).set(new ItemStack(Items.OAK_PLANKS, 2));
+                player.containerMenu.broadcastFullState();
+            });
+            synchronize(context, world);
+            context.runOnClient(client -> {
+                var accessor = (RecipeBookComponentAccessor) component(client);
+                accessor.getSearchBox().setValue("crafting table");
+                accessor.updateCollectionsInvoker(true, false);
+            });
+            context.waitTicks(3);
+            trace.resultActions.clear();
+            int droppedBefore = droppedItems(world);
+            context.runOnClient(client -> click(client, InputConstants.MOUSE_BUTTON_RIGHT, true, Items.CRAFTING_TABLE));
+            context.waitTicks(20);
+            synchronize(context, world);
+            String name = "FILL_GRID: " + (table ? "3x3 table" : "2x2 inventory");
+            require(trace.resultActions.isEmpty() && count(world, Items.CRAFTING_TABLE) == 0,
+                    name + ": unequal prepared inputs refuse bulk crafting before any result click", evidence);
+            require(world.getServer().computeOnServer(server -> {
+                var menu = (AbstractCraftingMenu) server.getPlayerList().getPlayers().getFirst().containerMenu;
+                var inputs = menu.getInputGridSlots();
+                int width = menu.getGridWidth();
+                return inputs.get(0).getItem().getCount() == 1 && inputs.get(1).getItem().getCount() == 2
+                        && inputs.get(width).getItem().getCount() == 2 && inputs.get(width + 1).getItem().getCount() == 2
+                        && inputs.stream().filter(slot -> slot.getItem().is(Items.OAK_PLANKS)).mapToInt(slot -> slot.getItem().getCount()).sum() == 7;
+            }), name + ": refused unequal grid preserves every prepared ingredient", evidence);
+            require(cursorEmpty(context, world) && droppedItems(world) == droppedBefore,
+                    name + ": unequal-grid refusal leaves empty cursors and drops nothing", evidence);
+        }
+    }
+
     private static void partialBatchRefusal(ClientGameTestContext context, TestSingleplayerContext world,
                                             boolean table, String menu, List<String> evidence) throws Exception {
         prepare(context, world, table, 64, true);
@@ -329,7 +503,7 @@ public final class CraftingChecks {
     }
 
     private static void cakeRemainders(ClientGameTestContext context, TestSingleplayerContext world,
-                                       CraftAllMethod method, List<String> evidence) throws Exception {
+                                       CraftAllMethod method, CraftPacketTrace trace, List<String> evidence) throws Exception {
         prepare(context, world, true, 0, false);
         world.getServer().runOnServer(server -> {
             var player = server.getPlayerList().getPlayers().getFirst();
@@ -347,10 +521,14 @@ public final class CraftingChecks {
             accessor.updateCollectionsInvoker(true, false);
         });
         context.waitTicks(3);
+        trace.resultActions.clear();
         context.runOnClient(client -> click(client, InputConstants.MOUSE_BUTTON_RIGHT, true, Items.CAKE));
         world.getServer().waitFor(server -> countServer(server.getPlayerList().getPlayers().getFirst()
                 .getInventory().getNonEquipmentItems(), Items.CAKE) == 3, 300);
         synchronize(context, world);
+        require(trace.resultActions.size() == 3 && trace.resultActions.stream().allMatch(action -> action ==
+                        (method == CraftAllMethod.FILL_GRID ? ContainerInput.QUICK_MOVE : ContainerInput.PICKUP)),
+                method + ": cake remainder loads use three " + (method == CraftAllMethod.FILL_GRID ? "true Shift-clicks and zero result pickups" : "individual result pickups"), evidence);
         int gridBuckets = world.getServer().computeOnServer(server -> ((AbstractCraftingMenu) server.getPlayerList().getPlayers()
                 .getFirst().containerMenu).getInputGridSlots().stream()
                 .filter(slot -> slot.getItem().is(Items.BUCKET)).mapToInt(slot -> slot.getItem().getCount()).sum());
@@ -381,18 +559,22 @@ public final class CraftingChecks {
     }
 
     /** Observes vanilla result-slot packets so the two selected strategies cannot silently behave identically. */
-    private static final class CraftPacketTrace implements AutoCloseable {
+    static final class CraftPacketTrace implements AutoCloseable {
         private final Channel channel;
-        private final Queue<ContainerInput> resultActions = new ConcurrentLinkedQueue<>();
+        final Queue<ContainerInput> resultActions = new ConcurrentLinkedQueue<>();
 
-        private CraftPacketTrace(Minecraft client) throws ReflectiveOperationException {
+        CraftPacketTrace(Minecraft client) throws ReflectiveOperationException {
+            this(client, 0);
+        }
+
+        CraftPacketTrace(Minecraft client, int resultSlot) throws ReflectiveOperationException {
             Field field = net.minecraft.network.Connection.class.getDeclaredField("channel");
             field.setAccessible(true);
             channel = (Channel) field.get(client.getConnection().getConnection());
             channel.pipeline().addLast("brb_craft_qa", new ChannelDuplexHandler() {
                 @Override
                 public void write(ChannelHandlerContext context, Object message, ChannelPromise promise) throws Exception {
-                    if (message instanceof ServerboundContainerClickPacket click && click.slotNum() == 0) {
+                    if (message instanceof ServerboundContainerClickPacket click && click.slotNum() == resultSlot) {
                         resultActions.add(click.containerInput());
                     }
                     super.write(context, message, promise);

@@ -37,6 +37,8 @@ public final class CraftingNetworkClient implements ClientModInitializer {
     private boolean originalPinning;
     private int chalkMembers = -1;
     private boolean craftAllMethodConfigured;
+    private boolean packetTraceInstalled;
+    private final java.util.concurrent.ConcurrentLinkedQueue<ContainerInput> resultInputs = new java.util.concurrent.ConcurrentLinkedQueue<>();
     @Override public void onInitializeClient() {
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             if (client.player == null || ++ticks % 5 != 0) return;
@@ -86,7 +88,25 @@ public final class CraftingNetworkClient implements ClientModInitializer {
                     settingsAction = null;
                     settingsParent = null;
                 }
+                if (!packetTraceInstalled && net.fabricmc.loader.api.FabricLoader.getInstance().isModLoaded("brb")) {
+                    var connectionField = net.minecraft.network.Connection.class.getDeclaredField("channel");
+                    connectionField.setAccessible(true);
+                    var channel = (io.netty.channel.Channel) connectionField.get(client.getConnection().getConnection());
+                    channel.pipeline().addLast("brb_backpack_result_trace", new io.netty.channel.ChannelDuplexHandler() {
+                        @Override
+                        public void write(io.netty.channel.ChannelHandlerContext context, Object message, io.netty.channel.ChannelPromise promise) throws Exception {
+                            if (message instanceof net.minecraft.network.protocol.game.ServerboundContainerClickPacket packet && packet.slotNum() == 0) {
+                                resultInputs.add(packet.containerInput());
+                            }
+                            super.write(context, message, promise);
+                        }
+                    });
+                    packetTraceInstalled = true;
+                }
                 var row = new JsonObject();
+                row.addProperty("result_quick_moves", resultInputs.stream().filter(input -> input == ContainerInput.QUICK_MOVE).count());
+                row.addProperty("result_pickups", resultInputs.stream().filter(input -> input == ContainerInput.PICKUP).count());
+                row.addProperty("result_throws", resultInputs.stream().filter(input -> input == ContainerInput.THROW).count());
                 row.addProperty("ticks", ticks);
                 row.addProperty("screen", client.gui.screen() == null ? "none" : client.gui.screen().getClass().getName());
                 row.add("actions", actions.deepCopy());
@@ -132,6 +152,7 @@ public final class CraftingNetworkClient implements ClientModInitializer {
                         throw new AssertionError("crafting menu exceeds viewport");
                     }
                     row.addProperty("output", menu.getSlot(0).getItem().getCount());
+                    row.addProperty("cursor_empty", menu.getCarried().isEmpty());
                     var book = (RecipeBookComponent<?>) field(client.gui.screen(), "recipeBookComponent");
                     row.addProperty("book_visible", book.isVisible());
                     row.addProperty("ghost_slots", ((java.util.Map<?, ?>) field(field(book, "ghostSlots"), "ingredients")).size());
@@ -258,6 +279,7 @@ public final class CraftingNetworkClient implements ClientModInitializer {
                             System.out.println("CRAFTING_RECIPE_BUTTONS " + buttons.stream().filter(candidate -> candidate.visible).map(candidate -> candidate.getDisplayStack().toString()).toList());
                             var button = buttons.stream().filter(candidate -> candidate.visible && candidate.getDisplayStack().is(Items.CRAFTING_TABLE)).findFirst().orElseThrow(() -> new AssertionError("crafting table recipe button missing"));
                             net.minecraft.client.Screenshot.grab(client.gameDirectory, "backpack-crafting-" + menu.getGridWidth() + "-" + capacity + ".png", client.gameRenderer.mainRenderTarget(), 1, message -> {});
+                            resultInputs.clear();
                             int mouseButton = action.has("right") && action.get("right").getAsBoolean() ? InputConstants.MOUSE_BUTTON_RIGHT : InputConstants.MOUSE_BUTTON_LEFT;
                             boolean clicked = client.gui.screen().mouseClicked(new MouseButtonEvent(button.getX() + 8, button.getY() + 8, new MouseButtonInfo(mouseButton, action.has("maximum") && action.get("maximum").getAsBoolean() ? InputConstants.MOD_SHIFT : 0)), false);
                             if (!clicked) throw new AssertionError("recipe click unhandled");
@@ -265,6 +287,24 @@ public final class CraftingNetworkClient implements ClientModInitializer {
                             action.addProperty("recipe_craftable", button.getCollection().isCraftable(button.getCurrentRecipe()));
                             action.addProperty("last_placed", String.valueOf(field(book, "lastPlacedRecipe")));
                             System.out.println("CRAFTING_RECIPE_CLICK " + action);
+                        } else if (type.equals("bucket-cake")) {
+                            setInstantEnum("craftAllMethod", action.get("method").getAsString());
+                            setInstantEnum("overflow", action.get("overflow").getAsString());
+                            ((EditBox) field(book, "searchBox")).setValue("cake");
+                            var updateSearch = RecipeBookComponent.class.getDeclaredMethod("checkSearchStringUpdate");
+                            updateSearch.setAccessible(true);
+                            updateSearch.invoke(book);
+                            book.tick();
+                            @SuppressWarnings("unchecked") var buttons = (List<RecipeButton>) field(field(book, "recipeBookPage"), "buttons");
+                            var cake = buttons.stream().filter(candidate -> candidate.visible && candidate.getDisplayStack().is(Items.CAKE))
+                                    .findFirst().orElseThrow(() -> new AssertionError("Prepared cake recipe widget missing"));
+                            resultInputs.clear();
+                            var event = new MouseButtonEvent(cake.getX() + 8, cake.getY() + 8,
+                                    new MouseButtonInfo(InputConstants.MOUSE_BUTTON_RIGHT,
+                                            action.get("maximum").getAsBoolean() ? InputConstants.MOD_SHIFT : 0));
+                            if (!client.gui.screen().mouseClicked(event, false)) throw new AssertionError("Prepared cake recipe click ignored");
+                            client.gui.screen().mouseReleased(event);
+                            action.addProperty("prepared_cake_clicked", true);
                         } else if (type.equals("cake")) {
                             ((EditBox) field(book, "searchBox")).setValue("cake");
                             var updateSearch = RecipeBookComponent.class.getDeclaredMethod("checkSearchStringUpdate");
@@ -303,6 +343,14 @@ public final class CraftingNetworkClient implements ClientModInitializer {
             }
         });
     }
+    @SuppressWarnings({"rawtypes", "unchecked"})
+    private static void setInstantEnum(String field, String value) throws Exception {
+        Object config = Class.forName("marsh.town.brb.BetterRecipeBook").getField("config").get(null);
+        Object instant = config.getClass().getField("instantCraft").get(config);
+        var setting = instant.getClass().getField(field);
+        setting.set(instant, Enum.valueOf((Class<? extends Enum>) setting.getType(), value.toUpperCase(java.util.Locale.ROOT)));
+    }
+
     @SuppressWarnings({"rawtypes", "unchecked"})
     private static void configureCraftAllMethod() throws Exception {
         Object config = Class.forName("marsh.town.brb.BetterRecipeBook").getField("config").get(null);
