@@ -5,36 +5,43 @@ import marsh.town.brb.recipegroups.RecipeDisplayMode;
 import me.shedaniel.autoconfig.annotation.ConfigEntry;
 
 @me.shedaniel.autoconfig.annotation.Config(name = "brb")
-@me.shedaniel.autoconfig.annotation.Config.Gui.Background("minecraft:textures/block/blue_concrete_powder.png")
+@me.shedaniel.autoconfig.annotation.Config.Gui.Background("cloth-config2:transparent")
 public class Config implements ConfigData {
     @ConfigEntry.Gui.Tooltip
+    public boolean enableBook = true;
+
+    @ConfigEntry.Gui.Tooltip
+    @ConfigEntry.Gui.EnumHandler(option = ConfigEntry.Gui.EnumHandler.EnumDisplayOption.BUTTON)
     public RecipeDisplayMode recipeDisplayMode = RecipeDisplayMode.EXPANDABLE;
 
     @ConfigEntry.Gui.Tooltip
+    @ConfigEntry.Gui.EnumHandler(option = ConfigEntry.Gui.EnumHandler.EnumDisplayOption.BUTTON)
     public CreativeDisplayMode creativeDisplayMode = CreativeDisplayMode.EXPANDABLE;
 
     @ConfigEntry.Gui.Tooltip
     public boolean enablePinning = true;
 
+    @ConfigEntry.Gui.Tooltip
     public boolean keepCentered = false;
 
-    @ConfigEntry.Category("newRecipes")
+    @ConfigEntry.Gui.Tooltip
+    public boolean settingsButton = true;
+
     @ConfigEntry.Gui.TransitiveObject()
     public NewRecipes newRecipes = new NewRecipes();
 
-    @ConfigEntry.Category("instantCraft")
     @ConfigEntry.Gui.TransitiveObject()
     public InstantCraft instantCraft = new InstantCraft();
 
-    @ConfigEntry.Category("alternativeRecipes")
     @ConfigEntry.Gui.TransitiveObject()
     public AlternativeRecipes alternativeRecipes = new AlternativeRecipes();
 
-    @ConfigEntry.Category("scrolling")
     @ConfigEntry.Gui.TransitiveObject()
     public Scrolling scrolling = new Scrolling();
 
-    @ConfigEntry.Gui.PrefixText()
-    public boolean settingsButton = true;
-    public boolean enableBook = true;
+    @ConfigEntry.Gui.Excluded
+    public boolean brewingBookOpen = false;
+
+    @ConfigEntry.Gui.Excluded
+    public boolean smithingBookOpen = false;
 }

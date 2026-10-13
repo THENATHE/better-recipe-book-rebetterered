@@ -214,6 +214,7 @@ public final class RecipeModeChecks {
                 }
                 page.updateCollections(sources, true, true);
                 require(pageAccessor.getCollections().isEmpty(), "Craftable filter exposed unavailable fixed tiles");
+                checkSameOutputGroups(book, candidates.getFirst());
                 BetterRecipeBook.LOGGER.info("BRB CLIENT QA: recipe display modes, headers, fixed variants, pin renumbering and filtering passed");
             } finally {
                 BetterRecipeBook.config.recipeDisplayMode = previousMode;
@@ -251,6 +252,28 @@ public final class RecipeModeChecks {
                 }
                 BetterRecipeBook.LOGGER.info("BRB CLIENT QA: ALL recipe tiles retained exact recipes and display components across 45 ticks");
             });
+            context.runOnClient(minecraft -> {
+                BetterRecipeBook.config.recipeDisplayMode = RecipeDisplayMode.EXPANDABLE;
+                var book = minecraft.gui.screen().children().stream().filter(RecipeBookComponent.class::isInstance)
+                        .map(child -> (RecipeBookComponent<?>) child).findFirst().orElseThrow();
+                var entries = fixedButtons.stream().limit(2)
+                        .map(button -> button.getCollection().getRecipes().getFirst()).toList();
+                var source = new RecipeCollection(entries);
+                source.selectRecipes(new StackedItemContents(), display -> true);
+                ((RecipeBookComponentAccessor) book).getRecipeBookPage().updateCollections(List.of(source), true, false);
+            });
+            context.waitTicks(3);
+            BetterRecipeBook.LOGGER.info("BRB CLIENT QA SCREENSHOT: {}", context.takeScreenshot("brb-native-recipe-group-collapsed"));
+            context.runOnClient(minecraft -> {
+                var book = minecraft.gui.screen().children().stream().filter(RecipeBookComponent.class::isInstance)
+                        .map(child -> (RecipeBookComponent<?>) child).findFirst().orElseThrow();
+                var page = ((RecipeBookComponentAccessor) book).getRecipeBookPage();
+                var header = ((RecipeBookPageAccessor) page).getButtons().getFirst();
+                book.mouseClicked(new MouseButtonEvent(header.getX() + 8, header.getY() + 8,
+                        new MouseButtonInfo(InputConstants.MOUSE_BUTTON_LEFT, 0)), false);
+            });
+            context.waitTicks(3);
+            BetterRecipeBook.LOGGER.info("BRB CLIENT QA SCREENSHOT: {}", context.takeScreenshot("brb-native-recipe-group-expanded"));
         } finally {
             context.runOnClient(minecraft -> {
                 BetterRecipeBook.config.recipeDisplayMode = originalMode;
@@ -302,6 +325,103 @@ public final class RecipeModeChecks {
                 minecraft.gui.setScreen(null);
             }
         });
+    }
+
+    private static void checkSameOutputGroups(RecipeBookComponent<?> book, RecipeDisplayEntry model) {
+        var accessor = (RecipeBookComponentAccessor) book;
+        var page = accessor.getRecipeBookPage();
+        var pageAccessor = (RecipeBookPageAccessor) page;
+        accessor.getSearchBox().setValue("");
+        var first = variant(model, 1_900_000, net.minecraft.world.item.Items.OAK_LOG,
+                new ItemStack(net.minecraft.world.item.Items.STICK, 4));
+        var second = variant(model, 1_900_001, net.minecraft.world.item.Items.SPRUCE_LOG,
+                new ItemStack(net.minecraft.world.item.Items.STICK, 8));
+        var namedOutput = new ItemStack(net.minecraft.world.item.Items.STICK);
+        namedOutput.set(net.minecraft.core.component.DataComponents.CUSTOM_NAME,
+                net.minecraft.network.chat.Component.literal("Distinct output components"));
+        var named = variant(model, 1_900_002, net.minecraft.world.item.Items.BIRCH_LOG, namedOutput);
+        var contents = new StackedItemContents();
+        contents.accountStack(new ItemStack(net.minecraft.world.item.Items.OAK_LOG));
+        List<RecipeCollection> separate = List.of(collection(contents, first), collection(contents, second), collection(contents, named));
+        BetterRecipeBook.config.recipeDisplayMode = RecipeDisplayMode.EXPANDABLE;
+        page.updateCollections(List.of(separate.get(1), separate.get(0), separate.get(2)), true, false);
+        require(pageAccessor.getCollections().getFirst().hasCraftable(),
+                "Output-group header appeared unavailable when a later ingredient variant was craftable");
+        page.updateCollections(separate, true, false);
+        require(pageAccessor.getCollections().size() == 2,
+                "Same-product recipes in different native collections were not condensed, or distinct components were merged");
+        var header = pageAccessor.getButtons().getFirst();
+        require(header.getCollection() instanceof RecipeTileCollection tile && tile.isGroupHeader(),
+                "Same-product alternatives did not create an expansion header");
+        book.mouseClicked(new MouseButtonEvent(header.getX() + 8, header.getY() + 8,
+                new MouseButtonInfo(InputConstants.MOUSE_BUTTON_LEFT, 0)), false);
+        require(pageAccessor.getCollections().size() == 4,
+                "Same-product header did not expose both ingredient alternatives and the separate component variant");
+        var children = pageAccessor.getCollections().stream().skip(1).map(tile -> tile.getRecipes().getFirst()).toList();
+        require(children.equals(List.of(first, second, named)), "Joining output groups changed exact variant order or identity");
+        require(pageAccessor.getCollections().get(1).isCraftable(first.id())
+                        && !pageAccessor.getCollections().get(2).isCraftable(second.id()),
+                "Merged output variants lost their own ingredient availability");
+        var grouped = (GroupedRecipePage) page;
+        for (int index = 1; index <= 2; index++) {
+            var button = pageAccessor.getButtons().get(index);
+            require(grouped.brb$recipeAt(button.getX() + 8, button.getY() + 8).equals(children.get(index - 1).id()),
+                    "Expanded same-product tile did not expose its own recipe for left/right clicks");
+        }
+        var manager = BetterRecipeBook.pinnedRecipeManager;
+        var pins = new java.util.HashSet<>(manager.pinned);
+        try {
+            manager.pinned.clear();
+            manager.pinned.add(manager.identity(first));
+            require(manager.has(first) && !manager.has(second), "Same-output grouping broadened an exact ingredient-variant pin");
+        } finally {
+            manager.pinned.clear();
+            manager.pinned.addAll(pins);
+        }
+        page.updateCollections(separate, true, true);
+        require(pageAccessor.getCollections().size() == 1
+                        && pageAccessor.getCollections().getFirst().getRecipes().getFirst().id().equals(first.id()),
+                "Craftable-only output grouping retained unavailable ingredient variants");
+        BetterRecipeBook.config.recipeDisplayMode = RecipeDisplayMode.VANILLA;
+        page.updateCollections(separate, true, false);
+        require(pageAccessor.getCollections().equals(separate), "Output grouping altered vanilla-mode collection boundaries");
+        BetterRecipeBook.config.recipeDisplayMode = RecipeDisplayMode.ALL;
+        page.updateCollections(separate, true, false);
+        require(pageAccessor.getCollections().size() == 3 && pageAccessor.getCollections().stream()
+                        .noneMatch(tile -> ((RecipeTileCollection) tile).isGroupHeader()),
+                "Output grouping added headers to ALL mode");
+
+        var planks = variant(model, 1_900_003, net.minecraft.world.item.Items.OAK_LOG,
+                new ItemStack(net.minecraft.world.item.Items.OAK_PLANKS));
+        var otherPlanks = variant(model, 1_900_004, net.minecraft.world.item.Items.SPRUCE_LOG,
+                new ItemStack(net.minecraft.world.item.Items.OAK_PLANKS, 2));
+        BetterRecipeBook.config.recipeDisplayMode = RecipeDisplayMode.EXPANDABLE;
+        page.updateCollections(List.of(collection(contents, first, planks), collection(contents, second),
+                collection(contents, otherPlanks)), true, false);
+        require(pageAccessor.getCollections().size() == 1,
+                "Output grouping split an existing native family connected to two alternate recipes");
+        header = pageAccessor.getButtons().getFirst();
+        book.mouseClicked(new MouseButtonEvent(header.getX() + 8, header.getY() + 8,
+                new MouseButtonInfo(InputConstants.MOUSE_BUTTON_LEFT, 0)), false);
+        require(pageAccessor.getCollections().size() == 5, "Connected output families lost an alternate recipe");
+        BetterRecipeBook.LOGGER.info("BRB CLIENT QA: same-output alternatives, component isolation, connected families, source availability, exact pins and mode isolation passed");
+    }
+
+    private static RecipeDisplayEntry variant(RecipeDisplayEntry model, int id, net.minecraft.world.item.Item ingredient,
+                                              ItemStack result) {
+        var display = new ShapelessCraftingRecipeDisplay(
+                List.of(new net.minecraft.world.item.crafting.display.SlotDisplay.ItemSlotDisplay(ingredient)),
+                new net.minecraft.world.item.crafting.display.SlotDisplay.ItemStackSlotDisplay(
+                        net.minecraft.world.item.ItemStackTemplate.fromNonEmptyStack(result, result.getCount())),
+                new net.minecraft.world.item.crafting.display.SlotDisplay.ItemSlotDisplay(net.minecraft.world.item.Items.CRAFTING_TABLE));
+        return new RecipeDisplayEntry(new RecipeDisplayId(id), display, java.util.OptionalInt.empty(), model.category(),
+                java.util.Optional.of(List.of(net.minecraft.world.item.crafting.Ingredient.of(ingredient))));
+    }
+
+    private static RecipeCollection collection(StackedItemContents contents, RecipeDisplayEntry... entries) {
+        var collection = new RecipeCollection(List.of(entries));
+        collection.selectRecipes(contents, display -> true);
+        return collection;
     }
 
     private static void setHovered(net.minecraft.client.gui.components.AbstractWidget widget, boolean hovered) {

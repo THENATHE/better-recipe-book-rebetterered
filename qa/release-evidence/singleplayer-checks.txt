@@ -7,7 +7,7 @@ PASS: creative vanilla mode preserves duplicates and original interleaving
 PASS: creative expansion choice survives a source refresh
 PASS: empty creative lists remain empty
 PASS: invalid resource-pack group capture is rejected safely
-SCREENSHOT: screenshots/0000_brb-creative-collapsed.png
+SCREENSHOT: screenshots/0002_brb-creative-collapsed.png
 PASS: colored creative tab has stable expandable headers
 PASS: creative expansion inserts every child, including the representative
 PASS: creative header click never takes an item
@@ -67,8 +67,8 @@ PASS: scrolled creative entry maps to visible slot 44
 PASS: typed creative search reveals fixed individual matches
 PASS: grouped mode preserves vanilla search results and order exactly
 PASS: vanilla creative mode preserves every original tab entry and order
-SCREENSHOT: screenshots/0001_brb-creative-vanilla.png
-SCREENSHOT: screenshots/0002_brb-creative-expanded.png
+SCREENSHOT: screenshots/0003_brb-creative-vanilla.png
+SCREENSHOT: screenshots/0004_brb-creative-expanded.png
 PASS: saved-hotbar tab is unaffected by grouping
 PASS: survival inventory tab is unaffected by grouping
 PASS: 2x2 inventory: left-click places ingredients without crafting
@@ -163,8 +163,51 @@ PASS: 3x3 table: occupied cursor refuses automatic crafting
 PASS: 3x3 table: closing the menu cancels a pending craft
 PASS: Armor slots reject ordinary crafting output during storage preflight
 PASS: Container sequence comparison handles rollover, stale packets, and duplicates
+PASS: smithing toggle closes the book before reopening the workstation
+PASS: smithing book closed preference survives reloading settings from disk
+PASS: smithing book toggle preserves the other workstation's saved preference
+PASS: smithing workstation reopens with its recipe book still closed
+PASS: smithing book open preference survives reloading settings from disk
+PASS: smithing book toggle preserves the other workstation's saved preference
+PASS: smithing workstation reopens with its recipe book still open
+PASS: smithing Escape closes the book before reopening the workstation
+PASS: smithing book closed preference survives reloading settings from disk
+PASS: smithing book toggle preserves the other workstation's saved preference
+PASS: smithing remembers a book closed with Escape
+PASS: smithing search captures input before opening settings
+PASS: smithing gear opens the actual settings screen
+PASS: smithing disabling the book and saving returns to the same workstation
+PASS: smithing disabled book releases its renderer, toggle and input capture
+PASS: smithing re-enabling restores the book and preserves its saved open state
+PASS: smithing book offers multiple pages of native recipes
+PASS: smithing visible book controls stay within the screen
+PASS: smithing book controls and recipe tiles do not overlap
+PASS: smithing forward arrow shows a different recipe page
+PASS: smithing back arrow restores the first recipe page
+PASS: smithing category tab 0 filters to its own native recipes
+PASS: smithing category tab 1 filters to its own native recipes
+PASS: smithing pin tab excludes unpinned variants
+PASS: smithing search tab restores the full catalogue
+PASS: smithing craftable toggle keeps available variants and excludes unavailable recipes
+PASS: smithing show-all toggle restores unavailable recipes
+PASS: smithing typing the inventory key into search keeps the workstation open and enters text
+PASS: smithing clicking blank book space releases search keyboard capture
+PASS: smithing clicking outside the book releases search keyboard capture
+PASS: smithing unmatched search hides recipe tiles
+PASS: smithing search isolates an exact recipe variant
+PASS: smithing clearing search restores the first page
+SCREENSHOT: screenshots/0009_brb-smithing-vanilla-book.png
+PASS: smithing book stays open after narrowing the screen
+PASS: smithing narrow visible book controls stay within the screen
+PASS: smithing narrow book controls and recipe tiles do not overlap
+PASS: smithing side tab remains clickable at narrow width
+PASS: smithing narrow overlay prevents picking up items from the hidden inventory
+PASS: smithing Escape closes the narrow book while retaining the workstation
+PASS: smithing narrow book toggle reopens after Escape
+PASS: smithing narrow book toggle closes the overlay
+PASS: smithing narrow book toggle reopens the overlay
 PASS: native trim recipe computes a concrete output
-SCREENSHOT: screenshots/0003_brb-smithing-fixed-variant.png
+SCREENSHOT: screenshots/0010_brb-smithing-fixed-variant.png
 PASS: left-click prepares the exact named/damaged trim variant on the server
 PASS: workstation pin records the exact trim variant
 PASS: Pins tab retains the selected concrete trim variant
@@ -181,12 +224,59 @@ PASS: workstation plus control expands fixed individual children
 PASS: workstation minus control collapses without a Shift-right craft
 PASS: workstation expansion/collapse preserves every menu slot and the cursor
 PASS: workstation vanilla mode contains cycling entries without expansion headers
+PASS: brewing toggle closes the book before reopening the workstation
+PASS: brewing book closed preference survives reloading settings from disk
+PASS: brewing book toggle preserves the other workstation's saved preference
+PASS: brewing workstation reopens with its recipe book still closed
+PASS: brewing book open preference survives reloading settings from disk
+PASS: brewing book toggle preserves the other workstation's saved preference
+PASS: brewing workstation reopens with its recipe book still open
+PASS: brewing Escape closes the book before reopening the workstation
+PASS: brewing book closed preference survives reloading settings from disk
+PASS: brewing book toggle preserves the other workstation's saved preference
+PASS: brewing remembers a book closed with Escape
+PASS: brewing search captures input before opening settings
+PASS: brewing gear opens the actual settings screen
+PASS: brewing disabling the book and saving returns to the same workstation
+PASS: brewing disabled book releases its renderer, toggle and input capture
+PASS: brewing re-enabling restores the book and preserves its saved open state
+PASS: brewing book offers multiple pages of native recipes
+PASS: brewing visible book controls stay within the screen
+PASS: brewing book controls and recipe tiles do not overlap
+PASS: brewing forward arrow shows a different recipe page
+PASS: brewing back arrow restores the first recipe page
+PASS: brewing category tab 0 filters to its own native recipes
+PASS: brewing category tab 1 filters to its own native recipes
+PASS: brewing category tab 2 filters to its own native recipes
+PASS: brewing pin tab excludes unpinned variants
+PASS: brewing search tab restores the full catalogue
+PASS: brewing craftable toggle keeps available variants and excludes unavailable recipes
+PASS: brewing show-all toggle restores unavailable recipes
+PASS: brewing typing the inventory key into search keeps the workstation open and enters text
+PASS: brewing clicking blank book space releases search keyboard capture
+PASS: brewing clicking outside the book releases search keyboard capture
+PASS: brewing unmatched search hides recipe tiles
+PASS: brewing search isolates an exact recipe variant
+PASS: brewing clearing search restores the first page
+SCREENSHOT: screenshots/0015_brb-brewing-vanilla-book.png
+PASS: brewing book stays open after narrowing the screen
+PASS: brewing narrow visible book controls stay within the screen
+PASS: brewing narrow book controls and recipe tiles do not overlap
+PASS: brewing side tab remains clickable at narrow width
+PASS: brewing narrow overlay prevents picking up items from the hidden inventory
+PASS: brewing Escape closes the narrow book while retaining the workstation
+PASS: brewing narrow book toggle reopens after Escape
+PASS: brewing narrow book toggle closes the overlay
+PASS: brewing narrow book toggle reopens the overlay
 PASS: Shift-right fills three bottles and starts normal-duration brewing instead of instant output
-SCREENSHOT: screenshots/0004_brb-brewing-normal-duration.png
+SCREENSHOT: screenshots/0016_brb-brewing-normal-duration.png
 PASS: three vanilla brewed outputs finish in the authoritative brewing block entity
 PASS: workstation All mode exposes fixed individual variants
 PASS: workstation pin prefers the hovered variant over the previously focused tile
 PASS: workstation expandable mode condenses native variant groups
+PASS: workstation plus control expands fixed individual children
+PASS: workstation minus control collapses without a Shift-right craft
+PASS: workstation expansion/collapse preserves every menu slot and the cursor
 PASS: workstation vanilla mode contains cycling entries without expansion headers
 PASS: dimension fixture retains a server-learned recipe
 PASS: unlock disabled starts without local recipe entries
@@ -196,4 +286,233 @@ PASS: disabling unlock after dimension change removes every injected entry
 PASS: dimension cleanup preserves server-learned entries
 PASS: re-enabling unlock after dimension cleanup preserves learned entries
 PASS: repeated unlock toggle removes re-created local entries
-RESULT: PASS; 192 recorded checks
+PASS: 320x240: config has no custom background texture
+PASS: 320x240: one settings list without tabs
+PASS: 320x240: all 13 settings are visible entries
+PASS: 320x240: master switch comes first
+PASS: 320x240: both modes use cycling buttons
+PASS: 320x240: enableBook is within the visible list
+PASS: 320x240: enableBook label does not overlap its control
+PASS: 320x240: mouse changes enableBook
+PASS: 320x240: enableBook waits for Save
+PASS: 320x240: recipeDisplayMode is within the visible list
+PASS: 320x240: recipeDisplayMode label does not overlap its control
+PASS: 320x240: mouse changes recipeDisplayMode
+PASS: 320x240: recipeDisplayMode waits for Save
+PASS: 320x240: creativeDisplayMode is within the visible list
+PASS: 320x240: creativeDisplayMode label does not overlap its control
+PASS: 320x240: mouse changes creativeDisplayMode
+PASS: 320x240: creativeDisplayMode waits for Save
+PASS: 320x240: enablePinning is within the visible list
+PASS: 320x240: enablePinning label does not overlap its control
+PASS: 320x240: mouse changes enablePinning
+PASS: 320x240: enablePinning waits for Save
+PASS: 320x240: keepCentered is within the visible list
+PASS: 320x240: keepCentered label does not overlap its control
+PASS: 320x240: mouse changes keepCentered
+PASS: 320x240: keepCentered waits for Save
+PASS: 320x240: settingsButton is within the visible list
+PASS: 320x240: settingsButton label does not overlap its control
+PASS: 320x240: mouse changes settingsButton
+PASS: 320x240: settingsButton waits for Save
+PASS: 320x240: newRecipes.unlockAll is within the visible list
+PASS: 320x240: newRecipes.unlockAll label does not overlap its control
+PASS: 320x240: mouse changes newRecipes.unlockAll
+PASS: 320x240: newRecipes.unlockAll waits for Save
+PASS: 320x240: newRecipes.enableBounce is within the visible list
+PASS: 320x240: newRecipes.enableBounce label does not overlap its control
+PASS: 320x240: mouse changes newRecipes.enableBounce
+PASS: 320x240: newRecipes.enableBounce waits for Save
+PASS: 320x240: instantCraft.showButton is within the visible list
+PASS: 320x240: instantCraft.showButton label does not overlap its control
+PASS: 320x240: mouse changes instantCraft.showButton
+PASS: 320x240: instantCraft.showButton waits for Save
+PASS: 320x240: instantCraft.enabled is within the visible list
+PASS: 320x240: instantCraft.enabled label does not overlap its control
+PASS: 320x240: mouse changes instantCraft.enabled
+PASS: 320x240: instantCraft.enabled waits for Save
+PASS: 320x240: alternativeRecipes.onHover is within the visible list
+PASS: 320x240: alternativeRecipes.onHover label does not overlap its control
+PASS: 320x240: mouse changes alternativeRecipes.onHover
+PASS: 320x240: alternativeRecipes.onHover waits for Save
+PASS: 320x240: scrolling.enableScrolling is within the visible list
+PASS: 320x240: scrolling.enableScrolling label does not overlap its control
+PASS: 320x240: mouse changes scrolling.enableScrolling
+PASS: 320x240: scrolling.enableScrolling waits for Save
+PASS: 320x240: scrolling.scrollAround is within the visible list
+PASS: 320x240: scrolling.scrollAround label does not overlap its control
+PASS: 320x240: mouse changes scrolling.scrollAround
+PASS: 320x240: scrolling.scrollAround waits for Save
+PASS: 320x240: Save returns to the parent screen
+PASS: 320x240: Save applies every setting to the runtime config
+PASS: 320x240: saved settings and gameplay use the same config object
+PASS: 320x240: all settings persist to TOML
+PASS: 320x240: reopening reflects every saved value
+PASS: 320x240: recipeDisplayMode cycles through every mode and wraps
+PASS: 320x240: keyboard changes recipeDisplayMode
+PASS: 320x240: creativeDisplayMode cycles through every mode and wraps
+PASS: 320x240: keyboard changes creativeDisplayMode
+PASS: 320x240: Reset restores the default for enablePinning
+PASS: 320x240: Reset waits for Save for enablePinning
+PASS: 320x240: Reset restores the default for recipeDisplayMode
+PASS: 320x240: Reset waits for Save for recipeDisplayMode
+PASS: 320x240: mouse wheel scrolls the settings list
+PASS: 320x240: pending edits are detected before Cancel
+PASS: 320x240: Cancel asks before discarding changes
+PASS: 320x240: discard returns to the parent screen
+PASS: 320x240: Cancel leaves all saved settings unchanged
+PASS: 427x240: config has no custom background texture
+PASS: 427x240: one settings list without tabs
+PASS: 427x240: all 13 settings are visible entries
+PASS: 427x240: master switch comes first
+PASS: 427x240: both modes use cycling buttons
+PASS: 427x240: enableBook is within the visible list
+PASS: 427x240: enableBook label does not overlap its control
+PASS: 427x240: mouse changes enableBook
+PASS: 427x240: enableBook waits for Save
+PASS: 427x240: recipeDisplayMode is within the visible list
+PASS: 427x240: recipeDisplayMode label does not overlap its control
+PASS: 427x240: mouse changes recipeDisplayMode
+PASS: 427x240: recipeDisplayMode waits for Save
+PASS: 427x240: creativeDisplayMode is within the visible list
+PASS: 427x240: creativeDisplayMode label does not overlap its control
+PASS: 427x240: mouse changes creativeDisplayMode
+PASS: 427x240: creativeDisplayMode waits for Save
+PASS: 427x240: enablePinning is within the visible list
+PASS: 427x240: enablePinning label does not overlap its control
+PASS: 427x240: mouse changes enablePinning
+PASS: 427x240: enablePinning waits for Save
+PASS: 427x240: keepCentered is within the visible list
+PASS: 427x240: keepCentered label does not overlap its control
+PASS: 427x240: mouse changes keepCentered
+PASS: 427x240: keepCentered waits for Save
+PASS: 427x240: settingsButton is within the visible list
+PASS: 427x240: settingsButton label does not overlap its control
+PASS: 427x240: mouse changes settingsButton
+PASS: 427x240: settingsButton waits for Save
+PASS: 427x240: newRecipes.unlockAll is within the visible list
+PASS: 427x240: newRecipes.unlockAll label does not overlap its control
+PASS: 427x240: mouse changes newRecipes.unlockAll
+PASS: 427x240: newRecipes.unlockAll waits for Save
+PASS: 427x240: newRecipes.enableBounce is within the visible list
+PASS: 427x240: newRecipes.enableBounce label does not overlap its control
+PASS: 427x240: mouse changes newRecipes.enableBounce
+PASS: 427x240: newRecipes.enableBounce waits for Save
+PASS: 427x240: instantCraft.showButton is within the visible list
+PASS: 427x240: instantCraft.showButton label does not overlap its control
+PASS: 427x240: mouse changes instantCraft.showButton
+PASS: 427x240: instantCraft.showButton waits for Save
+PASS: 427x240: instantCraft.enabled is within the visible list
+PASS: 427x240: instantCraft.enabled label does not overlap its control
+PASS: 427x240: mouse changes instantCraft.enabled
+PASS: 427x240: instantCraft.enabled waits for Save
+PASS: 427x240: alternativeRecipes.onHover is within the visible list
+PASS: 427x240: alternativeRecipes.onHover label does not overlap its control
+PASS: 427x240: mouse changes alternativeRecipes.onHover
+PASS: 427x240: alternativeRecipes.onHover waits for Save
+PASS: 427x240: scrolling.enableScrolling is within the visible list
+PASS: 427x240: scrolling.enableScrolling label does not overlap its control
+PASS: 427x240: mouse changes scrolling.enableScrolling
+PASS: 427x240: scrolling.enableScrolling waits for Save
+PASS: 427x240: scrolling.scrollAround is within the visible list
+PASS: 427x240: scrolling.scrollAround label does not overlap its control
+PASS: 427x240: mouse changes scrolling.scrollAround
+PASS: 427x240: scrolling.scrollAround waits for Save
+PASS: 427x240: Save returns to the parent screen
+PASS: 427x240: Save applies every setting to the runtime config
+PASS: 427x240: saved settings and gameplay use the same config object
+PASS: 427x240: all settings persist to TOML
+PASS: 427x240: reopening reflects every saved value
+PASS: 427x240: recipeDisplayMode cycles through every mode and wraps
+PASS: 427x240: keyboard changes recipeDisplayMode
+PASS: 427x240: creativeDisplayMode cycles through every mode and wraps
+PASS: 427x240: keyboard changes creativeDisplayMode
+PASS: 427x240: Reset restores the default for enablePinning
+PASS: 427x240: Reset waits for Save for enablePinning
+PASS: 427x240: Reset restores the default for recipeDisplayMode
+PASS: 427x240: Reset waits for Save for recipeDisplayMode
+PASS: 427x240: mouse wheel scrolls the settings list
+PASS: 427x240: pending edits are detected before Cancel
+PASS: 427x240: Cancel asks before discarding changes
+PASS: 427x240: discard returns to the parent screen
+PASS: 427x240: Cancel leaves all saved settings unchanged
+PASS: 640x360: config has no custom background texture
+PASS: 640x360: one settings list without tabs
+PASS: 640x360: all 13 settings are visible entries
+PASS: 640x360: master switch comes first
+PASS: 640x360: both modes use cycling buttons
+PASS: 640x360: enableBook is within the visible list
+PASS: 640x360: enableBook label does not overlap its control
+PASS: 640x360: mouse changes enableBook
+PASS: 640x360: enableBook waits for Save
+PASS: 640x360: recipeDisplayMode is within the visible list
+PASS: 640x360: recipeDisplayMode label does not overlap its control
+PASS: 640x360: mouse changes recipeDisplayMode
+PASS: 640x360: recipeDisplayMode waits for Save
+PASS: 640x360: creativeDisplayMode is within the visible list
+PASS: 640x360: creativeDisplayMode label does not overlap its control
+PASS: 640x360: mouse changes creativeDisplayMode
+PASS: 640x360: creativeDisplayMode waits for Save
+PASS: 640x360: enablePinning is within the visible list
+PASS: 640x360: enablePinning label does not overlap its control
+PASS: 640x360: mouse changes enablePinning
+PASS: 640x360: enablePinning waits for Save
+PASS: 640x360: keepCentered is within the visible list
+PASS: 640x360: keepCentered label does not overlap its control
+PASS: 640x360: mouse changes keepCentered
+PASS: 640x360: keepCentered waits for Save
+PASS: 640x360: settingsButton is within the visible list
+PASS: 640x360: settingsButton label does not overlap its control
+PASS: 640x360: mouse changes settingsButton
+PASS: 640x360: settingsButton waits for Save
+PASS: 640x360: newRecipes.unlockAll is within the visible list
+PASS: 640x360: newRecipes.unlockAll label does not overlap its control
+PASS: 640x360: mouse changes newRecipes.unlockAll
+PASS: 640x360: newRecipes.unlockAll waits for Save
+PASS: 640x360: newRecipes.enableBounce is within the visible list
+PASS: 640x360: newRecipes.enableBounce label does not overlap its control
+PASS: 640x360: mouse changes newRecipes.enableBounce
+PASS: 640x360: newRecipes.enableBounce waits for Save
+PASS: 640x360: instantCraft.showButton is within the visible list
+PASS: 640x360: instantCraft.showButton label does not overlap its control
+PASS: 640x360: mouse changes instantCraft.showButton
+PASS: 640x360: instantCraft.showButton waits for Save
+PASS: 640x360: instantCraft.enabled is within the visible list
+PASS: 640x360: instantCraft.enabled label does not overlap its control
+PASS: 640x360: mouse changes instantCraft.enabled
+PASS: 640x360: instantCraft.enabled waits for Save
+PASS: 640x360: alternativeRecipes.onHover is within the visible list
+PASS: 640x360: alternativeRecipes.onHover label does not overlap its control
+PASS: 640x360: mouse changes alternativeRecipes.onHover
+PASS: 640x360: alternativeRecipes.onHover waits for Save
+PASS: 640x360: scrolling.enableScrolling is within the visible list
+PASS: 640x360: scrolling.enableScrolling label does not overlap its control
+PASS: 640x360: mouse changes scrolling.enableScrolling
+PASS: 640x360: scrolling.enableScrolling waits for Save
+PASS: 640x360: scrolling.scrollAround is within the visible list
+PASS: 640x360: scrolling.scrollAround label does not overlap its control
+PASS: 640x360: mouse changes scrolling.scrollAround
+PASS: 640x360: scrolling.scrollAround waits for Save
+PASS: 640x360: Save returns to the parent screen
+PASS: 640x360: Save applies every setting to the runtime config
+PASS: 640x360: saved settings and gameplay use the same config object
+PASS: 640x360: all settings persist to TOML
+PASS: 640x360: reopening reflects every saved value
+PASS: 640x360: recipeDisplayMode cycles through every mode and wraps
+PASS: 640x360: keyboard changes recipeDisplayMode
+PASS: 640x360: creativeDisplayMode cycles through every mode and wraps
+PASS: 640x360: keyboard changes creativeDisplayMode
+PASS: 640x360: Reset restores the default for enablePinning
+PASS: 640x360: Reset waits for Save for enablePinning
+PASS: 640x360: Reset restores the default for recipeDisplayMode
+PASS: 640x360: Reset waits for Save for recipeDisplayMode
+PASS: 640x360: mouse wheel scrolls the settings list
+PASS: 640x360: pending edits are detected before Cancel
+PASS: 640x360: Cancel asks before discarding changes
+PASS: 640x360: discard returns to the parent screen
+PASS: 640x360: Cancel leaves all saved settings unchanged
+SCREENSHOT: screenshots/0017_brb-vanilla-style-settings.png
+SCREENSHOT: screenshots/0018_brb-vanilla-style-settings-lower.png
+RESULT: PASS; 505 recorded checks
+SCREENSHOT: screenshots/0000_brb-native-recipe-group-collapsed.png
+SCREENSHOT: screenshots/0001_brb-native-recipe-group-expanded.png

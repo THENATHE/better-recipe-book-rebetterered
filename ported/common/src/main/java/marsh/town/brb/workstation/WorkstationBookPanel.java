@@ -3,12 +3,14 @@ package marsh.town.brb.workstation;
 import marsh.town.brb.BetterRecipeBook;
 import marsh.town.brb.config.Config;
 import marsh.town.brb.recipegroups.RecipeDisplayMode;
+import marsh.town.brb.util.BRBTextures;
 import me.shedaniel.autoconfig.AutoConfigClient;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.EditBox;
+import net.minecraft.client.gui.components.ImageButton;
 import net.minecraft.client.gui.components.Renderable;
 import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.client.gui.components.events.AbstractContainerEventHandler;
@@ -19,16 +21,17 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.input.KeyEvent;
 import net.minecraft.client.input.MouseButtonEvent;
 import net.minecraft.client.input.MouseButtonInfo;
+import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.util.Util;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.SmithingMenu;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import com.mojang.blaze3d.platform.InputConstants;
 
 import java.util.ArrayList;
-import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
@@ -44,7 +47,6 @@ public final class WorkstationBookPanel extends AbstractContainerEventHandler im
     public static final int WIDTH = 147;
     public static final int HEIGHT = 166;
     private static final int PAGE_SIZE = 20;
-    private static final Map<WorkstationRecipe.Kind, Boolean> OPEN_BOOKS = new EnumMap<>(WorkstationRecipe.Kind.class);
 
     private final Minecraft client = Minecraft.getInstance();
     private final AbstractContainerMenu menu;
@@ -82,59 +84,59 @@ public final class WorkstationBookPanel extends AbstractContainerEventHandler im
         this.previewConsumer = previewConsumer;
         kind = menu instanceof SmithingMenu ? WorkstationRecipe.Kind.SMITHING : WorkstationRecipe.Kind.BREWING;
         pinnedCategory = kind == WorkstationRecipe.Kind.BREWING ? 3 : 2;
-        visible = OPEN_BOOKS.getOrDefault(kind, false);
+        visible = kind == WorkstationRecipe.Kind.BREWING
+                ? BetterRecipeBook.config.brewingBookOpen : BetterRecipeBook.config.smithingBookOpen;
         recipes = WorkstationRecipes.forMenu(menu);
-        search = new EditBox(client.font, 0, 0, 98, 18, Component.translatable("itemGroup.search"));
+        search = new EditBox(client.font, 0, 0, 81, 14, Component.translatable("itemGroup.search"));
         search.setMaxLength(100);
-        search.setHint(Component.translatable("itemGroup.search"));
+        search.setHint(Component.translatable("gui.recipebook.search_hint").withStyle(EditBox.SEARCH_HINT_STYLE));
+        search.setTextColor(0xFFFFFFFF);
         search.setResponder(value -> { page = 0; rebuild(); });
         controls.add(search);
-        filter = button("All", 29, pressed -> {
+        filter = new ImageButton(0, 0, 26, 16, BRBTextures.RECIPE_BOOK_FILTER_BUTTON_SPRITES, pressed -> {
             craftableOnly = !craftableOnly;
-            pressed.setMessage(Component.literal(craftableOnly ? "✓" : "All"));
             page = 0;
             rebuild();
-        });
-        filter.setTooltip(Tooltip.create(Component.translatable("gui.recipebook.toggleRecipes.all")));
+        }, Component.translatable("gui.recipebook.toggleRecipes.all")) {
+            @Override
+            public void extractContents(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float delta) {
+                graphics.blitSprite(RenderPipelines.GUI_TEXTURED,
+                        sprites.get(craftableOnly, isHoveredOrFocused()), getX(), getY(), width, height);
+            }
+        };
         controls.add(filter);
-        int tabCount = pinnedCategory + 2;
-        for (int tab = 0; tab < tabCount; tab++) {
-            final int chosen = tab - 1;
-            String name = tab == 0 ? "All" : tab == tabCount - 1 ? "Pins"
-                    : kind == WorkstationRecipe.Kind.BREWING ? (tab == 1 ? "Ptn" : tab == 2 ? "Spl" : "Lng")
-                    : (tab == 1 ? "Up" : "Trim");
-            var widget = button(name, kind == WorkstationRecipe.Kind.BREWING ? 26 : 32, ignored -> {
-                category = chosen;
-                page = 0;
-                rebuild();
-            });
-            if (tab == tabCount - 1) widget.setTooltip(Tooltip.create(Component.literal("Pinned recipe variants")));
-            else if (tab > 0) widget.setTooltip(Tooltip.create(Component.literal(
-                    kind == WorkstationRecipe.Kind.BREWING ? (tab == 1 ? "Potions" : tab == 2 ? "Splash potions" : "Lingering potions")
-                            : (tab == 1 ? "Smithing upgrades" : "Armor trims"))));
+        for (int tab = 0; tab < pinnedCategory + 2; tab++) {
+            var widget = new CategoryTab(tab - 1);
             tabs.add(widget);
             controls.add(widget);
         }
-        previous = button("<", 20, ignored -> changePage(-1));
-        next = button(">", 20, ignored -> changePage(1));
+        previous = new ImageButton(0, 0, 12, 17, BRBTextures.RECIPE_BOOK_PAGE_BACKWARD_SPRITES,
+                ignored -> changePage(-1), Component.translatable("gui.recipebook.previous_page"));
+        next = new ImageButton(0, 0, 12, 17, BRBTextures.RECIPE_BOOK_PAGE_FORWARD_SPRITES,
+                ignored -> changePage(1), Component.translatable("gui.recipebook.next_page"));
+        previous.setTooltip(Tooltip.create(previous.getMessage()));
+        next.setTooltip(Tooltip.create(next.getMessage()));
         controls.add(previous);
         controls.add(next);
-        instant = button("!", 20, ignored -> {
+        instant = new ImageButton(0, 0, 18, 18, BRBTextures.RECIPE_BOOK_INSTANT_CRAFT_BUTTON_SPRITES, ignored -> {
             BetterRecipeBook.instantCraftingManager.toggleEnabled();
             updateControls();
-        });
-        instant.setTooltip(Tooltip.create(Component.literal("Toggle instant crafting. Brewing keeps its normal duration.")));
+        }, Component.empty()) {
+            @Override
+            public void extractContents(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float delta) {
+                graphics.blitSprite(RenderPipelines.GUI_TEXTURED,
+                        sprites.get(BetterRecipeBook.config.instantCraft.enabled, isHoveredOrFocused()),
+                        getX(), getY(), width, height);
+            }
+        };
         controls.add(instant);
-        settings = button("...", 20, ignored -> client.gui.setScreen(
-                AutoConfigClient.getConfigScreen(Config.class, client.gui.screen()).get()));
-        settings.setTooltip(Tooltip.create(Component.literal("Better Recipe Book settings")));
+        settings = new ImageButton(0, 0, 18, 18, BRBTextures.SETTINGS_BUTTON_SPRITES,
+                ignored -> client.gui.setScreen(AutoConfigClient.getConfigScreen(Config.class, client.gui.screen()).get()),
+                Component.translatable("brb.gui.settings.open"));
+        settings.setTooltip(Tooltip.create(settings.getMessage()));
         controls.add(settings);
         refreshAvailability();
         rebuild();
-    }
-
-    private static Button button(String label, int width, Button.OnPress action) {
-        return Button.builder(Component.literal(label), action).bounds(0, 0, width, 18).build();
     }
 
     public boolean isVisible() {
@@ -143,7 +145,9 @@ public final class WorkstationBookPanel extends AbstractContainerEventHandler im
 
     public void toggleVisibility() {
         visible = !visible;
-        OPEN_BOOKS.put(kind, visible);
+        if (kind == WorkstationRecipe.Kind.BREWING) BetterRecipeBook.config.brewingBookOpen = visible;
+        else BetterRecipeBook.config.smithingBookOpen = visible;
+        if (BetterRecipeBook.configHolder != null) BetterRecipeBook.configHolder.save();
         if (!visible) setFocused(null);
         updateControls();
     }
@@ -156,14 +160,13 @@ public final class WorkstationBookPanel extends AbstractContainerEventHandler im
     public void position(int screenWidth, int containerLeft, int containerTop) {
         x = screenWidth < 379 ? (screenWidth - WIDTH) / 2 : containerLeft - WIDTH - 4;
         y = containerTop;
-        search.setPosition(x + 7, y + 7);
-        filter.setPosition(x + 109, y + 7);
-        int tabSpacing = kind == WorkstationRecipe.Kind.BREWING ? 27 : 33;
-        for (int index = 0; index < tabs.size(); index++) tabs.get(index).setPosition(x + 7 + index * tabSpacing, y + 29);
-        previous.setPosition(x + 7, y + 145);
-        next.setPosition(x + 74, y + 145);
-        settings.setPosition(x + 98, y + 145);
-        instant.setPosition(x + 121, y + 145);
+        search.setPosition(x + 25, y + 13);
+        filter.setPosition(x + 110, y + 12);
+        for (int index = 0; index < tabs.size(); index++) tabs.get(index).setPosition(x - 30, y + 3 + index * 27);
+        previous.setPosition(x + 38, y + 137);
+        next.setPosition(x + 93, y + 137);
+        settings.setPosition(x + 11, y + 137);
+        instant.setPosition(x + 119, y + 137);
         layoutTiles();
     }
 
@@ -215,7 +218,12 @@ public final class WorkstationBookPanel extends AbstractContainerEventHandler im
         } else {
             Map<Identifier, List<WorkstationRecipe>> groups = new LinkedHashMap<>();
             for (var recipe : filtered) groups.computeIfAbsent(recipe.groupId(), ignored -> new ArrayList<>()).add(recipe);
-            for (var group : groups.values()) {
+            List<List<WorkstationRecipe>> families = List.copyOf(groups.values());
+            if (mode == RecipeDisplayMode.EXPANDABLE) {
+                families = marsh.town.brb.recipegroups.RecipeOutputGroups.merge(families,
+                        recipe -> List.of(recipe.preview()));
+            }
+            for (var group : families) {
                 boolean header = mode == RecipeDisplayMode.EXPANDABLE && group.size() > 1;
                 boolean open = header && expanded.contains(group.getFirst().groupId());
                 result.add(new Row(List.copyOf(group), header, open));
@@ -245,7 +253,7 @@ public final class WorkstationBookPanel extends AbstractContainerEventHandler im
 
     private void layoutTiles() {
         for (int index = 0; index < tiles.size(); index++) {
-            tiles.get(index).setPosition(x + 7 + (index % 5) * 27, y + 50 + (index / 5) * 23);
+            tiles.get(index).setPosition(x + 11 + (index % 5) * 25, y + 31 + (index / 5) * 25);
         }
     }
 
@@ -254,9 +262,18 @@ public final class WorkstationBookPanel extends AbstractContainerEventHandler im
         tabs.getLast().visible = visible && BetterRecipeBook.config.enablePinning;
         previous.active = page > 0;
         next.active = (page + 1) * PAGE_SIZE < rows.size();
+        previous.visible = visible && previous.active;
+        next.visible = visible && next.active;
+        Component filterName = Component.translatable(craftableOnly
+                ? "gui.recipebook.toggleRecipes.craftable" : "gui.recipebook.toggleRecipes.all");
+        filter.setMessage(filterName);
+        filter.setTooltip(Tooltip.create(filterName));
         settings.visible = visible && BetterRecipeBook.config.settingsButton;
-        instant.visible = visible && kind == WorkstationRecipe.Kind.SMITHING;
-        instant.setMessage(Component.literal(BetterRecipeBook.config.instantCraft.enabled ? "!" : "×"));
+        instant.visible = visible && kind == WorkstationRecipe.Kind.SMITHING && BetterRecipeBook.config.instantCraft.showButton;
+        Component instantName = Component.translatable(BetterRecipeBook.config.instantCraft.enabled
+                ? "brb.gui.instantCraft.on" : "brb.gui.instantCraft.off");
+        instant.setMessage(instantName);
+        instant.setTooltip(Tooltip.create(instantName));
     }
 
     private void changePage(int direction) {
@@ -275,13 +292,24 @@ public final class WorkstationBookPanel extends AbstractContainerEventHandler im
 
     @Override
     public boolean isMouseOver(double mouseX, double mouseY) {
-        return visible && mouseX >= x && mouseX < x + WIDTH && mouseY >= y && mouseY < y + HEIGHT;
+        return visible && ((mouseX >= x && mouseX < x + WIDTH && mouseY >= y && mouseY < y + HEIGHT)
+                || tabs.stream().anyMatch(tab -> tab.visible && tab.isMouseOver(mouseX, mouseY)));
     }
 
     @Override
     public boolean mouseClicked(MouseButtonEvent event, boolean doubleClick) {
+        boolean magnifier = event.x() >= x + 8 && event.x() < search.getX()
+                && event.y() >= search.getY() && event.y() < search.getBottom();
+        if (event.button() == InputConstants.MOUSE_BUTTON_LEFT && !search.isMouseOver(event.x(), event.y()) && !magnifier) {
+            search.setFocused(false);
+            if (getFocused() == search) setFocused(null);
+        }
         if (!isMouseOver(event.x(), event.y())) return false;
         pressedButton = event.button();
+        if (event.button() == InputConstants.MOUSE_BUTTON_LEFT && magnifier) {
+            setFocused(search);
+            return true;
+        }
         super.mouseClicked(event, doubleClick);
         if (getFocused() instanceof RecipeTile tile && !tiles.contains(tile)) {
             Identifier group = tile.row.recipes().getFirst().groupId();
@@ -313,10 +341,14 @@ public final class WorkstationBookPanel extends AbstractContainerEventHandler im
         return true;
     }
 
+    public boolean capturesInput() {
+        return visible && search.capturesInput();
+    }
+
     @Override
     public boolean keyPressed(KeyEvent event) {
         if (!visible) return false;
-        if (search.isFocused()) return search.keyPressed(event);
+        if (search.isFocused()) return search.keyPressed(event) || (!event.isEscape() && search.capturesInput());
         if (BetterRecipeBook.config.enablePinning && BetterRecipeBook.PIN_MAPPING.matches(event)) {
             RecipeTile target = tiles.stream().filter(AbstractWidget::isHovered).findFirst()
                     .orElseGet(() -> getFocused() instanceof RecipeTile focused ? focused : null);
@@ -336,15 +368,18 @@ public final class WorkstationBookPanel extends AbstractContainerEventHandler im
     @Override
     public void extractRenderState(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float delta) {
         if (!visible) return;
-        graphics.fill(x, y, x + WIDTH, y + HEIGHT, 0xFF313731);
-        graphics.fill(x + 2, y + 2, x + WIDTH - 2, y + HEIGHT - 2, 0xFFC6C6C6);
+        graphics.blit(RenderPipelines.GUI_TEXTURED, BRBTextures.RECIPE_BOOK_BACKGROUND_TEXTURE,
+                x, y, 1.0F, 1.0F, WIDTH, HEIGHT, 256, 256);
         for (var widget : controls) widget.extractRenderState(graphics, mouseX, mouseY, delta);
-        var selectedTab = tabs.get(category + 1);
-        if (selectedTab.visible) graphics.fill(selectedTab.getX(), selectedTab.getBottom() - 2,
-                selectedTab.getRight(), selectedTab.getBottom(), 0xFF376449);
         int pages = Math.max(1, (rows.size() + PAGE_SIZE - 1) / PAGE_SIZE);
-        graphics.text(client.font, (page + 1) + "/" + pages, x + 33, y + 150, 0xFF404040, false);
-        if (rows.isEmpty()) graphics.text(client.font, Component.literal("No recipes"), x + 38, y + 90, 0xFF505050, false);
+        if (pages > 1) {
+            Component pageNumbers = Component.translatable("gui.recipebook.page", page + 1, pages);
+            graphics.text(client.font, pageNumbers, x + 73 - client.font.width(pageNumbers) / 2, y + 141, 0xFFFFFFFF);
+        }
+        if (rows.isEmpty()) {
+            Component empty = Component.translatable("brb.gui.workstation.no_recipes");
+            graphics.text(client.font, empty, x + (WIDTH - client.font.width(empty)) / 2, y + 78, 0xFF404040, false);
+        }
         for (var tile : tiles) {
             if (tile.isMouseOver(mouseX, mouseY)) {
                 var tooltip = new ArrayList<>(Screen.getTooltipFromItem(client, tile.selected().preview()));
@@ -380,8 +415,9 @@ public final class WorkstationBookPanel extends AbstractContainerEventHandler im
 
     private void renderGhostItem(GuiGraphicsExtractor graphics, ItemStack stack, int slotX, int slotY,
                                  int mouseX, int mouseY) {
+        graphics.fill(slotX, slotY, slotX + 16, slotY + 16, 0x30FF0000);
         graphics.fakeItem(stack, slotX, slotY);
-        graphics.fill(slotX, slotY, slotX + 16, slotY + 16, 0x66707070);
+        graphics.fill(slotX, slotY, slotX + 16, slotY + 16, 0x30FFFFFF);
         if (mouseX >= slotX && mouseX < slotX + 16 && mouseY >= slotY && mouseY < slotY + 16) {
             graphics.setTooltipForNextFrame(client.font, Screen.getTooltipFromItem(client, stack),
                     Optional.empty(), mouseX, mouseY);
@@ -434,12 +470,64 @@ public final class WorkstationBookPanel extends AbstractContainerEventHandler im
 
     private record Row(List<WorkstationRecipe> recipes, boolean header, boolean expanded) {}
 
+    private Component categoryName(int category) {
+        if (category == -1) return Component.translatable("gui.recipebook.toggleRecipes.all");
+        if (category == pinnedCategory) return Component.translatable("brb.gui.workstation.pins");
+        if (kind == WorkstationRecipe.Kind.BREWING) {
+            return Component.translatable(switch (category) {
+                case 0 -> "brb.gui.workstation.potions";
+                case 1 -> "brb.gui.workstation.splash_potions";
+                default -> "brb.gui.workstation.lingering_potions";
+            });
+        }
+        return Component.translatable(category == 0 ? "brb.gui.workstation.upgrades" : "brb.gui.workstation.trims");
+    }
+
+    private ItemStack categoryIcon(int category) {
+        if (category == -1) return new ItemStack(Items.COMPASS);
+        if (category == pinnedCategory) return new ItemStack(Items.KNOWLEDGE_BOOK);
+        if (kind == WorkstationRecipe.Kind.BREWING) {
+            return new ItemStack(switch (category) {
+                case 0 -> Items.POTION;
+                case 1 -> Items.SPLASH_POTION;
+                default -> Items.LINGERING_POTION;
+            });
+        }
+        return new ItemStack(category == 0 ? Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE : Items.SENTRY_ARMOR_TRIM_SMITHING_TEMPLATE);
+    }
+
+    private final class CategoryTab extends ImageButton {
+        private final int chosen;
+        private final ItemStack icon;
+
+        CategoryTab(int chosen) {
+            super(0, 0, 35, 27, BRBTextures.RECIPE_BOOK_TAB_SPRITES, ignored -> {
+                category = chosen;
+                page = 0;
+                rebuild();
+            }, WorkstationBookPanel.this.categoryName(chosen));
+            this.chosen = chosen;
+            icon = categoryIcon(chosen);
+            setTooltip(Tooltip.create(getMessage()));
+        }
+
+        @Override
+        public void extractContents(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float delta) {
+            boolean selected = category == chosen;
+            int left = getX() - (selected ? 2 : 0);
+            graphics.blitSprite(RenderPipelines.GUI_TEXTURED, sprites.get(true, selected), left, getY(), width, height);
+            graphics.fakeItem(icon, left + 9, getY() + 5);
+            if (chosen == pinnedCategory) graphics.text(client.font, "★", left + 6, getY() + 3, 0xFFFFD66A, false);
+            if (isFocused()) graphics.outline(left + 2, getY() + 2, width - 4, height - 4, 0xFFFFFFFF);
+        }
+    }
+
     private final class RecipeTile extends AbstractWidget {
         private final Row row;
         private WorkstationRecipe displayed;
 
         RecipeTile(Row row) {
-            super(0, 0, 24, 22, row.recipes().getFirst().preview().getHoverName());
+            super(0, 0, 25, 25, row.recipes().getFirst().preview().getHoverName());
             this.row = row;
             displayed = row.recipes().getFirst();
         }
@@ -454,15 +542,23 @@ public final class WorkstationBookPanel extends AbstractContainerEventHandler im
                 displayed = row.recipes().get((int) ((Util.getMillis() / 1500) % row.recipes().size()));
             }
             boolean canMake = available.getOrDefault(displayed.id(), false);
-            graphics.fill(getX(), getY(), getRight(), getBottom(), isHoveredOrFocused() ? 0xFFF5F5F5 : 0xFF707070);
-            graphics.fill(getX() + 1, getY() + 1, getRight() - 1, getBottom() - 1,
-                    row.header() || canMake ? 0xFFC8D0C8 : 0xFFC9B7B7);
-            graphics.fakeItem(displayed.preview(), getX() + 4, getY() + 3);
+            boolean multiple = row.recipes().size() > 1;
+            if (row.header()) canMake = row.recipes().stream().anyMatch(recipe -> available.getOrDefault(recipe.id(), false));
+            String sprite = "recipe_book/slot_" + (multiple ? "many_" : "") + (canMake ? "craftable" : "uncraftable");
+            graphics.blitSprite(RenderPipelines.GUI_TEXTURED, Identifier.withDefaultNamespace(sprite),
+                    getX(), getY(), width, height);
+            graphics.fakeItem(displayed.preview(), getX() + 4, getY() + 4);
+            if (isFocused()) graphics.outline(getX(), getY(), width, height, 0xFFFFFFFF);
             if (row.header()) {
-                graphics.fill(getX() + 1, getY() + 13, getX() + 10, getY() + 21, 0xFF254734);
-                graphics.text(client.font, row.expanded() ? "−" : "+", getX() + 2, getY() + 13, 0xFFFFFFFF, false);
+                String label = row.expanded() ? "−" : "+";
+                int size = 9;
+                int left = getRight() - size - 3;
+                int top = getBottom() - size - 3;
+                graphics.fill(left, top, left + size, top + size, 0xEE172331);
+                graphics.text(client.font, label, left + (size - client.font.width(label) + 1) / 2,
+                        top + (size - client.font.lineHeight) / 2, 0xFFFFFFFF, false);
             } else if (BetterRecipeBook.config.enablePinning && BetterRecipeBook.pinnedRecipeManager.has(displayed.id())) {
-                graphics.text(client.font, "*", getRight() - 6, getY(), 0xFFFFFF00, false);
+                graphics.text(client.font, "★", getX() - 2, getY() - 2, 0xFFFFD66A, false);
             }
             setMessage(row.header() ? Component.literal((row.expanded() ? "Collapse " : "Expand ")
                     + row.recipes().size() + " " + displayed.preview().getHoverName().getString() + " variants")

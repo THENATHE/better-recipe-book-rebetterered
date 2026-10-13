@@ -35,8 +35,14 @@ public abstract class RecipeButtonMixin extends AbstractWidget {
     @Inject(method = "extractWidgetRenderState", at = @At("RETURN"))
     private void brb$groupIndicator(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float delta, CallbackInfo ci) {
         if (getCollection() instanceof RecipeTileCollection tile && tile.isGroupHeader()) {
-            graphics.fill(getX() + 14, getY() + 13, getX() + 24, getY() + 24, 0xEE172331);
-            graphics.text(Minecraft.getInstance().font, tile.isExpanded() ? "−" : "+", getX() + 16, getY() + 14, 0xFFFFFFFF, false);
+            var font = Minecraft.getInstance().font;
+            String label = tile.isExpanded() ? "−" : "+";
+            int size = 9;
+            int left = getRight() - size - 3;
+            int top = getBottom() - size - 3;
+            graphics.fill(left, top, left + size, top + size, 0xEE172331);
+            graphics.text(font, label, left + (size - font.width(label) + 1) / 2,
+                    top + (size - font.lineHeight) / 2, 0xFFFFFFFF, false);
         }
     }
 

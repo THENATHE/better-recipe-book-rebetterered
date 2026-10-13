@@ -1,3 +1,12 @@
+# 1.11.2+26.3
+
+- Restyle brewing and smithing books with vanilla textures, category tabs, recipe slots, paging arrows, search and craftable filtering.
+- Simplify settings to one plain list with cycling recipe/creative mode buttons, shorter labels and clearer tooltips. Preserve existing settings and Cloth Config.
+- Merge recipe families producing the same item and components in expandable mode; retain exact ingredient variants, availability and pins.
+- Inset and center the recipe-group + / − badge inside its tile.
+- Remember brewing and smithing book visibility independently in saved settings, including changes made with Escape.
+- Prevent clicks through narrow workstation books, preserve inventory shortcuts after leaving search, and test controls at multiple GUI sizes.
+
 # 1.11.1+26.3
 
 - Keep ownership of locally unlocked recipes across dimension changes, so disabling unlock-all removes them while retaining learned recipes.

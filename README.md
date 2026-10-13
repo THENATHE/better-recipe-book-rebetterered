@@ -4,7 +4,7 @@
 
 ![Better Recipe Book: Rebetterered icon](ported/fabric/src/main/resources/assets/brb/icon.png)
 
-The **1.11.1** update fixes recipe cleanup after changing dimensions, ingredient redistribution in the crafting grid, clicks through the recipe alternatives popup, and pinning the hovered recipe. See the [changelog](docs/CHANGELOG.md) for this update and the [latest release](https://github.com/THENATHE/better-recipe-book-rebetterered/releases/latest) for downloads.
+The **1.11.2** update brings vanilla-style workstation books, simpler settings with working mode buttons, combined same-output recipe groups, and remembered brewing/smithing book states. See the [changelog](docs/CHANGELOG.md) for this update and the [latest release](https://github.com/THENATHE/better-recipe-book-rebetterered/releases/latest) for downloads.
 
 ## What it is
 
@@ -27,7 +27,7 @@ Thanks for your hard work, **marshmallow**, and everyone who contributed to the 
 - Scroll recipe pages, with optional wrapping from the last page back to the first.
 - Keep the inventory centered when opening the book.
 - Configure recipe animation and alternative-recipe presentation.
-- Use recipe panels for brewing stands and smithing tables.
+- Use vanilla-style recipe panels for brewing stands and smithing tables, each remembering its last open or closed state across restarts.
 - Open settings directly from the recipe book.
 
 #### My tweaks and additions
@@ -48,6 +48,8 @@ Choose the presentation that works best for you:
 | **Vanilla** | Keep the familiar grouped, cycling recipe presentation. |
 | **Expandable** | Use **+ / −** to reveal or hide individual variants inside a group. Expanded variants stay fixed. |
 | **All** | Show every recipe variant individually, without cycling. |
+
+Recipes producing the same item and components share an expandable group, even when they use different ingredients or produce different counts. Each expanded recipe keeps its own ingredients and crafting behavior.
 
 Expansion headers only change which recipes are visible. Clicking a **+ / −** header never places ingredients or crafts an item. **Expandable** is the default.
 
@@ -112,7 +114,7 @@ Server rules still apply, including limited crafting. Recipes supplied only by a
 
 1. Use **Minecraft 26.3**, **Java 25 or newer**, and **Fabric Loader 0.19.5 or newer**.
 2. Install **Fabric API 0.161.0+26.3** for this release.
-3. Download `better-recipe-book-rebetterered-1.11.1+26.3.jar` from [Releases](https://github.com/THENATHE/better-recipe-book-rebetterered/releases/latest) and put it in your client's `mods/` folder.
+3. Download `better-recipe-book-rebetterered-1.11.2+26.3.jar` from [Releases](https://github.com/THENATHE/better-recipe-book-rebetterered/releases/latest) and put it in your client's `mods/` folder.
 4. Remove other BRB variants from that instance. Keep a backup of your existing settings and pins when upgrading.
 5. Launch Minecraft and choose your preferred display and crafting settings from the recipe-book settings button or Mod Menu.
 
@@ -149,6 +151,6 @@ The first command runs the standard regression checks and builds the mod and sep
 
 ### Verification and compatibility limits
 
-Version **1.11.1+26.3** passed **192 recorded singleplayer checks**, **42 packaged multiplayer assertions** against an unmodified vanilla server, the standard regression checks, and GitHub CI. A separate source build reproduced both JARs byte-for-byte, and downloaded release assets matched their local checksums.
+Version **1.11.2+26.3** passed **505 recorded singleplayer checks**, including 225 settings checks, **42 packaged multiplayer assertions** against an unmodified vanilla server, and the standard regression checks. A separate source build reproduced both JARs byte-for-byte. See [validation](docs/VALIDATION.md) for evidence and scope.
 
 See [validation](docs/VALIDATION.md), [packaged multiplayer QA](qa/REMOTE-QA.md), and the [changelog](docs/CHANGELOG.md) for coverage and remaining limits. No compatible Minecraft 26.3 Mouse Wheelie release was available to test its optional integration. Other mod combinations and custom datapacks have not been exhaustively tested.

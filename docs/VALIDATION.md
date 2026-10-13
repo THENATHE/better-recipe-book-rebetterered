@@ -1,25 +1,27 @@
-# Validation - Better Recipe Book: Rebetterered 1.11.1+26.3
+# Validation - Better Recipe Book: Rebetterered 1.11.2+26.3
 
-Tested 2026-10-12. Installable JAR SHA-256: `1788316a99505b767f6076884469910de62bb04737212bc2a6195e28e143fa04`.
+Tested 2026-10-12. Installable JAR SHA-256: `b18f78dff65c6e5a2859c8ae5e0f966c0374b41ea3d62282d678f86e6c31d8dc`.
 
 ## Passed
 
-- Clean `check build clientqaJar` with complete Microsoft Java 25, Gradle 9.6.1 and Loom 1.17.20.
-- Standard regressions: 131,072 container-sequence comparisons, six ingredient-assignment cases, 11 pin persistence/identity checks and 27 creative selector checks. These now run under Gradle `check`.
-- **192 recorded actual-client checks**, including all four reviewed fixes. The recipe suite also contains multiple assertions grouped into one evidence entry. All three recipe modes, both creative modes, normal/Shift-left placement, right/Shift-right crafting, exact pins, brewing/smithing, settings, pagination and overflow preservation passed.
-- New crafting cases exercise actual widgets in both 2x2 and 3x3 grids: stacked-grid left/Shift-left redistribution, right/Shift-right crafting, named-material refusal, full-inventory refusal, authoritative item conservation and empty cursors.
-- New popup and pin cases verify the instant toggle closes the vanilla alternatives popup, externally enabled instant crafting does not consume clicks through it, and native/workstation pins prefer hovered recipes over stale focus.
-- An actual Nether dimension roundtrip verifies the same recipe book survives, disabling unlock-all removes every local recipe, server-learned entries remain, and subsequent toggles stay correct.
-- **42 packaged multiplayer assertions** against an unmodified Mojang 26.3 server bound to localhost. The exact installable JAR above was used, with Fabric API 0.161.0+26.3 and optional Mod Menu 21.0.0. There were no server mods. Both learned and undiscovered recipe controls and server inventory counts passed. Cloth Config opened successfully; Architectury was absent.
-- An independent sanitized source export passed clean build and all standard checks, reproducing the installable and sources JARs byte-for-byte.
-- Production ZIP integrity, metadata, nested Cloth Config and exclusion of QA classes checked. The icon is unchanged from 1.11.0.
+- Clean `check build clientqaJar` with complete Microsoft Java 25, Gradle 9.6.1 and Loom 1.17.20; combined client run also completed successfully.
+- Standard regressions: 131,072 container-sequence comparisons, six ingredient-assignment cases, 11 pin persistence/identity checks and 27 creative selector checks.
+- **505 recorded actual-client checks**, covering all recipe and creative modes, normal/Shift-left placement, right/Shift-right crafting, exact pins, brewing/smithing, pagination, overflow preservation and dimension-change recipe cleanup. Recipe-mode assertions are grouped into one evidence entry.
+- **225 settings checks** within that total: all 13 visible controls clicked through actual screen input at 320x240, 427x240 and 640x360 GUI sizes; non-overlapping labels; every recipe/creative mode and wraparound; keyboard activation; wheel scrolling; boolean/enum Reset; Save; TOML reread; reopening; Cancel/Discard; unchanged live settings before Save.
+- **110 workstation checks** within that total: native-style controls, category tabs, craftable filtering, search, paging, exact pins, crafting/brewing, narrow layouts with blocked background slots, focus release after clicking away, and actual settings Save disabling/re-enabling the same workstation screen.
+- Brewing and smithing each reopen in their last open/closed state, remember Escape closure, and preserve the other workstation preference. Separate TOML deserialization verifies disk persistence. Furnace, blast furnace and smoker retain native recipe-book state handling.
+- Same-output grouping checks cover separate source collections, component isolation, output-count differences, connected recipe families, exact source IDs/pins, craftability and unchanged Vanilla/All behavior.
+- Screenshots inspected for the vanilla-style workstation layouts, upper/lower config rows and inset centered native + / − badges.
+- **42 packaged multiplayer assertions** against an unmodified Mojang 26.3 server on localhost using the exact installable JAR, Fabric API 0.161.0+26.3 and optional Mod Menu 21.0.0. No server mods. Learned/undiscovered recipe controls and authoritative item counts passed; Cloth Config opened and Architectury was absent.
+- An independent sanitized source export passed clean build and standard checks, reproducing both installable and sources JARs byte-for-byte.
+- Production ZIP integrity, metadata, nested Cloth Config, icon equality and exclusion of QA classes checked. Original developer JAR checksum rechecked unchanged.
 
-Evidence lives in `qa/release-evidence/` in source and `qa/` in the release package. Detailed local launch logs are retained in the development workspace, outside the public source.
+Evidence lives in `qa/release-evidence/` in source and `qa/` in the release package. Detailed local launch logs remain outside public source.
 
 ## Scope and limitations
 
-This is targeted regression and gameplay QA, not an exhaustive modpack/security certification or frame-rate benchmark. The singleplayer profile omits Mod Menu; packaged multiplayer includes it. No compatible 26.3 Mouse Wheelie release was available, so its present profile remains untested.
+This is targeted regression/gameplay QA, not exhaustive modpack certification or a frame-rate benchmark. Singleplayer omits Mod Menu; packaged multiplayer includes it. The preserved Mouse Wheelie integration remains untested because no compatible 26.3 release was available.
 
-Redistribution preflights temporary inventory storage and safely refuses if the grid cannot be returned there; it does not attempt a direct cursor-only shuffle through a full inventory. Brewing/smelting retain normal durations. Multiplayer previews cannot know undisclosed server-only recipe changes. Original brewing/smithing favorites using old potion/template aliases may need to be pinned again; that separate migration issue was outside these four fixes.
+Grouping joins distinct recipes producing the same item and components; it does not split alternatives inside a single tag-based ingredient into separate recipes. Brewing/smelting retain normal durations. Multiplayer previews cannot know undisclosed server-only recipe changes. Original brewing/smithing favorites using old potion/template aliases may need to be pinned again.
 
-The unchanged original developer release and previous 1.11.0 port are preserved. The original JAR's checksum was rechecked; its prior 1.21.1 startup smoke remains historical evidence, not a new gameplay test in this release.
+Workstation state persistence was verified by actual close/reopen and independent on-disk deserialization, without an additional full game restart. Stonecutters use an always-visible selector, not a collapsible recipe book. The original developer release and previous port releases are preserved; the original 1.21.1 startup check remains historical evidence rather than a fresh gameplay test.

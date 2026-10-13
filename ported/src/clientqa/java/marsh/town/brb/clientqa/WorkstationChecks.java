@@ -11,11 +11,15 @@ import net.fabricmc.fabric.api.client.gametest.v1.context.ClientGameTestContext;
 import net.fabricmc.fabric.api.client.gametest.v1.context.TestSingleplayerContext;
 import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.components.Button;
+import me.shedaniel.autoconfig.AutoConfigClient;
+import me.shedaniel.clothconfig2.gui.ClothConfigScreen;
+import marsh.town.brb.config.Config;
 import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.gui.components.ImageButton;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.gui.screens.inventory.BrewingStandScreen;
 import net.minecraft.client.gui.screens.inventory.SmithingScreen;
+import net.minecraft.client.input.CharacterEvent;
 import net.minecraft.client.input.KeyEvent;
 import net.minecraft.client.input.MouseButtonEvent;
 import net.minecraft.client.input.MouseButtonInfo;
@@ -50,6 +54,9 @@ public final class WorkstationChecks {
     public static void run(ClientGameTestContext context, TestSingleplayerContext world, List<String> evidence) {
         RecipeDisplayMode originalMode = BetterRecipeBook.config.recipeDisplayMode;
         boolean originalInstant = BetterRecipeBook.config.instantCraft.enabled;
+        boolean originalEnableBook = BetterRecipeBook.config.enableBook;
+        boolean originalBrewingOpen = BetterRecipeBook.config.brewingBookOpen;
+        boolean originalSmithingOpen = BetterRecipeBook.config.smithingBookOpen;
         Set<Identifier> originalPins = new HashSet<>(BetterRecipeBook.pinnedRecipeManager.pinned);
         List<ItemStack> originalInventory = world.getServer().computeOnServer(server -> {
             var inventory = server.getPlayerList().getPlayers().getFirst().getInventory();
@@ -65,6 +72,10 @@ public final class WorkstationChecks {
             Item template = item("sentry_armor_trim_smithing_template");
             ItemStack base = helmet("QA Exact Trim");
             openSmithing(context, world, List.of(base, new ItemStack(template), new ItemStack(Items.IRON_INGOT)));
+            inspectRememberedState(context, () -> openSmithing(context, world,
+                    List.of(base, new ItemStack(template), new ItemStack(Items.IRON_INGOT)), false),
+                    WorkstationRecipe.Kind.SMITHING, evidence);
+            inspectPresentation(context, evidence, "smithing", 2);
             WorkstationRecipe recipe = context.computeOnClient(client -> matchingSmithing(template, base, Items.IRON_INGOT));
             ItemStack expected = recipe.resultFor(List.of(new ItemStack(template), base, new ItemStack(Items.IRON_INGOT)));
             check(!expected.isEmpty(), "native trim recipe computes a concrete output", evidence);
@@ -82,9 +93,9 @@ public final class WorkstationChecks {
             check(BetterRecipeBook.pinnedRecipeManager.has(recipe.id()), "workstation pin records the exact trim variant", evidence);
             context.runOnClient(client -> {
                 var panel = panel(client.gui.screen());
-                button(panel, "Pins").onPress(new KeyEvent(InputConstants.KEY_RETURN, 0, 0));
+                click(client.gui.screen(), tabs(panel).getLast(), 0, false);
                 check(recipeIds(panel).contains(recipe.id()), "Pins tab retains the selected concrete trim variant", evidence);
-                button(panel, "All").onPress(new KeyEvent(InputConstants.KEY_RETURN, 0, 0));
+                click(client.gui.screen(), tabs(panel).getFirst(), 0, false);
             });
             clickRecipe(context, 1, false);
             context.waitFor(client -> count(client.player.getInventory(), expected) == 1, 200);
@@ -137,6 +148,9 @@ public final class WorkstationChecks {
             context.runOnClient(client -> inspectModes(panel(client.gui.screen()), evidence));
 
             BlockPos brewPos = openBrewing(context, world);
+            inspectRememberedState(context, () -> openBrewing(context, world, false),
+                    WorkstationRecipe.Kind.BREWING, evidence);
+            inspectPresentation(context, evidence, "brewing", 3);
             ItemStack awkward = PotionContents.createItemStack(Items.POTION, Potions.AWKWARD);
             WorkstationRecipe brew = context.computeOnClient(client -> WorkstationRecipes.forMenu(client.player.containerMenu).stream()
                     .filter(candidate -> candidate.kind() == WorkstationRecipe.Kind.BREWING
@@ -173,6 +187,10 @@ public final class WorkstationChecks {
                 BetterRecipeBook.instantCraftingManager.cancelPending();
                 BetterRecipeBook.config.recipeDisplayMode = originalMode;
                 BetterRecipeBook.config.instantCraft.enabled = originalInstant;
+                BetterRecipeBook.config.enableBook = originalEnableBook;
+                BetterRecipeBook.config.brewingBookOpen = originalBrewingOpen;
+                BetterRecipeBook.config.smithingBookOpen = originalSmithingOpen;
+                if (BetterRecipeBook.configHolder != null) BetterRecipeBook.configHolder.save();
                 var current = new HashSet<>(BetterRecipeBook.pinnedRecipeManager.pinned);
                 for (Identifier id : current) if (!originalPins.contains(id)) BetterRecipeBook.pinnedRecipeManager.toggle(id);
                 for (Identifier id : originalPins) if (!current.contains(id)) BetterRecipeBook.pinnedRecipeManager.toggle(id);
@@ -190,6 +208,248 @@ public final class WorkstationChecks {
         }
     }
 
+    private static void inspectRememberedState(ClientGameTestContext context, Runnable reopen,
+                                               WorkstationRecipe.Kind kind, List<String> evidence) {
+        String name = kind.name().toLowerCase(java.util.Locale.ROOT);
+        boolean otherOpen = context.computeOnClient(client -> kind == WorkstationRecipe.Kind.BREWING
+                ? BetterRecipeBook.config.smithingBookOpen : BetterRecipeBook.config.brewingBookOpen);
+        context.runOnClient(client -> {
+            var screen = client.gui.screen();
+            var toggle = screen.children().stream().filter(ImageButton.class::isInstance)
+                    .map(ImageButton.class::cast).findFirst().orElseThrow();
+            click(screen, toggle, 0, false);
+            check(!panel(screen).isVisible(), name + " toggle closes the book before reopening the workstation", evidence);
+            assertStoredBookState(kind, false, otherOpen, evidence);
+        });
+        reopen.run();
+        check(context.computeOnClient(client -> !panel(client.gui.screen()).isVisible()),
+                name + " workstation reopens with its recipe book still closed", evidence);
+        openBook(context);
+        context.runOnClient(client -> assertStoredBookState(kind, true, otherOpen, evidence));
+        reopen.run();
+        check(context.computeOnClient(client -> panel(client.gui.screen()).isVisible()),
+                name + " workstation reopens with its recipe book still open", evidence);
+        context.runOnClient(client -> {
+            var screen = client.gui.screen();
+            screen.keyPressed(new KeyEvent(InputConstants.KEY_ESCAPE, 0, 0));
+            check(client.gui.screen() == screen && !panel(screen).isVisible(),
+                    name + " Escape closes the book before reopening the workstation", evidence);
+            assertStoredBookState(kind, false, otherOpen, evidence);
+        });
+        reopen.run();
+        check(context.computeOnClient(client -> !panel(client.gui.screen()).isVisible()),
+                name + " remembers a book closed with Escape", evidence);
+        openBook(context);
+    }
+
+    private static void assertStoredBookState(WorkstationRecipe.Kind kind, boolean expected, boolean otherExpected,
+                                              List<String> evidence) {
+        try {
+            var serializer = new me.shedaniel.autoconfig.serializer.Toml4jConfigSerializer<>(
+                    marsh.town.brb.config.Config.class.getAnnotation(me.shedaniel.autoconfig.annotation.Config.class),
+                    marsh.town.brb.config.Config.class);
+            var restored = serializer.deserialize();
+            boolean brewing = kind == WorkstationRecipe.Kind.BREWING;
+            check((brewing ? restored.brewingBookOpen : restored.smithingBookOpen) == expected,
+                    kind.name().toLowerCase(java.util.Locale.ROOT) + " book " + (expected ? "open" : "closed")
+                            + " preference survives reloading settings from disk", evidence);
+            check((brewing ? restored.smithingBookOpen : restored.brewingBookOpen) == otherExpected,
+                    kind.name().toLowerCase(java.util.Locale.ROOT) + " book toggle preserves the other workstation's saved preference", evidence);
+        } catch (me.shedaniel.autoconfig.serializer.ConfigSerializer.SerializationException failure) {
+            throw new AssertionError("Could not reload saved workstation preferences", failure);
+        }
+    }
+
+    private static void inspectPresentation(ClientGameTestContext context, List<String> evidence,
+                                            String workstation, int categories) {
+        inspectSettingsDisable(context, evidence, workstation);
+        context.waitTicks(2);
+        context.runOnClient(client -> {
+            var screen = client.gui.screen();
+            var panel = panel(screen);
+            search(panel).setValue("");
+            List<Identifier> all = recipeIds(panel);
+            check(all.size() > 20, workstation + " book offers multiple pages of native recipes", evidence);
+            assertVisibleBounds(screen, panel, workstation, evidence);
+            List<Identifier> firstPage = displayedIds(panel);
+            click(screen, (AbstractWidget) field(panel, "next"), 0, false);
+            check(!displayedIds(panel).equals(firstPage), workstation + " forward arrow shows a different recipe page", evidence);
+            click(screen, (AbstractWidget) field(panel, "previous"), 0, false);
+            check(displayedIds(panel).equals(firstPage), workstation + " back arrow restores the first recipe page", evidence);
+            for (int category = 0; category < categories; category++) {
+                click(screen, tabs(panel).get(category + 1), 0, false);
+                final int expectedCategory = category;
+                List<WorkstationRecipe> shown = rowRecipes(panel);
+                check(!shown.isEmpty() && shown.stream().allMatch(recipe -> recipe.category() == expectedCategory),
+                        workstation + " category tab " + category + " filters to its own native recipes", evidence);
+            }
+            click(screen, tabs(panel).getLast(), 0, false);
+            check(rowRecipes(panel).stream().allMatch(recipe -> BetterRecipeBook.pinnedRecipeManager.has(recipe.id())),
+                    workstation + " pin tab excludes unpinned variants", evidence);
+            click(screen, tabs(panel).getFirst(), 0, false);
+            check(recipeIds(panel).equals(all), workstation + " search tab restores the full catalogue", evidence);
+            click(screen, (AbstractWidget) field(panel, "filter"), 0, false);
+            List<WorkstationRecipe> craftable = rowRecipes(panel);
+            check(!craftable.isEmpty() && craftable.size() < all.size()
+                            && craftable.stream().allMatch(recipe -> marsh.town.brb.workstation.WorkstationTransfer.canPlace(client.player.containerMenu, recipe)),
+                    workstation + " craftable toggle keeps available variants and excludes unavailable recipes", evidence);
+            click(screen, (AbstractWidget) field(panel, "filter"), 0, false);
+            check(recipeIds(panel).equals(all), workstation + " show-all toggle restores unavailable recipes", evidence);
+            click(screen, search(panel), 0, false);
+            screen.keyPressed(new KeyEvent(InputConstants.KEY_E, 0, 0));
+            screen.charTyped(new CharacterEvent('e'));
+            check(client.gui.screen() == screen && search(panel).getValue().equals("e"),
+                    workstation + " typing the inventory key into search keeps the workstation open and enters text", evidence);
+            var blankClick = new MouseButtonEvent(search(panel).getX() - 22, search(panel).getY() + 148,
+                    new MouseButtonInfo(InputConstants.MOUSE_BUTTON_LEFT, 0));
+            screen.mouseClicked(blankClick, false);
+            screen.mouseReleased(blankClick);
+            screen.charTyped(new CharacterEvent('q'));
+            check(!panel.capturesInput() && search(panel).getValue().equals("e"),
+                    workstation + " clicking blank book space releases search keyboard capture", evidence);
+            click(screen, search(panel), 0, false);
+            var outsideClick = new MouseButtonEvent(screen.width - 1, 0,
+                    new MouseButtonInfo(InputConstants.MOUSE_BUTTON_LEFT, 0));
+            screen.mouseClicked(outsideClick, false);
+            screen.mouseReleased(outsideClick);
+            screen.charTyped(new CharacterEvent('q'));
+            check(!panel.capturesInput() && search(panel).getValue().equals("e"),
+                    workstation + " clicking outside the book releases search keyboard capture", evidence);
+            search(panel).setValue("qa-no-such-workstation-recipe");
+            check(tiles(panel).isEmpty(), workstation + " unmatched search hides recipe tiles", evidence);
+            search(panel).setValue(all.getFirst().toString());
+            check(recipeIds(panel).equals(List.of(all.getFirst())), workstation + " search isolates an exact recipe variant", evidence);
+            search(panel).setValue("");
+            check(displayedIds(panel).equals(firstPage), workstation + " clearing search restores the first page", evidence);
+        });
+        context.waitTicks(3);
+        evidence.add("SCREENSHOT: " + context.takeScreenshot("brb-" + workstation + "-vanilla-book"));
+        context.runOnClient(client -> {
+            var screen = client.gui.screen();
+            int width = screen.width;
+            int height = screen.height;
+            try {
+                screen.resize(340, 240);
+                var panel = panel(screen);
+                check(panel.isVisible(), workstation + " book stays open after narrowing the screen", evidence);
+                assertVisibleBounds(screen, panel, workstation + " narrow", evidence);
+                click(screen, tabs(panel).get(1), 0, false);
+                check(!rowRecipes(panel).isEmpty() && rowRecipes(panel).stream().allMatch(recipe -> recipe.category() == 0),
+                        workstation + " side tab remains clickable at narrow width", evidence);
+                var menu = client.player.containerMenu;
+                List<ItemStack> before = menu.slots.stream().map(slot -> slot.getItem().copy()).toList();
+                var occupied = menu.slots.stream().filter(slot -> !slot.getItem().isEmpty()).findFirst().orElseThrow();
+                var hiddenSlotClick = new MouseButtonEvent((340 - 176) / 2 + occupied.x + 8,
+                        (240 - 166) / 2 + occupied.y + 8, new MouseButtonInfo(InputConstants.MOUSE_BUTTON_LEFT, 0));
+                screen.mouseClicked(hiddenSlotClick, false);
+                screen.mouseReleased(hiddenSlotClick);
+                boolean unchanged = menu.getCarried().isEmpty();
+                for (int index = 0; index < before.size(); index++) unchanged &= ItemStack.matches(before.get(index), menu.getSlot(index).getItem());
+                check(unchanged, workstation + " narrow overlay prevents picking up items from the hidden inventory", evidence);
+                screen.keyPressed(new KeyEvent(InputConstants.KEY_ESCAPE, 0, 0));
+                check(client.gui.screen() == screen && !panel.isVisible(),
+                        workstation + " Escape closes the narrow book while retaining the workstation", evidence);
+                var toggle = screen.children().stream().filter(ImageButton.class::isInstance)
+                        .map(ImageButton.class::cast).findFirst().orElseThrow();
+                click(screen, toggle, 0, false);
+                check(panel.isVisible(), workstation + " narrow book toggle reopens after Escape", evidence);
+                click(screen, toggle, 0, false);
+                check(!panel.isVisible(), workstation + " narrow book toggle closes the overlay", evidence);
+                click(screen, toggle, 0, false);
+                check(panel.isVisible(), workstation + " narrow book toggle reopens the overlay", evidence);
+            } finally {
+                screen.resize(width, height);
+            }
+        });
+    }
+
+    private static void inspectSettingsDisable(ClientGameTestContext context, List<String> evidence, String workstation) {
+        var parent = context.computeOnClient(client -> {
+            var screen = client.gui.screen();
+            var book = panel(screen);
+            click(screen, search(book), 0, false);
+            check(book.capturesInput(), workstation + " search captures input before opening settings", evidence);
+            click(screen, (AbstractWidget) field(book, "settings"), 0, false);
+            check(client.gui.screen() instanceof ClothConfigScreen,
+                    workstation + " gear opens the actual settings screen", evidence);
+            return screen;
+        });
+        toggleEnableBookAndSave(context, workstation + "-disable-book");
+        context.runOnClient(client -> {
+            check(client.gui.screen() == parent && !BetterRecipeBook.config.enableBook,
+                    workstation + " disabling the book and saving returns to the same workstation", evidence);
+            check(field(parent, "brb$book") == null && field(parent, "brb$toggle") == null
+                            && parent.children().stream().noneMatch(WorkstationBookPanel.class::isInstance)
+                            && !parent.isInputCaptured(),
+                    workstation + " disabled book releases its renderer, toggle and input capture", evidence);
+        });
+        context.waitTicks(2);
+        context.runOnClient(client -> client.gui.setScreen(AutoConfigClient.getConfigScreen(Config.class, parent).get()));
+        toggleEnableBookAndSave(context, workstation + "-enable-book");
+        context.runOnClient(client -> {
+            check(client.gui.screen() == parent && BetterRecipeBook.config.enableBook && panel(parent).isVisible(),
+                    workstation + " re-enabling restores the book and preserves its saved open state", evidence);
+        });
+    }
+
+    private static void toggleEnableBookAndSave(ClientGameTestContext context, String screenshotName) {
+        // Cloth assigns entry bounds and footer state during rendering, not during screen initialization.
+        context.takeScreenshot("brb-" + screenshotName + "-before");
+        context.runOnClient(client -> {
+            var settings = (ClothConfigScreen) client.gui.screen();
+            var enabled = settings.getCategorizedEntries().values().stream().flatMap(List::stream)
+                    .filter(entry -> entry.getFieldName().equals(Component.translatable("text.autoconfig.brb.option.enableBook")))
+                    .findFirst().orElseThrow();
+            boolean before = (Boolean) enabled.getValue();
+            click(settings, (AbstractWidget) enabled.children().getFirst(), 0, false);
+            if (enabled.getValue().equals(before)) throw new AssertionError("Master-switch click did not change the settings entry");
+        });
+        context.takeScreenshot("brb-" + screenshotName + "-edited");
+        context.waitFor(client -> client.gui.screen() instanceof ClothConfigScreen settings
+                && settings.children().stream().filter(Button.class::isInstance).map(Button.class::cast)
+                .anyMatch(button -> button.active && button.visible && button.getY() > 0
+                        && button.getMessage().equals(Component.translatable("text.cloth-config.save_and_done"))), 100);
+        context.runOnClient(client -> {
+            var settings = (ClothConfigScreen) client.gui.screen();
+            var save = settings.children().stream().filter(Button.class::isInstance).map(Button.class::cast)
+                    .filter(button -> button.active && button.visible
+                            && button.getMessage().equals(Component.translatable("text.cloth-config.save_and_done")))
+                    .findFirst().orElseThrow(() -> new AssertionError("Rendered settings screen has no active Save button"));
+            click(settings, save, 0, false);
+        });
+    }
+
+    private static void assertVisibleBounds(net.minecraft.client.gui.screens.Screen screen,
+                                            WorkstationBookPanel panel, String description, List<String> evidence) {
+        var widgets = panel.children().stream().filter(AbstractWidget.class::isInstance)
+                .map(AbstractWidget.class::cast).filter(widget -> widget.visible).toList();
+        check(widgets.stream().allMatch(widget -> widget.getX() >= 0 && widget.getY() >= 0
+                        && widget.getRight() <= screen.width && widget.getBottom() <= screen.height),
+                description + " visible book controls stay within the screen", evidence);
+        boolean overlaps = false;
+        for (int first = 0; first < widgets.size(); first++) {
+            for (int second = first + 1; second < widgets.size(); second++) {
+                var a = widgets.get(first);
+                var b = widgets.get(second);
+                overlaps |= a.getX() < b.getRight() && a.getRight() > b.getX()
+                        && a.getY() < b.getBottom() && a.getBottom() > b.getY();
+            }
+        }
+        check(!overlaps, description + " book controls and recipe tiles do not overlap", evidence);
+    }
+
+    private static List<Identifier> displayedIds(WorkstationBookPanel panel) {
+        return tiles(panel).stream().map(tile -> ((WorkstationRecipe) field(tile, "displayed")).id()).toList();
+    }
+
+    private static List<WorkstationRecipe> rowRecipes(WorkstationBookPanel panel) {
+        var recipes = new ArrayList<WorkstationRecipe>();
+        for (Object row : (List<?>) field(panel, "rows")) {
+            for (Object recipe : (List<?>) recordField(row, "recipes")) recipes.add((WorkstationRecipe) recipe);
+        }
+        return recipes;
+    }
+
     private static ItemStack helmet(String name) {
         var stack = new ItemStack(item("diamond_helmet"));
         stack.set(DataComponents.CUSTOM_NAME, Component.literal(name));
@@ -204,6 +464,11 @@ public final class WorkstationChecks {
     }
 
     private static void openSmithing(ClientGameTestContext context, TestSingleplayerContext world, List<ItemStack> stock) {
+        openSmithing(context, world, stock, true);
+    }
+
+    private static void openSmithing(ClientGameTestContext context, TestSingleplayerContext world,
+                                     List<ItemStack> stock, boolean showBook) {
         close(context, world);
         var encodedStock = context.computeOnClient(client -> {
             var ops = client.level.registryAccess().createSerializationContext(JsonOps.INSTANCE);
@@ -228,10 +493,14 @@ public final class WorkstationChecks {
         world.getConnection().waitForClientboundPackets();
         context.waitForScreen(SmithingScreen.class);
         context.waitTicks(3);
-        openBook(context);
+        if (showBook) openBook(context);
     }
 
     private static BlockPos openBrewing(ClientGameTestContext context, TestSingleplayerContext world) {
+        return openBrewing(context, world, true);
+    }
+
+    private static BlockPos openBrewing(ClientGameTestContext context, TestSingleplayerContext world, boolean showBook) {
         close(context, world);
         BlockPos pos = world.getServer().computeOnServer(server -> {
             var player = server.getPlayerList().getPlayers().getFirst();
@@ -251,7 +520,7 @@ public final class WorkstationChecks {
         world.getConnection().waitForClientboundPackets();
         context.waitForScreen(BrewingStandScreen.class);
         context.waitTicks(3);
-        openBook(context);
+        if (showBook) openBook(context);
         return pos;
     }
 
@@ -377,9 +646,9 @@ public final class WorkstationChecks {
         return panel.children().stream().filter(EditBox.class::isInstance).map(EditBox.class::cast).findFirst().orElseThrow();
     }
 
-    private static Button button(WorkstationBookPanel panel, String label) {
-        return panel.children().stream().filter(Button.class::isInstance).map(Button.class::cast)
-                .filter(button -> button.getMessage().getString().equals(label)).findFirst().orElseThrow();
+    @SuppressWarnings("unchecked")
+    private static List<AbstractWidget> tabs(WorkstationBookPanel panel) {
+        return (List<AbstractWidget>) field(panel, "tabs");
     }
 
     @SuppressWarnings("unchecked")

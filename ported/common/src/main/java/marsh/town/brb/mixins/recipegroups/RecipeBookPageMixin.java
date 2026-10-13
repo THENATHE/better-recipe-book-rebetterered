@@ -6,6 +6,7 @@ import marsh.town.brb.mixins.accessors.RecipeBookComponentAccessor;
 import marsh.town.brb.recipegroups.GroupedRecipePage;
 import marsh.town.brb.recipegroups.RecipeDisplayMode;
 import marsh.town.brb.recipegroups.RecipeDisplaySearch;
+import marsh.town.brb.recipegroups.RecipeOutputGroups;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.item.crafting.display.SlotDisplayContext;
 import marsh.town.brb.recipegroups.RecipeTileCollection;
@@ -58,23 +59,37 @@ public abstract class RecipeBookPageMixin implements GroupedRecipePage {
             brb$searchCollapsed.clear();
             brb$lastSearch = search;
         }
-        for (RecipeCollection source : sources) {
-            List<RecipeDisplayEntry> entries = source.getSelectedRecipes(filtering
-                    ? RecipeCollection.CraftableStatus.CRAFTABLE : RecipeCollection.CraftableStatus.ANY);
-            if (searching && Minecraft.getInstance().level != null) {
-                var context = SlotDisplayContext.fromLevel(Minecraft.getInstance().level);
-                entries = entries.stream().filter(entry -> RecipeDisplaySearch.matches(entry, search, context)).toList();
+        var client = Minecraft.getInstance();
+        var context = client.level == null ? null : SlotDisplayContext.fromLevel(client.level);
+        List<List<RecipeCollection>> groups = sources.stream().map(List::of).toList();
+        if (mode == RecipeDisplayMode.EXPANDABLE && context != null) {
+            groups = RecipeOutputGroups.merge(groups, source -> source.getRecipes().stream()
+                    .flatMap(entry -> entry.resultItems(context).stream()).toList());
+        }
+        for (List<RecipeCollection> group : groups) {
+            var sourcesByEntry = new java.util.IdentityHashMap<RecipeDisplayEntry, RecipeCollection>();
+            List<RecipeDisplayEntry> entries = new ArrayList<>();
+            for (RecipeCollection source : group) {
+                for (RecipeDisplayEntry entry : source.getSelectedRecipes(filtering
+                        ? RecipeCollection.CraftableStatus.CRAFTABLE : RecipeCollection.CraftableStatus.ANY)) {
+                    if (searching && context != null && !RecipeDisplaySearch.matches(entry, search, context)) continue;
+                    entries.add(entry);
+                    sourcesByEntry.put(entry, source);
+                }
             }
             if (entries.isEmpty()) continue;
-            String key = source.getRecipes().stream().map(entry -> String.valueOf(BetterRecipeBook.pinnedRecipeManager.identity(entry)))
+            String key = group.stream().flatMap(source -> source.getRecipes().stream())
+                    .map(entry -> String.valueOf(BetterRecipeBook.pinnedRecipeManager.identity(entry)))
                     .sorted().collect(java.util.stream.Collectors.joining("|"));
             boolean expanded = searching ? !brb$searchCollapsed.contains(key) : brb$expanded.contains(key);
             if (mode == RecipeDisplayMode.EXPANDABLE && entries.size() > 1) {
-                tiles.add(new RecipeTileCollection(source, entries.getFirst(), true, expanded, key));
+                RecipeDisplayEntry representative = entries.stream()
+                        .filter(entry -> sourcesByEntry.get(entry).isCraftable(entry.id())).findFirst().orElse(entries.getFirst());
+                tiles.add(new RecipeTileCollection(sourcesByEntry.get(representative), representative, true, expanded, key));
                 if (!expanded) continue;
             }
             for (RecipeDisplayEntry entry : entries) {
-                tiles.add(new RecipeTileCollection(source, entry, false, false, key));
+                tiles.add(new RecipeTileCollection(sourcesByEntry.get(entry), entry, false, false, key));
             }
         }
         if (BetterRecipeBook.config.enablePinning) {

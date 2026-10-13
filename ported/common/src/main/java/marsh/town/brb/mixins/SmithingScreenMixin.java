@@ -37,6 +37,8 @@ public abstract class SmithingScreenMixin extends ItemCombinerScreen<SmithingMen
 
     @Inject(method = "subInit", at = @At("RETURN"))
     private void brb$initializeBook(CallbackInfo ci) {
+        brb$book = null;
+        brb$toggle = null;
         if (!BetterRecipeBook.config.enableBook) return;
         brb$book = new WorkstationBookPanel(menu, this::updateArmorStandPreview);
         addWidget(brb$book);
@@ -66,8 +68,52 @@ public abstract class SmithingScreenMixin extends ItemCombinerScreen<SmithingMen
     private void brb$renderBook(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float delta, CallbackInfo ci) {
         if (brb$book != null) {
             brb$book.renderGhost(graphics, leftPos, topPos, mouseX, mouseY);
+            graphics.nextStratum();
             brb$book.extractRenderState(graphics, mouseX, mouseY, delta);
+            graphics.nextStratum();
+            extractCarriedItem(graphics, mouseX, mouseY);
         }
+    }
+
+    @Unique
+    private boolean brb$isNarrowBookOpen() {
+        return width < 379 && brb$book != null && brb$book.isVisible();
+    }
+
+    @Inject(method = "extractRenderState", at = @At("HEAD"), cancellable = true)
+    private void brb$renderNarrowBook(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float delta, CallbackInfo ci) {
+        if (!brb$isNarrowBookOpen()) return;
+        hoveredSlot = null;
+        extractBackground(graphics, mouseX, mouseY, delta);
+        brb$toggle.extractRenderState(graphics, mouseX, mouseY, delta);
+        graphics.nextStratum();
+        brb$book.extractRenderState(graphics, mouseX, mouseY, delta);
+        graphics.nextStratum();
+        extractCarriedItem(graphics, mouseX, mouseY);
+        ci.cancel();
+    }
+
+    @Override
+    public boolean mouseClicked(MouseButtonEvent event, boolean doubleClick) {
+        if (brb$book != null && brb$book.mouseClicked(event, doubleClick)) {
+            setFocused(brb$book);
+            return true;
+        }
+        if (brb$toggle != null && brb$toggle.mouseClicked(event, doubleClick)) {
+            setFocused(brb$toggle);
+            return true;
+        }
+        return brb$isNarrowBookOpen() || super.mouseClicked(event, doubleClick);
+    }
+
+    @Override
+    protected boolean isHovering(int left, int top, int slotWidth, int slotHeight, double mouseX, double mouseY) {
+        return !brb$isNarrowBookOpen() && super.isHovering(left, top, slotWidth, slotHeight, mouseX, mouseY);
+    }
+
+    @Override
+    public boolean isInputCaptured() {
+        return super.isInputCaptured() || brb$book != null && brb$book.capturesInput();
     }
 
     @Override
