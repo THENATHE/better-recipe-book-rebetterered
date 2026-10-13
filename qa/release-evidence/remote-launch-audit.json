@@ -1,8 +1,8 @@
 {
   "mods": [
     {
-      "file": "better-recipe-book-rebetterered-1.11.6+26.3.jar",
-      "sha256": "c129d74ee023c0de60b17fc960e14abe475d0f8035482d58ce98810eb704ea36"
+      "file": "better-recipe-book-rebetterered-1.11.7+26.3.jar",
+      "sha256": "28868f38950057d850d634364881855503093dcd8e70064faf7febcecb81621f"
     },
     {
       "file": "fabric-api-0.161.0+26.3.jar",
@@ -13,10 +13,10 @@
       "sha256": "837812c6c98d66141db7b5dcae668f27fb78d557e8f4c0c89912985fc26a5e6f"
     }
   ],
-  "fixture_sha256": "4730117a8b44ff9e7f8e9b3e24a22456e3938b61c4dc5ffec6d38b783fc0824c",
+  "fixture_sha256": "20fabccab83656e0072bdc87e8bb1da9b8548e7f595d238fadd3dbb5331f0eec",
   "server": "127.0.0.1:25593",
   "username": "brbremoteqa",
-  "release_version": "1.11.6+26.3",
+  "release_version": "1.11.7+26.3",
   "status": "passed",
   "exit_code": 0
 }

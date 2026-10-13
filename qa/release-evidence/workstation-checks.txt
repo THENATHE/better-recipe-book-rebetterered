@@ -1,0 +1,250 @@
+PASS: smithing toggle closes the book before reopening the workstation
+PASS: smithing book closed preference survives reloading settings from disk
+PASS: smithing book toggle preserves the other workstation's saved preference
+PASS: smithing workstation reopens with its recipe book still closed
+PASS: smithing book open preference survives reloading settings from disk
+PASS: smithing book toggle preserves the other workstation's saved preference
+PASS: smithing workstation reopens with its recipe book still open
+PASS: smithing Escape immediately closes the workstation with open book
+PASS: smithing Escape preserves the book visibility with open book
+PASS: smithing book open preference survives reloading settings from disk
+PASS: smithing book toggle preserves the other workstation's saved preference
+PASS: smithing workstation restores the prior book visibility after Escape with open book
+PASS: smithing search captures input before Escape with focused search
+PASS: smithing Escape immediately closes the workstation with focused search
+PASS: smithing Escape preserves the book visibility with focused search
+PASS: smithing book open preference survives reloading settings from disk
+PASS: smithing book toggle preserves the other workstation's saved preference
+PASS: smithing workstation restores the prior book visibility after Escape with focused search
+PASS: smithing search captures input before Escape with narrow book with focused search
+PASS: smithing Escape immediately closes the workstation with narrow book with focused search
+PASS: smithing Escape preserves the book visibility with narrow book with focused search
+PASS: smithing book open preference survives reloading settings from disk
+PASS: smithing book toggle preserves the other workstation's saved preference
+PASS: smithing workstation restores the prior book visibility after Escape with narrow book with focused search
+PASS: smithing Escape immediately closes the workstation with closed book
+PASS: smithing Escape preserves the book visibility with closed book
+PASS: smithing book closed preference survives reloading settings from disk
+PASS: smithing book toggle preserves the other workstation's saved preference
+PASS: smithing workstation restores the prior book visibility after Escape with closed book
+PASS: smithing actual filter click selects Show craftable recipes
+PASS: smithing filter preference persists to TOML
+PASS: smithing filter click preserves the other workstation's saved preference
+PASS: smithing filter click preserves every unrelated saved setting
+PASS: smithing reopening restores Show craftable recipes
+PASS: smithing fresh panel restores its disk-loaded filter after simulated client reload
+PASS: smithing disk-loaded config retains the other workstation's independent filter
+PASS: smithing switching workstations keeps the other Show all recipes preference
+PASS: brewing actual filter click selects Show craftable recipes
+PASS: brewing filter preference persists to TOML
+PASS: brewing filter click preserves the other workstation's saved preference
+PASS: brewing filter click preserves every unrelated saved setting
+PASS: smithing switching back preserves its Show craftable recipes preference
+PASS: smithing actual filter click selects Show all recipes
+PASS: smithing filter preference persists to TOML
+PASS: smithing filter click preserves the other workstation's saved preference
+PASS: smithing filter click preserves every unrelated saved setting
+PASS: smithing reopening restores Show all recipes
+PASS: smithing fresh panel restores its disk-loaded filter after simulated client reload
+PASS: smithing disk-loaded config retains the other workstation's independent filter
+PASS: smithing Show all selection leaves the other workstation on Show craftable recipes
+PASS: brewing actual filter click selects Show all recipes
+PASS: brewing filter preference persists to TOML
+PASS: brewing filter click preserves the other workstation's saved preference
+PASS: brewing filter click preserves every unrelated saved setting
+PASS: smithing search captures input before opening settings
+PASS: smithing gear opens the actual settings screen
+PASS: smithing disabling the book and saving returns to the same workstation
+PASS: smithing disabled book releases its renderer, toggle and input capture
+PASS: smithing re-enabling restores the book and preserves its saved open state
+PASS: smithing book offers multiple pages of native recipes
+PASS: smithing visible book controls stay within the screen
+PASS: smithing book controls and recipe tiles do not overlap
+PASS: smithing screen forwards wheel input over the book to its next page
+PASS: smithing screen wheel returns to the first page
+PASS: smithing forward arrow shows a different recipe page
+PASS: smithing back arrow restores the first recipe page
+PASS: smithing category tab 0 filters to its own native recipes
+PASS: smithing category tab 1 filters to its own native recipes
+PASS: smithing pin tab excludes unpinned variants
+PASS: smithing search tab restores the full catalogue
+PASS: smithing craftable toggle keeps available variants and excludes unavailable recipes
+PASS: smithing show-all toggle restores unavailable recipes
+PASS: smithing typing the inventory key into search keeps the workstation open and enters text
+PASS: smithing clicking blank book space releases search keyboard capture
+PASS: smithing clicking outside the book releases search keyboard capture
+PASS: smithing unmatched search hides recipe tiles
+PASS: smithing search isolates an exact recipe variant
+PASS: smithing clearing search restores the first page
+SCREENSHOT: screenshots/0004_brb-smithing-vanilla-book.png
+PASS: smithing book stays open after narrowing the screen
+PASS: smithing narrow visible book controls stay within the screen
+PASS: smithing narrow book controls and recipe tiles do not overlap
+PASS: smithing side tab remains clickable at narrow width
+PASS: smithing narrow overlay prevents picking up items from the hidden inventory
+PASS: smithing narrow book toggle closes the overlay
+PASS: smithing narrow book toggle reopens the overlay
+PASS: native trim recipe computes a concrete output
+SCREENSHOT: screenshots/0005_brb-smithing-fixed-variant.png
+PASS: left-click prepares the exact named/damaged trim variant on the server
+PASS: workstation pin records the exact trim variant
+PASS: Pins tab retains the selected concrete trim variant
+PASS: right-click crafts one prepared trim directly into authoritative inventory
+PASS: smithing instant craft leaves no item on the cursor
+PASS: already-trimmed named/damaged armor can be re-trimmed without losing unrelated components
+PASS: Actual config clicks and Save select FILL_GRID with STOP_BEFORE_DROP before crafting
+PASS: Actual config clicks and Save select SINGLE_BATCHES with STOP_BEFORE_DROP before crafting
+PASS: SINGLE_BATCHES: Shift-left respects the unstackable smithing base slot limit
+PASS: SINGLE_BATCHES: Shift-right crafts both smithing bases and preserves each distinct custom component set
+PASS: SINGLE_BATCHES: two unstackable smithing loads use two individual result pickups
+PASS: SINGLE_BATCHES: smithing maximum leaves both cursors empty
+PASS: SINGLE_BATCHES: Shift-left max-loads all three valid stackable smithing bases
+PASS: SINGLE_BATCHES: stackable smithing conserves all three outputs and consumes precisely three input sets
+PASS: SINGLE_BATCHES: three loaded smithing batches use three individual result pickups
+PASS: Actual config clicks and Save select FILL_GRID with STOP_BEFORE_DROP before crafting
+PASS: Actual config clicks and Save select SINGLE_BATCHES with STOP_BEFORE_DROP before crafting
+PASS: SINGLE_BATCHES/STOP_BEFORE_DROP/smithing full storage: drops precisely the selected number of exact trimmed outputs
+PASS: SINGLE_BATCHES/STOP_BEFORE_DROP/smithing full storage: consumes one complete input set per output and preserves all remaining sets
+PASS: SINGLE_BATCHES/STOP_BEFORE_DROP/smithing full storage: leaves both cursors empty
+PASS: SINGLE_BATCHES/STOP_BEFORE_DROP/smithing full storage: keeps every unrelated storage stack and drops no ingredients
+PASS: Actual config clicks and Save select SINGLE_BATCHES with DROP_AND_CONTINUE before crafting
+PASS: SINGLE_BATCHES/DROP_AND_CONTINUE/smithing full storage: drops precisely the selected number of exact trimmed outputs
+PASS: SINGLE_BATCHES/DROP_AND_CONTINUE/smithing full storage: consumes one complete input set per output and preserves all remaining sets
+PASS: SINGLE_BATCHES/DROP_AND_CONTINUE/smithing full storage: leaves both cursors empty
+PASS: SINGLE_BATCHES/DROP_AND_CONTINUE/smithing full storage: keeps every unrelated storage stack and drops no ingredients
+PASS: Actual config clicks and Save select SINGLE_BATCHES with STOP_AFTER_DROP before crafting
+PASS: SINGLE_BATCHES/STOP_AFTER_DROP/smithing full storage: drops precisely the selected number of exact trimmed outputs
+PASS: SINGLE_BATCHES/STOP_AFTER_DROP/smithing full storage: consumes one complete input set per output and preserves all remaining sets
+PASS: SINGLE_BATCHES/STOP_AFTER_DROP/smithing full storage: leaves both cursors empty
+PASS: SINGLE_BATCHES/STOP_AFTER_DROP/smithing full storage: keeps every unrelated storage stack and drops no ingredients
+PASS: Actual config clicks and Save select SINGLE_BATCHES with STOP_BEFORE_DROP before crafting
+PASS: Actual config clicks and Save select FILL_GRID with STOP_BEFORE_DROP before crafting
+PASS: FILL_GRID: Shift-left respects the unstackable smithing base slot limit
+PASS: FILL_GRID: Shift-right crafts both smithing bases and preserves each distinct custom component set
+PASS: FILL_GRID: two unstackable smithing loads use two true Shift-clicks and zero result pickups
+PASS: FILL_GRID: smithing maximum leaves both cursors empty
+PASS: FILL_GRID: Shift-left max-loads all three valid stackable smithing bases
+PASS: FILL_GRID: stackable smithing conserves all three outputs and consumes precisely three input sets
+PASS: FILL_GRID: three loaded smithing batches use one true Shift-click with zero result pickups
+PASS: Actual config clicks and Save select SINGLE_BATCHES with STOP_BEFORE_DROP before crafting
+PASS: Actual config clicks and Save select FILL_GRID with STOP_BEFORE_DROP before crafting
+PASS: FILL_GRID/STOP_BEFORE_DROP/smithing full storage: drops precisely the selected number of exact trimmed outputs
+PASS: FILL_GRID/STOP_BEFORE_DROP/smithing full storage: consumes one complete input set per output and preserves all remaining sets
+PASS: FILL_GRID/STOP_BEFORE_DROP/smithing full storage: leaves both cursors empty
+PASS: FILL_GRID/STOP_BEFORE_DROP/smithing full storage: keeps every unrelated storage stack and drops no ingredients
+PASS: Actual config clicks and Save select FILL_GRID with DROP_AND_CONTINUE before crafting
+PASS: FILL_GRID/DROP_AND_CONTINUE/smithing full storage: drops precisely the selected number of exact trimmed outputs
+PASS: FILL_GRID/DROP_AND_CONTINUE/smithing full storage: consumes one complete input set per output and preserves all remaining sets
+PASS: FILL_GRID/DROP_AND_CONTINUE/smithing full storage: leaves both cursors empty
+PASS: FILL_GRID/DROP_AND_CONTINUE/smithing full storage: keeps every unrelated storage stack and drops no ingredients
+PASS: Actual config clicks and Save select FILL_GRID with STOP_AFTER_DROP before crafting
+PASS: FILL_GRID/STOP_AFTER_DROP/smithing full storage: drops precisely the selected number of exact trimmed outputs
+PASS: FILL_GRID/STOP_AFTER_DROP/smithing full storage: consumes one complete input set per output and preserves all remaining sets
+PASS: FILL_GRID/STOP_AFTER_DROP/smithing full storage: leaves both cursors empty
+PASS: FILL_GRID/STOP_AFTER_DROP/smithing full storage: keeps every unrelated storage stack and drops no ingredients
+PASS: Actual config clicks and Save select FILL_GRID with STOP_BEFORE_DROP before crafting
+PASS: workstation All mode exposes fixed individual variants
+PASS: workstation pin prefers the hovered variant over the previously focused tile
+PASS: workstation expandable mode condenses native variant groups
+PASS: workstation plus control expands fixed individual children
+PASS: workstation minus control collapses without a Shift-right craft
+PASS: workstation expansion/collapse preserves every menu slot and the cursor
+PASS: workstation vanilla mode contains cycling entries without expansion headers
+PASS: brewing toggle closes the book before reopening the workstation
+PASS: brewing book closed preference survives reloading settings from disk
+PASS: brewing book toggle preserves the other workstation's saved preference
+PASS: brewing workstation reopens with its recipe book still closed
+PASS: brewing book open preference survives reloading settings from disk
+PASS: brewing book toggle preserves the other workstation's saved preference
+PASS: brewing workstation reopens with its recipe book still open
+PASS: brewing Escape immediately closes the workstation with open book
+PASS: brewing Escape preserves the book visibility with open book
+PASS: brewing book open preference survives reloading settings from disk
+PASS: brewing book toggle preserves the other workstation's saved preference
+PASS: brewing workstation restores the prior book visibility after Escape with open book
+PASS: brewing search captures input before Escape with focused search
+PASS: brewing Escape immediately closes the workstation with focused search
+PASS: brewing Escape preserves the book visibility with focused search
+PASS: brewing book open preference survives reloading settings from disk
+PASS: brewing book toggle preserves the other workstation's saved preference
+PASS: brewing workstation restores the prior book visibility after Escape with focused search
+PASS: brewing search captures input before Escape with narrow book with focused search
+PASS: brewing Escape immediately closes the workstation with narrow book with focused search
+PASS: brewing Escape preserves the book visibility with narrow book with focused search
+PASS: brewing book open preference survives reloading settings from disk
+PASS: brewing book toggle preserves the other workstation's saved preference
+PASS: brewing workstation restores the prior book visibility after Escape with narrow book with focused search
+PASS: brewing Escape immediately closes the workstation with closed book
+PASS: brewing Escape preserves the book visibility with closed book
+PASS: brewing book closed preference survives reloading settings from disk
+PASS: brewing book toggle preserves the other workstation's saved preference
+PASS: brewing workstation restores the prior book visibility after Escape with closed book
+PASS: brewing actual filter click selects Show craftable recipes
+PASS: brewing filter preference persists to TOML
+PASS: brewing filter click preserves the other workstation's saved preference
+PASS: brewing filter click preserves every unrelated saved setting
+PASS: brewing reopening restores Show craftable recipes
+PASS: brewing fresh panel restores its disk-loaded filter after simulated client reload
+PASS: brewing disk-loaded config retains the other workstation's independent filter
+PASS: brewing switching workstations keeps the other Show all recipes preference
+PASS: smithing actual filter click selects Show craftable recipes
+PASS: smithing filter preference persists to TOML
+PASS: smithing filter click preserves the other workstation's saved preference
+PASS: smithing filter click preserves every unrelated saved setting
+PASS: brewing switching back preserves its Show craftable recipes preference
+PASS: brewing actual filter click selects Show all recipes
+PASS: brewing filter preference persists to TOML
+PASS: brewing filter click preserves the other workstation's saved preference
+PASS: brewing filter click preserves every unrelated saved setting
+PASS: brewing reopening restores Show all recipes
+PASS: brewing fresh panel restores its disk-loaded filter after simulated client reload
+PASS: brewing disk-loaded config retains the other workstation's independent filter
+PASS: brewing Show all selection leaves the other workstation on Show craftable recipes
+PASS: smithing actual filter click selects Show all recipes
+PASS: smithing filter preference persists to TOML
+PASS: smithing filter click preserves the other workstation's saved preference
+PASS: smithing filter click preserves every unrelated saved setting
+PASS: brewing search captures input before opening settings
+PASS: brewing gear opens the actual settings screen
+PASS: brewing disabling the book and saving returns to the same workstation
+PASS: brewing disabled book releases its renderer, toggle and input capture
+PASS: brewing re-enabling restores the book and preserves its saved open state
+PASS: brewing book offers multiple pages of native recipes
+PASS: brewing visible book controls stay within the screen
+PASS: brewing book controls and recipe tiles do not overlap
+PASS: brewing screen forwards wheel input over the book to its next page
+PASS: brewing screen wheel returns to the first page
+PASS: brewing forward arrow shows a different recipe page
+PASS: brewing back arrow restores the first recipe page
+PASS: brewing category tab 0 filters to its own native recipes
+PASS: brewing category tab 1 filters to its own native recipes
+PASS: brewing category tab 2 filters to its own native recipes
+PASS: brewing pin tab excludes unpinned variants
+PASS: brewing search tab restores the full catalogue
+PASS: brewing craftable toggle keeps available variants and excludes unavailable recipes
+PASS: brewing show-all toggle restores unavailable recipes
+PASS: brewing typing the inventory key into search keeps the workstation open and enters text
+PASS: brewing clicking blank book space releases search keyboard capture
+PASS: brewing clicking outside the book releases search keyboard capture
+PASS: brewing unmatched search hides recipe tiles
+PASS: brewing search isolates an exact recipe variant
+PASS: brewing clearing search restores the first page
+SCREENSHOT: screenshots/0010_brb-brewing-vanilla-book.png
+PASS: brewing book stays open after narrowing the screen
+PASS: brewing narrow visible book controls stay within the screen
+PASS: brewing narrow book controls and recipe tiles do not overlap
+PASS: brewing side tab remains clickable at narrow width
+PASS: brewing narrow overlay prevents picking up items from the hidden inventory
+PASS: brewing narrow book toggle closes the overlay
+PASS: brewing narrow book toggle reopens the overlay
+PASS: Shift-right fills three bottles and starts normal-duration brewing instead of instant output
+SCREENSHOT: screenshots/0011_brb-brewing-normal-duration.png
+PASS: three vanilla brewed outputs finish in the authoritative brewing block entity
+PASS: workstation All mode exposes fixed individual variants
+PASS: workstation pin prefers the hovered variant over the previously focused tile
+PASS: workstation expandable mode condenses native variant groups
+PASS: workstation plus control expands fixed individual children
+PASS: workstation minus control collapses without a Shift-right craft
+PASS: workstation expansion/collapse preserves every menu slot and the cursor
+PASS: workstation vanilla mode contains cycling entries without expansion headers
+RESULT: PASS; 245 recorded checks

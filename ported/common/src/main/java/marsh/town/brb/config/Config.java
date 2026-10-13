@@ -44,4 +44,10 @@ public class Config implements ConfigData {
 
     @ConfigEntry.Gui.Excluded
     public boolean smithingBookOpen = false;
+
+    @ConfigEntry.Gui.Excluded
+    public boolean brewingBookCraftableOnly = false;
+
+    @ConfigEntry.Gui.Excluded
+    public boolean smithingBookCraftableOnly = false;
 }

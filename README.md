@@ -4,7 +4,7 @@
 
 ![Better Recipe Book: Rebetterered icon](ported/fabric/src/main/resources/assets/brb/icon.png)
 
-The **1.11.6** update makes Fill grid use real bulk output actions for crafting, smithing and supported backpack menus, and adds a choice of overflow behavior. See the [changelog](docs/CHANGELOG.md) for this update and the [latest release](https://github.com/THENATHE/better-recipe-book-rebetterered/releases/latest) for downloads.
+The **1.11.7** update remembers the Show craftable choice separately for smithing and brewing, including after reopening the menu or restarting the client. See the [changelog](docs/CHANGELOG.md) for this update and the [latest release](https://github.com/THENATHE/better-recipe-book-rebetterered/releases/latest) for downloads.
 
 ## What it is
 
@@ -83,6 +83,7 @@ A batch means one recipe execution: for example, one log produces four planks. D
 
 - Search and browse brewing and smithing recipes from their workstation panels.
 - Use the same recipe display choices in those panels.
+- Remember each workstation’s Show craftable filter independently, alongside its open/closed state.
 - Preserve native names, damage, enchantments, and trims when smithing.
 - Pin a specific variant and find it again from the Pinned Recipes tab in the normal crafting book or workstation pins view.
 - Choose the hovered recipe when pinning, with keyboard focus as a fallback.
@@ -160,4 +161,4 @@ The first command runs the standard regression checks and builds the mod and sep
 
 ### Verification and compatibility limits
 
-Version **1.11.6+26.3** passed **1,893 recorded singleplayer checks**, including 365 crafting checks, 195 workstation checks, 261 settings checks across all 15 controls, and 58 native pin-tab checks. All 30 crafting/smithing overflow scenarios and six uneven-grid refusal checks passed. An independent clean source build passed standard regressions and reproduced both JARs byte-for-byte. **68 packaged multiplayer assertions across ten scenarios** passed against an unmodified vanilla server. **32 connected backpack scenarios** passed across native and Polymer profiles, including repeated crafting and 16 returned-bucket policy/ordinary-right-click cases. See [validation](docs/VALIDATION.md) for evidence and scope.
+Version **1.11.7+26.3** passed **245 workstation checks**, including 50 saved-filter checks, **261 settings checks** across all 15 controls, and **68 packaged vanilla-server multiplayer assertions**. Standard regressions passed, and an independent clean source build reproduced both JARs byte for byte. See [validation](docs/VALIDATION.md) for evidence and scope; broader 1.11.6 full-client/backpack coverage remains documented in that earlier release.

@@ -88,6 +88,8 @@ public final class WorkstationBookPanel extends AbstractContainerEventHandler im
         pinnedCategory = kind == WorkstationRecipe.Kind.BREWING ? 3 : 2;
         visible = kind == WorkstationRecipe.Kind.BREWING
                 ? BetterRecipeBook.config.brewingBookOpen : BetterRecipeBook.config.smithingBookOpen;
+        craftableOnly = kind == WorkstationRecipe.Kind.BREWING
+                ? BetterRecipeBook.config.brewingBookCraftableOnly : BetterRecipeBook.config.smithingBookCraftableOnly;
         recipes = WorkstationRecipes.forMenu(menu);
         search = new EditBox(client.font, 0, 0, 81, 14, Component.translatable("itemGroup.search"));
         search.setMaxLength(100);
@@ -97,6 +99,9 @@ public final class WorkstationBookPanel extends AbstractContainerEventHandler im
         controls.add(search);
         filter = new ImageButton(0, 0, 26, 16, BRBTextures.RECIPE_BOOK_FILTER_BUTTON_SPRITES, pressed -> {
             craftableOnly = !craftableOnly;
+            if (kind == WorkstationRecipe.Kind.BREWING) BetterRecipeBook.config.brewingBookCraftableOnly = craftableOnly;
+            else BetterRecipeBook.config.smithingBookCraftableOnly = craftableOnly;
+            if (BetterRecipeBook.configHolder != null) BetterRecipeBook.configHolder.save();
             page = 0;
             rebuild();
         }, Component.translatable("gui.recipebook.toggleRecipes.all")) {

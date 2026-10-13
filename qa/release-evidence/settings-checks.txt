@@ -1,0 +1,264 @@
+PASS: 320x240: config has no custom background texture
+PASS: 320x240: one settings list without tabs
+PASS: 320x240: all 15 settings are visible entries
+PASS: 320x240: master switch comes first
+PASS: 320x240: all modes use cycling buttons
+PASS: 320x240: enableBook is within the visible list
+PASS: 320x240: enableBook label does not overlap its control
+PASS: 320x240: mouse changes enableBook
+PASS: 320x240: enableBook waits for Save
+PASS: 320x240: recipeDisplayMode is within the visible list
+PASS: 320x240: recipeDisplayMode label does not overlap its control
+PASS: 320x240: mouse changes recipeDisplayMode
+PASS: 320x240: recipeDisplayMode waits for Save
+PASS: 320x240: creativeDisplayMode is within the visible list
+PASS: 320x240: creativeDisplayMode label does not overlap its control
+PASS: 320x240: mouse changes creativeDisplayMode
+PASS: 320x240: creativeDisplayMode waits for Save
+PASS: 320x240: enablePinning is within the visible list
+PASS: 320x240: enablePinning label does not overlap its control
+PASS: 320x240: mouse changes enablePinning
+PASS: 320x240: enablePinning waits for Save
+PASS: 320x240: keepCentered is within the visible list
+PASS: 320x240: keepCentered label does not overlap its control
+PASS: 320x240: mouse changes keepCentered
+PASS: 320x240: keepCentered waits for Save
+PASS: 320x240: settingsButton is within the visible list
+PASS: 320x240: settingsButton label does not overlap its control
+PASS: 320x240: mouse changes settingsButton
+PASS: 320x240: settingsButton waits for Save
+PASS: 320x240: newRecipes.unlockAll is within the visible list
+PASS: 320x240: newRecipes.unlockAll label does not overlap its control
+PASS: 320x240: mouse changes newRecipes.unlockAll
+PASS: 320x240: newRecipes.unlockAll waits for Save
+PASS: 320x240: newRecipes.enableBounce is within the visible list
+PASS: 320x240: newRecipes.enableBounce label does not overlap its control
+PASS: 320x240: mouse changes newRecipes.enableBounce
+PASS: 320x240: newRecipes.enableBounce waits for Save
+PASS: 320x240: instantCraft.showButton is within the visible list
+PASS: 320x240: instantCraft.showButton label does not overlap its control
+PASS: 320x240: mouse changes instantCraft.showButton
+PASS: 320x240: instantCraft.showButton waits for Save
+PASS: 320x240: instantCraft.enabled is within the visible list
+PASS: 320x240: instantCraft.enabled label does not overlap its control
+PASS: 320x240: mouse changes instantCraft.enabled
+PASS: 320x240: instantCraft.enabled waits for Save
+PASS: 320x240: instantCraft.craftAllMethod is within the visible list
+PASS: 320x240: instantCraft.craftAllMethod label does not overlap its control
+PASS: 320x240: mouse changes instantCraft.craftAllMethod
+PASS: 320x240: instantCraft.craftAllMethod waits for Save
+PASS: 320x240: instantCraft.overflow is within the visible list
+PASS: 320x240: instantCraft.overflow label does not overlap its control
+PASS: 320x240: mouse changes instantCraft.overflow
+PASS: 320x240: instantCraft.overflow waits for Save
+PASS: 320x240: alternativeRecipes.onHover is within the visible list
+PASS: 320x240: alternativeRecipes.onHover label does not overlap its control
+PASS: 320x240: mouse changes alternativeRecipes.onHover
+PASS: 320x240: alternativeRecipes.onHover waits for Save
+PASS: 320x240: scrolling.enableScrolling is within the visible list
+PASS: 320x240: scrolling.enableScrolling label does not overlap its control
+PASS: 320x240: mouse changes scrolling.enableScrolling
+PASS: 320x240: scrolling.enableScrolling waits for Save
+PASS: 320x240: scrolling.scrollAround is within the visible list
+PASS: 320x240: scrolling.scrollAround label does not overlap its control
+PASS: 320x240: mouse changes scrolling.scrollAround
+PASS: 320x240: scrolling.scrollAround waits for Save
+PASS: 320x240: Save returns to the parent screen
+PASS: 320x240: Save applies every setting to the runtime config
+PASS: 320x240: saved settings and gameplay use the same config object
+PASS: 320x240: all settings persist to TOML
+PASS: 320x240: reopening reflects every saved value
+PASS: 320x240: recipeDisplayMode cycles through every mode and wraps
+PASS: 320x240: keyboard changes recipeDisplayMode
+PASS: 320x240: creativeDisplayMode cycles through every mode and wraps
+PASS: 320x240: keyboard changes creativeDisplayMode
+PASS: 320x240: instantCraft.craftAllMethod cycles through every mode and wraps
+PASS: 320x240: keyboard changes instantCraft.craftAllMethod
+PASS: 320x240: instantCraft.overflow cycles through every mode and wraps
+PASS: 320x240: keyboard changes instantCraft.overflow
+PASS: 320x240: Reset restores the default for enablePinning
+PASS: 320x240: Reset waits for Save for enablePinning
+PASS: 320x240: Reset restores the default for recipeDisplayMode
+PASS: 320x240: Reset waits for Save for recipeDisplayMode
+PASS: 320x240: mouse wheel scrolls the settings list
+PASS: 320x240: pending edits are detected before Cancel
+PASS: 320x240: Cancel asks before discarding changes
+PASS: 320x240: discard returns to the parent screen
+PASS: 320x240: Cancel leaves all saved settings unchanged
+PASS: 427x240: config has no custom background texture
+PASS: 427x240: one settings list without tabs
+PASS: 427x240: all 15 settings are visible entries
+PASS: 427x240: master switch comes first
+PASS: 427x240: all modes use cycling buttons
+PASS: 427x240: enableBook is within the visible list
+PASS: 427x240: enableBook label does not overlap its control
+PASS: 427x240: mouse changes enableBook
+PASS: 427x240: enableBook waits for Save
+PASS: 427x240: recipeDisplayMode is within the visible list
+PASS: 427x240: recipeDisplayMode label does not overlap its control
+PASS: 427x240: mouse changes recipeDisplayMode
+PASS: 427x240: recipeDisplayMode waits for Save
+PASS: 427x240: creativeDisplayMode is within the visible list
+PASS: 427x240: creativeDisplayMode label does not overlap its control
+PASS: 427x240: mouse changes creativeDisplayMode
+PASS: 427x240: creativeDisplayMode waits for Save
+PASS: 427x240: enablePinning is within the visible list
+PASS: 427x240: enablePinning label does not overlap its control
+PASS: 427x240: mouse changes enablePinning
+PASS: 427x240: enablePinning waits for Save
+PASS: 427x240: keepCentered is within the visible list
+PASS: 427x240: keepCentered label does not overlap its control
+PASS: 427x240: mouse changes keepCentered
+PASS: 427x240: keepCentered waits for Save
+PASS: 427x240: settingsButton is within the visible list
+PASS: 427x240: settingsButton label does not overlap its control
+PASS: 427x240: mouse changes settingsButton
+PASS: 427x240: settingsButton waits for Save
+PASS: 427x240: newRecipes.unlockAll is within the visible list
+PASS: 427x240: newRecipes.unlockAll label does not overlap its control
+PASS: 427x240: mouse changes newRecipes.unlockAll
+PASS: 427x240: newRecipes.unlockAll waits for Save
+PASS: 427x240: newRecipes.enableBounce is within the visible list
+PASS: 427x240: newRecipes.enableBounce label does not overlap its control
+PASS: 427x240: mouse changes newRecipes.enableBounce
+PASS: 427x240: newRecipes.enableBounce waits for Save
+PASS: 427x240: instantCraft.showButton is within the visible list
+PASS: 427x240: instantCraft.showButton label does not overlap its control
+PASS: 427x240: mouse changes instantCraft.showButton
+PASS: 427x240: instantCraft.showButton waits for Save
+PASS: 427x240: instantCraft.enabled is within the visible list
+PASS: 427x240: instantCraft.enabled label does not overlap its control
+PASS: 427x240: mouse changes instantCraft.enabled
+PASS: 427x240: instantCraft.enabled waits for Save
+PASS: 427x240: instantCraft.craftAllMethod is within the visible list
+PASS: 427x240: instantCraft.craftAllMethod label does not overlap its control
+PASS: 427x240: mouse changes instantCraft.craftAllMethod
+PASS: 427x240: instantCraft.craftAllMethod waits for Save
+PASS: 427x240: instantCraft.overflow is within the visible list
+PASS: 427x240: instantCraft.overflow label does not overlap its control
+PASS: 427x240: mouse changes instantCraft.overflow
+PASS: 427x240: instantCraft.overflow waits for Save
+PASS: 427x240: alternativeRecipes.onHover is within the visible list
+PASS: 427x240: alternativeRecipes.onHover label does not overlap its control
+PASS: 427x240: mouse changes alternativeRecipes.onHover
+PASS: 427x240: alternativeRecipes.onHover waits for Save
+PASS: 427x240: scrolling.enableScrolling is within the visible list
+PASS: 427x240: scrolling.enableScrolling label does not overlap its control
+PASS: 427x240: mouse changes scrolling.enableScrolling
+PASS: 427x240: scrolling.enableScrolling waits for Save
+PASS: 427x240: scrolling.scrollAround is within the visible list
+PASS: 427x240: scrolling.scrollAround label does not overlap its control
+PASS: 427x240: mouse changes scrolling.scrollAround
+PASS: 427x240: scrolling.scrollAround waits for Save
+PASS: 427x240: Save returns to the parent screen
+PASS: 427x240: Save applies every setting to the runtime config
+PASS: 427x240: saved settings and gameplay use the same config object
+PASS: 427x240: all settings persist to TOML
+PASS: 427x240: reopening reflects every saved value
+PASS: 427x240: recipeDisplayMode cycles through every mode and wraps
+PASS: 427x240: keyboard changes recipeDisplayMode
+PASS: 427x240: creativeDisplayMode cycles through every mode and wraps
+PASS: 427x240: keyboard changes creativeDisplayMode
+PASS: 427x240: instantCraft.craftAllMethod cycles through every mode and wraps
+PASS: 427x240: keyboard changes instantCraft.craftAllMethod
+PASS: 427x240: instantCraft.overflow cycles through every mode and wraps
+PASS: 427x240: keyboard changes instantCraft.overflow
+PASS: 427x240: Reset restores the default for enablePinning
+PASS: 427x240: Reset waits for Save for enablePinning
+PASS: 427x240: Reset restores the default for recipeDisplayMode
+PASS: 427x240: Reset waits for Save for recipeDisplayMode
+PASS: 427x240: mouse wheel scrolls the settings list
+PASS: 427x240: pending edits are detected before Cancel
+PASS: 427x240: Cancel asks before discarding changes
+PASS: 427x240: discard returns to the parent screen
+PASS: 427x240: Cancel leaves all saved settings unchanged
+PASS: 640x360: config has no custom background texture
+PASS: 640x360: one settings list without tabs
+PASS: 640x360: all 15 settings are visible entries
+PASS: 640x360: master switch comes first
+PASS: 640x360: all modes use cycling buttons
+PASS: 640x360: enableBook is within the visible list
+PASS: 640x360: enableBook label does not overlap its control
+PASS: 640x360: mouse changes enableBook
+PASS: 640x360: enableBook waits for Save
+PASS: 640x360: recipeDisplayMode is within the visible list
+PASS: 640x360: recipeDisplayMode label does not overlap its control
+PASS: 640x360: mouse changes recipeDisplayMode
+PASS: 640x360: recipeDisplayMode waits for Save
+PASS: 640x360: creativeDisplayMode is within the visible list
+PASS: 640x360: creativeDisplayMode label does not overlap its control
+PASS: 640x360: mouse changes creativeDisplayMode
+PASS: 640x360: creativeDisplayMode waits for Save
+PASS: 640x360: enablePinning is within the visible list
+PASS: 640x360: enablePinning label does not overlap its control
+PASS: 640x360: mouse changes enablePinning
+PASS: 640x360: enablePinning waits for Save
+PASS: 640x360: keepCentered is within the visible list
+PASS: 640x360: keepCentered label does not overlap its control
+PASS: 640x360: mouse changes keepCentered
+PASS: 640x360: keepCentered waits for Save
+PASS: 640x360: settingsButton is within the visible list
+PASS: 640x360: settingsButton label does not overlap its control
+PASS: 640x360: mouse changes settingsButton
+PASS: 640x360: settingsButton waits for Save
+PASS: 640x360: newRecipes.unlockAll is within the visible list
+PASS: 640x360: newRecipes.unlockAll label does not overlap its control
+PASS: 640x360: mouse changes newRecipes.unlockAll
+PASS: 640x360: newRecipes.unlockAll waits for Save
+PASS: 640x360: newRecipes.enableBounce is within the visible list
+PASS: 640x360: newRecipes.enableBounce label does not overlap its control
+PASS: 640x360: mouse changes newRecipes.enableBounce
+PASS: 640x360: newRecipes.enableBounce waits for Save
+PASS: 640x360: instantCraft.showButton is within the visible list
+PASS: 640x360: instantCraft.showButton label does not overlap its control
+PASS: 640x360: mouse changes instantCraft.showButton
+PASS: 640x360: instantCraft.showButton waits for Save
+PASS: 640x360: instantCraft.enabled is within the visible list
+PASS: 640x360: instantCraft.enabled label does not overlap its control
+PASS: 640x360: mouse changes instantCraft.enabled
+PASS: 640x360: instantCraft.enabled waits for Save
+PASS: 640x360: instantCraft.craftAllMethod is within the visible list
+PASS: 640x360: instantCraft.craftAllMethod label does not overlap its control
+PASS: 640x360: mouse changes instantCraft.craftAllMethod
+PASS: 640x360: instantCraft.craftAllMethod waits for Save
+PASS: 640x360: instantCraft.overflow is within the visible list
+PASS: 640x360: instantCraft.overflow label does not overlap its control
+PASS: 640x360: mouse changes instantCraft.overflow
+PASS: 640x360: instantCraft.overflow waits for Save
+PASS: 640x360: alternativeRecipes.onHover is within the visible list
+PASS: 640x360: alternativeRecipes.onHover label does not overlap its control
+PASS: 640x360: mouse changes alternativeRecipes.onHover
+PASS: 640x360: alternativeRecipes.onHover waits for Save
+PASS: 640x360: scrolling.enableScrolling is within the visible list
+PASS: 640x360: scrolling.enableScrolling label does not overlap its control
+PASS: 640x360: mouse changes scrolling.enableScrolling
+PASS: 640x360: scrolling.enableScrolling waits for Save
+PASS: 640x360: scrolling.scrollAround is within the visible list
+PASS: 640x360: scrolling.scrollAround label does not overlap its control
+PASS: 640x360: mouse changes scrolling.scrollAround
+PASS: 640x360: scrolling.scrollAround waits for Save
+PASS: 640x360: Save returns to the parent screen
+PASS: 640x360: Save applies every setting to the runtime config
+PASS: 640x360: saved settings and gameplay use the same config object
+PASS: 640x360: all settings persist to TOML
+PASS: 640x360: reopening reflects every saved value
+PASS: 640x360: recipeDisplayMode cycles through every mode and wraps
+PASS: 640x360: keyboard changes recipeDisplayMode
+PASS: 640x360: creativeDisplayMode cycles through every mode and wraps
+PASS: 640x360: keyboard changes creativeDisplayMode
+PASS: 640x360: instantCraft.craftAllMethod cycles through every mode and wraps
+PASS: 640x360: keyboard changes instantCraft.craftAllMethod
+PASS: 640x360: instantCraft.overflow cycles through every mode and wraps
+PASS: 640x360: keyboard changes instantCraft.overflow
+PASS: 640x360: Reset restores the default for enablePinning
+PASS: 640x360: Reset waits for Save for enablePinning
+PASS: 640x360: Reset restores the default for recipeDisplayMode
+PASS: 640x360: Reset waits for Save for recipeDisplayMode
+PASS: 640x360: mouse wheel scrolls the settings list
+PASS: 640x360: pending edits are detected before Cancel
+PASS: 640x360: Cancel asks before discarding changes
+PASS: 640x360: discard returns to the parent screen
+PASS: 640x360: Cancel leaves all saved settings unchanged
+SCREENSHOT: screenshots/0000_brb-vanilla-style-settings.png
+SCREENSHOT: screenshots/0001_brb-vanilla-style-settings-lower.png
+RESULT: PASS; 261 recorded checks

@@ -1,13 +1,13 @@
 {
-  "version": "1.11.6+26.3",
+  "version": "1.11.7+26.3",
   "clean_check_build_clientqaJar": "PASS",
   "byte_identical": true,
   "jdk": "Microsoft OpenJDK 25.0.4.1 (25.0.4.1+1-LTS)",
   "build_command": "bash gradlew --offline --no-daemon clean check build clientqaJar",
   "source_export": "Independent fresh export of existing Git tracked and ignore-allowlisted untracked files; excluded .git, build outputs, logs, and runtime runs.",
-  "source_export_file_count": 385,
+  "source_export_file_count": 356,
   "build_input_file_count": 161,
-  "build_input_manifest_sha256": "a15bf25c1982fffbcfa8b1e02f51707179a2f73eefe663723406e7d630afa26c",
+  "build_input_manifest_sha256": "aa1ba00c1d4fe10d2d254f0f20601a5d6d51331b7857fa3d80c905f6f5da3f94",
   "checks": {
     "sequence_assertions": 131072,
     "ingredient_assignment_cases": 6,
@@ -15,18 +15,18 @@
     "pin_persistence_checks": 11
   },
   "artifacts": {
-    "better-recipe-book-rebetterered-1.11.6+26.3.jar": "c129d74ee023c0de60b17fc960e14abe475d0f8035482d58ce98810eb704ea36",
-    "better-recipe-book-rebetterered-1.11.6+26.3-sources.jar": "33c80adc1b9ad46ed738a3bc343db5015b7f5d192b64be6038096384fffb54c2"
+    "better-recipe-book-rebetterered-1.11.7+26.3.jar": "28868f38950057d850d634364881855503093dcd8e70064faf7febcecb81621f",
+    "better-recipe-book-rebetterered-1.11.7+26.3-sources.jar": "efdf216b9e7223c41595929685287c26291fba11708e5998d32ea18bc8beb8b2"
   },
   "artifact_verification": {
-    "better-recipe-book-rebetterered-1.11.6+26.3.jar": {
-      "sha256": "c129d74ee023c0de60b17fc960e14abe475d0f8035482d58ce98810eb704ea36",
-      "bytes": 1277974,
+    "better-recipe-book-rebetterered-1.11.7+26.3.jar": {
+      "sha256": "28868f38950057d850d634364881855503093dcd8e70064faf7febcecb81621f",
+      "bytes": 1278116,
       "byte_identical_to_staged_release": true
     },
-    "better-recipe-book-rebetterered-1.11.6+26.3-sources.jar": {
-      "sha256": "33c80adc1b9ad46ed738a3bc343db5015b7f5d192b64be6038096384fffb54c2",
-      "bytes": 514152,
+    "better-recipe-book-rebetterered-1.11.7+26.3-sources.jar": {
+      "sha256": "efdf216b9e7223c41595929685287c26291fba11708e5998d32ea18bc8beb8b2",
+      "bytes": 514206,
       "byte_identical_to_staged_release": true
     }
   }

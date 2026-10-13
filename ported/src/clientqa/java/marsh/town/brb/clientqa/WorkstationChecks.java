@@ -63,6 +63,8 @@ public final class WorkstationChecks {
         boolean originalEnableBook = BetterRecipeBook.config.enableBook;
         boolean originalBrewingOpen = BetterRecipeBook.config.brewingBookOpen;
         boolean originalSmithingOpen = BetterRecipeBook.config.smithingBookOpen;
+        boolean originalBrewingCraftable = BetterRecipeBook.config.brewingBookCraftableOnly;
+        boolean originalSmithingCraftable = BetterRecipeBook.config.smithingBookCraftableOnly;
         Set<Identifier> originalPins = new HashSet<>(BetterRecipeBook.pinnedRecipeManager.pinned);
         List<ItemStack> originalInventory = world.getServer().computeOnServer(server -> {
             var inventory = server.getPlayerList().getPlayers().getFirst().getInventory();
@@ -74,6 +76,9 @@ public final class WorkstationChecks {
             context.runOnClient(client -> {
                 BetterRecipeBook.config.recipeDisplayMode = RecipeDisplayMode.ALL;
                 BetterRecipeBook.config.instantCraft.enabled = true;
+                BetterRecipeBook.config.brewingBookCraftableOnly = false;
+                BetterRecipeBook.config.smithingBookCraftableOnly = false;
+                BetterRecipeBook.configHolder.save();
             });
             Item template = item("sentry_armor_trim_smithing_template");
             ItemStack base = helmet("QA Exact Trim");
@@ -81,6 +86,9 @@ public final class WorkstationChecks {
             inspectRememberedState(context, () -> openSmithing(context, world,
                     List.of(base, new ItemStack(template), new ItemStack(Items.IRON_INGOT)), false),
                     WorkstationRecipe.Kind.SMITHING, evidence);
+            inspectRememberedCraftableState(context, world, WorkstationRecipe.Kind.SMITHING,
+                    () -> openSmithing(context, world, List.of(base, new ItemStack(template), new ItemStack(Items.IRON_INGOT))),
+                    () -> openBrewing(context, world), evidence);
             inspectPresentation(context, evidence, "smithing", 2);
             WorkstationRecipe recipe = context.computeOnClient(client -> matchingSmithing(template, base, Items.IRON_INGOT));
             ItemStack expected = recipe.resultFor(List.of(new ItemStack(template), base, new ItemStack(Items.IRON_INGOT)));
@@ -128,6 +136,9 @@ public final class WorkstationChecks {
             BlockPos brewPos = openBrewing(context, world);
             inspectRememberedState(context, () -> openBrewing(context, world, false),
                     WorkstationRecipe.Kind.BREWING, evidence);
+            inspectRememberedCraftableState(context, world, WorkstationRecipe.Kind.BREWING,
+                    () -> openBrewing(context, world),
+                    () -> openSmithing(context, world, List.of(base, new ItemStack(template), new ItemStack(Items.IRON_INGOT))), evidence);
             inspectPresentation(context, evidence, "brewing", 3);
             ItemStack awkward = PotionContents.createItemStack(Items.POTION, Potions.AWKWARD);
             WorkstationRecipe brew = context.computeOnClient(client -> WorkstationRecipes.forMenu(client.player.containerMenu).stream()
@@ -170,6 +181,8 @@ public final class WorkstationChecks {
                 BetterRecipeBook.config.enableBook = originalEnableBook;
                 BetterRecipeBook.config.brewingBookOpen = originalBrewingOpen;
                 BetterRecipeBook.config.smithingBookOpen = originalSmithingOpen;
+                BetterRecipeBook.config.brewingBookCraftableOnly = originalBrewingCraftable;
+                BetterRecipeBook.config.smithingBookCraftableOnly = originalSmithingCraftable;
                 if (BetterRecipeBook.configHolder != null) BetterRecipeBook.configHolder.save();
                 var current = new HashSet<>(BetterRecipeBook.pinnedRecipeManager.pinned);
                 for (Identifier id : current) if (!originalPins.contains(id)) BetterRecipeBook.pinnedRecipeManager.toggle(id);
@@ -361,6 +374,97 @@ public final class WorkstationChecks {
         var player = server.getPlayerList().getPlayers().getFirst();
         return player.level().getEntitiesOfClass(ItemEntity.class, player.getBoundingBox().inflate(32)).stream()
                 .map(ItemEntity::getItem).filter(stack -> sameAcrossRegistries(stack, expected)).mapToInt(ItemStack::getCount).sum();
+    }
+
+    private static void inspectRememberedCraftableState(ClientGameTestContext context, TestSingleplayerContext world,
+                                                       WorkstationRecipe.Kind kind, Runnable reopen, Runnable openOther,
+                                                       List<String> evidence) {
+        String name = kind.name().toLowerCase(java.util.Locale.ROOT);
+        WorkstationRecipe.Kind other = kind == WorkstationRecipe.Kind.BREWING
+                ? WorkstationRecipe.Kind.SMITHING : WorkstationRecipe.Kind.BREWING;
+        clickCraftableFilter(context, kind, true, false, evidence);
+        reopen.run();
+        check(context.computeOnClient(client -> (boolean) field(panel(client.gui.screen()), "craftableOnly")),
+                name + " reopening restores Show craftable recipes", evidence);
+        inspectReloadedCraftablePanel(context, kind, true, false, evidence);
+        openOther.run();
+        check(context.computeOnClient(client -> !(boolean) field(panel(client.gui.screen()), "craftableOnly")),
+                name + " switching workstations keeps the other Show all recipes preference", evidence);
+        clickCraftableFilter(context, other, true, true, evidence);
+        reopen.run();
+        check(context.computeOnClient(client -> (boolean) field(panel(client.gui.screen()), "craftableOnly")),
+                name + " switching back preserves its Show craftable recipes preference", evidence);
+        clickCraftableFilter(context, kind, false, true, evidence);
+        reopen.run();
+        check(context.computeOnClient(client -> !(boolean) field(panel(client.gui.screen()), "craftableOnly")),
+                name + " reopening restores Show all recipes", evidence);
+        inspectReloadedCraftablePanel(context, kind, false, true, evidence);
+        openOther.run();
+        check(context.computeOnClient(client -> (boolean) field(panel(client.gui.screen()), "craftableOnly")),
+                name + " Show all selection leaves the other workstation on Show craftable recipes", evidence);
+        clickCraftableFilter(context, other, false, false, evidence);
+        reopen.run();
+        sync(context, world);
+    }
+
+    private static void clickCraftableFilter(ClientGameTestContext context, WorkstationRecipe.Kind kind,
+                                             boolean expected, boolean otherExpected, List<String> evidence) {
+        context.runOnClient(client -> {
+            String name = kind.name().toLowerCase(java.util.Locale.ROOT);
+            var before = unrelatedCraftableSettings(BetterRecipeBook.config);
+            var screen = client.gui.screen();
+            click(screen, (AbstractWidget) field(panel(screen), "filter"), 0, false);
+            check((boolean) field(panel(screen), "craftableOnly") == expected
+                            && storedCraftablePreference(BetterRecipeBook.config, kind) == expected,
+                    name + " actual filter click selects " + (expected ? "Show craftable recipes" : "Show all recipes"), evidence);
+            var restored = readWorkstationSettings();
+            check(storedCraftablePreference(restored, kind) == expected,
+                    name + " filter preference persists to TOML", evidence);
+            check(storedCraftablePreference(restored, kind == WorkstationRecipe.Kind.BREWING
+                            ? WorkstationRecipe.Kind.SMITHING : WorkstationRecipe.Kind.BREWING) == otherExpected,
+                    name + " filter click preserves the other workstation's saved preference", evidence);
+            check(before.equals(unrelatedCraftableSettings(restored)),
+                    name + " filter click preserves every unrelated saved setting", evidence);
+        });
+    }
+
+    private static void inspectReloadedCraftablePanel(ClientGameTestContext context, WorkstationRecipe.Kind kind,
+                                                      boolean expected, boolean otherExpected, List<String> evidence) {
+        context.runOnClient(client -> {
+            var liveConfig = BetterRecipeBook.config;
+            var restored = readWorkstationSettings();
+            try {
+                BetterRecipeBook.config = restored;
+                var reconstructed = new WorkstationBookPanel(client.player.containerMenu, ignored -> { });
+                check((boolean) field(reconstructed, "craftableOnly") == expected,
+                        kind.name().toLowerCase(java.util.Locale.ROOT) + " fresh panel restores its disk-loaded filter after simulated client reload", evidence);
+                check(storedCraftablePreference(restored, kind == WorkstationRecipe.Kind.BREWING
+                                ? WorkstationRecipe.Kind.SMITHING : WorkstationRecipe.Kind.BREWING) == otherExpected,
+                        kind.name().toLowerCase(java.util.Locale.ROOT) + " disk-loaded config retains the other workstation's independent filter", evidence);
+            } finally {
+                BetterRecipeBook.config = liveConfig;
+            }
+        });
+    }
+
+    private static boolean storedCraftablePreference(Config config, WorkstationRecipe.Kind kind) {
+        return kind == WorkstationRecipe.Kind.BREWING ? config.brewingBookCraftableOnly : config.smithingBookCraftableOnly;
+    }
+
+    private static com.google.gson.JsonObject unrelatedCraftableSettings(Config config) {
+        var serialized = new com.google.gson.Gson().toJsonTree(config).getAsJsonObject();
+        serialized.remove("brewingBookCraftableOnly");
+        serialized.remove("smithingBookCraftableOnly");
+        return serialized;
+    }
+
+    private static Config readWorkstationSettings() {
+        try {
+            return new me.shedaniel.autoconfig.serializer.Toml4jConfigSerializer<>(
+                    Config.class.getAnnotation(me.shedaniel.autoconfig.annotation.Config.class), Config.class).deserialize();
+        } catch (me.shedaniel.autoconfig.serializer.ConfigSerializer.SerializationException failure) {
+            throw new AssertionError("Could not reload saved workstation settings", failure);
+        }
     }
 
     private static void inspectRememberedState(ClientGameTestContext context, Runnable reopen,

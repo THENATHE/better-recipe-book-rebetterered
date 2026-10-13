@@ -1,3 +1,8 @@
+# 1.11.7+26.3
+
+- Remember the Show craftable filter separately for smithing and brewing. Restore it when reopening a workstation or loading saved client settings.
+- Save the filter through the existing settings file without adding extra configuration-screen controls. Preserve each book’s independent open/closed preference.
+
 # 1.11.6+26.3
 
 - Make Fill grid perform real bulk output actions in crafting, smithing and the supported Vanilla++ backpack menu, including recipes that return ingredients.
