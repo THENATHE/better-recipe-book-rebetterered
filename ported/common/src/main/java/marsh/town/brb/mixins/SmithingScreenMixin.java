@@ -17,7 +17,6 @@ import net.minecraft.world.inventory.ContainerInput;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.inventory.SmithingMenu;
 import net.minecraft.world.item.ItemStack;
-import com.mojang.blaze3d.platform.InputConstants;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
@@ -118,11 +117,7 @@ public abstract class SmithingScreenMixin extends ItemCombinerScreen<SmithingMen
 
     @Override
     public boolean keyPressed(KeyEvent event) {
-        if (brb$book != null && brb$book.isVisible() && event.key() == InputConstants.KEY_ESCAPE) {
-            brb$book.toggleVisibility();
-            brb$positionBook();
-            return true;
-        }
+        if (event.isEscape()) return super.keyPressed(event);
         if (brb$book != null && brb$book.keyPressed(event)) return true;
         return super.keyPressed(event);
     }

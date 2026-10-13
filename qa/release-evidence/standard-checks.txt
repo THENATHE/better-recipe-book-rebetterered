@@ -714,118 +714,126 @@ PASS: resin_brick_stairs belongs to building:resin
 PASS: resin_brick_slab belongs to building:resin
 PASS: resin_brick_wall belongs to building:resin
 PASS: chiseled_resin_bricks belongs to building:resin
-PASS: copper_block belongs to copper:copper
-PASS: chiseled_copper belongs to copper:copper
-PASS: cut_copper belongs to copper:copper
-PASS: cut_copper_stairs belongs to copper:copper
-PASS: cut_copper_slab belongs to copper:copper
-PASS: copper_grate belongs to copper:copper
-PASS: copper_bulb belongs to copper:copper
-PASS: copper_door belongs to copper:copper
-PASS: copper_trapdoor belongs to copper:copper
-PASS: copper_bars belongs to copper:copper
-PASS: copper_chain belongs to copper:copper
-PASS: copper_chest belongs to copper:copper
-PASS: copper_lantern belongs to copper:copper
-PASS: copper_golem_statue belongs to copper:copper
-PASS: exposed_copper belongs to copper:copper
-PASS: exposed_chiseled_copper belongs to copper:copper
-PASS: exposed_cut_copper belongs to copper:copper
-PASS: exposed_cut_copper_stairs belongs to copper:copper
-PASS: exposed_cut_copper_slab belongs to copper:copper
-PASS: exposed_copper_grate belongs to copper:copper
-PASS: exposed_copper_bulb belongs to copper:copper
-PASS: exposed_copper_door belongs to copper:copper
-PASS: exposed_copper_trapdoor belongs to copper:copper
-PASS: exposed_copper_bars belongs to copper:copper
-PASS: exposed_copper_chain belongs to copper:copper
-PASS: exposed_copper_chest belongs to copper:copper
-PASS: exposed_copper_lantern belongs to copper:copper
-PASS: exposed_copper_golem_statue belongs to copper:copper
-PASS: weathered_copper belongs to copper:copper
-PASS: weathered_chiseled_copper belongs to copper:copper
-PASS: weathered_cut_copper belongs to copper:copper
-PASS: weathered_cut_copper_stairs belongs to copper:copper
-PASS: weathered_cut_copper_slab belongs to copper:copper
-PASS: weathered_copper_grate belongs to copper:copper
-PASS: weathered_copper_bulb belongs to copper:copper
-PASS: weathered_copper_door belongs to copper:copper
-PASS: weathered_copper_trapdoor belongs to copper:copper
-PASS: weathered_copper_bars belongs to copper:copper
-PASS: weathered_copper_chain belongs to copper:copper
-PASS: weathered_copper_chest belongs to copper:copper
-PASS: weathered_copper_lantern belongs to copper:copper
-PASS: weathered_copper_golem_statue belongs to copper:copper
-PASS: oxidized_copper belongs to copper:copper
-PASS: oxidized_chiseled_copper belongs to copper:copper
-PASS: oxidized_cut_copper belongs to copper:copper
-PASS: oxidized_cut_copper_stairs belongs to copper:copper
-PASS: oxidized_cut_copper_slab belongs to copper:copper
-PASS: oxidized_copper_grate belongs to copper:copper
-PASS: oxidized_copper_bulb belongs to copper:copper
-PASS: oxidized_copper_door belongs to copper:copper
-PASS: oxidized_copper_trapdoor belongs to copper:copper
-PASS: oxidized_copper_bars belongs to copper:copper
-PASS: oxidized_copper_chain belongs to copper:copper
-PASS: oxidized_copper_chest belongs to copper:copper
-PASS: oxidized_copper_lantern belongs to copper:copper
-PASS: oxidized_copper_golem_statue belongs to copper:copper
-PASS: waxed_copper_block belongs to copper:copper
-PASS: waxed_chiseled_copper belongs to copper:copper
-PASS: waxed_cut_copper belongs to copper:copper
-PASS: waxed_cut_copper_stairs belongs to copper:copper
-PASS: waxed_cut_copper_slab belongs to copper:copper
-PASS: waxed_copper_grate belongs to copper:copper
-PASS: waxed_copper_bulb belongs to copper:copper
-PASS: waxed_copper_door belongs to copper:copper
-PASS: waxed_copper_trapdoor belongs to copper:copper
-PASS: waxed_copper_bars belongs to copper:copper
-PASS: waxed_copper_chain belongs to copper:copper
-PASS: waxed_copper_chest belongs to copper:copper
-PASS: waxed_copper_lantern belongs to copper:copper
-PASS: waxed_copper_golem_statue belongs to copper:copper
-PASS: waxed_exposed_copper belongs to copper:copper
-PASS: waxed_exposed_chiseled_copper belongs to copper:copper
-PASS: waxed_exposed_cut_copper belongs to copper:copper
-PASS: waxed_exposed_cut_copper_stairs belongs to copper:copper
-PASS: waxed_exposed_cut_copper_slab belongs to copper:copper
-PASS: waxed_exposed_copper_grate belongs to copper:copper
-PASS: waxed_exposed_copper_bulb belongs to copper:copper
-PASS: waxed_exposed_copper_door belongs to copper:copper
-PASS: waxed_exposed_copper_trapdoor belongs to copper:copper
-PASS: waxed_exposed_copper_bars belongs to copper:copper
-PASS: waxed_exposed_copper_chain belongs to copper:copper
-PASS: waxed_exposed_copper_chest belongs to copper:copper
-PASS: waxed_exposed_copper_lantern belongs to copper:copper
-PASS: waxed_exposed_copper_golem_statue belongs to copper:copper
-PASS: waxed_weathered_copper belongs to copper:copper
-PASS: waxed_weathered_chiseled_copper belongs to copper:copper
-PASS: waxed_weathered_cut_copper belongs to copper:copper
-PASS: waxed_weathered_cut_copper_stairs belongs to copper:copper
-PASS: waxed_weathered_cut_copper_slab belongs to copper:copper
-PASS: waxed_weathered_copper_grate belongs to copper:copper
-PASS: waxed_weathered_copper_bulb belongs to copper:copper
-PASS: waxed_weathered_copper_door belongs to copper:copper
-PASS: waxed_weathered_copper_trapdoor belongs to copper:copper
-PASS: waxed_weathered_copper_bars belongs to copper:copper
-PASS: waxed_weathered_copper_chain belongs to copper:copper
-PASS: waxed_weathered_copper_chest belongs to copper:copper
-PASS: waxed_weathered_copper_lantern belongs to copper:copper
-PASS: waxed_weathered_copper_golem_statue belongs to copper:copper
-PASS: waxed_oxidized_copper belongs to copper:copper
-PASS: waxed_oxidized_chiseled_copper belongs to copper:copper
-PASS: waxed_oxidized_cut_copper belongs to copper:copper
-PASS: waxed_oxidized_cut_copper_stairs belongs to copper:copper
-PASS: waxed_oxidized_cut_copper_slab belongs to copper:copper
-PASS: waxed_oxidized_copper_grate belongs to copper:copper
-PASS: waxed_oxidized_copper_bulb belongs to copper:copper
-PASS: waxed_oxidized_copper_door belongs to copper:copper
-PASS: waxed_oxidized_copper_trapdoor belongs to copper:copper
-PASS: waxed_oxidized_copper_bars belongs to copper:copper
-PASS: waxed_oxidized_copper_chain belongs to copper:copper
-PASS: waxed_oxidized_copper_chest belongs to copper:copper
-PASS: waxed_oxidized_copper_lantern belongs to copper:copper
-PASS: waxed_oxidized_copper_golem_statue belongs to copper:copper
+PASS: copper_block belongs to copper:unoxidized
+PASS: chiseled_copper belongs to copper:unoxidized
+PASS: cut_copper belongs to copper:unoxidized
+PASS: cut_copper_stairs belongs to copper:unoxidized
+PASS: cut_copper_slab belongs to copper:unoxidized
+PASS: copper_grate belongs to copper:unoxidized
+PASS: copper_bulb belongs to copper:unoxidized
+PASS: copper_door belongs to copper:unoxidized
+PASS: copper_trapdoor belongs to copper:unoxidized
+PASS: copper_bars belongs to copper:unoxidized
+PASS: copper_chain belongs to copper:unoxidized
+PASS: copper_chest belongs to copper:unoxidized
+PASS: copper_lantern belongs to copper:unoxidized
+PASS: copper_golem_statue belongs to copper:unoxidized
+PASS: lightning_rod belongs to utility:lightning_rods
+PASS: exposed_copper belongs to copper:exposed
+PASS: exposed_chiseled_copper belongs to copper:exposed
+PASS: exposed_cut_copper belongs to copper:exposed
+PASS: exposed_cut_copper_stairs belongs to copper:exposed
+PASS: exposed_cut_copper_slab belongs to copper:exposed
+PASS: exposed_copper_grate belongs to copper:exposed
+PASS: exposed_copper_bulb belongs to copper:exposed
+PASS: exposed_copper_door belongs to copper:exposed
+PASS: exposed_copper_trapdoor belongs to copper:exposed
+PASS: exposed_copper_bars belongs to copper:exposed
+PASS: exposed_copper_chain belongs to copper:exposed
+PASS: exposed_copper_chest belongs to copper:exposed
+PASS: exposed_copper_lantern belongs to copper:exposed
+PASS: exposed_copper_golem_statue belongs to copper:exposed
+PASS: exposed_lightning_rod belongs to utility:lightning_rods
+PASS: weathered_copper belongs to copper:weathered
+PASS: weathered_chiseled_copper belongs to copper:weathered
+PASS: weathered_cut_copper belongs to copper:weathered
+PASS: weathered_cut_copper_stairs belongs to copper:weathered
+PASS: weathered_cut_copper_slab belongs to copper:weathered
+PASS: weathered_copper_grate belongs to copper:weathered
+PASS: weathered_copper_bulb belongs to copper:weathered
+PASS: weathered_copper_door belongs to copper:weathered
+PASS: weathered_copper_trapdoor belongs to copper:weathered
+PASS: weathered_copper_bars belongs to copper:weathered
+PASS: weathered_copper_chain belongs to copper:weathered
+PASS: weathered_copper_chest belongs to copper:weathered
+PASS: weathered_copper_lantern belongs to copper:weathered
+PASS: weathered_copper_golem_statue belongs to copper:weathered
+PASS: weathered_lightning_rod belongs to utility:lightning_rods
+PASS: oxidized_copper belongs to copper:oxidized
+PASS: oxidized_chiseled_copper belongs to copper:oxidized
+PASS: oxidized_cut_copper belongs to copper:oxidized
+PASS: oxidized_cut_copper_stairs belongs to copper:oxidized
+PASS: oxidized_cut_copper_slab belongs to copper:oxidized
+PASS: oxidized_copper_grate belongs to copper:oxidized
+PASS: oxidized_copper_bulb belongs to copper:oxidized
+PASS: oxidized_copper_door belongs to copper:oxidized
+PASS: oxidized_copper_trapdoor belongs to copper:oxidized
+PASS: oxidized_copper_bars belongs to copper:oxidized
+PASS: oxidized_copper_chain belongs to copper:oxidized
+PASS: oxidized_copper_chest belongs to copper:oxidized
+PASS: oxidized_copper_lantern belongs to copper:oxidized
+PASS: oxidized_copper_golem_statue belongs to copper:oxidized
+PASS: oxidized_lightning_rod belongs to utility:lightning_rods
+PASS: waxed_copper_block belongs to copper:waxed_unoxidized
+PASS: waxed_chiseled_copper belongs to copper:waxed_unoxidized
+PASS: waxed_cut_copper belongs to copper:waxed_unoxidized
+PASS: waxed_cut_copper_stairs belongs to copper:waxed_unoxidized
+PASS: waxed_cut_copper_slab belongs to copper:waxed_unoxidized
+PASS: waxed_copper_grate belongs to copper:waxed_unoxidized
+PASS: waxed_copper_bulb belongs to copper:waxed_unoxidized
+PASS: waxed_copper_door belongs to copper:waxed_unoxidized
+PASS: waxed_copper_trapdoor belongs to copper:waxed_unoxidized
+PASS: waxed_copper_bars belongs to copper:waxed_unoxidized
+PASS: waxed_copper_chain belongs to copper:waxed_unoxidized
+PASS: waxed_copper_chest belongs to copper:waxed_unoxidized
+PASS: waxed_copper_lantern belongs to copper:waxed_unoxidized
+PASS: waxed_copper_golem_statue belongs to copper:waxed_unoxidized
+PASS: waxed_lightning_rod belongs to utility:lightning_rods
+PASS: waxed_exposed_copper belongs to copper:waxed_exposed
+PASS: waxed_exposed_chiseled_copper belongs to copper:waxed_exposed
+PASS: waxed_exposed_cut_copper belongs to copper:waxed_exposed
+PASS: waxed_exposed_cut_copper_stairs belongs to copper:waxed_exposed
+PASS: waxed_exposed_cut_copper_slab belongs to copper:waxed_exposed
+PASS: waxed_exposed_copper_grate belongs to copper:waxed_exposed
+PASS: waxed_exposed_copper_bulb belongs to copper:waxed_exposed
+PASS: waxed_exposed_copper_door belongs to copper:waxed_exposed
+PASS: waxed_exposed_copper_trapdoor belongs to copper:waxed_exposed
+PASS: waxed_exposed_copper_bars belongs to copper:waxed_exposed
+PASS: waxed_exposed_copper_chain belongs to copper:waxed_exposed
+PASS: waxed_exposed_copper_chest belongs to copper:waxed_exposed
+PASS: waxed_exposed_copper_lantern belongs to copper:waxed_exposed
+PASS: waxed_exposed_copper_golem_statue belongs to copper:waxed_exposed
+PASS: waxed_exposed_lightning_rod belongs to utility:lightning_rods
+PASS: waxed_weathered_copper belongs to copper:waxed_weathered
+PASS: waxed_weathered_chiseled_copper belongs to copper:waxed_weathered
+PASS: waxed_weathered_cut_copper belongs to copper:waxed_weathered
+PASS: waxed_weathered_cut_copper_stairs belongs to copper:waxed_weathered
+PASS: waxed_weathered_cut_copper_slab belongs to copper:waxed_weathered
+PASS: waxed_weathered_copper_grate belongs to copper:waxed_weathered
+PASS: waxed_weathered_copper_bulb belongs to copper:waxed_weathered
+PASS: waxed_weathered_copper_door belongs to copper:waxed_weathered
+PASS: waxed_weathered_copper_trapdoor belongs to copper:waxed_weathered
+PASS: waxed_weathered_copper_bars belongs to copper:waxed_weathered
+PASS: waxed_weathered_copper_chain belongs to copper:waxed_weathered
+PASS: waxed_weathered_copper_chest belongs to copper:waxed_weathered
+PASS: waxed_weathered_copper_lantern belongs to copper:waxed_weathered
+PASS: waxed_weathered_copper_golem_statue belongs to copper:waxed_weathered
+PASS: waxed_weathered_lightning_rod belongs to utility:lightning_rods
+PASS: waxed_oxidized_copper belongs to copper:waxed_oxidized
+PASS: waxed_oxidized_chiseled_copper belongs to copper:waxed_oxidized
+PASS: waxed_oxidized_cut_copper belongs to copper:waxed_oxidized
+PASS: waxed_oxidized_cut_copper_stairs belongs to copper:waxed_oxidized
+PASS: waxed_oxidized_cut_copper_slab belongs to copper:waxed_oxidized
+PASS: waxed_oxidized_copper_grate belongs to copper:waxed_oxidized
+PASS: waxed_oxidized_copper_bulb belongs to copper:waxed_oxidized
+PASS: waxed_oxidized_copper_door belongs to copper:waxed_oxidized
+PASS: waxed_oxidized_copper_trapdoor belongs to copper:waxed_oxidized
+PASS: waxed_oxidized_copper_bars belongs to copper:waxed_oxidized
+PASS: waxed_oxidized_copper_chain belongs to copper:waxed_oxidized
+PASS: waxed_oxidized_copper_chest belongs to copper:waxed_oxidized
+PASS: waxed_oxidized_copper_lantern belongs to copper:waxed_oxidized
+PASS: waxed_oxidized_copper_golem_statue belongs to copper:waxed_oxidized
+PASS: waxed_oxidized_lightning_rod belongs to utility:lightning_rods
 PASS: wooden_spear belongs to equipment:spear
 PASS: stone_spear belongs to equipment:spear
 PASS: copper_spear belongs to equipment:spear
@@ -837,11 +845,6 @@ PASS: copper_nautilus_armor belongs to equipment:nautilus_armor
 PASS: unrelated item remains individual: stonecutter
 PASS: unrelated item remains individual: redstone
 PASS: unrelated item remains individual: redstone_block
-PASS: unrelated item remains individual: deepslate_diamond_ore
-PASS: unrelated item remains individual: infested_stone
-PASS: unrelated item remains individual: infested_mossy_stone_bricks
-PASS: unrelated item remains individual: infested_deepslate
-PASS: unrelated item remains individual: nether_quartz_ore
 PASS: unrelated item remains individual: quartz
 PASS: unrelated item remains individual: brick
 PASS: unrelated item remains individual: nether_brick
@@ -849,7 +852,6 @@ PASS: unrelated item remains individual: resin_brick
 PASS: unrelated item remains individual: prismarine_shard
 PASS: unrelated item remains individual: prismarine_crystals
 PASS: unrelated item remains individual: copper_ingot
-PASS: unrelated item remains individual: copper_ore
 PASS: unrelated item remains individual: raw_copper_block
 PASS: unrelated item remains individual: copper_torch
 PASS: unrelated item remains individual: potent_sulfur
@@ -858,7 +860,6 @@ PASS: unrelated item remains individual: sulfur_cube_bucket
 PASS: unrelated item remains individual: white_tulip
 PASS: unrelated item remains individual: shelf_mushroom
 PASS: unrelated item remains individual: poplar_sapling
-PASS: unrelated item remains individual: red_poplar_leaves
 PASS: unrelated item remains individual: muddy_mangrove_roots
 PASS: unrelated item remains individual: bookshelf
 PASS: unrelated item remains individual: chiseled_bookshelf
@@ -868,6 +869,285 @@ PASS: custom namespace stays independent: mossy_cobblestone
 PASS: custom namespace stays independent: white_wool_slab
 PASS: custom namespace stays independent: glass
 PASS: custom namespace stays independent: copper_block
+PASS: oak_leaves belongs to wood:oak
+PASS: oak leaves use the single natural leaf group
+PASS: minecraft:oak_log uses the natural log group
+PASS: minecraft:oak_log keeps its building wood family
+PASS: minecraft:stripped_oak_log uses the natural log group
+PASS: minecraft:stripped_oak_log keeps its building wood family
+PASS: minecraft:oak_wood uses the natural log group
+PASS: minecraft:oak_wood keeps its building wood family
+PASS: minecraft:stripped_oak_wood uses the natural log group
+PASS: minecraft:stripped_oak_wood keeps its building wood family
+PASS: spruce_leaves belongs to wood:spruce
+PASS: spruce leaves use the single natural leaf group
+PASS: minecraft:spruce_log uses the natural log group
+PASS: minecraft:spruce_log keeps its building wood family
+PASS: minecraft:stripped_spruce_log uses the natural log group
+PASS: minecraft:stripped_spruce_log keeps its building wood family
+PASS: minecraft:spruce_wood uses the natural log group
+PASS: minecraft:spruce_wood keeps its building wood family
+PASS: minecraft:stripped_spruce_wood uses the natural log group
+PASS: minecraft:stripped_spruce_wood keeps its building wood family
+PASS: birch_leaves belongs to wood:birch
+PASS: birch leaves use the single natural leaf group
+PASS: minecraft:birch_log uses the natural log group
+PASS: minecraft:birch_log keeps its building wood family
+PASS: minecraft:stripped_birch_log uses the natural log group
+PASS: minecraft:stripped_birch_log keeps its building wood family
+PASS: minecraft:birch_wood uses the natural log group
+PASS: minecraft:birch_wood keeps its building wood family
+PASS: minecraft:stripped_birch_wood uses the natural log group
+PASS: minecraft:stripped_birch_wood keeps its building wood family
+PASS: jungle_leaves belongs to wood:jungle
+PASS: jungle leaves use the single natural leaf group
+PASS: minecraft:jungle_log uses the natural log group
+PASS: minecraft:jungle_log keeps its building wood family
+PASS: minecraft:stripped_jungle_log uses the natural log group
+PASS: minecraft:stripped_jungle_log keeps its building wood family
+PASS: minecraft:jungle_wood uses the natural log group
+PASS: minecraft:jungle_wood keeps its building wood family
+PASS: minecraft:stripped_jungle_wood uses the natural log group
+PASS: minecraft:stripped_jungle_wood keeps its building wood family
+PASS: acacia_leaves belongs to wood:acacia
+PASS: acacia leaves use the single natural leaf group
+PASS: minecraft:acacia_log uses the natural log group
+PASS: minecraft:acacia_log keeps its building wood family
+PASS: minecraft:stripped_acacia_log uses the natural log group
+PASS: minecraft:stripped_acacia_log keeps its building wood family
+PASS: minecraft:acacia_wood uses the natural log group
+PASS: minecraft:acacia_wood keeps its building wood family
+PASS: minecraft:stripped_acacia_wood uses the natural log group
+PASS: minecraft:stripped_acacia_wood keeps its building wood family
+PASS: dark_oak_leaves belongs to wood:dark_oak
+PASS: dark_oak leaves use the single natural leaf group
+PASS: minecraft:dark_oak_log uses the natural log group
+PASS: minecraft:dark_oak_log keeps its building wood family
+PASS: minecraft:stripped_dark_oak_log uses the natural log group
+PASS: minecraft:stripped_dark_oak_log keeps its building wood family
+PASS: minecraft:dark_oak_wood uses the natural log group
+PASS: minecraft:dark_oak_wood keeps its building wood family
+PASS: minecraft:stripped_dark_oak_wood uses the natural log group
+PASS: minecraft:stripped_dark_oak_wood keeps its building wood family
+PASS: mangrove_leaves belongs to wood:mangrove
+PASS: mangrove leaves use the single natural leaf group
+PASS: minecraft:mangrove_log uses the natural log group
+PASS: minecraft:mangrove_log keeps its building wood family
+PASS: minecraft:stripped_mangrove_log uses the natural log group
+PASS: minecraft:stripped_mangrove_log keeps its building wood family
+PASS: minecraft:mangrove_wood uses the natural log group
+PASS: minecraft:mangrove_wood keeps its building wood family
+PASS: minecraft:stripped_mangrove_wood uses the natural log group
+PASS: minecraft:stripped_mangrove_wood keeps its building wood family
+PASS: cherry_leaves belongs to wood:cherry
+PASS: cherry leaves use the single natural leaf group
+PASS: minecraft:cherry_log uses the natural log group
+PASS: minecraft:cherry_log keeps its building wood family
+PASS: minecraft:stripped_cherry_log uses the natural log group
+PASS: minecraft:stripped_cherry_log keeps its building wood family
+PASS: minecraft:cherry_wood uses the natural log group
+PASS: minecraft:cherry_wood keeps its building wood family
+PASS: minecraft:stripped_cherry_wood uses the natural log group
+PASS: minecraft:stripped_cherry_wood keeps its building wood family
+PASS: pale_oak_leaves belongs to wood:pale_oak
+PASS: pale_oak leaves use the single natural leaf group
+PASS: minecraft:pale_oak_log uses the natural log group
+PASS: minecraft:pale_oak_log keeps its building wood family
+PASS: minecraft:stripped_pale_oak_log uses the natural log group
+PASS: minecraft:stripped_pale_oak_log keeps its building wood family
+PASS: minecraft:pale_oak_wood uses the natural log group
+PASS: minecraft:pale_oak_wood keeps its building wood family
+PASS: minecraft:stripped_pale_oak_wood uses the natural log group
+PASS: minecraft:stripped_pale_oak_wood keeps its building wood family
+PASS: poplar_leaves belongs to wood:poplar
+PASS: poplar leaves use the single natural leaf group
+PASS: minecraft:poplar_log uses the natural log group
+PASS: minecraft:poplar_log keeps its building wood family
+PASS: minecraft:stripped_poplar_log uses the natural log group
+PASS: minecraft:stripped_poplar_log keeps its building wood family
+PASS: minecraft:poplar_wood uses the natural log group
+PASS: minecraft:poplar_wood keeps its building wood family
+PASS: minecraft:stripped_poplar_wood uses the natural log group
+PASS: minecraft:stripped_poplar_wood keeps its building wood family
+PASS: yellow_poplar_leaves belongs to wood:poplar
+PASS: yellow poplar leaves keep natural grouping
+PASS: orange_poplar_leaves belongs to wood:poplar
+PASS: orange poplar leaves keep natural grouping
+PASS: red_poplar_leaves belongs to wood:poplar
+PASS: red poplar leaves keep natural grouping
+PASS: azalea_leaves joins natural leaves
+PASS: azalea_leaves has no unrelated wood family
+PASS: flowering_azalea_leaves joins natural leaves
+PASS: flowering_azalea_leaves has no unrelated wood family
+PASS: crimson_stem joins natural logs and stems
+PASS: stripped_crimson_stem joins natural logs and stems
+PASS: crimson_hyphae joins natural logs and stems
+PASS: stripped_crimson_hyphae joins natural logs and stems
+PASS: warped_stem joins natural logs and stems
+PASS: stripped_warped_stem joins natural logs and stems
+PASS: warped_hyphae joins natural logs and stems
+PASS: stripped_warped_hyphae joins natural logs and stems
+PASS: bamboo remains its wood family because it is not a native log
+PASS: coal_ore belongs to natural:ores
+PASS: iron_ore belongs to natural:ores
+PASS: copper_ore belongs to natural:ores
+PASS: gold_ore belongs to natural:ores
+PASS: redstone_ore belongs to natural:ores
+PASS: emerald_ore belongs to natural:ores
+PASS: lapis_ore belongs to natural:ores
+PASS: diamond_ore belongs to natural:ores
+PASS: deepslate_coal_ore belongs to natural:ores
+PASS: deepslate_iron_ore belongs to natural:ores
+PASS: deepslate_copper_ore belongs to natural:ores
+PASS: deepslate_gold_ore belongs to natural:ores
+PASS: deepslate_redstone_ore belongs to natural:ores
+PASS: deepslate_emerald_ore belongs to natural:ores
+PASS: deepslate_lapis_ore belongs to natural:ores
+PASS: deepslate_diamond_ore belongs to natural:ores
+PASS: nether_gold_ore belongs to natural:ores
+PASS: nether_quartz_ore belongs to natural:ores
+PASS: ancient_debris belongs to natural:ores
+PASS: angler_pottery_sherd belongs to pottery:sherds
+PASS: archer_pottery_sherd belongs to pottery:sherds
+PASS: arms_up_pottery_sherd belongs to pottery:sherds
+PASS: blade_pottery_sherd belongs to pottery:sherds
+PASS: brewer_pottery_sherd belongs to pottery:sherds
+PASS: burn_pottery_sherd belongs to pottery:sherds
+PASS: danger_pottery_sherd belongs to pottery:sherds
+PASS: explorer_pottery_sherd belongs to pottery:sherds
+PASS: flow_pottery_sherd belongs to pottery:sherds
+PASS: friend_pottery_sherd belongs to pottery:sherds
+PASS: guster_pottery_sherd belongs to pottery:sherds
+PASS: heart_pottery_sherd belongs to pottery:sherds
+PASS: heartbreak_pottery_sherd belongs to pottery:sherds
+PASS: howl_pottery_sherd belongs to pottery:sherds
+PASS: miner_pottery_sherd belongs to pottery:sherds
+PASS: mourner_pottery_sherd belongs to pottery:sherds
+PASS: plenty_pottery_sherd belongs to pottery:sherds
+PASS: prize_pottery_sherd belongs to pottery:sherds
+PASS: scrape_pottery_sherd belongs to pottery:sherds
+PASS: sheaf_pottery_sherd belongs to pottery:sherds
+PASS: shelter_pottery_sherd belongs to pottery:sherds
+PASS: skull_pottery_sherd belongs to pottery:sherds
+PASS: snort_pottery_sherd belongs to pottery:sherds
+PASS: flower_banner_pattern belongs to patterns:banner_patterns
+PASS: creeper_banner_pattern belongs to patterns:banner_patterns
+PASS: skull_banner_pattern belongs to patterns:banner_patterns
+PASS: mojang_banner_pattern belongs to patterns:banner_patterns
+PASS: globe_banner_pattern belongs to patterns:banner_patterns
+PASS: piglin_banner_pattern belongs to patterns:banner_patterns
+PASS: flow_banner_pattern belongs to patterns:banner_patterns
+PASS: guster_banner_pattern belongs to patterns:banner_patterns
+PASS: field_masoned_banner_pattern belongs to patterns:banner_patterns
+PASS: bordure_indented_banner_pattern belongs to patterns:banner_patterns
+PASS: tube_coral belongs to coral:tube
+PASS: tube_coral_block belongs to coral:tube
+PASS: tube_coral_fan belongs to coral:tube
+PASS: dead_tube_coral belongs to coral:tube
+PASS: dead_tube_coral_block belongs to coral:tube
+PASS: dead_tube_coral_fan belongs to coral:tube
+PASS: brain_coral belongs to coral:brain
+PASS: brain_coral_block belongs to coral:brain
+PASS: brain_coral_fan belongs to coral:brain
+PASS: dead_brain_coral belongs to coral:brain
+PASS: dead_brain_coral_block belongs to coral:brain
+PASS: dead_brain_coral_fan belongs to coral:brain
+PASS: bubble_coral belongs to coral:bubble
+PASS: bubble_coral_block belongs to coral:bubble
+PASS: bubble_coral_fan belongs to coral:bubble
+PASS: dead_bubble_coral belongs to coral:bubble
+PASS: dead_bubble_coral_block belongs to coral:bubble
+PASS: dead_bubble_coral_fan belongs to coral:bubble
+PASS: fire_coral belongs to coral:fire
+PASS: fire_coral_block belongs to coral:fire
+PASS: fire_coral_fan belongs to coral:fire
+PASS: dead_fire_coral belongs to coral:fire
+PASS: dead_fire_coral_block belongs to coral:fire
+PASS: dead_fire_coral_fan belongs to coral:fire
+PASS: horn_coral belongs to coral:horn
+PASS: horn_coral_block belongs to coral:horn
+PASS: horn_coral_fan belongs to coral:horn
+PASS: dead_horn_coral belongs to coral:horn
+PASS: dead_horn_coral_block belongs to coral:horn
+PASS: dead_horn_coral_fan belongs to coral:horn
+PASS: anvil belongs to utility:anvils
+PASS: chipped_anvil belongs to utility:anvils
+PASS: damaged_anvil belongs to utility:anvils
+PASS: skeleton_skull belongs to heads:heads
+PASS: wither_skeleton_skull belongs to heads:heads
+PASS: zombie_head belongs to heads:heads
+PASS: player_head belongs to heads:heads
+PASS: creeper_head belongs to heads:heads
+PASS: dragon_head belongs to heads:heads
+PASS: piglin_head belongs to heads:heads
+PASS: infested_stone belongs to infested:stone
+PASS: infested_cobblestone belongs to infested:stone
+PASS: infested_stone_bricks belongs to infested:stone
+PASS: infested_mossy_stone_bricks belongs to infested:stone
+PASS: infested_cracked_stone_bricks belongs to infested:stone
+PASS: infested_chiseled_stone_bricks belongs to infested:stone
+PASS: infested_deepslate belongs to infested:stone
+PASS: painting belongs to variants:paintings
+PASS: goat_horn belongs to variants:horns
+PASS: music_disc_13 belongs to music:discs
+PASS: music_disc_cat belongs to music:discs
+PASS: music_disc_blocks belongs to music:discs
+PASS: music_disc_chirp belongs to music:discs
+PASS: music_disc_far belongs to music:discs
+PASS: music_disc_mall belongs to music:discs
+PASS: music_disc_mellohi belongs to music:discs
+PASS: music_disc_stal belongs to music:discs
+PASS: music_disc_strad belongs to music:discs
+PASS: music_disc_ward belongs to music:discs
+PASS: music_disc_11 belongs to music:discs
+PASS: music_disc_wait belongs to music:discs
+PASS: music_disc_pigstep belongs to music:discs
+PASS: music_disc_otherside belongs to music:discs
+PASS: music_disc_5 belongs to music:discs
+PASS: music_disc_relic belongs to music:discs
+PASS: music_disc_creator belongs to music:discs
+PASS: music_disc_creator_music_box belongs to music:discs
+PASS: music_disc_precipice belongs to music:discs
+PASS: music_disc_tears belongs to music:discs
+PASS: music_disc_lava_chicken belongs to music:discs
+PASS: music_disc_bounce belongs to music:discs
+PASS: chalk:white_chalk joins known Chalk variants
+PASS: chalk:white_glow_chalk joins known Chalk variants
+PASS: chalk:orange_chalk joins known Chalk variants
+PASS: chalk:orange_glow_chalk joins known Chalk variants
+PASS: chalk:magenta_chalk joins known Chalk variants
+PASS: chalk:magenta_glow_chalk joins known Chalk variants
+PASS: chalk:light_blue_chalk joins known Chalk variants
+PASS: chalk:light_blue_glow_chalk joins known Chalk variants
+PASS: chalk:yellow_chalk joins known Chalk variants
+PASS: chalk:yellow_glow_chalk joins known Chalk variants
+PASS: chalk:lime_chalk joins known Chalk variants
+PASS: chalk:lime_glow_chalk joins known Chalk variants
+PASS: chalk:pink_chalk joins known Chalk variants
+PASS: chalk:pink_glow_chalk joins known Chalk variants
+PASS: chalk:gray_chalk joins known Chalk variants
+PASS: chalk:gray_glow_chalk joins known Chalk variants
+PASS: chalk:light_gray_chalk joins known Chalk variants
+PASS: chalk:light_gray_glow_chalk joins known Chalk variants
+PASS: chalk:cyan_chalk joins known Chalk variants
+PASS: chalk:cyan_glow_chalk joins known Chalk variants
+PASS: chalk:purple_chalk joins known Chalk variants
+PASS: chalk:purple_glow_chalk joins known Chalk variants
+PASS: chalk:blue_chalk joins known Chalk variants
+PASS: chalk:blue_glow_chalk joins known Chalk variants
+PASS: chalk:brown_chalk joins known Chalk variants
+PASS: chalk:brown_glow_chalk joins known Chalk variants
+PASS: chalk:green_chalk joins known Chalk variants
+PASS: chalk:green_glow_chalk joins known Chalk variants
+PASS: chalk:red_chalk joins known Chalk variants
+PASS: chalk:red_glow_chalk joins known Chalk variants
+PASS: chalk:black_chalk joins known Chalk variants
+PASS: chalk:black_glow_chalk joins known Chalk variants
+PASS: Chalk block IDs are not mistaken for tools
+PASS: unrelated custom chalk is not regrouped
+PASS: spawn egg header requests a Creeper representative
+PASS: tab rules require the exact namespaced category
+PASS: blank tab IDs are rejected safely
 PASS: unmatched items stay visible individually
 PASS: custom namespace not silently grouped by vanilla rules
 PASS: labels use stable captures
@@ -878,4 +1158,4 @@ PASS: invalid replacement \
 PASS: first resource rule deterministically owns overlapping matches
 > Task :pinRegression
 PASS: pin migration, latest ordered save, temporary cleanup, malformed preservation, component and ingredient identity (11 checks)
-BUILD SUCCESSFUL in 2m 35s
+BUILD SUCCESSFUL in 2m 44s

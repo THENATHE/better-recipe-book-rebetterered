@@ -577,6 +577,7 @@ PASS: color:glazed_terracotta expanded tooltip shows the translated gray action 
 PASS: color:glazed_terracotta mouse toggle restores collapsed contents without changing the carried stack
 PASS: color:glazed_terracotta collapsed keeps every scrolled slot aligned with its group entry
 SCREENSHOT: screenshots/0008_brb-creative-material-colors-collapsed.png
+SCREENSHOT: screenshots/0009_brb-creative-group-tooltip.png
 PASS: color:stained_glass has multiple real vanilla tab members
 PASS: color:stained_glass collapses all expected tab members under one header
 PASS: color:stained_glass has no visible children while collapsed
@@ -665,6 +666,350 @@ PASS: color:harness expanded tooltip shows the translated gray action hint
 PASS: color:harness mouse toggle restores collapsed contents without changing the carried stack
 PASS: color:harness collapsed keeps every scrolled slot aligned with its group entry
 PASS: color:harness is covered in its real creative category
+PASS: natural:leaves has multiple real vanilla tab members
+PASS: natural:leaves collapses all expected tab members under one header
+PASS: natural:leaves has no visible children while collapsed
+PASS: natural:leaves collapsed tooltip shows the translated gray action hint
+PASS: natural:leaves expands exact vanilla children in order without omissions or duplicates
+PASS: natural:leaves expanded keeps every scrolled slot aligned with its group entry
+PASS: natural:leaves expanded tooltip shows the translated gray action hint
+PASS: natural:leaves mouse toggle restores collapsed contents without changing the carried stack
+PASS: natural:leaves collapsed keeps every scrolled slot aligned with its group entry
+PASS: natural:logs has multiple real vanilla tab members
+PASS: natural:logs collapses all expected tab members under one header
+PASS: natural:logs has no visible children while collapsed
+PASS: natural:logs collapsed tooltip shows the translated gray action hint
+PASS: natural:logs expands exact vanilla children in order without omissions or duplicates
+PASS: natural:logs expanded keeps every scrolled slot aligned with its group entry
+PASS: natural:logs expanded tooltip shows the translated gray action hint
+PASS: natural:logs mouse toggle restores collapsed contents without changing the carried stack
+PASS: natural:logs collapsed keeps every scrolled slot aligned with its group entry
+PASS: natural:ores has multiple real vanilla tab members
+PASS: natural:ores collapses all expected tab members under one header
+PASS: natural:ores has no visible children while collapsed
+PASS: natural:ores collapsed tooltip shows the translated gray action hint
+PASS: natural:ores expands exact vanilla children in order without omissions or duplicates
+PASS: natural:ores expanded keeps every scrolled slot aligned with its group entry
+PASS: natural:ores expanded tooltip shows the translated gray action hint
+PASS: natural:ores mouse toggle restores collapsed contents without changing the carried stack
+PASS: natural:ores collapsed keeps every scrolled slot aligned with its group entry
+PASS: Natural Blocks shows global logs and leaves instead of individual tree families
+PASS: coral:tube has multiple real vanilla tab members
+PASS: coral:tube collapses all expected tab members under one header
+PASS: coral:tube has no visible children while collapsed
+PASS: coral:tube collapsed tooltip shows the translated gray action hint
+PASS: coral:tube expands exact vanilla children in order without omissions or duplicates
+PASS: coral:tube expanded keeps every scrolled slot aligned with its group entry
+PASS: coral:tube expanded tooltip shows the translated gray action hint
+PASS: coral:tube mouse toggle restores collapsed contents without changing the carried stack
+PASS: coral:tube collapsed keeps every scrolled slot aligned with its group entry
+PASS: coral:tube is covered in its real creative category
+PASS: coral:brain has multiple real vanilla tab members
+PASS: coral:brain collapses all expected tab members under one header
+PASS: coral:brain has no visible children while collapsed
+PASS: coral:brain collapsed tooltip shows the translated gray action hint
+PASS: coral:brain expands exact vanilla children in order without omissions or duplicates
+PASS: coral:brain expanded keeps every scrolled slot aligned with its group entry
+PASS: coral:brain expanded tooltip shows the translated gray action hint
+PASS: coral:brain mouse toggle restores collapsed contents without changing the carried stack
+PASS: coral:brain collapsed keeps every scrolled slot aligned with its group entry
+PASS: coral:brain is covered in its real creative category
+PASS: coral:bubble has multiple real vanilla tab members
+PASS: coral:bubble collapses all expected tab members under one header
+PASS: coral:bubble has no visible children while collapsed
+PASS: coral:bubble collapsed tooltip shows the translated gray action hint
+PASS: coral:bubble expands exact vanilla children in order without omissions or duplicates
+PASS: coral:bubble expanded keeps every scrolled slot aligned with its group entry
+PASS: coral:bubble expanded tooltip shows the translated gray action hint
+PASS: coral:bubble mouse toggle restores collapsed contents without changing the carried stack
+PASS: coral:bubble collapsed keeps every scrolled slot aligned with its group entry
+PASS: coral:bubble is covered in its real creative category
+PASS: coral:fire has multiple real vanilla tab members
+PASS: coral:fire collapses all expected tab members under one header
+PASS: coral:fire has no visible children while collapsed
+PASS: coral:fire collapsed tooltip shows the translated gray action hint
+PASS: coral:fire expands exact vanilla children in order without omissions or duplicates
+PASS: coral:fire expanded keeps every scrolled slot aligned with its group entry
+PASS: coral:fire expanded tooltip shows the translated gray action hint
+PASS: coral:fire mouse toggle restores collapsed contents without changing the carried stack
+PASS: coral:fire collapsed keeps every scrolled slot aligned with its group entry
+PASS: coral:fire is covered in its real creative category
+PASS: coral:horn has multiple real vanilla tab members
+PASS: coral:horn collapses all expected tab members under one header
+PASS: coral:horn has no visible children while collapsed
+PASS: coral:horn collapsed tooltip shows the translated gray action hint
+PASS: coral:horn expands exact vanilla children in order without omissions or duplicates
+PASS: coral:horn expanded keeps every scrolled slot aligned with its group entry
+PASS: coral:horn expanded tooltip shows the translated gray action hint
+PASS: coral:horn mouse toggle restores collapsed contents without changing the carried stack
+PASS: coral:horn collapsed keeps every scrolled slot aligned with its group entry
+PASS: coral:horn is covered in its real creative category
+PASS: pottery:sherds has multiple real vanilla tab members
+PASS: pottery:sherds collapses all expected tab members under one header
+PASS: pottery:sherds has no visible children while collapsed
+PASS: pottery:sherds collapsed tooltip shows the translated gray action hint
+PASS: pottery:sherds expands exact vanilla children in order without omissions or duplicates
+PASS: pottery:sherds expanded keeps every scrolled slot aligned with its group entry
+PASS: pottery:sherds expanded tooltip shows the translated gray action hint
+PASS: pottery:sherds mouse toggle restores collapsed contents without changing the carried stack
+PASS: pottery:sherds collapsed keeps every scrolled slot aligned with its group entry
+PASS: pottery:sherds is covered in its real creative category
+PASS: patterns:banner_patterns has multiple real vanilla tab members
+PASS: patterns:banner_patterns collapses all expected tab members under one header
+PASS: patterns:banner_patterns has no visible children while collapsed
+PASS: patterns:banner_patterns collapsed tooltip shows the translated gray action hint
+PASS: patterns:banner_patterns expands exact vanilla children in order without omissions or duplicates
+PASS: patterns:banner_patterns expanded keeps every scrolled slot aligned with its group entry
+PASS: patterns:banner_patterns expanded tooltip shows the translated gray action hint
+PASS: patterns:banner_patterns mouse toggle restores collapsed contents without changing the carried stack
+PASS: patterns:banner_patterns collapsed keeps every scrolled slot aligned with its group entry
+PASS: patterns:banner_patterns is covered in its real creative category
+PASS: utility:anvils has multiple real vanilla tab members
+PASS: utility:anvils collapses all expected tab members under one header
+PASS: utility:anvils has no visible children while collapsed
+PASS: utility:anvils collapsed tooltip shows the translated gray action hint
+PASS: utility:anvils expands exact vanilla children in order without omissions or duplicates
+PASS: utility:anvils expanded keeps every scrolled slot aligned with its group entry
+PASS: utility:anvils expanded tooltip shows the translated gray action hint
+PASS: utility:anvils mouse toggle restores collapsed contents without changing the carried stack
+PASS: utility:anvils collapsed keeps every scrolled slot aligned with its group entry
+PASS: utility:anvils is covered in its real creative category
+PASS: variants:paintings has multiple real vanilla tab members
+PASS: variants:paintings collapses all expected tab members under one header
+PASS: variants:paintings has no visible children while collapsed
+PASS: variants:paintings collapsed tooltip shows the translated gray action hint
+PASS: variants:paintings expands exact vanilla children in order without omissions or duplicates
+PASS: variants:paintings expanded keeps every scrolled slot aligned with its group entry
+PASS: variants:paintings expanded tooltip shows the translated gray action hint
+PASS: variants:paintings mouse toggle restores collapsed contents without changing the carried stack
+PASS: variants:paintings collapsed keeps every scrolled slot aligned with its group entry
+PASS: variants:paintings is covered in its real creative category
+PASS: variants:horns has multiple real vanilla tab members
+PASS: variants:horns collapses all expected tab members under one header
+PASS: variants:horns has no visible children while collapsed
+PASS: variants:horns collapsed tooltip shows the translated gray action hint
+PASS: variants:horns expands exact vanilla children in order without omissions or duplicates
+PASS: variants:horns expanded keeps every scrolled slot aligned with its group entry
+PASS: variants:horns expanded tooltip shows the translated gray action hint
+PASS: variants:horns mouse toggle restores collapsed contents without changing the carried stack
+PASS: variants:horns collapsed keeps every scrolled slot aligned with its group entry
+PASS: variants:horns is covered in its real creative category
+PASS: music:discs has multiple real vanilla tab members
+PASS: music:discs collapses all expected tab members under one header
+PASS: music:discs has no visible children while collapsed
+PASS: music:discs collapsed tooltip shows the translated gray action hint
+PASS: music:discs expands exact vanilla children in order without omissions or duplicates
+PASS: music:discs expanded keeps every scrolled slot aligned with its group entry
+PASS: music:discs expanded tooltip shows the translated gray action hint
+PASS: music:discs mouse toggle restores collapsed contents without changing the carried stack
+PASS: music:discs collapsed keeps every scrolled slot aligned with its group entry
+PASS: music:discs is covered in its real creative category
+PASS: utility:lightning_rods has multiple real vanilla tab members
+PASS: utility:lightning_rods collapses all expected tab members under one header
+PASS: utility:lightning_rods has no visible children while collapsed
+PASS: utility:lightning_rods collapsed tooltip shows the translated gray action hint
+PASS: utility:lightning_rods expands exact vanilla children in order without omissions or duplicates
+PASS: utility:lightning_rods expanded keeps every scrolled slot aligned with its group entry
+PASS: utility:lightning_rods expanded tooltip shows the translated gray action hint
+PASS: utility:lightning_rods mouse toggle restores collapsed contents without changing the carried stack
+PASS: utility:lightning_rods collapsed keeps every scrolled slot aligned with its group entry
+PASS: utility:lightning_rods is covered in its real creative category
+PASS: heads:heads has multiple real vanilla tab members
+PASS: heads:heads collapses all expected tab members under one header
+PASS: heads:heads has no visible children while collapsed
+PASS: heads:heads collapsed tooltip shows the translated gray action hint
+PASS: heads:heads expands exact vanilla children in order without omissions or duplicates
+PASS: heads:heads expanded keeps every scrolled slot aligned with its group entry
+PASS: heads:heads expanded tooltip shows the translated gray action hint
+PASS: heads:heads mouse toggle restores collapsed contents without changing the carried stack
+PASS: heads:heads collapsed keeps every scrolled slot aligned with its group entry
+PASS: heads:heads is covered in its real creative category
+PASS: infested:stone has multiple real vanilla tab members
+PASS: infested:stone collapses all expected tab members under one header
+PASS: infested:stone has no visible children while collapsed
+PASS: infested:stone collapsed tooltip shows the translated gray action hint
+PASS: infested:stone expands exact vanilla children in order without omissions or duplicates
+PASS: infested:stone expanded keeps every scrolled slot aligned with its group entry
+PASS: infested:stone expanded tooltip shows the translated gray action hint
+PASS: infested:stone mouse toggle restores collapsed contents without changing the carried stack
+PASS: infested:stone collapsed keeps every scrolled slot aligned with its group entry
+PASS: infested:stone is covered in its real creative category
+PASS: copper:unoxidized has multiple real vanilla tab members
+PASS: copper:unoxidized collapses all expected tab members under one header
+PASS: copper:unoxidized has no visible children while collapsed
+PASS: copper:unoxidized collapsed tooltip shows the translated gray action hint
+PASS: copper:unoxidized expands exact vanilla children in order without omissions or duplicates
+PASS: copper:unoxidized expanded keeps every scrolled slot aligned with its group entry
+PASS: copper:unoxidized expanded tooltip shows the translated gray action hint
+PASS: copper:unoxidized mouse toggle restores collapsed contents without changing the carried stack
+PASS: copper:unoxidized collapsed keeps every scrolled slot aligned with its group entry
+PASS: copper:unoxidized has multiple real vanilla tab members
+PASS: copper:unoxidized collapses all expected tab members under one header
+PASS: copper:unoxidized has no visible children while collapsed
+PASS: copper:unoxidized collapsed tooltip shows the translated gray action hint
+PASS: copper:unoxidized expands exact vanilla children in order without omissions or duplicates
+PASS: copper:unoxidized expanded keeps every scrolled slot aligned with its group entry
+PASS: copper:unoxidized expanded tooltip shows the translated gray action hint
+PASS: copper:unoxidized mouse toggle restores collapsed contents without changing the carried stack
+PASS: copper:unoxidized collapsed keeps every scrolled slot aligned with its group entry
+PASS: copper:unoxidized is covered in its real creative category
+PASS: copper:exposed has multiple real vanilla tab members
+PASS: copper:exposed collapses all expected tab members under one header
+PASS: copper:exposed has no visible children while collapsed
+PASS: copper:exposed collapsed tooltip shows the translated gray action hint
+PASS: copper:exposed expands exact vanilla children in order without omissions or duplicates
+PASS: copper:exposed expanded keeps every scrolled slot aligned with its group entry
+PASS: copper:exposed expanded tooltip shows the translated gray action hint
+PASS: copper:exposed mouse toggle restores collapsed contents without changing the carried stack
+PASS: copper:exposed collapsed keeps every scrolled slot aligned with its group entry
+PASS: copper:exposed has multiple real vanilla tab members
+PASS: copper:exposed collapses all expected tab members under one header
+PASS: copper:exposed has no visible children while collapsed
+PASS: copper:exposed collapsed tooltip shows the translated gray action hint
+PASS: copper:exposed expands exact vanilla children in order without omissions or duplicates
+PASS: copper:exposed expanded keeps every scrolled slot aligned with its group entry
+PASS: copper:exposed expanded tooltip shows the translated gray action hint
+PASS: copper:exposed mouse toggle restores collapsed contents without changing the carried stack
+PASS: copper:exposed collapsed keeps every scrolled slot aligned with its group entry
+PASS: copper:exposed is covered in its real creative category
+PASS: copper:weathered has multiple real vanilla tab members
+PASS: copper:weathered collapses all expected tab members under one header
+PASS: copper:weathered has no visible children while collapsed
+PASS: copper:weathered collapsed tooltip shows the translated gray action hint
+PASS: copper:weathered expands exact vanilla children in order without omissions or duplicates
+PASS: copper:weathered expanded keeps every scrolled slot aligned with its group entry
+PASS: copper:weathered expanded tooltip shows the translated gray action hint
+PASS: copper:weathered mouse toggle restores collapsed contents without changing the carried stack
+PASS: copper:weathered collapsed keeps every scrolled slot aligned with its group entry
+PASS: copper:weathered has multiple real vanilla tab members
+PASS: copper:weathered collapses all expected tab members under one header
+PASS: copper:weathered has no visible children while collapsed
+PASS: copper:weathered collapsed tooltip shows the translated gray action hint
+PASS: copper:weathered expands exact vanilla children in order without omissions or duplicates
+PASS: copper:weathered expanded keeps every scrolled slot aligned with its group entry
+PASS: copper:weathered expanded tooltip shows the translated gray action hint
+PASS: copper:weathered mouse toggle restores collapsed contents without changing the carried stack
+PASS: copper:weathered collapsed keeps every scrolled slot aligned with its group entry
+PASS: copper:weathered is covered in its real creative category
+PASS: copper:oxidized has multiple real vanilla tab members
+PASS: copper:oxidized collapses all expected tab members under one header
+PASS: copper:oxidized has no visible children while collapsed
+PASS: copper:oxidized collapsed tooltip shows the translated gray action hint
+PASS: copper:oxidized expands exact vanilla children in order without omissions or duplicates
+PASS: copper:oxidized expanded keeps every scrolled slot aligned with its group entry
+PASS: copper:oxidized expanded tooltip shows the translated gray action hint
+PASS: copper:oxidized mouse toggle restores collapsed contents without changing the carried stack
+PASS: copper:oxidized collapsed keeps every scrolled slot aligned with its group entry
+PASS: copper:oxidized has multiple real vanilla tab members
+PASS: copper:oxidized collapses all expected tab members under one header
+PASS: copper:oxidized has no visible children while collapsed
+PASS: copper:oxidized collapsed tooltip shows the translated gray action hint
+PASS: copper:oxidized expands exact vanilla children in order without omissions or duplicates
+PASS: copper:oxidized expanded keeps every scrolled slot aligned with its group entry
+PASS: copper:oxidized expanded tooltip shows the translated gray action hint
+PASS: copper:oxidized mouse toggle restores collapsed contents without changing the carried stack
+PASS: copper:oxidized collapsed keeps every scrolled slot aligned with its group entry
+PASS: copper:oxidized is covered in its real creative category
+PASS: copper:waxed_unoxidized has multiple real vanilla tab members
+PASS: copper:waxed_unoxidized collapses all expected tab members under one header
+PASS: copper:waxed_unoxidized has no visible children while collapsed
+PASS: copper:waxed_unoxidized collapsed tooltip shows the translated gray action hint
+PASS: copper:waxed_unoxidized expands exact vanilla children in order without omissions or duplicates
+PASS: copper:waxed_unoxidized expanded keeps every scrolled slot aligned with its group entry
+PASS: copper:waxed_unoxidized expanded tooltip shows the translated gray action hint
+PASS: copper:waxed_unoxidized mouse toggle restores collapsed contents without changing the carried stack
+PASS: copper:waxed_unoxidized collapsed keeps every scrolled slot aligned with its group entry
+PASS: copper:waxed_unoxidized has multiple real vanilla tab members
+PASS: copper:waxed_unoxidized collapses all expected tab members under one header
+PASS: copper:waxed_unoxidized has no visible children while collapsed
+PASS: copper:waxed_unoxidized collapsed tooltip shows the translated gray action hint
+PASS: copper:waxed_unoxidized expands exact vanilla children in order without omissions or duplicates
+PASS: copper:waxed_unoxidized expanded keeps every scrolled slot aligned with its group entry
+PASS: copper:waxed_unoxidized expanded tooltip shows the translated gray action hint
+PASS: copper:waxed_unoxidized mouse toggle restores collapsed contents without changing the carried stack
+PASS: copper:waxed_unoxidized collapsed keeps every scrolled slot aligned with its group entry
+PASS: copper:waxed_unoxidized has multiple real vanilla tab members
+PASS: copper:waxed_unoxidized collapses all expected tab members under one header
+PASS: copper:waxed_unoxidized has no visible children while collapsed
+PASS: copper:waxed_unoxidized collapsed tooltip shows the translated gray action hint
+PASS: copper:waxed_unoxidized expands exact vanilla children in order without omissions or duplicates
+PASS: copper:waxed_unoxidized expanded keeps every scrolled slot aligned with its group entry
+PASS: copper:waxed_unoxidized expanded tooltip shows the translated gray action hint
+PASS: copper:waxed_unoxidized mouse toggle restores collapsed contents without changing the carried stack
+PASS: copper:waxed_unoxidized collapsed keeps every scrolled slot aligned with its group entry
+PASS: copper:waxed_unoxidized is covered in its real creative category
+PASS: copper:waxed_exposed has multiple real vanilla tab members
+PASS: copper:waxed_exposed collapses all expected tab members under one header
+PASS: copper:waxed_exposed has no visible children while collapsed
+PASS: copper:waxed_exposed collapsed tooltip shows the translated gray action hint
+PASS: copper:waxed_exposed expands exact vanilla children in order without omissions or duplicates
+PASS: copper:waxed_exposed expanded keeps every scrolled slot aligned with its group entry
+PASS: copper:waxed_exposed expanded tooltip shows the translated gray action hint
+PASS: copper:waxed_exposed mouse toggle restores collapsed contents without changing the carried stack
+PASS: copper:waxed_exposed collapsed keeps every scrolled slot aligned with its group entry
+PASS: copper:waxed_exposed has multiple real vanilla tab members
+PASS: copper:waxed_exposed collapses all expected tab members under one header
+PASS: copper:waxed_exposed has no visible children while collapsed
+PASS: copper:waxed_exposed collapsed tooltip shows the translated gray action hint
+PASS: copper:waxed_exposed expands exact vanilla children in order without omissions or duplicates
+PASS: copper:waxed_exposed expanded keeps every scrolled slot aligned with its group entry
+PASS: copper:waxed_exposed expanded tooltip shows the translated gray action hint
+PASS: copper:waxed_exposed mouse toggle restores collapsed contents without changing the carried stack
+PASS: copper:waxed_exposed collapsed keeps every scrolled slot aligned with its group entry
+PASS: copper:waxed_exposed is covered in its real creative category
+PASS: copper:waxed_weathered has multiple real vanilla tab members
+PASS: copper:waxed_weathered collapses all expected tab members under one header
+PASS: copper:waxed_weathered has no visible children while collapsed
+PASS: copper:waxed_weathered collapsed tooltip shows the translated gray action hint
+PASS: copper:waxed_weathered expands exact vanilla children in order without omissions or duplicates
+PASS: copper:waxed_weathered expanded keeps every scrolled slot aligned with its group entry
+PASS: copper:waxed_weathered expanded tooltip shows the translated gray action hint
+PASS: copper:waxed_weathered mouse toggle restores collapsed contents without changing the carried stack
+PASS: copper:waxed_weathered collapsed keeps every scrolled slot aligned with its group entry
+PASS: copper:waxed_weathered has multiple real vanilla tab members
+PASS: copper:waxed_weathered collapses all expected tab members under one header
+PASS: copper:waxed_weathered has no visible children while collapsed
+PASS: copper:waxed_weathered collapsed tooltip shows the translated gray action hint
+PASS: copper:waxed_weathered expands exact vanilla children in order without omissions or duplicates
+PASS: copper:waxed_weathered expanded keeps every scrolled slot aligned with its group entry
+PASS: copper:waxed_weathered expanded tooltip shows the translated gray action hint
+PASS: copper:waxed_weathered mouse toggle restores collapsed contents without changing the carried stack
+PASS: copper:waxed_weathered collapsed keeps every scrolled slot aligned with its group entry
+PASS: copper:waxed_weathered is covered in its real creative category
+PASS: copper:waxed_oxidized has multiple real vanilla tab members
+PASS: copper:waxed_oxidized collapses all expected tab members under one header
+PASS: copper:waxed_oxidized has no visible children while collapsed
+PASS: copper:waxed_oxidized collapsed tooltip shows the translated gray action hint
+PASS: copper:waxed_oxidized expands exact vanilla children in order without omissions or duplicates
+PASS: copper:waxed_oxidized expanded keeps every scrolled slot aligned with its group entry
+PASS: copper:waxed_oxidized expanded tooltip shows the translated gray action hint
+PASS: copper:waxed_oxidized mouse toggle restores collapsed contents without changing the carried stack
+PASS: copper:waxed_oxidized collapsed keeps every scrolled slot aligned with its group entry
+PASS: copper:waxed_oxidized has multiple real vanilla tab members
+PASS: copper:waxed_oxidized collapses all expected tab members under one header
+PASS: copper:waxed_oxidized has no visible children while collapsed
+PASS: copper:waxed_oxidized collapsed tooltip shows the translated gray action hint
+PASS: copper:waxed_oxidized expands exact vanilla children in order without omissions or duplicates
+PASS: copper:waxed_oxidized expanded keeps every scrolled slot aligned with its group entry
+PASS: copper:waxed_oxidized expanded tooltip shows the translated gray action hint
+PASS: copper:waxed_oxidized mouse toggle restores collapsed contents without changing the carried stack
+PASS: copper:waxed_oxidized collapsed keeps every scrolled slot aligned with its group entry
+PASS: copper:waxed_oxidized is covered in its real creative category
+PASS: spawn egg header uses the Creeper egg without changing its children
+PASS: eggs:spawn_eggs has multiple real vanilla tab members
+PASS: eggs:spawn_eggs collapses all expected tab members under one header
+PASS: eggs:spawn_eggs has no visible children while collapsed
+PASS: eggs:spawn_eggs collapsed tooltip shows the translated gray action hint
+PASS: eggs:spawn_eggs expands exact vanilla children in order without omissions or duplicates
+PASS: eggs:spawn_eggs expanded keeps every scrolled slot aligned with its group entry
+PASS: eggs:spawn_eggs expanded tooltip shows the translated gray action hint
+PASS: eggs:spawn_eggs mouse toggle restores collapsed contents without changing the carried stack
+PASS: eggs:spawn_eggs collapsed keeps every scrolled slot aligned with its group entry
+PASS: model receives Natural Blocks context and produces two global families
+PASS: switching tabs restores wood families without reusing natural matches
+PASS: configured egg icon uses an existing exact source stack
+PASS: Creeper header selection preserves the original egg child order
+PASS: missing configured representative falls back to the first available source stack
 PASS: saved-hotbar tab is unaffected by grouping
 PASS: survival inventory tab is unaffected by grouping
 PASS: 2x2 inventory: left-click places ingredients without crafting
@@ -766,10 +1111,28 @@ PASS: smithing workstation reopens with its recipe book still closed
 PASS: smithing book open preference survives reloading settings from disk
 PASS: smithing book toggle preserves the other workstation's saved preference
 PASS: smithing workstation reopens with its recipe book still open
-PASS: smithing Escape closes the book before reopening the workstation
+PASS: smithing Escape immediately closes the workstation with open book
+PASS: smithing Escape preserves the book visibility with open book
+PASS: smithing book open preference survives reloading settings from disk
+PASS: smithing book toggle preserves the other workstation's saved preference
+PASS: smithing workstation restores the prior book visibility after Escape with open book
+PASS: smithing search captures input before Escape with focused search
+PASS: smithing Escape immediately closes the workstation with focused search
+PASS: smithing Escape preserves the book visibility with focused search
+PASS: smithing book open preference survives reloading settings from disk
+PASS: smithing book toggle preserves the other workstation's saved preference
+PASS: smithing workstation restores the prior book visibility after Escape with focused search
+PASS: smithing search captures input before Escape with narrow book with focused search
+PASS: smithing Escape immediately closes the workstation with narrow book with focused search
+PASS: smithing Escape preserves the book visibility with narrow book with focused search
+PASS: smithing book open preference survives reloading settings from disk
+PASS: smithing book toggle preserves the other workstation's saved preference
+PASS: smithing workstation restores the prior book visibility after Escape with narrow book with focused search
+PASS: smithing Escape immediately closes the workstation with closed book
+PASS: smithing Escape preserves the book visibility with closed book
 PASS: smithing book closed preference survives reloading settings from disk
 PASS: smithing book toggle preserves the other workstation's saved preference
-PASS: smithing remembers a book closed with Escape
+PASS: smithing workstation restores the prior book visibility after Escape with closed book
 PASS: smithing search captures input before opening settings
 PASS: smithing gear opens the actual settings screen
 PASS: smithing disabling the book and saving returns to the same workstation
@@ -778,6 +1141,8 @@ PASS: smithing re-enabling restores the book and preserves its saved open state
 PASS: smithing book offers multiple pages of native recipes
 PASS: smithing visible book controls stay within the screen
 PASS: smithing book controls and recipe tiles do not overlap
+PASS: smithing screen forwards wheel input over the book to its next page
+PASS: smithing screen wheel returns to the first page
 PASS: smithing forward arrow shows a different recipe page
 PASS: smithing back arrow restores the first recipe page
 PASS: smithing category tab 0 filters to its own native recipes
@@ -798,8 +1163,6 @@ PASS: smithing narrow visible book controls stay within the screen
 PASS: smithing narrow book controls and recipe tiles do not overlap
 PASS: smithing side tab remains clickable at narrow width
 PASS: smithing narrow overlay prevents picking up items from the hidden inventory
-PASS: smithing Escape closes the narrow book while retaining the workstation
-PASS: smithing narrow book toggle reopens after Escape
 PASS: smithing narrow book toggle closes the overlay
 PASS: smithing narrow book toggle reopens the overlay
 PASS: native trim recipe computes a concrete output
@@ -827,10 +1190,28 @@ PASS: brewing workstation reopens with its recipe book still closed
 PASS: brewing book open preference survives reloading settings from disk
 PASS: brewing book toggle preserves the other workstation's saved preference
 PASS: brewing workstation reopens with its recipe book still open
-PASS: brewing Escape closes the book before reopening the workstation
+PASS: brewing Escape immediately closes the workstation with open book
+PASS: brewing Escape preserves the book visibility with open book
+PASS: brewing book open preference survives reloading settings from disk
+PASS: brewing book toggle preserves the other workstation's saved preference
+PASS: brewing workstation restores the prior book visibility after Escape with open book
+PASS: brewing search captures input before Escape with focused search
+PASS: brewing Escape immediately closes the workstation with focused search
+PASS: brewing Escape preserves the book visibility with focused search
+PASS: brewing book open preference survives reloading settings from disk
+PASS: brewing book toggle preserves the other workstation's saved preference
+PASS: brewing workstation restores the prior book visibility after Escape with focused search
+PASS: brewing search captures input before Escape with narrow book with focused search
+PASS: brewing Escape immediately closes the workstation with narrow book with focused search
+PASS: brewing Escape preserves the book visibility with narrow book with focused search
+PASS: brewing book open preference survives reloading settings from disk
+PASS: brewing book toggle preserves the other workstation's saved preference
+PASS: brewing workstation restores the prior book visibility after Escape with narrow book with focused search
+PASS: brewing Escape immediately closes the workstation with closed book
+PASS: brewing Escape preserves the book visibility with closed book
 PASS: brewing book closed preference survives reloading settings from disk
 PASS: brewing book toggle preserves the other workstation's saved preference
-PASS: brewing remembers a book closed with Escape
+PASS: brewing workstation restores the prior book visibility after Escape with closed book
 PASS: brewing search captures input before opening settings
 PASS: brewing gear opens the actual settings screen
 PASS: brewing disabling the book and saving returns to the same workstation
@@ -839,6 +1220,8 @@ PASS: brewing re-enabling restores the book and preserves its saved open state
 PASS: brewing book offers multiple pages of native recipes
 PASS: brewing visible book controls stay within the screen
 PASS: brewing book controls and recipe tiles do not overlap
+PASS: brewing screen forwards wheel input over the book to its next page
+PASS: brewing screen wheel returns to the first page
 PASS: brewing forward arrow shows a different recipe page
 PASS: brewing back arrow restores the first recipe page
 PASS: brewing category tab 0 filters to its own native recipes
@@ -860,8 +1243,6 @@ PASS: brewing narrow visible book controls stay within the screen
 PASS: brewing narrow book controls and recipe tiles do not overlap
 PASS: brewing side tab remains clickable at narrow width
 PASS: brewing narrow overlay prevents picking up items from the hidden inventory
-PASS: brewing Escape closes the narrow book while retaining the workstation
-PASS: brewing narrow book toggle reopens after Escape
 PASS: brewing narrow book toggle closes the overlay
 PASS: brewing narrow book toggle reopens the overlay
 PASS: Shift-right fills three bottles and starts normal-duration brewing instead of instant output
@@ -1109,6 +1490,6 @@ PASS: 640x360: discard returns to the parent screen
 PASS: 640x360: Cancel leaves all saved settings unchanged
 SCREENSHOT: screenshots/0022_brb-vanilla-style-settings.png
 SCREENSHOT: screenshots/0023_brb-vanilla-style-settings-lower.png
-RESULT: PASS; 1097 recorded checks
+RESULT: PASS; 1477 recorded checks
 SCREENSHOT: screenshots/0000_brb-native-recipe-group-collapsed.png
 SCREENSHOT: screenshots/0001_brb-native-recipe-group-expanded.png

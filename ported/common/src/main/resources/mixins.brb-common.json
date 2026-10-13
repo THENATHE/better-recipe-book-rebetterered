@@ -24,6 +24,7 @@
     "pins.RecipeBookPageMixin",
     "pins.RecipeButtonMixin",
     "scrollablepages.RecipeBookPageMixin",
+    "scrollablepages.AbstractContainerScreenMixin",
     "settings.RecipeBookComponentMixin",
     "toasts.RemoveToasts",
     "ungroup.ClientRecipeBookMixin",

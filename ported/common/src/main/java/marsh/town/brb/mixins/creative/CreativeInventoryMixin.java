@@ -11,6 +11,7 @@ import net.minecraft.client.input.KeyEvent;
 import net.minecraft.client.input.MouseButtonEvent;
 import net.minecraft.network.chat.Component;
 import net.minecraft.ChatFormatting;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.inventory.ContainerInput;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.CreativeModeTab;
@@ -65,7 +66,8 @@ public abstract class CreativeInventoryMixin
                 && (selectedTab.getType() != CreativeModeTab.Type.SEARCH
                     || searchBox == null || searchBox.getValue().isEmpty());
         int topRow = ((ItemPickerMenuAccess) menu).brb$rowForScroll(scrollOffs);
-        brb$groups.setSource(new ArrayList<>(menu.items), enabled);
+        brb$groups.setSource(new ArrayList<>(menu.items), enabled,
+                BuiltInRegistries.CREATIVE_MODE_TAB.getKey(selectedTab).toString());
         brb$applyEntries(topRow);
     }
 

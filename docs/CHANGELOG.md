@@ -1,3 +1,12 @@
+# 1.11.4+26.3
+
+- Add tab-specific Natural Blocks leaves/logs, matching leaves in wood families, ores, sherds, banner patterns, coral colors including dead variants, anvils, paintings, lightning rods, horns, discs, Chalk, heads and infested stone.
+- Split copper building forms into eight oxidation/wax groups and use the creeper egg as the spawn-egg header.
+
+- Anchor settings and instant-crafting buttons, scrolling and book hit detection to the recipe book's actual origin, respecting wider backpack layouts and other screen adjustments. Forward wheel input through the actual screen to the book.
+- Make Escape close smithing and brewing screens immediately while preserving each book's remembered visibility.
+- Use the recipe-book + / − badge style in creative and workstation books as well. Darken expanded group headers while keeping their individual children bright and the − available for collapse.
+
 # 1.11.3+26.3
 
 - Complete creative building-family grouping for poplar and shelves, stone/mossy stone, cobblestone/mossy cobblestone, deepslate, blackstone, sandstone, tuff and related building sets.

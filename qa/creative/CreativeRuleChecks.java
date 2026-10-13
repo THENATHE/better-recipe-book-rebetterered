@@ -99,31 +99,115 @@ public class CreativeRuleChecks {
     family(model, "building:mud", "mud packed_mud mud_bricks mud_brick_stairs mud_brick_slab mud_brick_wall");
     family(model, "building:resin", "resin_block resin_bricks resin_brick_stairs resin_brick_slab resin_brick_wall chiseled_resin_bricks");
     for (String wax : List.of("", "waxed_")) {
-      expect(model, wax + "copper_block", "copper:copper");
+      expect(model, wax + "copper_block", "copper:" + wax + "unoxidized");
       for (String age : List.of("", "exposed_", "weathered_", "oxidized_")) {
-        if (!age.isEmpty()) expect(model, wax + age + "copper", "copper:copper");
+        String key = "copper:" + wax + (age.isEmpty() ? "unoxidized" : age.substring(0, age.length() - 1));
+        if (!age.isEmpty()) expect(model, wax + age + "copper", key);
         for (String shape : List.of("chiseled_copper", "cut_copper", "cut_copper_stairs", "cut_copper_slab",
             "copper_grate", "copper_bulb", "copper_door", "copper_trapdoor", "copper_bars",
             "copper_chain", "copper_chest", "copper_lantern", "copper_golem_statue")) {
-          expect(model, wax + age + shape, "copper:copper");
+          expect(model, wax + age + shape, key);
         }
+        expect(model, wax + age + "lightning_rod", "utility:lightning_rods");
+
       }
     }
     for (String tier : List.of("wooden", "stone", "copper", "iron", "golden", "diamond", "netherite")) {
       expect(model, tier + "_spear", "equipment:spear");
     }
     expect(model, "copper_nautilus_armor", "equipment:nautilus_armor");
-    for (String excluded : List.of("stonecutter", "redstone", "redstone_block", "deepslate_diamond_ore",
-        "infested_stone", "infested_mossy_stone_bricks", "infested_deepslate", "nether_quartz_ore",
-        "quartz", "brick", "nether_brick", "resin_brick", "prismarine_shard", "prismarine_crystals",
-        "copper_ingot", "copper_ore", "raw_copper_block", "copper_torch", "potent_sulfur", "sulfur_spike",
-        "sulfur_cube_bucket", "white_tulip", "shelf_mushroom", "poplar_sapling", "red_poplar_leaves",
+    for (String excluded : List.of("stonecutter", "redstone", "redstone_block", "quartz", "brick", "nether_brick", "resin_brick", "prismarine_shard", "prismarine_crystals",
+        "copper_ingot", "raw_copper_block", "copper_torch", "potent_sulfur", "sulfur_spike",
+        "sulfur_cube_bucket", "white_tulip", "shelf_mushroom", "poplar_sapling",
         "muddy_mangrove_roots", "bookshelf", "chiseled_bookshelf")) {
       check(model.match("minecraft:" + excluded) == null, "unrelated item remains individual: " + excluded);
     }
     for (String item : List.of("poplar_planks", "stone", "mossy_cobblestone", "white_wool_slab",
         "glass", "copper_block")) {
       check(model.match("custom:" + item) == null, "custom namespace stays independent: " + item);
+    }
+  }
+
+  static void checkNewFamilies(CreativeGroupRules model) {
+    String natural = "minecraft:natural_blocks";
+    for (String wood : List.of("oak", "spruce", "birch", "jungle", "acacia", "dark_oak",
+        "mangrove", "cherry", "pale_oak", "poplar")) {
+      expect(model, wood + "_leaves", "wood:" + wood);
+      check(model.match("minecraft:" + wood + "_leaves", natural).key().equals("natural:leaves"),
+          wood + " leaves use the single natural leaf group");
+      for (String shape : List.of("log", "wood")) {
+        for (String stripped : List.of("", "stripped_")) {
+          String item = "minecraft:" + stripped + wood + "_" + shape;
+          check(model.match(item, natural).key().equals("natural:logs"), item + " uses the natural log group");
+          check(model.match(item, "minecraft:building_blocks").key().equals("wood:" + wood),
+              item + " keeps its building wood family");
+        }
+      }
+    }
+    for (String color : List.of("yellow", "orange", "red")) {
+      expect(model, color + "_poplar_leaves", "wood:poplar");
+      check(model.match("minecraft:" + color + "_poplar_leaves", natural).key().equals("natural:leaves"),
+          color + " poplar leaves keep natural grouping");
+    }
+    for (String item : List.of("azalea_leaves", "flowering_azalea_leaves")) {
+      check(model.match("minecraft:" + item, natural).key().equals("natural:leaves"), item + " joins natural leaves");
+      check(model.match("minecraft:" + item) == null, item + " has no unrelated wood family");
+    }
+    for (String wood : List.of("crimson", "warped")) {
+      for (String shape : List.of("stem", "hyphae")) {
+        for (String stripped : List.of("", "stripped_")) {
+          check(model.match("minecraft:" + stripped + wood + "_" + shape, natural).key().equals("natural:logs"),
+              stripped + wood + "_" + shape + " joins natural logs and stems");
+        }
+      }
+    }
+    check(model.match("minecraft:bamboo_block", natural).key().equals("wood:bamboo"),
+        "bamboo remains its wood family because it is not a native log");
+    family(model, "natural:ores", "coal_ore iron_ore copper_ore gold_ore redstone_ore emerald_ore lapis_ore diamond_ore "
+        + "deepslate_coal_ore deepslate_iron_ore deepslate_copper_ore deepslate_gold_ore deepslate_redstone_ore "
+        + "deepslate_emerald_ore deepslate_lapis_ore deepslate_diamond_ore nether_gold_ore nether_quartz_ore ancient_debris");
+    family(model, "pottery:sherds", "angler_pottery_sherd archer_pottery_sherd arms_up_pottery_sherd blade_pottery_sherd "
+        + "brewer_pottery_sherd burn_pottery_sherd danger_pottery_sherd explorer_pottery_sherd flow_pottery_sherd "
+        + "friend_pottery_sherd guster_pottery_sherd heart_pottery_sherd heartbreak_pottery_sherd howl_pottery_sherd "
+        + "miner_pottery_sherd mourner_pottery_sherd plenty_pottery_sherd prize_pottery_sherd scrape_pottery_sherd "
+        + "sheaf_pottery_sherd shelter_pottery_sherd skull_pottery_sherd snort_pottery_sherd");
+    family(model, "patterns:banner_patterns", "flower_banner_pattern creeper_banner_pattern skull_banner_pattern "
+        + "mojang_banner_pattern globe_banner_pattern piglin_banner_pattern flow_banner_pattern guster_banner_pattern "
+        + "field_masoned_banner_pattern bordure_indented_banner_pattern");
+    for (String coral : List.of("tube", "brain", "bubble", "fire", "horn")) {
+      for (String dead : List.of("", "dead_")) {
+        for (String shape : List.of("", "_block", "_fan")) {
+          expect(model, dead + coral + "_coral" + shape, "coral:" + coral);
+        }
+      }
+    }
+    family(model, "utility:anvils", "anvil chipped_anvil damaged_anvil");
+    family(model, "heads:heads", "skeleton_skull wither_skeleton_skull zombie_head player_head creeper_head dragon_head piglin_head");
+    family(model, "infested:stone", "infested_stone infested_cobblestone infested_stone_bricks infested_mossy_stone_bricks "
+        + "infested_cracked_stone_bricks infested_chiseled_stone_bricks infested_deepslate");
+    expect(model, "painting", "variants:paintings");
+    expect(model, "goat_horn", "variants:horns");
+    for (String disc : List.of("13", "cat", "blocks", "chirp", "far", "mall", "mellohi", "stal", "strad", "ward",
+        "11", "wait", "pigstep", "otherside", "5", "relic", "creator", "creator_music_box", "precipice", "tears",
+        "lava_chicken", "bounce")) expect(model, "music_disc_" + disc, "music:discs");
+    for (String color : List.of("white", "orange", "magenta", "light_blue", "yellow", "lime", "pink", "gray",
+        "light_gray", "cyan", "purple", "blue", "brown", "green", "red", "black")) {
+      for (String glow : List.of("", "glow_")) {
+        String item = "chalk:" + color + "_" + glow + "chalk";
+        check(model.match(item).key().equals("chalk:chalk"), item + " joins known Chalk variants");
+      }
+    }
+    check(model.match("chalk:white_chalk_mark") == null, "Chalk block IDs are not mistaken for tools");
+    check(model.match("other:white_chalk") == null, "unrelated custom chalk is not regrouped");
+    check(model.match("minecraft:creeper_spawn_egg").icon().equals("minecraft:creeper_spawn_egg"),
+        "spawn egg header requests a Creeper representative");
+    check(model.match("minecraft:oak_leaves", "custom:natural_blocks").key().equals("wood:oak"),
+        "tab rules require the exact namespaced category");
+    try {
+      new CreativeGroupRules.Rule("bad", Pattern.compile(".*"), "key", "label", Set.of(" "));
+      throw new AssertionError("Accepted blank tab ID");
+    } catch (IllegalArgumentException expected) {
+      check(true, "blank tab IDs are rejected safely");
     }
   }
 
@@ -136,7 +220,10 @@ public class CreativeRuleChecks {
               r.get("id").getAsString(),
               Pattern.compile(r.get("pattern").getAsString()),
               r.get("key").getAsString(),
-              r.get("label").getAsString()));
+              r.get("label").getAsString(),
+              r.has("tabs") ? new HashSet<>(r.getAsJsonArray("tabs").asList().stream()
+                  .map(tab -> tab.getAsString()).toList()) : Set.of(),
+              r.has("icon") ? r.get("icon").getAsString() : null));
     }
     var model = new CreativeGroupRules(rules);
     String[][] cases = {
@@ -158,11 +245,12 @@ public class CreativeRuleChecks {
       {"tipped_arrow", "potions:tipped_arrow"},
       {"zombie_spawn_egg", "eggs:spawn_eggs"},
       {"sentry_armor_trim_smithing_template", "trim:armor_trims"},
-      {"waxed_weathered_cut_copper_stairs", "copper:copper"}
+      {"waxed_weathered_cut_copper_stairs", "copper:waxed_weathered"}
     };
     for (var c : cases)
       check(model.match("minecraft:" + c[0]).key().equals(c[1]), "default selector " + c[0]);
     checkFamilies(model);
+    checkNewFamilies(model);
     check(model.match("minecraft:stick") == null, "unmatched items stay visible individually");
     check(
         model.match("custom:oak_planks") == null,

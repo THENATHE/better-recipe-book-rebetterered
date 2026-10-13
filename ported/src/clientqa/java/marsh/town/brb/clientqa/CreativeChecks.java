@@ -19,6 +19,7 @@ import net.minecraft.client.input.MouseButtonEvent;
 import net.minecraft.client.input.MouseButtonInfo;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.Identifier;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
@@ -208,6 +209,7 @@ public final class CreativeChecks {
                 verifyFamilyInTabs(screen, "color:bundle", id -> id.equals("bundle")
                         || id.endsWith("_bundle"), evidence);
                 verifyFamilyInTabs(screen, "color:harness", id -> id.endsWith("_harness"), evidence);
+                verifyAdditionalFamilies(screen, evidence);
                 select(screen, "hotbar");
                 check(firstHeader(screen) == -1, "saved-hotbar tab is unaffected by grouping", evidence);
                 select(screen, "inventory");
@@ -256,6 +258,79 @@ public final class CreativeChecks {
         } catch (IllegalArgumentException expected) {
             evidence.add("PASS: invalid resource-pack group capture is rejected safely");
         }
+    }
+
+    private static void verifyAdditionalFamilies(CreativeModeInventoryScreen screen, List<String> evidence) {
+        select(screen, "natural_blocks");
+        verifyFamily(screen, "natural:leaves", id -> nativeTag(id, ItemTags.LEAVES), evidence);
+        verifyFamily(screen, "natural:logs", id -> nativeTag(id, ItemTags.LOGS), evidence);
+        verifyFamily(screen, "natural:ores", id -> id.endsWith("_ore") || id.equals("ancient_debris"), evidence);
+        check(model(screen).entries().stream().noneMatch(entry -> entry.header()
+                        && entry.groupKey().startsWith("wood:") && !entry.groupKey().equals("wood:bamboo")),
+                "Natural Blocks shows global logs and leaves instead of individual tree families", evidence);
+        for (String coral : List.of("tube", "brain", "bubble", "fire", "horn")) {
+            verifyFamilyInTabs(screen, "coral:" + coral, id -> id.equals(coral + "_coral")
+                    || id.startsWith(coral + "_coral_") || id.equals("dead_" + coral + "_coral")
+                    || id.startsWith("dead_" + coral + "_coral_"), evidence);
+        }
+        verifyFamilyInTabs(screen, "pottery:sherds", id -> id.endsWith("_pottery_sherd"), evidence);
+        verifyFamilyInTabs(screen, "patterns:banner_patterns", id -> id.endsWith("_banner_pattern"), evidence);
+        verifyFamilyInTabs(screen, "utility:anvils", id -> id.equals("anvil") || id.endsWith("_anvil"), evidence);
+        verifyFamilyInTabs(screen, "variants:paintings", id -> id.equals("painting"), evidence);
+        verifyFamilyInTabs(screen, "variants:horns", id -> id.equals("goat_horn"), evidence);
+        verifyFamilyInTabs(screen, "music:discs", id -> id.startsWith("music_disc_"), evidence);
+        verifyFamilyInTabs(screen, "utility:lightning_rods", id -> id.endsWith("lightning_rod"), evidence);
+        verifyFamilyInTabs(screen, "heads:heads", id -> id.equals("skeleton_skull")
+                || id.equals("wither_skeleton_skull") || List.of("zombie_head", "player_head", "creeper_head",
+                "dragon_head", "piglin_head").contains(id), evidence);
+        verifyFamilyInTabs(screen, "infested:stone", id -> id.startsWith("infested_"), evidence);
+        for (String wax : List.of("", "waxed_")) {
+            for (String age : List.of("", "exposed_", "weathered_", "oxidized_")) {
+                String key = wax + (age.isEmpty() ? "unoxidized" : age.substring(0, age.length() - 1));
+                verifyFamilyInTabs(screen, "copper:" + key, id -> copperForm(id, wax, age), evidence);
+            }
+        }
+        select(screen, "spawn_eggs");
+        int eggs = familyIndex(screen, "eggs:spawn_eggs");
+        check(eggs >= 0 && model(screen).entry(eggs).stack().is(Items.CREEPER_SPAWN_EGG),
+                "spawn egg header uses the Creeper egg without changing its children", evidence);
+        verifyFamily(screen, "eggs:spawn_eggs", id -> id.endsWith("_spawn_egg"), evidence);
+        var grouped = new CreativeGroupModel();
+        var leavesAndLogs = List.of(new ItemStack(Items.OAK_LEAVES), new ItemStack(Items.SPRUCE_LEAVES),
+                new ItemStack(Items.OAK_LOG), new ItemStack(Items.STRIPPED_SPRUCE_LOG));
+        grouped.setSource(leavesAndLogs, true, "minecraft:natural_blocks");
+        check(grouped.entries().size() == 2 && grouped.entry(0).groupKey().equals("natural:leaves")
+                        && grouped.entry(1).groupKey().equals("natural:logs"),
+                "model receives Natural Blocks context and produces two global families", evidence);
+        grouped.setSource(leavesAndLogs, true, "minecraft:building_blocks");
+        check(grouped.entries().size() == 2 && grouped.entry(0).groupKey().equals("wood:oak")
+                        && grouped.entry(1).groupKey().equals("wood:spruce"),
+                "switching tabs restores wood families without reusing natural matches", evidence);
+        var eggsModel = new CreativeGroupModel();
+        var eggStacks = List.of(new ItemStack(Items.ZOMBIE_SPAWN_EGG), new ItemStack(Items.CREEPER_SPAWN_EGG),
+                new ItemStack(Items.PIG_SPAWN_EGG));
+        eggsModel.setSource(eggStacks, true);
+        check(eggsModel.entry(0).stack() == eggStacks.get(1), "configured egg icon uses an existing exact source stack", evidence);
+        eggsModel.toggle(0);
+        check(eggsModel.entries().subList(1, 4).stream().map(CreativeGroupModel.Entry::stack).toList().equals(eggStacks),
+                "Creeper header selection preserves the original egg child order", evidence);
+        eggsModel.setSource(List.of(eggStacks.get(0), eggStacks.get(2)), true);
+        check(eggsModel.entry(0).stack() == eggStacks.get(0),
+                "missing configured representative falls back to the first available source stack", evidence);
+    }
+
+    private static boolean nativeTag(String id, net.minecraft.tags.TagKey<net.minecraft.world.item.Item> tag) {
+        return new ItemStack(BuiltInRegistries.ITEM.getValue(Identifier.withDefaultNamespace(id))).is(tag);
+    }
+
+    private static boolean copperForm(String id, String wax, String age) {
+        String prefix = wax + age;
+        if (!id.startsWith(prefix)) return false;
+        String form = id.substring(prefix.length());
+        return form.equals(age.isEmpty() ? "copper_block" : "copper")
+                || List.of("chiseled_copper", "cut_copper", "cut_copper_stairs", "cut_copper_slab", "copper_grate",
+                "copper_bulb", "copper_door", "copper_trapdoor", "copper_bars", "copper_chain", "copper_chest",
+                "copper_lantern", "copper_golem_statue").contains(form);
     }
 
     private static void verifyBuildingFamilies(CreativeModeInventoryScreen screen, List<String> evidence) {

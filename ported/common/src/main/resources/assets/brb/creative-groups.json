@@ -1,7 +1,151 @@
 [
   {
+    "id": "natural",
+    "pattern": "^minecraft:(?:oak|spruce|birch|jungle|acacia|dark_oak|mangrove|cherry|pale_oak|poplar|(?:yellow|orange|red)_poplar|(?:flowering_)?azalea)_leaves$",
+    "key": "leaves",
+    "label": "Leaves",
+    "tabs": [
+      "minecraft:natural_blocks"
+    ]
+  },
+  {
+    "id": "natural",
+    "pattern": "^minecraft:(?:stripped_)?(?:(?:oak|spruce|birch|jungle|acacia|dark_oak|mangrove|cherry|pale_oak|poplar)_(?:log|wood)|(?:crimson|warped)_(?:stem|hyphae))$",
+    "key": "logs",
+    "label": "Logs and stems",
+    "tabs": [
+      "minecraft:natural_blocks"
+    ]
+  },
+  {
     "id": "wood",
-    "pattern": "^minecraft:(?:stripped_)?(oak|spruce|birch|jungle|acacia|dark_oak|mangrove|cherry|pale_oak|poplar|bamboo|crimson|warped)_(?:log|wood|stem|hyphae|planks|stairs|slab|fence|fence_gate|door|trapdoor|pressure_plate|button|sign|hanging_sign|shelf|boat|chest_boat|raft|chest_raft|block|mosaic|mosaic_stairs|mosaic_slab)$",
+    "pattern": "^minecraft:(?:yellow|orange|red)_poplar_leaves$",
+    "key": "poplar",
+    "label": "Poplar wood"
+  },
+  {
+    "id": "natural",
+    "pattern": "^minecraft:(?:(?:deepslate_)?(?:coal|iron|copper|gold|redstone|emerald|lapis|diamond)_ore|nether_(?:gold|quartz)_ore|ancient_debris)$",
+    "key": "ores",
+    "label": "Ores"
+  },
+  {
+    "id": "pottery",
+    "pattern": "^minecraft:[a-z_]+_pottery_sherd$",
+    "key": "sherds",
+    "label": "Pottery sherds"
+  },
+  {
+    "id": "patterns",
+    "pattern": "^minecraft:[a-z_]+_banner_pattern$",
+    "key": "banner_patterns",
+    "label": "Banner patterns"
+  },
+  {
+    "id": "coral",
+    "pattern": "^minecraft:(?:dead_)?(tube|brain|bubble|fire|horn)_coral(?:_block|_fan)?$",
+    "key": "$1",
+    "label": "$1 coral"
+  },
+  {
+    "id": "utility",
+    "pattern": "^minecraft:(?:chipped_|damaged_)?anvil$",
+    "key": "anvils",
+    "label": "Anvil damage states"
+  },
+  {
+    "id": "variants",
+    "pattern": "^minecraft:painting$",
+    "key": "paintings",
+    "label": "Paintings"
+  },
+  {
+    "id": "utility",
+    "pattern": "^minecraft:(?:waxed_)?(?:exposed_|weathered_|oxidized_)?lightning_rod$",
+    "key": "lightning_rods",
+    "label": "Lightning rods"
+  },
+  {
+    "id": "variants",
+    "pattern": "^minecraft:goat_horn$",
+    "key": "horns",
+    "label": "Goat horns"
+  },
+  {
+    "id": "music",
+    "pattern": "^minecraft:music_disc_[a-z0-9_]+$",
+    "key": "discs",
+    "label": "Music discs"
+  },
+  {
+    "id": "chalk",
+    "pattern": "^chalk:(?:white|orange|magenta|light_blue|yellow|lime|pink|gray|light_gray|cyan|purple|blue|brown|green|red|black)_(?:glow_)?chalk$",
+    "key": "chalk",
+    "label": "Chalk"
+  },
+  {
+    "id": "heads",
+    "pattern": "^minecraft:(?:(?:skeleton|wither_skeleton)_skull|(?:zombie|player|creeper|dragon|piglin)_head)$",
+    "key": "heads",
+    "label": "Heads and skulls"
+  },
+  {
+    "id": "infested",
+    "pattern": "^minecraft:infested_(?:stone|cobblestone|(?:mossy_|cracked_|chiseled_)?stone_bricks|deepslate)$",
+    "key": "stone",
+    "label": "Infested stone"
+  },
+  {
+    "id": "copper",
+    "pattern": "^minecraft:(?:copper_block|(?:chiseled_copper|cut_copper(?:_stairs|_slab)?|copper_(?:grate|bulb|door|trapdoor|bars|chain|chest|lantern|golem_statue)))$",
+    "key": "unoxidized",
+    "label": "unoxidized copper"
+  },
+  {
+    "id": "copper",
+    "pattern": "^minecraft:(?:exposed_copper|exposed_(?:chiseled_copper|cut_copper(?:_stairs|_slab)?|copper_(?:grate|bulb|door|trapdoor|bars|chain|chest|lantern|golem_statue)))$",
+    "key": "exposed",
+    "label": "exposed copper"
+  },
+  {
+    "id": "copper",
+    "pattern": "^minecraft:(?:weathered_copper|weathered_(?:chiseled_copper|cut_copper(?:_stairs|_slab)?|copper_(?:grate|bulb|door|trapdoor|bars|chain|chest|lantern|golem_statue)))$",
+    "key": "weathered",
+    "label": "weathered copper"
+  },
+  {
+    "id": "copper",
+    "pattern": "^minecraft:(?:oxidized_copper|oxidized_(?:chiseled_copper|cut_copper(?:_stairs|_slab)?|copper_(?:grate|bulb|door|trapdoor|bars|chain|chest|lantern|golem_statue)))$",
+    "key": "oxidized",
+    "label": "oxidized copper"
+  },
+  {
+    "id": "copper",
+    "pattern": "^minecraft:waxed_(?:copper_block|(?:chiseled_copper|cut_copper(?:_stairs|_slab)?|copper_(?:grate|bulb|door|trapdoor|bars|chain|chest|lantern|golem_statue)))$",
+    "key": "waxed_unoxidized",
+    "label": "waxed_unoxidized copper"
+  },
+  {
+    "id": "copper",
+    "pattern": "^minecraft:waxed_(?:exposed_copper|exposed_(?:chiseled_copper|cut_copper(?:_stairs|_slab)?|copper_(?:grate|bulb|door|trapdoor|bars|chain|chest|lantern|golem_statue)))$",
+    "key": "waxed_exposed",
+    "label": "waxed_exposed copper"
+  },
+  {
+    "id": "copper",
+    "pattern": "^minecraft:waxed_(?:weathered_copper|weathered_(?:chiseled_copper|cut_copper(?:_stairs|_slab)?|copper_(?:grate|bulb|door|trapdoor|bars|chain|chest|lantern|golem_statue)))$",
+    "key": "waxed_weathered",
+    "label": "waxed_weathered copper"
+  },
+  {
+    "id": "copper",
+    "pattern": "^minecraft:waxed_(?:oxidized_copper|oxidized_(?:chiseled_copper|cut_copper(?:_stairs|_slab)?|copper_(?:grate|bulb|door|trapdoor|bars|chain|chest|lantern|golem_statue)))$",
+    "key": "waxed_oxidized",
+    "label": "waxed_oxidized copper"
+  },
+  {
+    "id": "wood",
+    "pattern": "^minecraft:(?:stripped_)?(oak|spruce|birch|jungle|acacia|dark_oak|mangrove|cherry|pale_oak|poplar|bamboo|crimson|warped)_(?:leaves|log|wood|stem|hyphae|planks|stairs|slab|fence|fence_gate|door|trapdoor|pressure_plate|button|sign|hanging_sign|shelf|boat|chest_boat|raft|chest_raft|block|mosaic|mosaic_stairs|mosaic_slab)$",
     "key": "$1",
     "label": "$1 wood"
   },
@@ -75,19 +219,14 @@
     "id": "eggs",
     "pattern": "^minecraft:.*_spawn_egg$",
     "key": "spawn_eggs",
-    "label": "Spawn eggs"
+    "label": "Spawn eggs",
+    "icon": "minecraft:creeper_spawn_egg"
   },
   {
     "id": "trim",
     "pattern": "^minecraft:.*_armor_trim_smithing_template$",
     "key": "armor_trims",
     "label": "Armor trim templates"
-  },
-  {
-    "id": "copper",
-    "pattern": "^minecraft:(?:waxed_)?(?:copper_block|(?:exposed_|weathered_|oxidized_)copper|(?:exposed_|weathered_|oxidized_)?(?:chiseled_copper|cut_copper(?:_stairs|_slab)?|copper_(?:grate|bulb|door|trapdoor|bars|chain|chest|lantern|golem_statue)))$",
-    "key": "copper",
-    "label": "Copper blocks"
   },
   {
     "id": "building",

@@ -18,6 +18,8 @@ public interface RecipeBookComponentAccessor {
     @Invoker("updateCollections") void updateCollectionsInvoker(boolean resetPage, boolean filtering);
     @Invoker("isFiltering") boolean brb$isFiltering();
     @Accessor("xOffset") int getXOffset();
+    @Invoker("getXOrigin") int brb$getXOrigin();
+    @Invoker("getYOrigin") int brb$getYOrigin();
     @Accessor("SEARCH_HINT") static Component getSEARCH_HINT() { throw new AssertionError(); }
     @Accessor("ALL_RECIPES_TOOLTIP") static Component getALL_RECIPES_TOOLTIP() { throw new AssertionError(); }
 }

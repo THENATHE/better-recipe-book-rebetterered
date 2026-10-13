@@ -4,6 +4,7 @@ import marsh.town.brb.BetterRecipeBook;
 import marsh.town.brb.config.Config;
 import marsh.town.brb.recipegroups.RecipeDisplayMode;
 import marsh.town.brb.util.BRBTextures;
+import marsh.town.brb.util.GroupControlRenderer;
 import me.shedaniel.autoconfig.AutoConfigClient;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
@@ -550,13 +551,7 @@ public final class WorkstationBookPanel extends AbstractContainerEventHandler im
             graphics.fakeItem(displayed.preview(), getX() + 4, getY() + 4);
             if (isFocused()) graphics.outline(getX(), getY(), width, height, 0xFFFFFFFF);
             if (row.header()) {
-                String label = row.expanded() ? "−" : "+";
-                int size = 9;
-                int left = getRight() - size - 3;
-                int top = getBottom() - size - 3;
-                graphics.fill(left, top, left + size, top + size, 0xEE172331);
-                graphics.text(client.font, label, left + (size - client.font.width(label) + 1) / 2,
-                        top + (size - client.font.lineHeight) / 2, 0xFFFFFFFF, false);
+                GroupControlRenderer.renderHeader(graphics, getX(), getY(), width, height, 3, row.expanded());
             } else if (BetterRecipeBook.config.enablePinning && BetterRecipeBook.pinnedRecipeManager.has(displayed.id())) {
                 graphics.text(client.font, "★", getX() - 2, getY() - 2, 0xFFFFD66A, false);
             }

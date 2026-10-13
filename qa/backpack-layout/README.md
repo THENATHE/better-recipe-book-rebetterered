@@ -1,0 +1,11 @@
+# Backpack layout regression fixture
+
+Copied from Vanilla++ Suite's development-only `qa-backpack-crafting` launcher and fixtures, then extended here. The original suite checkout and release are unchanged. The supplied suite JAR must contain the backpack crafting addon; the stable 1.3.1 suite does not include this book.
+
+Pass the exact suite artifact with `--jar` and the exact BRB candidate with `--brbr`. Use a fresh `--label` for each run; add `--without-polymer` for the native profile. `--cycles 2 --backpack` covers leather and netherite capacities with 2x2 and 3x3 hammers, ordinary and maximum instant crafting.
+
+The client checks settings and instant buttons against the actual native recipe-book origin at wide and narrow sizes, drives their mouse callbacks, and verifies settings Save/Cancel return to the same backpack. It compares every slot and carried stack before and after controls, and tests scrolling at the book's left edge. The inherited server fixture checks authoritative ingredient conservation. Screenshots and exact artifact hashes are saved under the unique run directory. Input uses Minecraft screen callbacks, not physical mouse automation.
+
+These sources are development-only and never shipped in the mod JAR. Generated run directories remain ignored. The optional integration launcher expects the retained Vanilla++ workspace and its local launch helpers. Merely preparing these fixtures does not establish a passing run.
+
+The client also checks all 32 registered normal/glowing Chalk items from the suite with its colorful addon. Their group preserves the original stack objects and order. Test logs and result JSON identify the exact suite and BRB JAR hashes.

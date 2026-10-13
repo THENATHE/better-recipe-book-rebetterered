@@ -229,17 +229,43 @@ public final class WorkstationChecks {
         reopen.run();
         check(context.computeOnClient(client -> panel(client.gui.screen()).isVisible()),
                 name + " workstation reopens with its recipe book still open", evidence);
+        inspectEscape(context, reopen, kind, true, otherOpen, false, false, evidence);
+        inspectEscape(context, reopen, kind, true, otherOpen, false, true, evidence);
+        inspectEscape(context, reopen, kind, true, otherOpen, true, true, evidence);
         context.runOnClient(client -> {
             var screen = client.gui.screen();
+            var toggle = screen.children().stream().filter(ImageButton.class::isInstance)
+                    .map(ImageButton.class::cast).findFirst().orElseThrow();
+            click(screen, toggle, 0, false);
+        });
+        inspectEscape(context, reopen, kind, false, otherOpen, false, false, evidence);
+        openBook(context);
+    }
+
+    private static void inspectEscape(ClientGameTestContext context, Runnable reopen,
+                                      WorkstationRecipe.Kind kind, boolean bookOpen, boolean otherOpen,
+                                      boolean narrow, boolean focusSearch, List<String> evidence) {
+        String name = kind.name().toLowerCase(java.util.Locale.ROOT);
+        String scenario = narrow ? "narrow book with focused search" : focusSearch ? "focused search"
+                : bookOpen ? "open book" : "closed book";
+        context.runOnClient(client -> {
+            var screen = client.gui.screen();
+            if (narrow) screen.resize(340, 240);
+            var book = panel(screen);
+            if (focusSearch) {
+                click(screen, search(book), 0, false);
+                check(book.capturesInput(), name + " search captures input before Escape with " + scenario, evidence);
+            }
             screen.keyPressed(new KeyEvent(InputConstants.KEY_ESCAPE, 0, 0));
-            check(client.gui.screen() == screen && !panel(screen).isVisible(),
-                    name + " Escape closes the book before reopening the workstation", evidence);
-            assertStoredBookState(kind, false, otherOpen, evidence);
+            check(client.gui.screen() != screen && client.player.containerMenu == client.player.inventoryMenu,
+                    name + " Escape immediately closes the workstation with " + scenario, evidence);
+            check(book.isVisible() == bookOpen,
+                    name + " Escape preserves the book visibility with " + scenario, evidence);
+            assertStoredBookState(kind, bookOpen, otherOpen, evidence);
         });
         reopen.run();
-        check(context.computeOnClient(client -> !panel(client.gui.screen()).isVisible()),
-                name + " remembers a book closed with Escape", evidence);
-        openBook(context);
+        check(context.computeOnClient(client -> panel(client.gui.screen()).isVisible() == bookOpen),
+                name + " workstation restores the prior book visibility after Escape with " + scenario, evidence);
     }
 
     private static void assertStoredBookState(WorkstationRecipe.Kind kind, boolean expected, boolean otherExpected,
@@ -272,6 +298,11 @@ public final class WorkstationChecks {
             check(all.size() > 20, workstation + " book offers multiple pages of native recipes", evidence);
             assertVisibleBounds(screen, panel, workstation, evidence);
             List<Identifier> firstPage = displayedIds(panel);
+            check(screen.mouseScrolled(search(panel).getX(), search(panel).getY() + 30, 0, -1)
+                            && !displayedIds(panel).equals(firstPage),
+                    workstation + " screen forwards wheel input over the book to its next page", evidence);
+            screen.mouseScrolled(search(panel).getX(), search(panel).getY() + 30, 0, 1);
+            check(displayedIds(panel).equals(firstPage), workstation + " screen wheel returns to the first page", evidence);
             click(screen, (AbstractWidget) field(panel, "next"), 0, false);
             check(!displayedIds(panel).equals(firstPage), workstation + " forward arrow shows a different recipe page", evidence);
             click(screen, (AbstractWidget) field(panel, "previous"), 0, false);
@@ -346,13 +377,8 @@ public final class WorkstationChecks {
                 boolean unchanged = menu.getCarried().isEmpty();
                 for (int index = 0; index < before.size(); index++) unchanged &= ItemStack.matches(before.get(index), menu.getSlot(index).getItem());
                 check(unchanged, workstation + " narrow overlay prevents picking up items from the hidden inventory", evidence);
-                screen.keyPressed(new KeyEvent(InputConstants.KEY_ESCAPE, 0, 0));
-                check(client.gui.screen() == screen && !panel.isVisible(),
-                        workstation + " Escape closes the narrow book while retaining the workstation", evidence);
                 var toggle = screen.children().stream().filter(ImageButton.class::isInstance)
                         .map(ImageButton.class::cast).findFirst().orElseThrow();
-                click(screen, toggle, 0, false);
-                check(panel.isVisible(), workstation + " narrow book toggle reopens after Escape", evidence);
                 click(screen, toggle, 0, false);
                 check(!panel.isVisible(), workstation + " narrow book toggle closes the overlay", evidence);
                 click(screen, toggle, 0, false);

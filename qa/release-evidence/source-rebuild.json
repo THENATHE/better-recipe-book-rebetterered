@@ -3,13 +3,13 @@
   "command": "JAVA_HOME=<complete Java 25 JDK> bash gradlew --offline --no-daemon clean check build clientqaJar",
   "artifacts": [
     {
-      "file": "better-recipe-book-rebetterered-1.11.3+26.3-sources.jar",
-      "sha256": "9828e5d8ec2f03c1d82e088383c5e181ae935f8b3c0a31b290d854f0ed781609",
+      "file": "better-recipe-book-rebetterered-1.11.4+26.3-sources.jar",
+      "sha256": "823332cf113b645636162de22408176c4a8a7fdcd4bac9895b42882da5efedcb",
       "byte_identical": true
     },
     {
-      "file": "better-recipe-book-rebetterered-1.11.3+26.3.jar",
-      "sha256": "a4d61b3bb1dfbd419bb1a95ad165a55bcb45f470795dfe2235cc27578b703e06",
+      "file": "better-recipe-book-rebetterered-1.11.4+26.3.jar",
+      "sha256": "475088b5e8f4c6b30b1f3f648f103a847a1ad8fab7d410d6f3fd6dabc608864c",
       "byte_identical": true
     }
   ]

@@ -1,6 +1,7 @@
 package marsh.town.brb.creative;
 
 import java.util.List;
+import java.util.Set;
 import java.util.regex.Pattern;
 
 /** Ordered resource-pack rules. The first matching rule owns an item. */
@@ -12,18 +13,37 @@ public final class CreativeGroupRules {
     }
 
     public Match match(String itemId) {
+        return match(itemId, null);
+    }
+
+    public Match match(String itemId, String tabId) {
         for (Rule rule : rules) {
+            if (!rule.tabs().isEmpty() && (tabId == null || !rule.tabs().contains(tabId))) {
+                continue;
+            }
             var matcher = rule.pattern().matcher(itemId);
             if (matcher.matches()) {
                 return new Match(rule.id() + ":" + matcher.replaceFirst(rule.key()),
-                        matcher.replaceFirst(rule.label()));
+                        matcher.replaceFirst(rule.label()), rule.icon());
             }
         }
         return null;
     }
 
-    public record Rule(String id, Pattern pattern, String key, String label) {
+    public record Rule(String id, Pattern pattern, String key, String label, Set<String> tabs, String icon) {
+        public Rule(String id, Pattern pattern, String key, String label) {
+            this(id, pattern, key, label, Set.of(), null);
+        }
+
+        public Rule(String id, Pattern pattern, String key, String label, Set<String> tabs) {
+            this(id, pattern, key, label, tabs, null);
+        }
+
         public Rule {
+            tabs = Set.copyOf(tabs);
+            if (tabs.stream().anyMatch(String::isBlank)) {
+                throw new IllegalArgumentException("Creative grouping tab IDs must not be blank");
+            }
             validateReplacement(key, pattern.matcher("").groupCount());
             validateReplacement(label, pattern.matcher("").groupCount());
         }
@@ -57,5 +77,9 @@ public final class CreativeGroupRules {
         }
     }
 
-    public record Match(String key, String label) {}
+    public record Match(String key, String label, String icon) {
+        public Match(String key, String label) {
+            this(key, label, null);
+        }
+    }
 }

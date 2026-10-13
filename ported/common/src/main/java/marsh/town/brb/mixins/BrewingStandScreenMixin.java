@@ -14,7 +14,6 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.BrewingStandMenu;
 import net.minecraft.world.inventory.ContainerInput;
 import net.minecraft.world.inventory.Slot;
-import com.mojang.blaze3d.platform.InputConstants;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -115,11 +114,7 @@ public abstract class BrewingStandScreenMixin extends AbstractContainerScreen<Br
 
     @Override
     public boolean keyPressed(KeyEvent event) {
-        if (brb$book != null && brb$book.isVisible() && event.key() == InputConstants.KEY_ESCAPE) {
-            brb$book.toggleVisibility();
-            brb$positionBook();
-            return true;
-        }
+        if (event.isEscape()) return super.keyPressed(event);
         if (brb$book != null && brb$book.keyPressed(event)) return true;
         return super.keyPressed(event);
     }

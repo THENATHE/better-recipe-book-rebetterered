@@ -13,6 +13,13 @@
 !/qa/creative/
 !/qa/remote-inputs/
 !/qa/release-evidence/
+!/qa/backpack-layout/
+/qa/backpack-layout/*
+!/qa/backpack-layout/network.py
+!/qa/backpack-layout/CraftingNetworkClient.java
+!/qa/backpack-layout/CraftingNetworkServer.java
+!/qa/backpack-layout/CraftingNetworkBrbrTrace.java
+!/qa/backpack-layout/README.md
 /qa/creative/*
 !/qa/creative/CreativeRuleChecks.java
 /qa/remote-inputs/*

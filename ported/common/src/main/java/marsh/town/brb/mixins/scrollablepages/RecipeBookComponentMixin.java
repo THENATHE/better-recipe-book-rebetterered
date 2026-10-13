@@ -1,6 +1,7 @@
 package marsh.town.brb.mixins.scrollablepages;
 
 import marsh.town.brb.BetterRecipeBook;
+import marsh.town.brb.mixins.accessors.RecipeBookComponentAccessor;
 import marsh.town.brb.recipegroups.RecipePageScroll;
 import net.minecraft.client.gui.components.events.GuiEventListener;
 import net.minecraft.client.gui.screens.recipebook.RecipeBookComponent;
@@ -17,13 +18,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public abstract class RecipeBookComponentMixin implements GuiEventListener {
     @Shadow @Final private RecipeBookPage recipeBookPage;
     @Shadow public abstract boolean isVisible();
-    @Shadow private int width;
-    @Shadow private int height;
-    @Shadow private int xOffset;
 
     @Unique private boolean brb$overBook(double x, double y) {
-        int left = (width - RecipeBookComponent.IMAGE_WIDTH) / 2 - xOffset;
-        int top = (height - RecipeBookComponent.IMAGE_HEIGHT) / 2;
+        var book = (RecipeBookComponentAccessor) this;
+        int left = book.brb$getXOrigin();
+        int top = book.brb$getYOrigin();
         return isVisible() && x >= left && x < left + RecipeBookComponent.IMAGE_WIDTH
                 && y >= top && y < top + RecipeBookComponent.IMAGE_HEIGHT;
     }

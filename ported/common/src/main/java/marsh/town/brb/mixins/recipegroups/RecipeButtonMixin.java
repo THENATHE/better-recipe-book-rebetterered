@@ -1,6 +1,7 @@
 package marsh.town.brb.mixins.recipegroups;
 
 import marsh.town.brb.recipegroups.RecipeTileCollection;
+import marsh.town.brb.util.GroupControlRenderer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.AbstractWidget;
@@ -35,14 +36,7 @@ public abstract class RecipeButtonMixin extends AbstractWidget {
     @Inject(method = "extractWidgetRenderState", at = @At("RETURN"))
     private void brb$groupIndicator(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float delta, CallbackInfo ci) {
         if (getCollection() instanceof RecipeTileCollection tile && tile.isGroupHeader()) {
-            var font = Minecraft.getInstance().font;
-            String label = tile.isExpanded() ? "−" : "+";
-            int size = 9;
-            int left = getRight() - size - 3;
-            int top = getBottom() - size - 3;
-            graphics.fill(left, top, left + size, top + size, 0xEE172331);
-            graphics.text(font, label, left + (size - font.width(label) + 1) / 2,
-                    top + (size - font.lineHeight) / 2, 0xFFFFFFFF, false);
+            GroupControlRenderer.renderHeader(graphics, getX(), getY(), width, height, 3, tile.isExpanded());
         }
     }
 

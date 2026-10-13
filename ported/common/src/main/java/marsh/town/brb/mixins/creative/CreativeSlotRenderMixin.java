@@ -1,6 +1,7 @@
 package marsh.town.brb.mixins.creative;
 
 import marsh.town.brb.creative.CreativeGroupScreen;
+import marsh.town.brb.util.GroupControlRenderer;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.world.inventory.Slot;
@@ -22,12 +23,7 @@ public abstract class CreativeSlotRenderMixin {
             return;
         }
         if (entry.header()) {
-            int left = slot.x + 8;
-            graphics.fill(left, slot.y + 8, left + 8, slot.y + 16, 0xEE193829);
-            graphics.fill(left + 1, slot.y + 11, left + 7, slot.y + 13, 0xFFF0FFF4);
-            if (!entry.expanded()) {
-                graphics.fill(left + 3, slot.y + 9, left + 5, slot.y + 15, 0xFFF0FFF4);
-            }
+            GroupControlRenderer.renderHeader(graphics, slot.x, slot.y, 16, 16, 0, entry.expanded());
         } else if (entry.groupKey() != null) {
             graphics.fill(slot.x - 1, slot.y, slot.x, slot.y + 16, 0xFF609879);
         }

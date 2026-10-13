@@ -1,6 +1,6 @@
 {
   "name": "Better Recipe Book: Rebetterered",
-  "version": "1.11.3+26.3",
+  "version": "1.11.4+26.3",
   "mod_id": "brb",
   "minecraft": "26.3",
   "loader": "Fabric",
@@ -33,14 +33,18 @@
   },
   "architectury_removed": true,
   "local_only": false,
-  "installable_sha256": "a4d61b3bb1dfbd419bb1a95ad165a55bcb45f470795dfe2235cc27578b703e06",
+  "installable_sha256": "475088b5e8f4c6b30b1f3f648f103a847a1ad8fab7d410d6f3fd6dabc608864c",
   "source": "Minecraft/better-recipe-book-26.3/ported",
   "validation": {
-    "combined_client": 1097,
+    "combined_client": 1477,
     "packaged_multiplayer": 42,
     "source_rebuild_byte_identical": true,
-    "original_startup": "Historical 35.1-second 1.21.1 smoke; original artifact unchanged and checksum rechecked"
+    "original_startup": "Historical 35.1-second 1.21.1 smoke; original artifact unchanged and checksum rechecked",
+    "backpack_native_scenarios": 8,
+    "backpack_polymer_scenarios": 8,
+    "backpack_suite_version": "1.4.0-beta.1+26.3",
+    "backpack_suite_sha256": "23459d1ba1ffcb87790475e58a8c195f838d879360cbf17bd0295eded45cb40b"
   },
   "repository": "https://github.com/THENATHE/better-recipe-book-rebetterered",
-  "tag": "v1.11.3+26.3"
+  "tag": "v1.11.4+26.3"
 }
