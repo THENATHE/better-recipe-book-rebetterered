@@ -4,7 +4,7 @@
 
 ![Better Recipe Book: Rebetterered icon](ported/fabric/src/main/resources/assets/brb/icon.png)
 
-The **1.11.2** update brings vanilla-style workstation books, simpler settings with working mode buttons, combined same-output recipe groups, and remembered brewing/smithing book states. See the [changelog](docs/CHANGELOG.md) for this update and the [latest release](https://github.com/THENATHE/better-recipe-book-rebetterered/releases/latest) for downloads.
+The **1.11.3** update completes creative material-family grouping, adds the missing vanilla building variants, moves creative + / − badges to the bottom right, and fixes their tooltips. See the [changelog](docs/CHANGELOG.md) for this update and the [latest release](https://github.com/THENATHE/better-recipe-book-rebetterered/releases/latest) for downloads.
 
 ## What it is
 
@@ -55,7 +55,9 @@ Expansion headers only change which recipes are visible. Clicking a **+ / −** 
 
 ### A tidier creative inventory
 
-- Condense related creative items into expandable **+ / −** groups.
+- Condense related creative items into expandable **+ / −** groups: wood types, stone building families, equipment tiers, and matching decorative items.
+- Keep wool and concrete grouped by color with their matching shapes; wool includes carpet and concrete includes powder.
+- Browse terracotta, glazed terracotta, glass blocks, panes, shulker boxes, and cushions as separate families, including their plain variants where available.
 - Expand a group to choose its individual items, then collapse it when you are done.
 - Switch back to **Vanilla** creative display independently of your recipe-book setting.
 - Keep creative search, the inventory tab, and saved hotbars using their normal presentation.
@@ -114,7 +116,7 @@ Server rules still apply, including limited crafting. Recipes supplied only by a
 
 1. Use **Minecraft 26.3**, **Java 25 or newer**, and **Fabric Loader 0.19.5 or newer**.
 2. Install **Fabric API 0.161.0+26.3** for this release.
-3. Download `better-recipe-book-rebetterered-1.11.2+26.3.jar` from [Releases](https://github.com/THENATHE/better-recipe-book-rebetterered/releases/latest) and put it in your client's `mods/` folder.
+3. Download `better-recipe-book-rebetterered-1.11.3+26.3.jar` from [Releases](https://github.com/THENATHE/better-recipe-book-rebetterered/releases/latest) and put it in your client's `mods/` folder.
 4. Remove other BRB variants from that instance. Keep a backup of your existing settings and pins when upgrading.
 5. Launch Minecraft and choose your preferred display and crafting settings from the recipe-book settings button or Mod Menu.
 
@@ -151,6 +153,6 @@ The first command runs the standard regression checks and builds the mod and sep
 
 ### Verification and compatibility limits
 
-Version **1.11.2+26.3** passed **505 recorded singleplayer checks**, including 225 settings checks, **42 packaged multiplayer assertions** against an unmodified vanilla server, and the standard regression checks. A separate source build reproduced both JARs byte-for-byte. See [validation](docs/VALIDATION.md) for evidence and scope.
+Version **1.11.3+26.3** passed **1,097 recorded singleplayer checks**, including 661 creative grouping checks and 225 settings checks, **42 packaged multiplayer assertions** against an unmodified vanilla server, and the standard regression checks. A separate source build reproduced both JARs byte-for-byte. See [validation](docs/VALIDATION.md) for evidence and scope.
 
 See [validation](docs/VALIDATION.md), [packaged multiplayer QA](qa/REMOTE-QA.md), and the [changelog](docs/CHANGELOG.md) for coverage and remaining limits. No compatible Minecraft 26.3 Mouse Wheelie release was available to test its optional integration. Other mod combinations and custom datapacks have not been exhaustively tested.

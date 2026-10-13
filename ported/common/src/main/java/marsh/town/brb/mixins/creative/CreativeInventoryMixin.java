@@ -10,6 +10,7 @@ import net.minecraft.client.gui.screens.inventory.CreativeModeInventoryScreen;
 import net.minecraft.client.input.KeyEvent;
 import net.minecraft.client.input.MouseButtonEvent;
 import net.minecraft.network.chat.Component;
+import net.minecraft.ChatFormatting;
 import net.minecraft.world.inventory.ContainerInput;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.CreativeModeTab;
@@ -165,8 +166,8 @@ public abstract class CreativeInventoryMixin
         var entry = brb$creativeEntry(hoveredSlot);
         if (entry != null && entry.header()) {
             cir.setReturnValue(List.of(Component.literal(entry.label()),
-                    Component.translatable(entry.expanded() ? "brb.creative.collapse" : "brb.creative.expand",
-                            entry.members())));
+                    Component.translatable(entry.expanded() ? "brb.creative.collapse" : "brb.creative.expand")
+                            .withStyle(ChatFormatting.GRAY)));
         }
     }
 }

@@ -1,3 +1,12 @@
+# 1.11.3+26.3
+
+- Complete creative building-family grouping for poplar and shelves, stone/mossy stone, cobblestone/mossy cobblestone, deepslate, blackstone, sandstone, tuff and related building sets.
+- Group wool by color with its stairs, slabs and carpet; group concrete by color with its stairs, slabs and powder.
+- Keep all terracotta together, including undyed terracotta, with glazed terracotta in its own group.
+- Group clear/tinted/colored glass blocks separately from clear/colored panes. Include the default shulker box, candle and bundle with their colored variants; group cushions and harnesses by item family.
+- Cover missing copper building variants and newer equipment tiers/types.
+- Move creative + / − badges to the bottom right of each item and translate their tooltips to grey “Click to expand” / “Click to collapse”.
+
 # 1.11.2+26.3
 
 - Restyle brewing and smithing books with vanilla textures, category tabs, recipe slots, paging arrows, search and craftable filtering.

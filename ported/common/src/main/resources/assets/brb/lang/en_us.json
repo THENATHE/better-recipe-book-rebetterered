@@ -46,6 +46,8 @@
   "brb.displayMode.all": "All recipes",
   "brb.gui.group.expand": "Expand recipe group (+)",
   "brb.gui.group.collapse": "Collapse recipe group (−)",
+  "brb.creative.expand": "Click to expand",
+  "brb.creative.collapse": "Click to collapse",
   "key.category.brb.keys": "Better Recipe Book: Rebetterered",
   "brb.gui.workstation.no_recipes": "No recipes",
   "brb.gui.workstation.pins": "Pinned recipe variants",

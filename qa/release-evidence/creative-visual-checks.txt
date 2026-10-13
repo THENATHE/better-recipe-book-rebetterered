@@ -1,0 +1,4 @@
+Targeted creative rerun after correcting test cursor coordinate conversion.
+RESULT: PASS; 661 recorded checks
+SCREENSHOT: screenshots/creative-tooltip-verified.png
+Visually confirmed gray Click to expand below White wool and bottom-right plus badges.

@@ -22,10 +22,11 @@ public abstract class CreativeSlotRenderMixin {
             return;
         }
         if (entry.header()) {
-            graphics.fill(slot.x, slot.y + 8, slot.x + 8, slot.y + 16, 0xEE193829);
-            graphics.fill(slot.x + 1, slot.y + 11, slot.x + 7, slot.y + 13, 0xFFF0FFF4);
+            int left = slot.x + 8;
+            graphics.fill(left, slot.y + 8, left + 8, slot.y + 16, 0xEE193829);
+            graphics.fill(left + 1, slot.y + 11, left + 7, slot.y + 13, 0xFFF0FFF4);
             if (!entry.expanded()) {
-                graphics.fill(slot.x + 3, slot.y + 9, slot.x + 5, slot.y + 15, 0xFFF0FFF4);
+                graphics.fill(left + 3, slot.y + 9, left + 5, slot.y + 15, 0xFFF0FFF4);
             }
         } else if (entry.groupKey() != null) {
             graphics.fill(slot.x - 1, slot.y, slot.x, slot.y + 16, 0xFF609879);

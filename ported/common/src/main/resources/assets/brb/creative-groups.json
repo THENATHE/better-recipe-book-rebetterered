@@ -1,19 +1,67 @@
 [
   {
     "id": "wood",
-    "pattern": "^minecraft:(?:stripped_)?(oak|spruce|birch|jungle|acacia|dark_oak|mangrove|cherry|pale_oak|bamboo|crimson|warped)_(?:log|wood|stem|hyphae|planks|stairs|slab|fence|fence_gate|door|trapdoor|pressure_plate|button|sign|hanging_sign|boat|chest_boat|raft|chest_raft|block|mosaic|mosaic_stairs|mosaic_slab)$",
+    "pattern": "^minecraft:(?:stripped_)?(oak|spruce|birch|jungle|acacia|dark_oak|mangrove|cherry|pale_oak|poplar|bamboo|crimson|warped)_(?:log|wood|stem|hyphae|planks|stairs|slab|fence|fence_gate|door|trapdoor|pressure_plate|button|sign|hanging_sign|shelf|boat|chest_boat|raft|chest_raft|block|mosaic|mosaic_stairs|mosaic_slab)$",
     "key": "$1",
     "label": "$1 wood"
   },
   {
+    "id": "wool",
+    "pattern": "^minecraft:(white|orange|magenta|light_blue|yellow|lime|pink|gray|light_gray|cyan|purple|blue|brown|green|red|black)_(?:wool(?:_stairs|_slab)?|carpet)$",
+    "key": "$1",
+    "label": "$1 wool"
+  },
+  {
+    "id": "concrete",
+    "pattern": "^minecraft:(white|orange|magenta|light_blue|yellow|lime|pink|gray|light_gray|cyan|purple|blue|brown|green|red|black)_concrete(?:_stairs|_slab|_powder)?$",
+    "key": "$1",
+    "label": "$1 concrete"
+  },
+  {
     "id": "color",
-    "pattern": "^minecraft:(?:white|orange|magenta|light_blue|yellow|lime|pink|gray|light_gray|cyan|purple|blue|brown|green|red|black)_(wool|carpet|terracotta|glazed_terracotta|concrete|concrete_powder|stained_glass|stained_glass_pane|shulker_box|bed|banner|candle|dye|bundle)$",
+    "pattern": "^minecraft:(?:(?:white|orange|magenta|light_blue|yellow|lime|pink|gray|light_gray|cyan|purple|blue|brown|green|red|black)_)?terracotta$",
+    "key": "terracotta",
+    "label": "Terracotta colors"
+  },
+  {
+    "id": "color",
+    "pattern": "^minecraft:(?:(?:white|orange|magenta|light_blue|yellow|lime|pink|gray|light_gray|cyan|purple|blue|brown|green|red|black)_)?bundle$",
+    "key": "bundle",
+    "label": "bundle colors"
+  },
+  {
+    "id": "color",
+    "pattern": "^minecraft:(?:(?:white|orange|magenta|light_blue|yellow|lime|pink|gray|light_gray|cyan|purple|blue|brown|green|red|black)_)?candle$",
+    "key": "candle",
+    "label": "candle colors"
+  },
+  {
+    "id": "color",
+    "pattern": "^minecraft:(?:(?:white|orange|magenta|light_blue|yellow|lime|pink|gray|light_gray|cyan|purple|blue|brown|green|red|black)_)?shulker_box$",
+    "key": "shulker_box",
+    "label": "Shulker boxes"
+  },
+  {
+    "id": "color",
+    "pattern": "^minecraft:(?:glass_pane|(?:white|orange|magenta|light_blue|yellow|lime|pink|gray|light_gray|cyan|purple|blue|brown|green|red|black)_stained_glass_pane)$",
+    "key": "stained_glass_pane",
+    "label": "Glass panes"
+  },
+  {
+    "id": "color",
+    "pattern": "^minecraft:(?:glass|tinted_glass|(?:white|orange|magenta|light_blue|yellow|lime|pink|gray|light_gray|cyan|purple|blue|brown|green|red|black)_stained_glass)$",
+    "key": "stained_glass",
+    "label": "Glass blocks"
+  },
+  {
+    "id": "color",
+    "pattern": "^minecraft:(?:white|orange|magenta|light_blue|yellow|lime|pink|gray|light_gray|cyan|purple|blue|brown|green|red|black)_(glazed_terracotta|bed|banner|dye|cushion|harness)$",
     "key": "$1",
     "label": "$1 colors"
   },
   {
     "id": "equipment",
-    "pattern": "^minecraft:(?:wooden|stone|copper|iron|golden|diamond|netherite|leather|chainmail)_(sword|pickaxe|axe|shovel|hoe|helmet|chestplate|leggings|boots|horse_armor)$",
+    "pattern": "^minecraft:(?:wooden|stone|copper|iron|golden|diamond|netherite|leather|chainmail)_(sword|spear|pickaxe|axe|shovel|hoe|helmet|chestplate|leggings|boots|horse_armor|nautilus_armor)$",
     "key": "$1",
     "label": "$1 tiers"
   },
@@ -37,8 +85,134 @@
   },
   {
     "id": "copper",
-    "pattern": "^minecraft:(?:waxed_)?(?:exposed_|weathered_|oxidized_)?(?:cut_)?copper(?:_block|_stairs|_slab|_chiseled|_grate|_bulb|_door|_trapdoor|_bars|_chain|_chest|_lantern)?$",
+    "pattern": "^minecraft:(?:waxed_)?(?:copper_block|(?:exposed_|weathered_|oxidized_)copper|(?:exposed_|weathered_|oxidized_)?(?:chiseled_copper|cut_copper(?:_stairs|_slab)?|copper_(?:grate|bulb|door|trapdoor|bars|chain|chest|lantern|golem_statue)))$",
     "key": "copper",
     "label": "Copper blocks"
+  },
+  {
+    "id": "building",
+    "pattern": "^minecraft:(?:stone(?:_stairs|_slab|_button|_pressure_plate)?|smooth_stone(?:_slab)?|(?:mossy_)?stone_brick(?:s|_stairs|_slab|_wall)|(?:chiseled|cracked)_stone_bricks)$",
+    "key": "stone",
+    "label": "Stone"
+  },
+  {
+    "id": "building",
+    "pattern": "^minecraft:(?:mossy_)?cobblestone(?:_stairs|_slab|_wall)?$",
+    "key": "cobblestone",
+    "label": "Cobblestone"
+  },
+  {
+    "id": "building",
+    "pattern": "^minecraft:(?:deepslate|reinforced_deepslate|chiseled_deepslate|(?:cobbled|polished)_deepslate(?:_stairs|_slab|_wall)?|deepslate_(?:brick|tile)(?:s|_stairs|_slab|_wall)|cracked_deepslate_(?:bricks|tiles))$",
+    "key": "deepslate",
+    "label": "Deepslate"
+  },
+  {
+    "id": "building",
+    "pattern": "^minecraft:(?:blackstone(?:_stairs|_slab|_wall)?|gilded_blackstone|polished_blackstone(?:_stairs|_slab|_wall|_button|_pressure_plate)?|polished_blackstone_brick(?:s|_stairs|_slab|_wall)|chiseled_polished_blackstone|cracked_polished_blackstone_bricks)$",
+    "key": "blackstone",
+    "label": "Blackstone"
+  },
+  {
+    "id": "building",
+    "pattern": "^minecraft:(?:sandstone(?:_stairs|_slab|_wall)?|cut_sandstone(?:_slab)?|smooth_sandstone(?:_stairs|_slab)?|chiseled_sandstone)$",
+    "key": "sandstone",
+    "label": "Sandstone"
+  },
+  {
+    "id": "building",
+    "pattern": "^minecraft:(?:red_sandstone(?:_stairs|_slab|_wall)?|cut_red_sandstone(?:_slab)?|smooth_red_sandstone(?:_stairs|_slab)?|chiseled_red_sandstone)$",
+    "key": "red_sandstone",
+    "label": "Red sandstone"
+  },
+  {
+    "id": "building",
+    "pattern": "^minecraft:(?:(?:polished_)?tuff(?:_stairs|_slab|_wall)?|tuff_brick(?:s|_stairs|_slab|_wall)|chiseled_tuff(?:_bricks)?)$",
+    "key": "tuff",
+    "label": "Tuff"
+  },
+  {
+    "id": "building",
+    "pattern": "^minecraft:(?:quartz_(?:block|pillar|bricks|stairs|slab)|chiseled_quartz_block|smooth_quartz(?:_stairs|_slab)?)$",
+    "key": "quartz",
+    "label": "Quartz"
+  },
+  {
+    "id": "building",
+    "pattern": "^minecraft:(?:(?:dark_)?prismarine(?:_stairs|_slab)?|prismarine_wall|prismarine_brick(?:s|_stairs|_slab))$",
+    "key": "prismarine",
+    "label": "Prismarine"
+  },
+  {
+    "id": "building",
+    "pattern": "^minecraft:(?:polished_|smooth_)?basalt$",
+    "key": "basalt",
+    "label": "Basalt"
+  },
+  {
+    "id": "building",
+    "pattern": "^minecraft:purpur_(?:block|pillar|stairs|slab)$",
+    "key": "purpur",
+    "label": "Purpur"
+  },
+  {
+    "id": "building",
+    "pattern": "^minecraft:end_stone(?:_brick(?:s|_stairs|_slab|_wall))?$",
+    "key": "end_stone",
+    "label": "End stone"
+  },
+  {
+    "id": "building",
+    "pattern": "^minecraft:brick(?:s|_stairs|_slab|_wall)$",
+    "key": "bricks",
+    "label": "Bricks"
+  },
+  {
+    "id": "building",
+    "pattern": "^minecraft:(?:(?:red_)?nether_brick(?:s|_stairs|_slab|_wall)|nether_brick_fence|(?:chiseled|cracked)_nether_bricks)$",
+    "key": "nether_bricks",
+    "label": "Nether bricks"
+  },
+  {
+    "id": "building",
+    "pattern": "^minecraft:(?:mud|packed_mud|mud_brick(?:s|_stairs|_slab|_wall))$",
+    "key": "mud",
+    "label": "Mud bricks"
+  },
+  {
+    "id": "building",
+    "pattern": "^minecraft:(?:resin_block|resin_brick(?:s|_stairs|_slab|_wall)|chiseled_resin_bricks)$",
+    "key": "resin",
+    "label": "Resin"
+  },
+  {
+    "id": "building",
+    "pattern": "^minecraft:(?:(?:polished_)?granite(?:_stairs|_slab)?|granite_wall)$",
+    "key": "granite",
+    "label": "Granite"
+  },
+  {
+    "id": "building",
+    "pattern": "^minecraft:(?:(?:polished_)?diorite(?:_stairs|_slab)?|diorite_wall)$",
+    "key": "diorite",
+    "label": "Diorite"
+  },
+  {
+    "id": "building",
+    "pattern": "^minecraft:(?:(?:polished_)?andesite(?:_stairs|_slab)?|andesite_wall)$",
+    "key": "andesite",
+    "label": "Andesite"
+  },
+  {
+    "id": "building",
+    "pattern": "^minecraft:(?:(?:polished_)?cinnabar(?:_stairs|_slab|_wall)?|chiseled_cinnabar|cinnabar_brick(?:s|_stairs|_slab|_wall))$",
+    "key": "cinnabar",
+    "label": "Cinnabar"
+  },
+  {
+    "id": "building",
+    "pattern": "^minecraft:(?:(?:polished_)?sulfur(?:_stairs|_slab|_wall)?|chiseled_sulfur|sulfur_brick(?:s|_stairs|_slab|_wall))$",
+    "key": "sulfur",
+    "label": "Sulfur"
   }
 ]
