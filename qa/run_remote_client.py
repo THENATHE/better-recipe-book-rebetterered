@@ -31,6 +31,15 @@ def sha256(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def retained_asset_index():
+    manifest = json.loads((Path.home() / '.gradle/caches/fabric-loom/26.3/mojang_minecraft_info.json').read_text())
+    expected = manifest['assetIndex']['sha1']
+    for path in sorted((PROJECT / 'qa/remote-inputs').glob('34*.json')):
+        if hashlib.sha1(path.read_bytes()).hexdigest() == expected:
+            return path
+    raise RuntimeError('Missing verified retained asset index: ' + manifest['assetIndex']['url'])
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--server', required=True)
@@ -38,6 +47,7 @@ def main():
     parser.add_argument('--jar', required=True, type=Path, help='Exact installable BRB release JAR.')
     parser.add_argument('--username', default='brbremoteqa')
     parser.add_argument('--java', type=Path, default=JDK)
+    parser.add_argument('--asset-index', type=Path, help='Exact official asset index; defaults to a checksum-matching retained index.')
     parser.add_argument('--launch', action='store_true')
     parser.add_argument('--modmenu', action='store_true', help='Also verify the optional Mod Menu integration.')
     args = parser.parse_args()
@@ -51,7 +61,7 @@ def main():
             raise RuntimeError('Expected nested Cloth Config dependency.')
     subprocess.run([sys.executable, str(PROJECT / 'qa/vanilla_client.py'), '--server', args.server,
                     '--username', args.username, '--run-dir', str(run), '--java', str(args.java),
-                    '--asset-index', str(PROJECT / 'qa/remote-inputs/34.json')], check=True)
+                    '--asset-index', str(args.asset_index or retained_asset_index())], check=True)
     vanilla_audit = json.loads((run / 'vanilla-launch-audit.json').read_text())
     command = vanilla_audit['command']
     command[command.index('net.minecraft.client.main.Main')] = 'net.fabricmc.loader.impl.launch.knot.KnotClient'

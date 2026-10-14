@@ -1,0 +1,1213 @@
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by net.rubygrapefruit.platform.internal.NativeLibraryLoader in an unnamed module (file:/home/thenathe/.gradle/wrapper/dists/gradle-9.6.1-bin/4ticwg1pgcbps2hj28r8so764/gradle-9.6.1/lib/native-platform-0.22-milestone-29.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/9.6.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+
+> Configure project :
+Fabric Loom: 1.17.20
+
+> Task :clean UP-TO-DATE
+
+> Task :compileJava
+Note: /tmp/brbr-review-build-20261013/ported/common/src/main/java/marsh/town/brb/workstation/WorkstationRecipes.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+
+> Task :processResources
+> Task :classes
+> Task :compileRegressionJava
+> Task :processRegressionResources NO-SOURCE
+> Task :regressionClasses
+
+> Task :craftingRegression
+PASS: 131072 sequence assertions and 6 ingredient assignment regression cases
+
+> Task :creativeRegression
+PASS: default selector oak_planks
+PASS: default selector stripped_oak_log
+PASS: default selector dark_oak_stairs
+PASS: default selector bamboo_mosaic_stairs
+PASS: default selector warped_hyphae
+PASS: default selector pale_oak_hanging_sign
+PASS: default selector light_blue_wool
+PASS: default selector red_wool
+PASS: default selector blue_stained_glass_pane
+PASS: default selector yellow_concrete_powder
+PASS: default selector diamond_pickaxe
+PASS: default selector netherite_helmet
+PASS: default selector copper_sword
+PASS: default selector potion
+PASS: default selector splash_potion
+PASS: default selector tipped_arrow
+PASS: default selector zombie_spawn_egg
+PASS: default selector sentry_armor_trim_smithing_template
+PASS: default selector waxed_weathered_cut_copper_stairs
+PASS: oak_planks belongs to wood:oak
+PASS: oak_stairs belongs to wood:oak
+PASS: oak_slab belongs to wood:oak
+PASS: oak_fence belongs to wood:oak
+PASS: oak_fence_gate belongs to wood:oak
+PASS: oak_door belongs to wood:oak
+PASS: oak_trapdoor belongs to wood:oak
+PASS: oak_pressure_plate belongs to wood:oak
+PASS: oak_button belongs to wood:oak
+PASS: oak_sign belongs to wood:oak
+PASS: oak_hanging_sign belongs to wood:oak
+PASS: oak_shelf belongs to wood:oak
+PASS: oak_log belongs to wood:oak
+PASS: stripped_oak_log belongs to wood:oak
+PASS: spruce_planks belongs to wood:spruce
+PASS: spruce_stairs belongs to wood:spruce
+PASS: spruce_slab belongs to wood:spruce
+PASS: spruce_fence belongs to wood:spruce
+PASS: spruce_fence_gate belongs to wood:spruce
+PASS: spruce_door belongs to wood:spruce
+PASS: spruce_trapdoor belongs to wood:spruce
+PASS: spruce_pressure_plate belongs to wood:spruce
+PASS: spruce_button belongs to wood:spruce
+PASS: spruce_sign belongs to wood:spruce
+PASS: spruce_hanging_sign belongs to wood:spruce
+PASS: spruce_shelf belongs to wood:spruce
+PASS: spruce_log belongs to wood:spruce
+PASS: stripped_spruce_log belongs to wood:spruce
+PASS: birch_planks belongs to wood:birch
+PASS: birch_stairs belongs to wood:birch
+PASS: birch_slab belongs to wood:birch
+PASS: birch_fence belongs to wood:birch
+PASS: birch_fence_gate belongs to wood:birch
+PASS: birch_door belongs to wood:birch
+PASS: birch_trapdoor belongs to wood:birch
+PASS: birch_pressure_plate belongs to wood:birch
+PASS: birch_button belongs to wood:birch
+PASS: birch_sign belongs to wood:birch
+PASS: birch_hanging_sign belongs to wood:birch
+PASS: birch_shelf belongs to wood:birch
+PASS: birch_log belongs to wood:birch
+PASS: stripped_birch_log belongs to wood:birch
+PASS: jungle_planks belongs to wood:jungle
+PASS: jungle_stairs belongs to wood:jungle
+PASS: jungle_slab belongs to wood:jungle
+PASS: jungle_fence belongs to wood:jungle
+PASS: jungle_fence_gate belongs to wood:jungle
+PASS: jungle_door belongs to wood:jungle
+PASS: jungle_trapdoor belongs to wood:jungle
+PASS: jungle_pressure_plate belongs to wood:jungle
+PASS: jungle_button belongs to wood:jungle
+PASS: jungle_sign belongs to wood:jungle
+PASS: jungle_hanging_sign belongs to wood:jungle
+PASS: jungle_shelf belongs to wood:jungle
+PASS: jungle_log belongs to wood:jungle
+PASS: stripped_jungle_log belongs to wood:jungle
+PASS: acacia_planks belongs to wood:acacia
+PASS: acacia_stairs belongs to wood:acacia
+PASS: acacia_slab belongs to wood:acacia
+PASS: acacia_fence belongs to wood:acacia
+PASS: acacia_fence_gate belongs to wood:acacia
+PASS: acacia_door belongs to wood:acacia
+PASS: acacia_trapdoor belongs to wood:acacia
+PASS: acacia_pressure_plate belongs to wood:acacia
+PASS: acacia_button belongs to wood:acacia
+PASS: acacia_sign belongs to wood:acacia
+PASS: acacia_hanging_sign belongs to wood:acacia
+PASS: acacia_shelf belongs to wood:acacia
+PASS: acacia_log belongs to wood:acacia
+PASS: stripped_acacia_log belongs to wood:acacia
+PASS: dark_oak_planks belongs to wood:dark_oak
+PASS: dark_oak_stairs belongs to wood:dark_oak
+PASS: dark_oak_slab belongs to wood:dark_oak
+PASS: dark_oak_fence belongs to wood:dark_oak
+PASS: dark_oak_fence_gate belongs to wood:dark_oak
+PASS: dark_oak_door belongs to wood:dark_oak
+PASS: dark_oak_trapdoor belongs to wood:dark_oak
+PASS: dark_oak_pressure_plate belongs to wood:dark_oak
+PASS: dark_oak_button belongs to wood:dark_oak
+PASS: dark_oak_sign belongs to wood:dark_oak
+PASS: dark_oak_hanging_sign belongs to wood:dark_oak
+PASS: dark_oak_shelf belongs to wood:dark_oak
+PASS: dark_oak_log belongs to wood:dark_oak
+PASS: stripped_dark_oak_log belongs to wood:dark_oak
+PASS: mangrove_planks belongs to wood:mangrove
+PASS: mangrove_stairs belongs to wood:mangrove
+PASS: mangrove_slab belongs to wood:mangrove
+PASS: mangrove_fence belongs to wood:mangrove
+PASS: mangrove_fence_gate belongs to wood:mangrove
+PASS: mangrove_door belongs to wood:mangrove
+PASS: mangrove_trapdoor belongs to wood:mangrove
+PASS: mangrove_pressure_plate belongs to wood:mangrove
+PASS: mangrove_button belongs to wood:mangrove
+PASS: mangrove_sign belongs to wood:mangrove
+PASS: mangrove_hanging_sign belongs to wood:mangrove
+PASS: mangrove_shelf belongs to wood:mangrove
+PASS: mangrove_log belongs to wood:mangrove
+PASS: stripped_mangrove_log belongs to wood:mangrove
+PASS: cherry_planks belongs to wood:cherry
+PASS: cherry_stairs belongs to wood:cherry
+PASS: cherry_slab belongs to wood:cherry
+PASS: cherry_fence belongs to wood:cherry
+PASS: cherry_fence_gate belongs to wood:cherry
+PASS: cherry_door belongs to wood:cherry
+PASS: cherry_trapdoor belongs to wood:cherry
+PASS: cherry_pressure_plate belongs to wood:cherry
+PASS: cherry_button belongs to wood:cherry
+PASS: cherry_sign belongs to wood:cherry
+PASS: cherry_hanging_sign belongs to wood:cherry
+PASS: cherry_shelf belongs to wood:cherry
+PASS: cherry_log belongs to wood:cherry
+PASS: stripped_cherry_log belongs to wood:cherry
+PASS: pale_oak_planks belongs to wood:pale_oak
+PASS: pale_oak_stairs belongs to wood:pale_oak
+PASS: pale_oak_slab belongs to wood:pale_oak
+PASS: pale_oak_fence belongs to wood:pale_oak
+PASS: pale_oak_fence_gate belongs to wood:pale_oak
+PASS: pale_oak_door belongs to wood:pale_oak
+PASS: pale_oak_trapdoor belongs to wood:pale_oak
+PASS: pale_oak_pressure_plate belongs to wood:pale_oak
+PASS: pale_oak_button belongs to wood:pale_oak
+PASS: pale_oak_sign belongs to wood:pale_oak
+PASS: pale_oak_hanging_sign belongs to wood:pale_oak
+PASS: pale_oak_shelf belongs to wood:pale_oak
+PASS: pale_oak_log belongs to wood:pale_oak
+PASS: stripped_pale_oak_log belongs to wood:pale_oak
+PASS: poplar_planks belongs to wood:poplar
+PASS: poplar_stairs belongs to wood:poplar
+PASS: poplar_slab belongs to wood:poplar
+PASS: poplar_fence belongs to wood:poplar
+PASS: poplar_fence_gate belongs to wood:poplar
+PASS: poplar_door belongs to wood:poplar
+PASS: poplar_trapdoor belongs to wood:poplar
+PASS: poplar_pressure_plate belongs to wood:poplar
+PASS: poplar_button belongs to wood:poplar
+PASS: poplar_sign belongs to wood:poplar
+PASS: poplar_hanging_sign belongs to wood:poplar
+PASS: poplar_shelf belongs to wood:poplar
+PASS: poplar_log belongs to wood:poplar
+PASS: stripped_poplar_log belongs to wood:poplar
+PASS: bamboo_planks belongs to wood:bamboo
+PASS: bamboo_stairs belongs to wood:bamboo
+PASS: bamboo_slab belongs to wood:bamboo
+PASS: bamboo_fence belongs to wood:bamboo
+PASS: bamboo_fence_gate belongs to wood:bamboo
+PASS: bamboo_door belongs to wood:bamboo
+PASS: bamboo_trapdoor belongs to wood:bamboo
+PASS: bamboo_pressure_plate belongs to wood:bamboo
+PASS: bamboo_button belongs to wood:bamboo
+PASS: bamboo_sign belongs to wood:bamboo
+PASS: bamboo_hanging_sign belongs to wood:bamboo
+PASS: bamboo_shelf belongs to wood:bamboo
+PASS: bamboo_block belongs to wood:bamboo
+PASS: stripped_bamboo_block belongs to wood:bamboo
+PASS: crimson_planks belongs to wood:crimson
+PASS: crimson_stairs belongs to wood:crimson
+PASS: crimson_slab belongs to wood:crimson
+PASS: crimson_fence belongs to wood:crimson
+PASS: crimson_fence_gate belongs to wood:crimson
+PASS: crimson_door belongs to wood:crimson
+PASS: crimson_trapdoor belongs to wood:crimson
+PASS: crimson_pressure_plate belongs to wood:crimson
+PASS: crimson_button belongs to wood:crimson
+PASS: crimson_sign belongs to wood:crimson
+PASS: crimson_hanging_sign belongs to wood:crimson
+PASS: crimson_shelf belongs to wood:crimson
+PASS: crimson_stem belongs to wood:crimson
+PASS: stripped_crimson_stem belongs to wood:crimson
+PASS: warped_planks belongs to wood:warped
+PASS: warped_stairs belongs to wood:warped
+PASS: warped_slab belongs to wood:warped
+PASS: warped_fence belongs to wood:warped
+PASS: warped_fence_gate belongs to wood:warped
+PASS: warped_door belongs to wood:warped
+PASS: warped_trapdoor belongs to wood:warped
+PASS: warped_pressure_plate belongs to wood:warped
+PASS: warped_button belongs to wood:warped
+PASS: warped_sign belongs to wood:warped
+PASS: warped_hanging_sign belongs to wood:warped
+PASS: warped_shelf belongs to wood:warped
+PASS: warped_stem belongs to wood:warped
+PASS: stripped_warped_stem belongs to wood:warped
+PASS: white_wool belongs to wool:white
+PASS: white_wool_stairs belongs to wool:white
+PASS: white_wool_slab belongs to wool:white
+PASS: white_carpet belongs to wool:white
+PASS: white_concrete belongs to concrete:white
+PASS: white_concrete_stairs belongs to concrete:white
+PASS: white_concrete_slab belongs to concrete:white
+PASS: white_concrete_powder belongs to concrete:white
+PASS: white_terracotta belongs to color:terracotta
+PASS: white_glazed_terracotta belongs to color:glazed_terracotta
+PASS: white_stained_glass belongs to color:stained_glass
+PASS: white_stained_glass_pane belongs to color:stained_glass_pane
+PASS: white_shulker_box belongs to color:shulker_box
+PASS: white_cushion belongs to color:cushion
+PASS: white_harness belongs to color:harness
+PASS: white_candle belongs to color:candle
+PASS: white_bundle belongs to color:bundle
+PASS: white_bed belongs to color:bed
+PASS: white_banner belongs to color:banner
+PASS: white_dye belongs to color:dye
+PASS: orange_wool belongs to wool:orange
+PASS: orange_wool_stairs belongs to wool:orange
+PASS: orange_wool_slab belongs to wool:orange
+PASS: orange_carpet belongs to wool:orange
+PASS: orange_concrete belongs to concrete:orange
+PASS: orange_concrete_stairs belongs to concrete:orange
+PASS: orange_concrete_slab belongs to concrete:orange
+PASS: orange_concrete_powder belongs to concrete:orange
+PASS: orange_terracotta belongs to color:terracotta
+PASS: orange_glazed_terracotta belongs to color:glazed_terracotta
+PASS: orange_stained_glass belongs to color:stained_glass
+PASS: orange_stained_glass_pane belongs to color:stained_glass_pane
+PASS: orange_shulker_box belongs to color:shulker_box
+PASS: orange_cushion belongs to color:cushion
+PASS: orange_harness belongs to color:harness
+PASS: orange_candle belongs to color:candle
+PASS: orange_bundle belongs to color:bundle
+PASS: orange_bed belongs to color:bed
+PASS: orange_banner belongs to color:banner
+PASS: orange_dye belongs to color:dye
+PASS: magenta_wool belongs to wool:magenta
+PASS: magenta_wool_stairs belongs to wool:magenta
+PASS: magenta_wool_slab belongs to wool:magenta
+PASS: magenta_carpet belongs to wool:magenta
+PASS: magenta_concrete belongs to concrete:magenta
+PASS: magenta_concrete_stairs belongs to concrete:magenta
+PASS: magenta_concrete_slab belongs to concrete:magenta
+PASS: magenta_concrete_powder belongs to concrete:magenta
+PASS: magenta_terracotta belongs to color:terracotta
+PASS: magenta_glazed_terracotta belongs to color:glazed_terracotta
+PASS: magenta_stained_glass belongs to color:stained_glass
+PASS: magenta_stained_glass_pane belongs to color:stained_glass_pane
+PASS: magenta_shulker_box belongs to color:shulker_box
+PASS: magenta_cushion belongs to color:cushion
+PASS: magenta_harness belongs to color:harness
+PASS: magenta_candle belongs to color:candle
+PASS: magenta_bundle belongs to color:bundle
+PASS: magenta_bed belongs to color:bed
+PASS: magenta_banner belongs to color:banner
+PASS: magenta_dye belongs to color:dye
+PASS: light_blue_wool belongs to wool:light_blue
+PASS: light_blue_wool_stairs belongs to wool:light_blue
+PASS: light_blue_wool_slab belongs to wool:light_blue
+PASS: light_blue_carpet belongs to wool:light_blue
+PASS: light_blue_concrete belongs to concrete:light_blue
+PASS: light_blue_concrete_stairs belongs to concrete:light_blue
+PASS: light_blue_concrete_slab belongs to concrete:light_blue
+PASS: light_blue_concrete_powder belongs to concrete:light_blue
+PASS: light_blue_terracotta belongs to color:terracotta
+PASS: light_blue_glazed_terracotta belongs to color:glazed_terracotta
+PASS: light_blue_stained_glass belongs to color:stained_glass
+PASS: light_blue_stained_glass_pane belongs to color:stained_glass_pane
+PASS: light_blue_shulker_box belongs to color:shulker_box
+PASS: light_blue_cushion belongs to color:cushion
+PASS: light_blue_harness belongs to color:harness
+PASS: light_blue_candle belongs to color:candle
+PASS: light_blue_bundle belongs to color:bundle
+PASS: light_blue_bed belongs to color:bed
+PASS: light_blue_banner belongs to color:banner
+PASS: light_blue_dye belongs to color:dye
+PASS: yellow_wool belongs to wool:yellow
+PASS: yellow_wool_stairs belongs to wool:yellow
+PASS: yellow_wool_slab belongs to wool:yellow
+PASS: yellow_carpet belongs to wool:yellow
+PASS: yellow_concrete belongs to concrete:yellow
+PASS: yellow_concrete_stairs belongs to concrete:yellow
+PASS: yellow_concrete_slab belongs to concrete:yellow
+PASS: yellow_concrete_powder belongs to concrete:yellow
+PASS: yellow_terracotta belongs to color:terracotta
+PASS: yellow_glazed_terracotta belongs to color:glazed_terracotta
+PASS: yellow_stained_glass belongs to color:stained_glass
+PASS: yellow_stained_glass_pane belongs to color:stained_glass_pane
+PASS: yellow_shulker_box belongs to color:shulker_box
+PASS: yellow_cushion belongs to color:cushion
+PASS: yellow_harness belongs to color:harness
+PASS: yellow_candle belongs to color:candle
+PASS: yellow_bundle belongs to color:bundle
+PASS: yellow_bed belongs to color:bed
+PASS: yellow_banner belongs to color:banner
+PASS: yellow_dye belongs to color:dye
+PASS: lime_wool belongs to wool:lime
+PASS: lime_wool_stairs belongs to wool:lime
+PASS: lime_wool_slab belongs to wool:lime
+PASS: lime_carpet belongs to wool:lime
+PASS: lime_concrete belongs to concrete:lime
+PASS: lime_concrete_stairs belongs to concrete:lime
+PASS: lime_concrete_slab belongs to concrete:lime
+PASS: lime_concrete_powder belongs to concrete:lime
+PASS: lime_terracotta belongs to color:terracotta
+PASS: lime_glazed_terracotta belongs to color:glazed_terracotta
+PASS: lime_stained_glass belongs to color:stained_glass
+PASS: lime_stained_glass_pane belongs to color:stained_glass_pane
+PASS: lime_shulker_box belongs to color:shulker_box
+PASS: lime_cushion belongs to color:cushion
+PASS: lime_harness belongs to color:harness
+PASS: lime_candle belongs to color:candle
+PASS: lime_bundle belongs to color:bundle
+PASS: lime_bed belongs to color:bed
+PASS: lime_banner belongs to color:banner
+PASS: lime_dye belongs to color:dye
+PASS: pink_wool belongs to wool:pink
+PASS: pink_wool_stairs belongs to wool:pink
+PASS: pink_wool_slab belongs to wool:pink
+PASS: pink_carpet belongs to wool:pink
+PASS: pink_concrete belongs to concrete:pink
+PASS: pink_concrete_stairs belongs to concrete:pink
+PASS: pink_concrete_slab belongs to concrete:pink
+PASS: pink_concrete_powder belongs to concrete:pink
+PASS: pink_terracotta belongs to color:terracotta
+PASS: pink_glazed_terracotta belongs to color:glazed_terracotta
+PASS: pink_stained_glass belongs to color:stained_glass
+PASS: pink_stained_glass_pane belongs to color:stained_glass_pane
+PASS: pink_shulker_box belongs to color:shulker_box
+PASS: pink_cushion belongs to color:cushion
+PASS: pink_harness belongs to color:harness
+PASS: pink_candle belongs to color:candle
+PASS: pink_bundle belongs to color:bundle
+PASS: pink_bed belongs to color:bed
+PASS: pink_banner belongs to color:banner
+PASS: pink_dye belongs to color:dye
+PASS: gray_wool belongs to wool:gray
+PASS: gray_wool_stairs belongs to wool:gray
+PASS: gray_wool_slab belongs to wool:gray
+PASS: gray_carpet belongs to wool:gray
+PASS: gray_concrete belongs to concrete:gray
+PASS: gray_concrete_stairs belongs to concrete:gray
+PASS: gray_concrete_slab belongs to concrete:gray
+PASS: gray_concrete_powder belongs to concrete:gray
+PASS: gray_terracotta belongs to color:terracotta
+PASS: gray_glazed_terracotta belongs to color:glazed_terracotta
+PASS: gray_stained_glass belongs to color:stained_glass
+PASS: gray_stained_glass_pane belongs to color:stained_glass_pane
+PASS: gray_shulker_box belongs to color:shulker_box
+PASS: gray_cushion belongs to color:cushion
+PASS: gray_harness belongs to color:harness
+PASS: gray_candle belongs to color:candle
+PASS: gray_bundle belongs to color:bundle
+PASS: gray_bed belongs to color:bed
+PASS: gray_banner belongs to color:banner
+PASS: gray_dye belongs to color:dye
+PASS: light_gray_wool belongs to wool:light_gray
+PASS: light_gray_wool_stairs belongs to wool:light_gray
+PASS: light_gray_wool_slab belongs to wool:light_gray
+PASS: light_gray_carpet belongs to wool:light_gray
+PASS: light_gray_concrete belongs to concrete:light_gray
+PASS: light_gray_concrete_stairs belongs to concrete:light_gray
+PASS: light_gray_concrete_slab belongs to concrete:light_gray
+PASS: light_gray_concrete_powder belongs to concrete:light_gray
+PASS: light_gray_terracotta belongs to color:terracotta
+PASS: light_gray_glazed_terracotta belongs to color:glazed_terracotta
+PASS: light_gray_stained_glass belongs to color:stained_glass
+PASS: light_gray_stained_glass_pane belongs to color:stained_glass_pane
+PASS: light_gray_shulker_box belongs to color:shulker_box
+PASS: light_gray_cushion belongs to color:cushion
+PASS: light_gray_harness belongs to color:harness
+PASS: light_gray_candle belongs to color:candle
+PASS: light_gray_bundle belongs to color:bundle
+PASS: light_gray_bed belongs to color:bed
+PASS: light_gray_banner belongs to color:banner
+PASS: light_gray_dye belongs to color:dye
+PASS: cyan_wool belongs to wool:cyan
+PASS: cyan_wool_stairs belongs to wool:cyan
+PASS: cyan_wool_slab belongs to wool:cyan
+PASS: cyan_carpet belongs to wool:cyan
+PASS: cyan_concrete belongs to concrete:cyan
+PASS: cyan_concrete_stairs belongs to concrete:cyan
+PASS: cyan_concrete_slab belongs to concrete:cyan
+PASS: cyan_concrete_powder belongs to concrete:cyan
+PASS: cyan_terracotta belongs to color:terracotta
+PASS: cyan_glazed_terracotta belongs to color:glazed_terracotta
+PASS: cyan_stained_glass belongs to color:stained_glass
+PASS: cyan_stained_glass_pane belongs to color:stained_glass_pane
+PASS: cyan_shulker_box belongs to color:shulker_box
+PASS: cyan_cushion belongs to color:cushion
+PASS: cyan_harness belongs to color:harness
+PASS: cyan_candle belongs to color:candle
+PASS: cyan_bundle belongs to color:bundle
+PASS: cyan_bed belongs to color:bed
+PASS: cyan_banner belongs to color:banner
+PASS: cyan_dye belongs to color:dye
+PASS: purple_wool belongs to wool:purple
+PASS: purple_wool_stairs belongs to wool:purple
+PASS: purple_wool_slab belongs to wool:purple
+PASS: purple_carpet belongs to wool:purple
+PASS: purple_concrete belongs to concrete:purple
+PASS: purple_concrete_stairs belongs to concrete:purple
+PASS: purple_concrete_slab belongs to concrete:purple
+PASS: purple_concrete_powder belongs to concrete:purple
+PASS: purple_terracotta belongs to color:terracotta
+PASS: purple_glazed_terracotta belongs to color:glazed_terracotta
+PASS: purple_stained_glass belongs to color:stained_glass
+PASS: purple_stained_glass_pane belongs to color:stained_glass_pane
+PASS: purple_shulker_box belongs to color:shulker_box
+PASS: purple_cushion belongs to color:cushion
+PASS: purple_harness belongs to color:harness
+PASS: purple_candle belongs to color:candle
+PASS: purple_bundle belongs to color:bundle
+PASS: purple_bed belongs to color:bed
+PASS: purple_banner belongs to color:banner
+PASS: purple_dye belongs to color:dye
+PASS: blue_wool belongs to wool:blue
+PASS: blue_wool_stairs belongs to wool:blue
+PASS: blue_wool_slab belongs to wool:blue
+PASS: blue_carpet belongs to wool:blue
+PASS: blue_concrete belongs to concrete:blue
+PASS: blue_concrete_stairs belongs to concrete:blue
+PASS: blue_concrete_slab belongs to concrete:blue
+PASS: blue_concrete_powder belongs to concrete:blue
+PASS: blue_terracotta belongs to color:terracotta
+PASS: blue_glazed_terracotta belongs to color:glazed_terracotta
+PASS: blue_stained_glass belongs to color:stained_glass
+PASS: blue_stained_glass_pane belongs to color:stained_glass_pane
+PASS: blue_shulker_box belongs to color:shulker_box
+PASS: blue_cushion belongs to color:cushion
+PASS: blue_harness belongs to color:harness
+PASS: blue_candle belongs to color:candle
+PASS: blue_bundle belongs to color:bundle
+PASS: blue_bed belongs to color:bed
+PASS: blue_banner belongs to color:banner
+PASS: blue_dye belongs to color:dye
+PASS: brown_wool belongs to wool:brown
+PASS: brown_wool_stairs belongs to wool:brown
+PASS: brown_wool_slab belongs to wool:brown
+PASS: brown_carpet belongs to wool:brown
+PASS: brown_concrete belongs to concrete:brown
+PASS: brown_concrete_stairs belongs to concrete:brown
+PASS: brown_concrete_slab belongs to concrete:brown
+PASS: brown_concrete_powder belongs to concrete:brown
+PASS: brown_terracotta belongs to color:terracotta
+PASS: brown_glazed_terracotta belongs to color:glazed_terracotta
+PASS: brown_stained_glass belongs to color:stained_glass
+PASS: brown_stained_glass_pane belongs to color:stained_glass_pane
+PASS: brown_shulker_box belongs to color:shulker_box
+PASS: brown_cushion belongs to color:cushion
+PASS: brown_harness belongs to color:harness
+PASS: brown_candle belongs to color:candle
+PASS: brown_bundle belongs to color:bundle
+PASS: brown_bed belongs to color:bed
+PASS: brown_banner belongs to color:banner
+PASS: brown_dye belongs to color:dye
+PASS: green_wool belongs to wool:green
+PASS: green_wool_stairs belongs to wool:green
+PASS: green_wool_slab belongs to wool:green
+PASS: green_carpet belongs to wool:green
+PASS: green_concrete belongs to concrete:green
+PASS: green_concrete_stairs belongs to concrete:green
+PASS: green_concrete_slab belongs to concrete:green
+PASS: green_concrete_powder belongs to concrete:green
+PASS: green_terracotta belongs to color:terracotta
+PASS: green_glazed_terracotta belongs to color:glazed_terracotta
+PASS: green_stained_glass belongs to color:stained_glass
+PASS: green_stained_glass_pane belongs to color:stained_glass_pane
+PASS: green_shulker_box belongs to color:shulker_box
+PASS: green_cushion belongs to color:cushion
+PASS: green_harness belongs to color:harness
+PASS: green_candle belongs to color:candle
+PASS: green_bundle belongs to color:bundle
+PASS: green_bed belongs to color:bed
+PASS: green_banner belongs to color:banner
+PASS: green_dye belongs to color:dye
+PASS: red_wool belongs to wool:red
+PASS: red_wool_stairs belongs to wool:red
+PASS: red_wool_slab belongs to wool:red
+PASS: red_carpet belongs to wool:red
+PASS: red_concrete belongs to concrete:red
+PASS: red_concrete_stairs belongs to concrete:red
+PASS: red_concrete_slab belongs to concrete:red
+PASS: red_concrete_powder belongs to concrete:red
+PASS: red_terracotta belongs to color:terracotta
+PASS: red_glazed_terracotta belongs to color:glazed_terracotta
+PASS: red_stained_glass belongs to color:stained_glass
+PASS: red_stained_glass_pane belongs to color:stained_glass_pane
+PASS: red_shulker_box belongs to color:shulker_box
+PASS: red_cushion belongs to color:cushion
+PASS: red_harness belongs to color:harness
+PASS: red_candle belongs to color:candle
+PASS: red_bundle belongs to color:bundle
+PASS: red_bed belongs to color:bed
+PASS: red_banner belongs to color:banner
+PASS: red_dye belongs to color:dye
+PASS: black_wool belongs to wool:black
+PASS: black_wool_stairs belongs to wool:black
+PASS: black_wool_slab belongs to wool:black
+PASS: black_carpet belongs to wool:black
+PASS: black_concrete belongs to concrete:black
+PASS: black_concrete_stairs belongs to concrete:black
+PASS: black_concrete_slab belongs to concrete:black
+PASS: black_concrete_powder belongs to concrete:black
+PASS: black_terracotta belongs to color:terracotta
+PASS: black_glazed_terracotta belongs to color:glazed_terracotta
+PASS: black_stained_glass belongs to color:stained_glass
+PASS: black_stained_glass_pane belongs to color:stained_glass_pane
+PASS: black_shulker_box belongs to color:shulker_box
+PASS: black_cushion belongs to color:cushion
+PASS: black_harness belongs to color:harness
+PASS: black_candle belongs to color:candle
+PASS: black_bundle belongs to color:bundle
+PASS: black_bed belongs to color:bed
+PASS: black_banner belongs to color:banner
+PASS: black_dye belongs to color:dye
+PASS: terracotta belongs to color:terracotta
+PASS: shulker_box belongs to color:shulker_box
+PASS: candle belongs to color:candle
+PASS: bundle belongs to color:bundle
+PASS: glass belongs to color:stained_glass
+PASS: tinted_glass belongs to color:stained_glass
+PASS: glass_pane belongs to color:stained_glass_pane
+PASS: stone belongs to building:stone
+PASS: stone_stairs belongs to building:stone
+PASS: stone_slab belongs to building:stone
+PASS: smooth_stone belongs to building:stone
+PASS: smooth_stone_slab belongs to building:stone
+PASS: stone_bricks belongs to building:stone
+PASS: stone_brick_stairs belongs to building:stone
+PASS: stone_brick_slab belongs to building:stone
+PASS: stone_brick_wall belongs to building:stone
+PASS: mossy_stone_bricks belongs to building:stone
+PASS: mossy_stone_brick_stairs belongs to building:stone
+PASS: mossy_stone_brick_slab belongs to building:stone
+PASS: mossy_stone_brick_wall belongs to building:stone
+PASS: chiseled_stone_bricks belongs to building:stone
+PASS: cracked_stone_bricks belongs to building:stone
+PASS: stone_button belongs to building:stone
+PASS: stone_pressure_plate belongs to building:stone
+PASS: cobblestone belongs to building:cobblestone
+PASS: cobblestone_stairs belongs to building:cobblestone
+PASS: cobblestone_slab belongs to building:cobblestone
+PASS: cobblestone_wall belongs to building:cobblestone
+PASS: mossy_cobblestone belongs to building:cobblestone
+PASS: mossy_cobblestone_stairs belongs to building:cobblestone
+PASS: mossy_cobblestone_slab belongs to building:cobblestone
+PASS: mossy_cobblestone_wall belongs to building:cobblestone
+PASS: deepslate belongs to building:deepslate
+PASS: cobbled_deepslate belongs to building:deepslate
+PASS: polished_deepslate belongs to building:deepslate
+PASS: chiseled_deepslate belongs to building:deepslate
+PASS: deepslate_bricks belongs to building:deepslate
+PASS: deepslate_tiles belongs to building:deepslate
+PASS: cracked_deepslate_bricks belongs to building:deepslate
+PASS: cracked_deepslate_tiles belongs to building:deepslate
+PASS: deepslate_brick_wall belongs to building:deepslate
+PASS: deepslate_tile_stairs belongs to building:deepslate
+PASS: reinforced_deepslate belongs to building:deepslate
+PASS: blackstone belongs to building:blackstone
+PASS: blackstone_wall belongs to building:blackstone
+PASS: gilded_blackstone belongs to building:blackstone
+PASS: polished_blackstone belongs to building:blackstone
+PASS: polished_blackstone_button belongs to building:blackstone
+PASS: polished_blackstone_pressure_plate belongs to building:blackstone
+PASS: polished_blackstone_bricks belongs to building:blackstone
+PASS: chiseled_polished_blackstone belongs to building:blackstone
+PASS: cracked_polished_blackstone_bricks belongs to building:blackstone
+PASS: polished_blackstone_brick_stairs belongs to building:blackstone
+PASS: sandstone belongs to building:sandstone
+PASS: sandstone_stairs belongs to building:sandstone
+PASS: sandstone_slab belongs to building:sandstone
+PASS: sandstone_wall belongs to building:sandstone
+PASS: cut_sandstone belongs to building:sandstone
+PASS: cut_sandstone_slab belongs to building:sandstone
+PASS: smooth_sandstone belongs to building:sandstone
+PASS: smooth_sandstone_stairs belongs to building:sandstone
+PASS: smooth_sandstone_slab belongs to building:sandstone
+PASS: chiseled_sandstone belongs to building:sandstone
+PASS: red_sandstone belongs to building:red_sandstone
+PASS: red_sandstone_stairs belongs to building:red_sandstone
+PASS: red_sandstone_slab belongs to building:red_sandstone
+PASS: red_sandstone_wall belongs to building:red_sandstone
+PASS: cut_red_sandstone belongs to building:red_sandstone
+PASS: cut_red_sandstone_slab belongs to building:red_sandstone
+PASS: smooth_red_sandstone belongs to building:red_sandstone
+PASS: smooth_red_sandstone_stairs belongs to building:red_sandstone
+PASS: smooth_red_sandstone_slab belongs to building:red_sandstone
+PASS: chiseled_red_sandstone belongs to building:red_sandstone
+PASS: tuff belongs to building:tuff
+PASS: tuff_stairs belongs to building:tuff
+PASS: tuff_slab belongs to building:tuff
+PASS: tuff_wall belongs to building:tuff
+PASS: polished_tuff belongs to building:tuff
+PASS: polished_tuff_stairs belongs to building:tuff
+PASS: polished_tuff_slab belongs to building:tuff
+PASS: polished_tuff_wall belongs to building:tuff
+PASS: chiseled_tuff belongs to building:tuff
+PASS: tuff_bricks belongs to building:tuff
+PASS: tuff_brick_stairs belongs to building:tuff
+PASS: tuff_brick_slab belongs to building:tuff
+PASS: tuff_brick_wall belongs to building:tuff
+PASS: cinnabar belongs to building:cinnabar
+PASS: cinnabar_stairs belongs to building:cinnabar
+PASS: cinnabar_slab belongs to building:cinnabar
+PASS: cinnabar_wall belongs to building:cinnabar
+PASS: polished_cinnabar belongs to building:cinnabar
+PASS: polished_cinnabar_stairs belongs to building:cinnabar
+PASS: polished_cinnabar_slab belongs to building:cinnabar
+PASS: polished_cinnabar_wall belongs to building:cinnabar
+PASS: chiseled_cinnabar belongs to building:cinnabar
+PASS: cinnabar_bricks belongs to building:cinnabar
+PASS: cinnabar_brick_stairs belongs to building:cinnabar
+PASS: cinnabar_brick_slab belongs to building:cinnabar
+PASS: cinnabar_brick_wall belongs to building:cinnabar
+PASS: sulfur belongs to building:sulfur
+PASS: sulfur_stairs belongs to building:sulfur
+PASS: sulfur_slab belongs to building:sulfur
+PASS: sulfur_wall belongs to building:sulfur
+PASS: polished_sulfur belongs to building:sulfur
+PASS: polished_sulfur_stairs belongs to building:sulfur
+PASS: polished_sulfur_slab belongs to building:sulfur
+PASS: polished_sulfur_wall belongs to building:sulfur
+PASS: chiseled_sulfur belongs to building:sulfur
+PASS: sulfur_bricks belongs to building:sulfur
+PASS: sulfur_brick_stairs belongs to building:sulfur
+PASS: sulfur_brick_slab belongs to building:sulfur
+PASS: sulfur_brick_wall belongs to building:sulfur
+PASS: chiseled_tuff_bricks belongs to building:tuff
+PASS: granite belongs to building:granite
+PASS: granite_stairs belongs to building:granite
+PASS: granite_slab belongs to building:granite
+PASS: granite_wall belongs to building:granite
+PASS: polished_granite belongs to building:granite
+PASS: polished_granite_stairs belongs to building:granite
+PASS: polished_granite_slab belongs to building:granite
+PASS: diorite belongs to building:diorite
+PASS: diorite_stairs belongs to building:diorite
+PASS: diorite_slab belongs to building:diorite
+PASS: diorite_wall belongs to building:diorite
+PASS: polished_diorite belongs to building:diorite
+PASS: polished_diorite_stairs belongs to building:diorite
+PASS: polished_diorite_slab belongs to building:diorite
+PASS: andesite belongs to building:andesite
+PASS: andesite_stairs belongs to building:andesite
+PASS: andesite_slab belongs to building:andesite
+PASS: andesite_wall belongs to building:andesite
+PASS: polished_andesite belongs to building:andesite
+PASS: polished_andesite_stairs belongs to building:andesite
+PASS: polished_andesite_slab belongs to building:andesite
+PASS: quartz_block belongs to building:quartz
+PASS: quartz_pillar belongs to building:quartz
+PASS: quartz_bricks belongs to building:quartz
+PASS: quartz_stairs belongs to building:quartz
+PASS: quartz_slab belongs to building:quartz
+PASS: chiseled_quartz_block belongs to building:quartz
+PASS: smooth_quartz belongs to building:quartz
+PASS: smooth_quartz_stairs belongs to building:quartz
+PASS: smooth_quartz_slab belongs to building:quartz
+PASS: prismarine belongs to building:prismarine
+PASS: prismarine_wall belongs to building:prismarine
+PASS: prismarine_stairs belongs to building:prismarine
+PASS: prismarine_slab belongs to building:prismarine
+PASS: prismarine_bricks belongs to building:prismarine
+PASS: prismarine_brick_stairs belongs to building:prismarine
+PASS: prismarine_brick_slab belongs to building:prismarine
+PASS: dark_prismarine belongs to building:prismarine
+PASS: dark_prismarine_stairs belongs to building:prismarine
+PASS: dark_prismarine_slab belongs to building:prismarine
+PASS: basalt belongs to building:basalt
+PASS: polished_basalt belongs to building:basalt
+PASS: smooth_basalt belongs to building:basalt
+PASS: purpur_block belongs to building:purpur
+PASS: purpur_pillar belongs to building:purpur
+PASS: purpur_stairs belongs to building:purpur
+PASS: purpur_slab belongs to building:purpur
+PASS: end_stone belongs to building:end_stone
+PASS: end_stone_bricks belongs to building:end_stone
+PASS: end_stone_brick_stairs belongs to building:end_stone
+PASS: end_stone_brick_slab belongs to building:end_stone
+PASS: end_stone_brick_wall belongs to building:end_stone
+PASS: bricks belongs to building:bricks
+PASS: brick_stairs belongs to building:bricks
+PASS: brick_slab belongs to building:bricks
+PASS: brick_wall belongs to building:bricks
+PASS: nether_bricks belongs to building:nether_bricks
+PASS: nether_brick_stairs belongs to building:nether_bricks
+PASS: nether_brick_slab belongs to building:nether_bricks
+PASS: nether_brick_wall belongs to building:nether_bricks
+PASS: nether_brick_fence belongs to building:nether_bricks
+PASS: red_nether_bricks belongs to building:nether_bricks
+PASS: red_nether_brick_stairs belongs to building:nether_bricks
+PASS: red_nether_brick_slab belongs to building:nether_bricks
+PASS: red_nether_brick_wall belongs to building:nether_bricks
+PASS: chiseled_nether_bricks belongs to building:nether_bricks
+PASS: cracked_nether_bricks belongs to building:nether_bricks
+PASS: mud belongs to building:mud
+PASS: packed_mud belongs to building:mud
+PASS: mud_bricks belongs to building:mud
+PASS: mud_brick_stairs belongs to building:mud
+PASS: mud_brick_slab belongs to building:mud
+PASS: mud_brick_wall belongs to building:mud
+PASS: resin_block belongs to building:resin
+PASS: resin_bricks belongs to building:resin
+PASS: resin_brick_stairs belongs to building:resin
+PASS: resin_brick_slab belongs to building:resin
+PASS: resin_brick_wall belongs to building:resin
+PASS: chiseled_resin_bricks belongs to building:resin
+PASS: copper_block belongs to copper:unoxidized
+PASS: chiseled_copper belongs to copper:unoxidized
+PASS: cut_copper belongs to copper:unoxidized
+PASS: cut_copper_stairs belongs to copper:unoxidized
+PASS: cut_copper_slab belongs to copper:unoxidized
+PASS: copper_grate belongs to copper:unoxidized
+PASS: copper_bulb belongs to copper:unoxidized
+PASS: copper_door belongs to copper:unoxidized
+PASS: copper_trapdoor belongs to copper:unoxidized
+PASS: copper_bars belongs to copper:unoxidized
+PASS: copper_chain belongs to copper:unoxidized
+PASS: copper_chest belongs to copper:unoxidized
+PASS: copper_lantern belongs to copper:unoxidized
+PASS: copper_golem_statue belongs to copper:unoxidized
+PASS: lightning_rod belongs to utility:lightning_rods
+PASS: exposed_copper belongs to copper:exposed
+PASS: exposed_chiseled_copper belongs to copper:exposed
+PASS: exposed_cut_copper belongs to copper:exposed
+PASS: exposed_cut_copper_stairs belongs to copper:exposed
+PASS: exposed_cut_copper_slab belongs to copper:exposed
+PASS: exposed_copper_grate belongs to copper:exposed
+PASS: exposed_copper_bulb belongs to copper:exposed
+PASS: exposed_copper_door belongs to copper:exposed
+PASS: exposed_copper_trapdoor belongs to copper:exposed
+PASS: exposed_copper_bars belongs to copper:exposed
+PASS: exposed_copper_chain belongs to copper:exposed
+PASS: exposed_copper_chest belongs to copper:exposed
+PASS: exposed_copper_lantern belongs to copper:exposed
+PASS: exposed_copper_golem_statue belongs to copper:exposed
+PASS: exposed_lightning_rod belongs to utility:lightning_rods
+PASS: weathered_copper belongs to copper:weathered
+PASS: weathered_chiseled_copper belongs to copper:weathered
+PASS: weathered_cut_copper belongs to copper:weathered
+PASS: weathered_cut_copper_stairs belongs to copper:weathered
+PASS: weathered_cut_copper_slab belongs to copper:weathered
+PASS: weathered_copper_grate belongs to copper:weathered
+PASS: weathered_copper_bulb belongs to copper:weathered
+PASS: weathered_copper_door belongs to copper:weathered
+PASS: weathered_copper_trapdoor belongs to copper:weathered
+PASS: weathered_copper_bars belongs to copper:weathered
+PASS: weathered_copper_chain belongs to copper:weathered
+PASS: weathered_copper_chest belongs to copper:weathered
+PASS: weathered_copper_lantern belongs to copper:weathered
+PASS: weathered_copper_golem_statue belongs to copper:weathered
+PASS: weathered_lightning_rod belongs to utility:lightning_rods
+PASS: oxidized_copper belongs to copper:oxidized
+PASS: oxidized_chiseled_copper belongs to copper:oxidized
+PASS: oxidized_cut_copper belongs to copper:oxidized
+PASS: oxidized_cut_copper_stairs belongs to copper:oxidized
+PASS: oxidized_cut_copper_slab belongs to copper:oxidized
+PASS: oxidized_copper_grate belongs to copper:oxidized
+PASS: oxidized_copper_bulb belongs to copper:oxidized
+PASS: oxidized_copper_door belongs to copper:oxidized
+PASS: oxidized_copper_trapdoor belongs to copper:oxidized
+PASS: oxidized_copper_bars belongs to copper:oxidized
+PASS: oxidized_copper_chain belongs to copper:oxidized
+PASS: oxidized_copper_chest belongs to copper:oxidized
+PASS: oxidized_copper_lantern belongs to copper:oxidized
+PASS: oxidized_copper_golem_statue belongs to copper:oxidized
+PASS: oxidized_lightning_rod belongs to utility:lightning_rods
+PASS: waxed_copper_block belongs to copper:waxed_unoxidized
+PASS: waxed_chiseled_copper belongs to copper:waxed_unoxidized
+PASS: waxed_cut_copper belongs to copper:waxed_unoxidized
+PASS: waxed_cut_copper_stairs belongs to copper:waxed_unoxidized
+PASS: waxed_cut_copper_slab belongs to copper:waxed_unoxidized
+PASS: waxed_copper_grate belongs to copper:waxed_unoxidized
+PASS: waxed_copper_bulb belongs to copper:waxed_unoxidized
+PASS: waxed_copper_door belongs to copper:waxed_unoxidized
+PASS: waxed_copper_trapdoor belongs to copper:waxed_unoxidized
+PASS: waxed_copper_bars belongs to copper:waxed_unoxidized
+PASS: waxed_copper_chain belongs to copper:waxed_unoxidized
+PASS: waxed_copper_chest belongs to copper:waxed_unoxidized
+PASS: waxed_copper_lantern belongs to copper:waxed_unoxidized
+PASS: waxed_copper_golem_statue belongs to copper:waxed_unoxidized
+PASS: waxed_lightning_rod belongs to utility:lightning_rods
+PASS: waxed_exposed_copper belongs to copper:waxed_exposed
+PASS: waxed_exposed_chiseled_copper belongs to copper:waxed_exposed
+PASS: waxed_exposed_cut_copper belongs to copper:waxed_exposed
+PASS: waxed_exposed_cut_copper_stairs belongs to copper:waxed_exposed
+PASS: waxed_exposed_cut_copper_slab belongs to copper:waxed_exposed
+PASS: waxed_exposed_copper_grate belongs to copper:waxed_exposed
+PASS: waxed_exposed_copper_bulb belongs to copper:waxed_exposed
+PASS: waxed_exposed_copper_door belongs to copper:waxed_exposed
+PASS: waxed_exposed_copper_trapdoor belongs to copper:waxed_exposed
+PASS: waxed_exposed_copper_bars belongs to copper:waxed_exposed
+PASS: waxed_exposed_copper_chain belongs to copper:waxed_exposed
+PASS: waxed_exposed_copper_chest belongs to copper:waxed_exposed
+PASS: waxed_exposed_copper_lantern belongs to copper:waxed_exposed
+PASS: waxed_exposed_copper_golem_statue belongs to copper:waxed_exposed
+PASS: waxed_exposed_lightning_rod belongs to utility:lightning_rods
+PASS: waxed_weathered_copper belongs to copper:waxed_weathered
+PASS: waxed_weathered_chiseled_copper belongs to copper:waxed_weathered
+PASS: waxed_weathered_cut_copper belongs to copper:waxed_weathered
+PASS: waxed_weathered_cut_copper_stairs belongs to copper:waxed_weathered
+PASS: waxed_weathered_cut_copper_slab belongs to copper:waxed_weathered
+PASS: waxed_weathered_copper_grate belongs to copper:waxed_weathered
+PASS: waxed_weathered_copper_bulb belongs to copper:waxed_weathered
+PASS: waxed_weathered_copper_door belongs to copper:waxed_weathered
+PASS: waxed_weathered_copper_trapdoor belongs to copper:waxed_weathered
+PASS: waxed_weathered_copper_bars belongs to copper:waxed_weathered
+PASS: waxed_weathered_copper_chain belongs to copper:waxed_weathered
+PASS: waxed_weathered_copper_chest belongs to copper:waxed_weathered
+PASS: waxed_weathered_copper_lantern belongs to copper:waxed_weathered
+PASS: waxed_weathered_copper_golem_statue belongs to copper:waxed_weathered
+PASS: waxed_weathered_lightning_rod belongs to utility:lightning_rods
+PASS: waxed_oxidized_copper belongs to copper:waxed_oxidized
+PASS: waxed_oxidized_chiseled_copper belongs to copper:waxed_oxidized
+PASS: waxed_oxidized_cut_copper belongs to copper:waxed_oxidized
+PASS: waxed_oxidized_cut_copper_stairs belongs to copper:waxed_oxidized
+PASS: waxed_oxidized_cut_copper_slab belongs to copper:waxed_oxidized
+PASS: waxed_oxidized_copper_grate belongs to copper:waxed_oxidized
+PASS: waxed_oxidized_copper_bulb belongs to copper:waxed_oxidized
+PASS: waxed_oxidized_copper_door belongs to copper:waxed_oxidized
+PASS: waxed_oxidized_copper_trapdoor belongs to copper:waxed_oxidized
+PASS: waxed_oxidized_copper_bars belongs to copper:waxed_oxidized
+PASS: waxed_oxidized_copper_chain belongs to copper:waxed_oxidized
+PASS: waxed_oxidized_copper_chest belongs to copper:waxed_oxidized
+PASS: waxed_oxidized_copper_lantern belongs to copper:waxed_oxidized
+PASS: waxed_oxidized_copper_golem_statue belongs to copper:waxed_oxidized
+PASS: waxed_oxidized_lightning_rod belongs to utility:lightning_rods
+PASS: wooden_spear belongs to equipment:spear
+PASS: stone_spear belongs to equipment:spear
+PASS: copper_spear belongs to equipment:spear
+PASS: iron_spear belongs to equipment:spear
+PASS: golden_spear belongs to equipment:spear
+PASS: diamond_spear belongs to equipment:spear
+PASS: netherite_spear belongs to equipment:spear
+PASS: copper_nautilus_armor belongs to equipment:nautilus_armor
+PASS: unrelated item remains individual: stonecutter
+PASS: unrelated item remains individual: redstone
+PASS: unrelated item remains individual: redstone_block
+PASS: unrelated item remains individual: quartz
+PASS: unrelated item remains individual: brick
+PASS: unrelated item remains individual: nether_brick
+PASS: unrelated item remains individual: resin_brick
+PASS: unrelated item remains individual: prismarine_shard
+PASS: unrelated item remains individual: prismarine_crystals
+PASS: unrelated item remains individual: copper_ingot
+PASS: unrelated item remains individual: raw_copper_block
+PASS: unrelated item remains individual: copper_torch
+PASS: unrelated item remains individual: potent_sulfur
+PASS: unrelated item remains individual: sulfur_spike
+PASS: unrelated item remains individual: sulfur_cube_bucket
+PASS: unrelated item remains individual: white_tulip
+PASS: unrelated item remains individual: shelf_mushroom
+PASS: unrelated item remains individual: poplar_sapling
+PASS: unrelated item remains individual: muddy_mangrove_roots
+PASS: unrelated item remains individual: bookshelf
+PASS: unrelated item remains individual: chiseled_bookshelf
+PASS: custom namespace stays independent: poplar_planks
+PASS: custom namespace stays independent: stone
+PASS: custom namespace stays independent: mossy_cobblestone
+PASS: custom namespace stays independent: white_wool_slab
+PASS: custom namespace stays independent: glass
+PASS: custom namespace stays independent: copper_block
+PASS: oak_leaves belongs to wood:oak
+PASS: oak leaves use the single natural leaf group
+PASS: minecraft:oak_log uses the natural log group
+PASS: minecraft:oak_log keeps its building wood family
+PASS: minecraft:stripped_oak_log uses the natural log group
+PASS: minecraft:stripped_oak_log keeps its building wood family
+PASS: minecraft:oak_wood uses the natural log group
+PASS: minecraft:oak_wood keeps its building wood family
+PASS: minecraft:stripped_oak_wood uses the natural log group
+PASS: minecraft:stripped_oak_wood keeps its building wood family
+PASS: spruce_leaves belongs to wood:spruce
+PASS: spruce leaves use the single natural leaf group
+PASS: minecraft:spruce_log uses the natural log group
+PASS: minecraft:spruce_log keeps its building wood family
+PASS: minecraft:stripped_spruce_log uses the natural log group
+PASS: minecraft:stripped_spruce_log keeps its building wood family
+PASS: minecraft:spruce_wood uses the natural log group
+PASS: minecraft:spruce_wood keeps its building wood family
+PASS: minecraft:stripped_spruce_wood uses the natural log group
+PASS: minecraft:stripped_spruce_wood keeps its building wood family
+PASS: birch_leaves belongs to wood:birch
+PASS: birch leaves use the single natural leaf group
+PASS: minecraft:birch_log uses the natural log group
+PASS: minecraft:birch_log keeps its building wood family
+PASS: minecraft:stripped_birch_log uses the natural log group
+PASS: minecraft:stripped_birch_log keeps its building wood family
+PASS: minecraft:birch_wood uses the natural log group
+PASS: minecraft:birch_wood keeps its building wood family
+PASS: minecraft:stripped_birch_wood uses the natural log group
+PASS: minecraft:stripped_birch_wood keeps its building wood family
+PASS: jungle_leaves belongs to wood:jungle
+PASS: jungle leaves use the single natural leaf group
+PASS: minecraft:jungle_log uses the natural log group
+PASS: minecraft:jungle_log keeps its building wood family
+PASS: minecraft:stripped_jungle_log uses the natural log group
+PASS: minecraft:stripped_jungle_log keeps its building wood family
+PASS: minecraft:jungle_wood uses the natural log group
+PASS: minecraft:jungle_wood keeps its building wood family
+PASS: minecraft:stripped_jungle_wood uses the natural log group
+PASS: minecraft:stripped_jungle_wood keeps its building wood family
+PASS: acacia_leaves belongs to wood:acacia
+PASS: acacia leaves use the single natural leaf group
+PASS: minecraft:acacia_log uses the natural log group
+PASS: minecraft:acacia_log keeps its building wood family
+PASS: minecraft:stripped_acacia_log uses the natural log group
+PASS: minecraft:stripped_acacia_log keeps its building wood family
+PASS: minecraft:acacia_wood uses the natural log group
+PASS: minecraft:acacia_wood keeps its building wood family
+PASS: minecraft:stripped_acacia_wood uses the natural log group
+PASS: minecraft:stripped_acacia_wood keeps its building wood family
+PASS: dark_oak_leaves belongs to wood:dark_oak
+PASS: dark_oak leaves use the single natural leaf group
+PASS: minecraft:dark_oak_log uses the natural log group
+PASS: minecraft:dark_oak_log keeps its building wood family
+PASS: minecraft:stripped_dark_oak_log uses the natural log group
+PASS: minecraft:stripped_dark_oak_log keeps its building wood family
+PASS: minecraft:dark_oak_wood uses the natural log group
+PASS: minecraft:dark_oak_wood keeps its building wood family
+PASS: minecraft:stripped_dark_oak_wood uses the natural log group
+PASS: minecraft:stripped_dark_oak_wood keeps its building wood family
+PASS: mangrove_leaves belongs to wood:mangrove
+PASS: mangrove leaves use the single natural leaf group
+PASS: minecraft:mangrove_log uses the natural log group
+PASS: minecraft:mangrove_log keeps its building wood family
+PASS: minecraft:stripped_mangrove_log uses the natural log group
+PASS: minecraft:stripped_mangrove_log keeps its building wood family
+PASS: minecraft:mangrove_wood uses the natural log group
+PASS: minecraft:mangrove_wood keeps its building wood family
+PASS: minecraft:stripped_mangrove_wood uses the natural log group
+PASS: minecraft:stripped_mangrove_wood keeps its building wood family
+PASS: cherry_leaves belongs to wood:cherry
+PASS: cherry leaves use the single natural leaf group
+PASS: minecraft:cherry_log uses the natural log group
+PASS: minecraft:cherry_log keeps its building wood family
+PASS: minecraft:stripped_cherry_log uses the natural log group
+PASS: minecraft:stripped_cherry_log keeps its building wood family
+PASS: minecraft:cherry_wood uses the natural log group
+PASS: minecraft:cherry_wood keeps its building wood family
+PASS: minecraft:stripped_cherry_wood uses the natural log group
+PASS: minecraft:stripped_cherry_wood keeps its building wood family
+PASS: pale_oak_leaves belongs to wood:pale_oak
+PASS: pale_oak leaves use the single natural leaf group
+PASS: minecraft:pale_oak_log uses the natural log group
+PASS: minecraft:pale_oak_log keeps its building wood family
+PASS: minecraft:stripped_pale_oak_log uses the natural log group
+PASS: minecraft:stripped_pale_oak_log keeps its building wood family
+PASS: minecraft:pale_oak_wood uses the natural log group
+PASS: minecraft:pale_oak_wood keeps its building wood family
+PASS: minecraft:stripped_pale_oak_wood uses the natural log group
+PASS: minecraft:stripped_pale_oak_wood keeps its building wood family
+PASS: poplar_leaves belongs to wood:poplar
+PASS: poplar leaves use the single natural leaf group
+PASS: minecraft:poplar_log uses the natural log group
+PASS: minecraft:poplar_log keeps its building wood family
+PASS: minecraft:stripped_poplar_log uses the natural log group
+PASS: minecraft:stripped_poplar_log keeps its building wood family
+PASS: minecraft:poplar_wood uses the natural log group
+PASS: minecraft:poplar_wood keeps its building wood family
+PASS: minecraft:stripped_poplar_wood uses the natural log group
+PASS: minecraft:stripped_poplar_wood keeps its building wood family
+PASS: yellow_poplar_leaves belongs to wood:poplar
+PASS: yellow poplar leaves keep natural grouping
+PASS: orange_poplar_leaves belongs to wood:poplar
+PASS: orange poplar leaves keep natural grouping
+PASS: red_poplar_leaves belongs to wood:poplar
+PASS: red poplar leaves keep natural grouping
+PASS: azalea_leaves joins natural leaves
+PASS: azalea_leaves has no unrelated wood family
+PASS: flowering_azalea_leaves joins natural leaves
+PASS: flowering_azalea_leaves has no unrelated wood family
+PASS: crimson_stem joins natural logs and stems
+PASS: stripped_crimson_stem joins natural logs and stems
+PASS: crimson_hyphae joins natural logs and stems
+PASS: stripped_crimson_hyphae joins natural logs and stems
+PASS: warped_stem joins natural logs and stems
+PASS: stripped_warped_stem joins natural logs and stems
+PASS: warped_hyphae joins natural logs and stems
+PASS: stripped_warped_hyphae joins natural logs and stems
+PASS: bamboo remains its wood family because it is not a native log
+PASS: coal_ore belongs to natural:ores
+PASS: iron_ore belongs to natural:ores
+PASS: copper_ore belongs to natural:ores
+PASS: gold_ore belongs to natural:ores
+PASS: redstone_ore belongs to natural:ores
+PASS: emerald_ore belongs to natural:ores
+PASS: lapis_ore belongs to natural:ores
+PASS: diamond_ore belongs to natural:ores
+PASS: deepslate_coal_ore belongs to natural:ores
+PASS: deepslate_iron_ore belongs to natural:ores
+PASS: deepslate_copper_ore belongs to natural:ores
+PASS: deepslate_gold_ore belongs to natural:ores
+PASS: deepslate_redstone_ore belongs to natural:ores
+PASS: deepslate_emerald_ore belongs to natural:ores
+PASS: deepslate_lapis_ore belongs to natural:ores
+PASS: deepslate_diamond_ore belongs to natural:ores
+PASS: nether_gold_ore belongs to natural:ores
+PASS: nether_quartz_ore belongs to natural:ores
+PASS: ancient_debris belongs to natural:ores
+PASS: angler_pottery_sherd belongs to pottery:sherds
+PASS: archer_pottery_sherd belongs to pottery:sherds
+PASS: arms_up_pottery_sherd belongs to pottery:sherds
+PASS: blade_pottery_sherd belongs to pottery:sherds
+PASS: brewer_pottery_sherd belongs to pottery:sherds
+PASS: burn_pottery_sherd belongs to pottery:sherds
+PASS: danger_pottery_sherd belongs to pottery:sherds
+PASS: explorer_pottery_sherd belongs to pottery:sherds
+PASS: flow_pottery_sherd belongs to pottery:sherds
+PASS: friend_pottery_sherd belongs to pottery:sherds
+PASS: guster_pottery_sherd belongs to pottery:sherds
+PASS: heart_pottery_sherd belongs to pottery:sherds
+PASS: heartbreak_pottery_sherd belongs to pottery:sherds
+PASS: howl_pottery_sherd belongs to pottery:sherds
+PASS: miner_pottery_sherd belongs to pottery:sherds
+PASS: mourner_pottery_sherd belongs to pottery:sherds
+PASS: plenty_pottery_sherd belongs to pottery:sherds
+PASS: prize_pottery_sherd belongs to pottery:sherds
+PASS: scrape_pottery_sherd belongs to pottery:sherds
+PASS: sheaf_pottery_sherd belongs to pottery:sherds
+PASS: shelter_pottery_sherd belongs to pottery:sherds
+PASS: skull_pottery_sherd belongs to pottery:sherds
+PASS: snort_pottery_sherd belongs to pottery:sherds
+PASS: flower_banner_pattern belongs to patterns:banner_patterns
+PASS: creeper_banner_pattern belongs to patterns:banner_patterns
+PASS: skull_banner_pattern belongs to patterns:banner_patterns
+PASS: mojang_banner_pattern belongs to patterns:banner_patterns
+PASS: globe_banner_pattern belongs to patterns:banner_patterns
+PASS: piglin_banner_pattern belongs to patterns:banner_patterns
+PASS: flow_banner_pattern belongs to patterns:banner_patterns
+PASS: guster_banner_pattern belongs to patterns:banner_patterns
+PASS: field_masoned_banner_pattern belongs to patterns:banner_patterns
+PASS: bordure_indented_banner_pattern belongs to patterns:banner_patterns
+PASS: tube_coral belongs to coral:tube
+PASS: tube_coral_block belongs to coral:tube
+PASS: tube_coral_fan belongs to coral:tube
+PASS: dead_tube_coral belongs to coral:tube
+PASS: dead_tube_coral_block belongs to coral:tube
+PASS: dead_tube_coral_fan belongs to coral:tube
+PASS: brain_coral belongs to coral:brain
+PASS: brain_coral_block belongs to coral:brain
+PASS: brain_coral_fan belongs to coral:brain
+PASS: dead_brain_coral belongs to coral:brain
+PASS: dead_brain_coral_block belongs to coral:brain
+PASS: dead_brain_coral_fan belongs to coral:brain
+PASS: bubble_coral belongs to coral:bubble
+PASS: bubble_coral_block belongs to coral:bubble
+PASS: bubble_coral_fan belongs to coral:bubble
+PASS: dead_bubble_coral belongs to coral:bubble
+PASS: dead_bubble_coral_block belongs to coral:bubble
+PASS: dead_bubble_coral_fan belongs to coral:bubble
+PASS: fire_coral belongs to coral:fire
+PASS: fire_coral_block belongs to coral:fire
+PASS: fire_coral_fan belongs to coral:fire
+PASS: dead_fire_coral belongs to coral:fire
+PASS: dead_fire_coral_block belongs to coral:fire
+PASS: dead_fire_coral_fan belongs to coral:fire
+PASS: horn_coral belongs to coral:horn
+PASS: horn_coral_block belongs to coral:horn
+PASS: horn_coral_fan belongs to coral:horn
+PASS: dead_horn_coral belongs to coral:horn
+PASS: dead_horn_coral_block belongs to coral:horn
+PASS: dead_horn_coral_fan belongs to coral:horn
+PASS: anvil belongs to utility:anvils
+PASS: chipped_anvil belongs to utility:anvils
+PASS: damaged_anvil belongs to utility:anvils
+PASS: skeleton_skull belongs to heads:heads
+PASS: wither_skeleton_skull belongs to heads:heads
+PASS: zombie_head belongs to heads:heads
+PASS: player_head belongs to heads:heads
+PASS: creeper_head belongs to heads:heads
+PASS: dragon_head belongs to heads:heads
+PASS: piglin_head belongs to heads:heads
+PASS: infested_stone belongs to infested:stone
+PASS: infested_cobblestone belongs to infested:stone
+PASS: infested_stone_bricks belongs to infested:stone
+PASS: infested_mossy_stone_bricks belongs to infested:stone
+PASS: infested_cracked_stone_bricks belongs to infested:stone
+PASS: infested_chiseled_stone_bricks belongs to infested:stone
+PASS: infested_deepslate belongs to infested:stone
+PASS: painting belongs to variants:paintings
+PASS: goat_horn belongs to variants:horns
+PASS: music_disc_13 belongs to music:discs
+PASS: music_disc_cat belongs to music:discs
+PASS: music_disc_blocks belongs to music:discs
+PASS: music_disc_chirp belongs to music:discs
+PASS: music_disc_far belongs to music:discs
+PASS: music_disc_mall belongs to music:discs
+PASS: music_disc_mellohi belongs to music:discs
+PASS: music_disc_stal belongs to music:discs
+PASS: music_disc_strad belongs to music:discs
+PASS: music_disc_ward belongs to music:discs
+PASS: music_disc_11 belongs to music:discs
+PASS: music_disc_wait belongs to music:discs
+PASS: music_disc_pigstep belongs to music:discs
+PASS: music_disc_otherside belongs to music:discs
+PASS: music_disc_5 belongs to music:discs
+PASS: music_disc_relic belongs to music:discs
+PASS: music_disc_creator belongs to music:discs
+PASS: music_disc_creator_music_box belongs to music:discs
+PASS: music_disc_precipice belongs to music:discs
+PASS: music_disc_tears belongs to music:discs
+PASS: music_disc_lava_chicken belongs to music:discs
+PASS: music_disc_bounce belongs to music:discs
+PASS: chalk:white_chalk joins known Chalk variants
+PASS: chalk:white_glow_chalk joins known Chalk variants
+PASS: chalk:orange_chalk joins known Chalk variants
+PASS: chalk:orange_glow_chalk joins known Chalk variants
+PASS: chalk:magenta_chalk joins known Chalk variants
+PASS: chalk:magenta_glow_chalk joins known Chalk variants
+PASS: chalk:light_blue_chalk joins known Chalk variants
+PASS: chalk:light_blue_glow_chalk joins known Chalk variants
+PASS: chalk:yellow_chalk joins known Chalk variants
+PASS: chalk:yellow_glow_chalk joins known Chalk variants
+PASS: chalk:lime_chalk joins known Chalk variants
+PASS: chalk:lime_glow_chalk joins known Chalk variants
+PASS: chalk:pink_chalk joins known Chalk variants
+PASS: chalk:pink_glow_chalk joins known Chalk variants
+PASS: chalk:gray_chalk joins known Chalk variants
+PASS: chalk:gray_glow_chalk joins known Chalk variants
+PASS: chalk:light_gray_chalk joins known Chalk variants
+PASS: chalk:light_gray_glow_chalk joins known Chalk variants
+PASS: chalk:cyan_chalk joins known Chalk variants
+PASS: chalk:cyan_glow_chalk joins known Chalk variants
+PASS: chalk:purple_chalk joins known Chalk variants
+PASS: chalk:purple_glow_chalk joins known Chalk variants
+PASS: chalk:blue_chalk joins known Chalk variants
+PASS: chalk:blue_glow_chalk joins known Chalk variants
+PASS: chalk:brown_chalk joins known Chalk variants
+PASS: chalk:brown_glow_chalk joins known Chalk variants
+PASS: chalk:green_chalk joins known Chalk variants
+PASS: chalk:green_glow_chalk joins known Chalk variants
+PASS: chalk:red_chalk joins known Chalk variants
+PASS: chalk:red_glow_chalk joins known Chalk variants
+PASS: chalk:black_chalk joins known Chalk variants
+PASS: chalk:black_glow_chalk joins known Chalk variants
+PASS: Chalk block IDs are not mistaken for tools
+PASS: unrelated custom chalk is not regrouped
+PASS: spawn egg header requests a Creeper representative
+PASS: tab rules require the exact namespaced category
+PASS: blank tab IDs are rejected safely
+PASS: unmatched items stay visible individually
+PASS: custom namespace not silently grouped by vanilla rules
+PASS: labels use stable captures
+PASS: invalid replacement $9
+PASS: invalid replacement $
+PASS: invalid replacement $x
+PASS: invalid replacement \
+PASS: first resource rule deterministically owns overlapping matches
+RESULT: PASS; 1155 assertions
+
+> Task :pinRegression
+PASS: pin migration, latest ordered save, temporary cleanup, malformed preservation, component and ingredient identity (11 checks)
+
+> Task :compileClientqaJava
+> Task :processClientqaResources
+> Task :clientqaClasses
+> Task :clientqaJar
+> Task :processIncludeJars
+> Task :sourcesJar
+> Task :compileTestJava NO-SOURCE
+> Task :processTestResources NO-SOURCE
+> Task :testClasses UP-TO-DATE
+> Task :test NO-SOURCE
+> Task :jar
+> Task :validateAccessWidener
+> Task :check
+> Task :assemble
+> Task :build
+
+[Incubating] Problems report is available at: file:///tmp/brbr-review-build-20261013/ported/build/reports/problems/problems-report.html
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 10.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/9.6.1/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD SUCCESSFUL in 11s
+14 actionable tasks: 13 executed, 1 up-to-date

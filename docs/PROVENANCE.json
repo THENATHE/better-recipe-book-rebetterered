@@ -86,5 +86,78 @@
     "untracked_offhand_guard": "Conservative refusal applies to bulk and single-batch overflow planning; switching to SINGLE_BATCHES does not bypass unobservable remainder merges",
     "workstation_craftable_filter": "Independent persisted brewingBookCraftableOnly and smithingBookCraftableOnly fields; false defaults preserve prior behavior; filter click saves and new panels restore the choice; fields are excluded from the settings GUI."
   },
-  "sources_sha256": "efdf216b9e7223c41595929685287c26291fba11708e5998d32ea18bc8beb8b2"
+  "sources_sha256": "efdf216b9e7223c41595929685287c26291fba11708e5998d32ea18bc8beb8b2",
+  "fresh_combined_review": {
+    "date": "2026-10-13",
+    "status": "passed",
+    "production_changes": false,
+    "version": "1.11.7+26.3",
+    "source_base_commit": "f7621db5137a3c037baa5eab2cc974bd4660d5fd",
+    "packaged_client_checks": 1968,
+    "packaged_client_correction_checks": 24,
+    "packaged_client_screenshots": 26,
+    "connected_profiles": 4,
+    "connected_backpack_cases": 32,
+    "connected_bucket_remainder_cases": 32,
+    "delayed_predicate_checks": 96,
+    "mods": [
+      {
+        "id": "brb",
+        "version": "1.11.7+26.3",
+        "source": "/home/thenathe/SSDC/Plugins/WP Plugin Dev/Builds/Minecraft/Better Recipe Book/Main Plugin - Version Port/1.11.7+26.3/better-recipe-book-rebetterered-1.11.7+26.3.jar",
+        "file": "better-recipe-book-rebetterered-1.11.7+26.3.jar",
+        "sha256": "28868f38950057d850d634364881855503093dcd8e70064faf7febcecb81621f"
+      },
+      {
+        "id": "vpp_mod_suite",
+        "version": "1.4.4+26.3",
+        "source": "/home/thenathe/SSDC/Plugins/WP Plugin Dev/Minecraft/thenathe-mod-suite/build/libs/vanilla-plusplus-quality-of-life-suite-1.4.4+26.3.jar",
+        "file": "vanilla-plusplus-quality-of-life-suite-1.4.4+26.3.jar",
+        "sha256": "e4663dddf2e176c3d5d7a669f59822dc76286ed28e195cc1a77b1bb1b3e7d269"
+      },
+      {
+        "id": "hotkey_wheel",
+        "version": "1.0.7+26.3",
+        "source": "/home/thenathe/SSDC/Plugins/WP Plugin Dev/Builds/Minecraft/Hotkey Wheel/Main Plugin/1.0.7+26.3/hotkey-wheel-1.0.7+26.3.jar",
+        "file": "hotkey-wheel-1.0.7+26.3.jar",
+        "sha256": "3095b28e981dd995aabc582b7abe785baeccfdc4ac00128eabd6bda0d5a55fd6"
+      },
+      {
+        "id": "buildprint_toning",
+        "version": "0.1.24",
+        "source": "/home/thenathe/SSDC/Plugins/WP Plugin Dev/Builds/Minecraft/Buildprint/Feature Addon - Blocktone Toning/0.1.24/buildprint-toning-0.1.24.jar",
+        "file": "buildprint-toning-0.1.24.jar",
+        "sha256": "b9c42fd4679f9c70c584a6f8a888e51911c0dfe90f10dddd92c4e427efec5940"
+      },
+      {
+        "id": "buildprint",
+        "version": "0.1.19+26.x",
+        "source": "/home/thenathe/SSDC/Plugins/WP Plugin Dev/Builds/Minecraft/Buildprint/Main Plugin/0.1.19+26.x/buildprint-fabric-0.1.19+26.x.jar",
+        "file": "buildprint-fabric-0.1.19+26.x.jar",
+        "sha256": "bd60814e7ba944d7a67bfbf9831a8fa156223277345dc87569cd358a326e3f1f"
+      }
+    ],
+    "fixture_sha256": "bc027d66a82bb66874d6ac449e0ba6803ede07f907b9bd015e16b1642c9f21a8",
+    "rebuild": {
+      "jdk": "Microsoft OpenJDK25.0.4.1+1-LTS",
+      "byte_identical_main_and_sources": true,
+      "build_input_file_count": 161,
+      "build_input_manifest_sha256": "1fa4ef2e56aed9bac84473fd5f42f3a754825e4f7f117ae3432d42fb9e2437d5",
+      "standard_regressions": {
+        "sequence_assertions": 131072,
+        "ingredient_assignment": 6,
+        "creative_rule_assertions": 1155,
+        "pin_checks": 11
+      }
+    },
+    "evidence": {
+      "packaged": "packaged-all-four/clientqa-result.txt",
+      "packaged_launch": "packaged-all-four/launch-audit.json",
+      "packaged_source": "packaged-all-four/executed-source.json",
+      "connected": "connected-summary.json",
+      "source_rebuild": "final-source-rebuild.json",
+      "attempts": "attempts.json"
+    },
+    "scope": "BRBR exact packaged full client and connected native backpack integration with all four requested mods loaded. Separate wheel/Blocktone/HUD/server validation is maintained by their owners. Original developer track and historical BRBR binaries/tag/source ZIP/QA ZIP preserved."
+  }
 }

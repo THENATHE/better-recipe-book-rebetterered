@@ -1,0 +1,1 @@
+RESULT: FAIL; java.lang.AssertionError: Searching hid collapsed group members

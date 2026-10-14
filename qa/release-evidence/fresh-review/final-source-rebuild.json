@@ -1,0 +1,31 @@
+{
+  "date": "2026-10-13",
+  "source_base_commit": "f7621db5137a3c037baa5eab2cc974bd4660d5fd",
+  "jdk": "Microsoft OpenJDK25.0.4.1+1-LTS",
+  "command": "JAVA_HOME=/home/thenathe/.gradle/jdks/microsoft-25-amd64-linux.2 bash gradlew --offline --no-daemon clean check build clientqaJar",
+  "independent_export": "/tmp/brbr-reviewed-final-build-20261013",
+  "production_changes": false,
+  "build_input_file_count": 161,
+  "build_input_manifest_sha256": "1fa4ef2e56aed9bac84473fd5f42f3a754825e4f7f117ae3432d42fb9e2437d5",
+  "fixture_sha256": "bc027d66a82bb66874d6ac449e0ba6803ede07f907b9bd015e16b1642c9f21a8",
+  "artifacts": {
+    "better-recipe-book-rebetterered-1.11.7+26.3.jar": {
+      "sha256": "28868f38950057d850d634364881855503093dcd8e70064faf7febcecb81621f",
+      "bytes": 1278116,
+      "byte_identical_to_retained_release": true
+    },
+    "better-recipe-book-rebetterered-1.11.7+26.3-sources.jar": {
+      "sha256": "efdf216b9e7223c41595929685287c26291fba11708e5998d32ea18bc8beb8b2",
+      "bytes": 514206,
+      "byte_identical_to_retained_release": true
+    }
+  },
+  "standard_regressions": {
+    "sequence_assertions": 131072,
+    "ingredient_assignment": 6,
+    "creative_rule_assertions": 1155,
+    "pin_checks": 11
+  },
+  "status": "passed",
+  "scope": "Final reviewed production sources and final client QA fixture, exported independently; no production code or version changes."
+}

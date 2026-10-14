@@ -357,8 +357,7 @@ public final class CreativeChecks {
         int tabs = 0;
         for (var tab : BuiltInRegistries.CREATIVE_MODE_TAB) {
             if (tab.getType() != CreativeModeTab.Type.CATEGORY) continue;
-            long count = tab.getDisplayItems().stream().filter(stack -> belongs.test(
-                    BuiltInRegistries.ITEM.getKey(stack.getItem()).getPath())).count();
+            long count = tab.getDisplayItems().stream().filter(stack -> vanillaFamilyMember(stack, belongs)).count();
             if (count < 2) continue;
             invoke(screen, "selectTab", new Class<?>[]{CreativeModeTab.class}, tab);
             verifyFamily(screen, key, belongs, evidence);
@@ -370,10 +369,15 @@ public final class CreativeChecks {
     private static void verifyFamily(CreativeModeInventoryScreen screen, String key,
                                      Predicate<String> belongs, List<String> evidence) {
         var originals = new ArrayList<>(selectedTab().getDisplayItems());
-        var expected = originals.stream().filter(stack -> belongs.test(
-                BuiltInRegistries.ITEM.getKey(stack.getItem()).getPath())).toList();
+        var expected = originals.stream().filter(stack -> vanillaFamilyMember(stack, belongs)).toList();
         check(expected.size() > 1, key + " has multiple real vanilla tab members", evidence);
         var entries = model(screen).entries();
+        for (ItemStack stack : originals) {
+            Identifier id = BuiltInRegistries.ITEM.getKey(stack.getItem());
+            if (id.getNamespace().equals("minecraft") || !belongs.test(id.getPath())) continue;
+            check(entries.stream().anyMatch(entry -> entry.stack() == stack && entry.groupKey() == null),
+                    key + ": " + id + " remains an exact individual item outside the vanilla family", evidence);
+        }
         int index = familyIndex(screen, key);
         check(index >= 0 && entries.get(index).header() && !entries.get(index).expanded()
                         && entries.get(index).members() == expected.size(),
@@ -400,6 +404,11 @@ public final class CreativeChecks {
                 key + " mouse toggle restores collapsed contents without changing the carried stack", evidence);
         verifyVisibleMapping(screen, evidence, key + " collapsed");
         screen.getMenu().setCarried(ItemStack.EMPTY);
+    }
+
+    private static boolean vanillaFamilyMember(ItemStack stack, Predicate<String> belongs) {
+        Identifier id = BuiltInRegistries.ITEM.getKey(stack.getItem());
+        return id.getNamespace().equals("minecraft") && belongs.test(id.getPath());
     }
 
     @SuppressWarnings("unchecked")

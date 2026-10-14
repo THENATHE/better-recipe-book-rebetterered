@@ -1,0 +1,119 @@
+{
+  "date": "2026-10-13",
+  "status": "passed",
+  "checks": 1968,
+  "screenshots": 26,
+  "exit_code": 0,
+  "profile": "Exact packaged all-four client with suite native integrated server",
+  "run": "qa/packaged-all4-suite144-final2-20261013",
+  "jdk": "Microsoft OpenJDK25.0.4.1+1-LTS",
+  "mods": [
+    {
+      "id": "brb",
+      "version": "1.11.7+26.3",
+      "source": "/home/thenathe/SSDC/Plugins/WP Plugin Dev/Builds/Minecraft/Better Recipe Book/Main Plugin - Version Port/1.11.7+26.3/better-recipe-book-rebetterered-1.11.7+26.3.jar",
+      "file": "better-recipe-book-rebetterered-1.11.7+26.3.jar",
+      "sha256": "28868f38950057d850d634364881855503093dcd8e70064faf7febcecb81621f"
+    },
+    {
+      "id": "fabric-api",
+      "version": "0.161.0+26.3",
+      "source": "/home/thenathe/.gradle/caches/modules-2/files-2.1/net.fabricmc.fabric-api/fabric-api/0.161.0+26.3/53f9ee02c3702734d90520aa8c9719bf0e1c8d4f/fabric-api-0.161.0+26.3.jar",
+      "file": "fabric-api-0.161.0+26.3.jar",
+      "sha256": "86f16178a3cecc887a85a4cfe9a79d92fa7341d8f39b5951a4d6ad800ab657a6"
+    },
+    {
+      "id": "fabric-client-gametest-api-v1",
+      "version": "6.0.7+4be74c3f5d",
+      "source": "/home/thenathe/.gradle/caches/modules-2/files-2.1/net.fabricmc.fabric-api/fabric-client-gametest-api-v1/6.0.7+4be74c3f5d/b5512c68896b9692f81db7ddc5f2f6d72b18615/fabric-client-gametest-api-v1-6.0.7+4be74c3f5d.jar",
+      "file": "fabric-client-gametest-api-v1-6.0.7+4be74c3f5d.jar",
+      "sha256": "09d7d48475eef47a347c12c51bd32c6cffc065a6785f3023f5aa6be4b815cd38"
+    },
+    {
+      "id": "brb_clientqa",
+      "version": "1",
+      "source": "/home/thenathe/SSDC/Plugins/WP Plugin Dev/Minecraft/better-recipe-book-26.3/ported/build/qa/brb-client-qa-1.jar",
+      "file": "brb-client-qa-1.jar",
+      "sha256": "bc027d66a82bb66874d6ac449e0ba6803ede07f907b9bd015e16b1642c9f21a8"
+    },
+    {
+      "id": "vpp_mod_suite",
+      "version": "1.4.4+26.3",
+      "source": "/home/thenathe/SSDC/Plugins/WP Plugin Dev/Minecraft/thenathe-mod-suite/build/libs/vanilla-plusplus-quality-of-life-suite-1.4.4+26.3.jar",
+      "file": "vanilla-plusplus-quality-of-life-suite-1.4.4+26.3.jar",
+      "sha256": "e4663dddf2e176c3d5d7a669f59822dc76286ed28e195cc1a77b1bb1b3e7d269"
+    },
+    {
+      "id": "hotkey_wheel",
+      "version": "1.0.7+26.3",
+      "source": "/home/thenathe/SSDC/Plugins/WP Plugin Dev/Builds/Minecraft/Hotkey Wheel/Main Plugin/1.0.7+26.3/hotkey-wheel-1.0.7+26.3.jar",
+      "file": "hotkey-wheel-1.0.7+26.3.jar",
+      "sha256": "3095b28e981dd995aabc582b7abe785baeccfdc4ac00128eabd6bda0d5a55fd6"
+    },
+    {
+      "id": "buildprint_toning",
+      "version": "0.1.24",
+      "source": "/home/thenathe/SSDC/Plugins/WP Plugin Dev/Builds/Minecraft/Buildprint/Feature Addon - Blocktone Toning/0.1.24/buildprint-toning-0.1.24.jar",
+      "file": "buildprint-toning-0.1.24.jar",
+      "sha256": "b9c42fd4679f9c70c584a6f8a888e51911c0dfe90f10dddd92c4e427efec5940"
+    },
+    {
+      "id": "buildprint",
+      "version": "0.1.19+26.x",
+      "source": "/home/thenathe/SSDC/Plugins/WP Plugin Dev/Builds/Minecraft/Buildprint/Main Plugin/0.1.19+26.x/buildprint-fabric-0.1.19+26.x.jar",
+      "file": "buildprint-fabric-0.1.19+26.x.jar",
+      "sha256": "bd60814e7ba944d7a67bfbf9831a8fa156223277345dc87569cd358a326e3f1f"
+    },
+    {
+      "id": "yet_another_config_lib_v3",
+      "version": "3.9.7+26.3-fabric",
+      "source": "/home/thenathe/.local/share/ModrinthApp/profiles/Vanilla Fast/mods/yet_another_config_lib_v3-3.9.7+26.3-fabric.jar",
+      "file": "yet_another_config_lib_v3-3.9.7+26.3-fabric.jar",
+      "sha256": "c52d41d444522d9abba994cd4c4ee2e71a065d7c31010f92a9959b80ccb4b0f5"
+    },
+    {
+      "id": "codecui",
+      "version": "26.3-1.4.3",
+      "source": "/home/thenathe/SSDC/Plugins/WP Plugin Dev/Minecraft/thenathe-mod-suite/libs/codecui-26.3-1.4.3-fabric.jar",
+      "file": "codecui-26.3-1.4.3-fabric.jar",
+      "sha256": "4d07c219bd85b58283a0317d6f43cca838adf9cd16be321316cd32f2fb1be898"
+    },
+    {
+      "id": "fabric-language-kotlin",
+      "version": "1.14.1+kotlin.2.4.20",
+      "source": "/home/thenathe/SSDC/Plugins/WP Plugin Dev/Minecraft/thenathe-mod-suite/libs/fabric-language-kotlin-1.14.1+kotlin.2.4.20.jar",
+      "file": "fabric-language-kotlin-1.14.1+kotlin.2.4.20.jar",
+      "sha256": "620c2709be2a262b837cf976f6f85f6eda80a56af2ba4242e0bdc83a60fee7a5"
+    },
+    {
+      "id": "fzzy_config",
+      "version": "0.7.7+fix3+26.3",
+      "source": "/home/thenathe/SSDC/Plugins/WP Plugin Dev/Minecraft/thenathe-mod-suite/libs/fzzy_config-0.7.7+fix3+26.3.jar",
+      "file": "fzzy_config-0.7.7+fix3+26.3.jar",
+      "sha256": "3d98c61215ae5eb2fe08db5cac6b0da08dc1b6f0a9ac082a3a9ead8eed736b2a"
+    },
+    {
+      "id": "mixson",
+      "version": "2.2.1",
+      "source": "/home/thenathe/SSDC/Plugins/WP Plugin Dev/Minecraft/thenathe-mod-suite/libs/mixson-2.2.1-multiloader.jar",
+      "file": "mixson-2.2.1-multiloader.jar",
+      "sha256": "e4d38f31be95a1f03f8bef290c079f4bb5573d8f4e15808e8c1fc8ba3e5913a0"
+    },
+    {
+      "id": "modmenu",
+      "version": "21.0.0",
+      "source": "/home/thenathe/.gradle/caches/modules-2/files-2.1/maven.modrinth/modmenu/21.0.0/66ec40f1cd0c037ddca2b5fc6b4b976d479c18e8/modmenu-21.0.0.jar",
+      "file": "modmenu-21.0.0.jar",
+      "sha256": "837812c6c98d66141db7b5dcae668f27fb78d557e8f4c0c89912985fc26a5e6f"
+    }
+  ],
+  "environment": {
+    "DISPLAY": ":1",
+    "LIBGL_ALWAYS_SOFTWARE": "0",
+    "SDL_VIDEODRIVER": "x11",
+    "LP_NUM_THREADS": "2"
+  },
+  "fixture_sha256": "bc027d66a82bb66874d6ac449e0ba6803ede07f907b9bd015e16b1642c9f21a8",
+  "correction_checks": 24,
+  "correction_scope": "Real predicted 2x2/3x3 result packets intercepted, active pending verified, authoritative server full state cancels both strategies and restores ingredients/client inventory/cursors."
+}

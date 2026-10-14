@@ -35,9 +35,9 @@ public final class CraftingNetworkServer implements ModInitializer {
                         }
                         player.getInventory().clearContent();
                         me.pajic.toolpouch.ToolPouch.CONFIG.allowUseFromInventory.accept(true);
-                        var hammer = command.get("size").getAsInt() == 2 ? BackpackCrafting.IRON_HAMMER : BackpackCrafting.DIAMOND_HAMMER;
+                        var toolbox = command.get("size").getAsInt() == 2 ? BackpackCrafting.IRON_TOOLBOX : BackpackCrafting.NETHERITE_TOOLBOX;
                         var pouch = new ItemStack(me.pajic.toolpouch.item.ModItems.TOOL_POUCH);
-                        pouch.set(DataComponents.CONTAINER, ItemContainerContents.fromItems(List.of(new ItemStack(hammer))));
+                        pouch.set(DataComponents.CONTAINER, ItemContainerContents.fromItems(List.of(new ItemStack(toolbox))));
                         player.getInventory().setItem(12, pouch);
                         var backpack = new ItemStack(command.has("tier") && command.get("tier").getAsString().equals("netherite")
                                 ? me.pajic.tiered_backpacks.item.ModItems.NETHERITE_BACKPACK

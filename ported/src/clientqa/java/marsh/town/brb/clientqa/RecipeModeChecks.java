@@ -17,6 +17,7 @@ import net.minecraft.client.input.MouseButtonEvent;
 import net.minecraft.client.input.MouseButtonInfo;
 import net.minecraft.world.entity.player.StackedItemContents;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.item.crafting.display.RecipeDisplayEntry;
 import net.minecraft.world.item.crafting.display.RecipeDisplayId;
 import net.minecraft.world.item.crafting.display.ShapedCraftingRecipeDisplay;
@@ -43,11 +44,21 @@ public final class RecipeModeChecks {
             var page = bookAccessor.getRecipeBookPage();
             var pageAccessor = (RecipeBookPageAccessor) page;
             bookAccessor.getSearchBox().setValue("");
+            var fixtureDisplayContext = net.minecraft.world.item.crafting.display.SlotDisplayContext.fromLevel(minecraft.level);
             List<RecipeDisplayEntry> candidates = minecraft.player.getRecipeBook().getCollections().stream()
                     .flatMap(collection -> collection.getRecipes().stream())
                     .filter(entry -> entry.display() instanceof ShapelessCraftingRecipeDisplay
                             || entry.display() instanceof ShapedCraftingRecipeDisplay shaped && shaped.width() <= 2 && shaped.height() <= 2)
                     .toList();
+            System.out.println("BRB_QA_UNCONTROLLED_RECIPE_POOL " + candidates.stream().limit(25)
+                    .flatMap(entry -> entry.resultItems(fixtureDisplayContext).stream())
+                    .map(stack -> BuiltInRegistries.ITEM.getKey(stack.getItem())).toList());
+            // This synthetic group searches minecraft:, so its fixed 25 outputs must all belong to that namespace.
+            candidates = candidates.stream().filter(entry -> {
+                var outputs = entry.resultItems(fixtureDisplayContext);
+                return !outputs.isEmpty() && outputs.stream().allMatch(stack ->
+                        BuiltInRegistries.ITEM.getKey(stack.getItem()).getNamespace().equals("minecraft"));
+            }).toList();
             require(candidates.size() >= 25, "Fixture must unlock at least 25 crafting displays");
             RecipeCollection source = new RecipeCollection(candidates.subList(0, 25));
             source.selectRecipes(new StackedItemContents(), display -> true);

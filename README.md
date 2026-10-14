@@ -6,6 +6,8 @@
 
 The **1.11.7** update remembers the Show craftable choice separately for smithing and brewing, including after reopening the menu or restarting the client. See the [changelog](docs/CHANGELOG.md) for this update and the [latest release](https://github.com/THENATHE/better-recipe-book-rebetterered/releases/latest) for downloads.
 
+The unchanged **1.11.7+26.3** JAR also passed a fresh combined review with **Vanilla++ 1.4.4**, **Hotkey Wheel 1.0.7**, **Blocktone 0.1.24** and **Buildprint 0.1.19**: 1,968 full-client checks and four connected native/Polymer backpack profiles. See the [combined QA record](docs/COMBINED-QA-2026-10-13.md) for exact inputs and scope.
+
 ## What it is
 
 A more useful Minecraft recipe book, with **expandable recipe groups, a tidier creative inventory, exact recipe pins, and right-click crafting**, maintained by **THENATHE** for **Fabric on Minecraft 26.3**.
@@ -124,7 +126,7 @@ Server rules still apply, including limited crafting. Recipes supplied only by a
 
 1. Use **Minecraft 26.3**, **Java 25 or newer**, and **Fabric Loader 0.19.5 or newer**.
 2. Install **Fabric API 0.161.0+26.3** for this release.
-3. Download `better-recipe-book-rebetterered-1.11.6+26.3.jar` from [Releases](https://github.com/THENATHE/better-recipe-book-rebetterered/releases/latest) and put it in your client's `mods/` folder.
+3. Download `better-recipe-book-rebetterered-1.11.7+26.3.jar` from [Releases](https://github.com/THENATHE/better-recipe-book-rebetterered/releases/latest) and put it in your client's `mods/` folder.
 4. Remove other BRB variants from that instance. Keep a backup of your existing settings and pins when upgrading.
 5. Launch Minecraft and choose your preferred display and crafting settings from the recipe-book settings button or Mod Menu.
 

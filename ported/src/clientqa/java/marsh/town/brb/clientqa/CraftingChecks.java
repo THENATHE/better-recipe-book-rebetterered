@@ -73,6 +73,7 @@ public final class CraftingChecks {
             for (CraftAllMethod method : CraftAllMethod.values()) {
                 selectCraftSettings(context, method, CraftingOverflow.STOP_BEFORE_DROP, evidence);
                 runMethodChecks(context, world, evidence, method, trace);
+                rejectedTransferCorrection(context, world, method, trace, evidence);
                 if (method == CraftAllMethod.FILL_GRID) unequalGridRefusal(context, world, trace, evidence);
                 cakeRemainders(context, world, method, trace, evidence);
                 overflowChecks(context, world, method, evidence);
@@ -558,10 +559,59 @@ public final class CraftingChecks {
         });
     }
 
-    /** Observes vanilla result-slot packets so the two selected strategies cannot silently behave identically. */
+    private static void rejectedTransferCorrection(ClientGameTestContext context, TestSingleplayerContext world,
+                                                   CraftAllMethod method, CraftPacketTrace trace,
+                                                   List<String> evidence) throws Exception {
+        for (boolean table : new boolean[] {false, true}) {
+            prepare(context, world, table, 8, false);
+            clickRecipe(context, InputConstants.MOUSE_BUTTON_LEFT, true);
+            synchronize(context, world);
+            require(gridCount(world) == 8, method + ": correction fixture loads all eight ingredients", evidence);
+            trace.resultActions.clear();
+            trace.rejectContainerClicks = true;
+            try {
+                clickRecipe(context, InputConstants.MOUSE_BUTTON_RIGHT, true);
+                context.waitTicks(8);
+                require(!trace.resultActions.isEmpty(), method + ": correction follows a real predicted result transfer", evidence);
+                require(craftingPending(context), method + ": rejected predicted transfer is still awaiting server confirmation", evidence);
+                world.getServer().runOnServer(server -> server.getPlayerList().getPlayers().getFirst()
+                        .containerMenu.broadcastFullState());
+                synchronize(context, world);
+                require(!craftingPending(context), method + "/" + (table ? "3x3" : "2x2")
+                        + ": unmatched authoritative correction cancels maximum crafting", evidence);
+            } finally {
+                trace.rejectContainerClicks = false;
+            }
+            context.waitTicks(10);
+            synchronize(context, world);
+            require(count(world, Items.OAK_PLANKS) == 0 && gridCount(world) == 8,
+                    method + ": rejected result transfer preserves all server ingredients without crafting", evidence);
+            require(context.computeOnClient(client -> client.player.getInventory().getNonEquipmentItems().stream()
+                            .noneMatch(stack -> stack.is(Items.OAK_PLANKS))
+                            && ((AbstractCraftingMenu) client.player.containerMenu).getInputGridSlots().stream()
+                            .mapToInt(slot -> slot.getItem().getCount()).sum() == 8)
+                            && cursorEmpty(context, world),
+                    method + ": correction restores predicted client storage and cursor", evidence);
+        }
+    }
+
+    private static boolean craftingPending(ClientGameTestContext context) {
+        return context.computeOnClient(client -> {
+            try {
+                Field field = BetterRecipeBook.instantCraftingManager.getClass().getDeclaredField("pending");
+                field.setAccessible(true);
+                return field.get(BetterRecipeBook.instantCraftingManager) != null;
+            } catch (ReflectiveOperationException failure) {
+                throw new AssertionError(failure);
+            }
+        });
+    }
+
+    /** Observes result packets and can simulate rejection before an authoritative correction. */
     static final class CraftPacketTrace implements AutoCloseable {
         private final Channel channel;
         final Queue<ContainerInput> resultActions = new ConcurrentLinkedQueue<>();
+        volatile boolean rejectContainerClicks;
 
         CraftPacketTrace(Minecraft client) throws ReflectiveOperationException {
             this(client, 0);
@@ -576,6 +626,10 @@ public final class CraftingChecks {
                 public void write(ChannelHandlerContext context, Object message, ChannelPromise promise) throws Exception {
                     if (message instanceof ServerboundContainerClickPacket click && click.slotNum() == resultSlot) {
                         resultActions.add(click.containerInput());
+                    }
+                    if (rejectContainerClicks && message instanceof ServerboundContainerClickPacket) {
+                        promise.setSuccess();
+                        return;
                     }
                     super.write(context, message, promise);
                 }

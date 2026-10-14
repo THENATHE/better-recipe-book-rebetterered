@@ -1,0 +1,206 @@
+{
+  "date": "2026-10-13",
+  "status": "passed",
+  "suite_version": "1.4.4+26.3",
+  "brbr_version": "1.11.7+26.3",
+  "production_changes": false,
+  "backpack_case_count": 32,
+  "prepared_cake_case_count": 32,
+  "profiles": [
+    {
+      "label": "final-suite144-native-single_batches-20261013",
+      "status": "passed",
+      "suite_sha256": "e4663dddf2e176c3d5d7a669f59822dc76286ed28e195cc1a77b1bb1b3e7d269",
+      "brbr_sha256": "28868f38950057d850d634364881855503093dcd8e70064faf7febcecb81621f",
+      "method": "single_batches",
+      "polymer": [],
+      "backpack_cases": 8,
+      "bucket_remainder_cases": 8,
+      "ingredients": 272,
+      "maximum_tables": [
+        68,
+        68,
+        68,
+        68
+      ],
+      "maximum_result_quick_moves": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "delayed_predicate_checks": 0,
+      "client_mods": [
+        {
+          "source": "/home/thenathe/SSDC/Plugins/WP Plugin Dev/Builds/Minecraft/Hotkey Wheel/Main Plugin/1.0.7+26.3/hotkey-wheel-1.0.7+26.3.jar",
+          "sha256": "3095b28e981dd995aabc582b7abe785baeccfdc4ac00128eabd6bda0d5a55fd6"
+        },
+        {
+          "source": "/home/thenathe/SSDC/Plugins/WP Plugin Dev/Builds/Minecraft/Buildprint/Feature Addon - Blocktone Toning/0.1.24/buildprint-toning-0.1.24.jar",
+          "sha256": "b9c42fd4679f9c70c584a6f8a888e51911c0dfe90f10dddd92c4e427efec5940"
+        },
+        {
+          "source": "/home/thenathe/SSDC/Plugins/WP Plugin Dev/Builds/Minecraft/Buildprint/Main Plugin/0.1.19+26.x/buildprint-fabric-0.1.19+26.x.jar",
+          "sha256": "bd60814e7ba944d7a67bfbf9831a8fa156223277345dc87569cd358a326e3f1f"
+        },
+        {
+          "source": "/home/thenathe/.local/share/ModrinthApp/profiles/Vanilla Fast/mods/yet_another_config_lib_v3-3.9.7+26.3-fabric.jar",
+          "sha256": "c52d41d444522d9abba994cd4c4ee2e71a065d7c31010f92a9959b80ccb4b0f5"
+        }
+      ],
+      "client_audit_sha256": "9df7437191541e19d209fc1e724f14c1419e31cb25f00784599025f5c8cb8c2e",
+      "server_audit_sha256": "ac595f74c47b81892e610e58eaca30f9b0e6d83ac5944105cd82fed03a3f96a3",
+      "result": "connected/final-suite144-native-single_batches-20261013/result.json",
+      "source": "connected/final-suite144-native-single_batches-20261013/executed-source/"
+    },
+    {
+      "label": "final-suite144-native-fill_grid-20261013",
+      "status": "passed",
+      "suite_sha256": "e4663dddf2e176c3d5d7a669f59822dc76286ed28e195cc1a77b1bb1b3e7d269",
+      "brbr_sha256": "28868f38950057d850d634364881855503093dcd8e70064faf7febcecb81621f",
+      "method": "fill_grid",
+      "polymer": [],
+      "backpack_cases": 8,
+      "bucket_remainder_cases": 8,
+      "ingredients": 272,
+      "maximum_tables": [
+        68,
+        68,
+        68,
+        68
+      ],
+      "maximum_result_quick_moves": [
+        2,
+        2,
+        2,
+        2
+      ],
+      "delayed_predicate_checks": 48,
+      "client_mods": [
+        {
+          "source": "/home/thenathe/SSDC/Plugins/WP Plugin Dev/Builds/Minecraft/Hotkey Wheel/Main Plugin/1.0.7+26.3/hotkey-wheel-1.0.7+26.3.jar",
+          "sha256": "3095b28e981dd995aabc582b7abe785baeccfdc4ac00128eabd6bda0d5a55fd6"
+        },
+        {
+          "source": "/home/thenathe/SSDC/Plugins/WP Plugin Dev/Builds/Minecraft/Buildprint/Feature Addon - Blocktone Toning/0.1.24/buildprint-toning-0.1.24.jar",
+          "sha256": "b9c42fd4679f9c70c584a6f8a888e51911c0dfe90f10dddd92c4e427efec5940"
+        },
+        {
+          "source": "/home/thenathe/SSDC/Plugins/WP Plugin Dev/Builds/Minecraft/Buildprint/Main Plugin/0.1.19+26.x/buildprint-fabric-0.1.19+26.x.jar",
+          "sha256": "bd60814e7ba944d7a67bfbf9831a8fa156223277345dc87569cd358a326e3f1f"
+        },
+        {
+          "source": "/home/thenathe/.local/share/ModrinthApp/profiles/Vanilla Fast/mods/yet_another_config_lib_v3-3.9.7+26.3-fabric.jar",
+          "sha256": "c52d41d444522d9abba994cd4c4ee2e71a065d7c31010f92a9959b80ccb4b0f5"
+        }
+      ],
+      "client_audit_sha256": "f590cc06d443b70bd8c9098a7fcdf44d01fed115fa4ffc7e60a5403f8c71ed0e",
+      "server_audit_sha256": "093c7e4124aa251b0efea4bc5f4f01b74ef7b9516ada890ddd7479aa0f10347f",
+      "result": "connected/final-suite144-native-fill_grid-20261013/result.json",
+      "source": "connected/final-suite144-native-fill_grid-20261013/executed-source/"
+    },
+    {
+      "label": "final-suite144-polymer-single_batches-20261013",
+      "status": "passed",
+      "suite_sha256": "e4663dddf2e176c3d5d7a669f59822dc76286ed28e195cc1a77b1bb1b3e7d269",
+      "brbr_sha256": "28868f38950057d850d634364881855503093dcd8e70064faf7febcecb81621f",
+      "method": "single_batches",
+      "polymer": [
+        {
+          "file": "polymer-bundled-0.18.2+26.3.jar",
+          "sha256": "3d79318e8202d0e87af308d7f232220714e5f1409d06c23db774877ec6f3848f"
+        }
+      ],
+      "backpack_cases": 8,
+      "bucket_remainder_cases": 8,
+      "ingredients": 272,
+      "maximum_tables": [
+        68,
+        68,
+        68,
+        68
+      ],
+      "maximum_result_quick_moves": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "delayed_predicate_checks": 0,
+      "client_mods": [
+        {
+          "source": "/home/thenathe/SSDC/Plugins/WP Plugin Dev/Builds/Minecraft/Hotkey Wheel/Main Plugin/1.0.7+26.3/hotkey-wheel-1.0.7+26.3.jar",
+          "sha256": "3095b28e981dd995aabc582b7abe785baeccfdc4ac00128eabd6bda0d5a55fd6"
+        },
+        {
+          "source": "/home/thenathe/SSDC/Plugins/WP Plugin Dev/Builds/Minecraft/Buildprint/Feature Addon - Blocktone Toning/0.1.24/buildprint-toning-0.1.24.jar",
+          "sha256": "b9c42fd4679f9c70c584a6f8a888e51911c0dfe90f10dddd92c4e427efec5940"
+        },
+        {
+          "source": "/home/thenathe/SSDC/Plugins/WP Plugin Dev/Builds/Minecraft/Buildprint/Main Plugin/0.1.19+26.x/buildprint-fabric-0.1.19+26.x.jar",
+          "sha256": "bd60814e7ba944d7a67bfbf9831a8fa156223277345dc87569cd358a326e3f1f"
+        },
+        {
+          "source": "/home/thenathe/.local/share/ModrinthApp/profiles/Vanilla Fast/mods/yet_another_config_lib_v3-3.9.7+26.3-fabric.jar",
+          "sha256": "c52d41d444522d9abba994cd4c4ee2e71a065d7c31010f92a9959b80ccb4b0f5"
+        }
+      ],
+      "client_audit_sha256": "b007a842f163c982a57424df58ccbcd2ebaf0437c33bbac775c87ab06d6b78a4",
+      "server_audit_sha256": "0f62879e1a11ac81623bd7834a6f033b0fa0c742f69ffe2a3c2ae9931b6e3e4e",
+      "result": "connected/final-suite144-polymer-single_batches-20261013/result.json",
+      "source": "connected/final-suite144-polymer-single_batches-20261013/executed-source/"
+    },
+    {
+      "label": "final-suite144-polymer-fill_grid-20261013",
+      "status": "passed",
+      "suite_sha256": "e4663dddf2e176c3d5d7a669f59822dc76286ed28e195cc1a77b1bb1b3e7d269",
+      "brbr_sha256": "28868f38950057d850d634364881855503093dcd8e70064faf7febcecb81621f",
+      "method": "fill_grid",
+      "polymer": [
+        {
+          "file": "polymer-bundled-0.18.2+26.3.jar",
+          "sha256": "3d79318e8202d0e87af308d7f232220714e5f1409d06c23db774877ec6f3848f"
+        }
+      ],
+      "backpack_cases": 8,
+      "bucket_remainder_cases": 8,
+      "ingredients": 272,
+      "maximum_tables": [
+        68,
+        68,
+        68,
+        68
+      ],
+      "maximum_result_quick_moves": [
+        2,
+        2,
+        2,
+        2
+      ],
+      "delayed_predicate_checks": 48,
+      "client_mods": [
+        {
+          "source": "/home/thenathe/SSDC/Plugins/WP Plugin Dev/Builds/Minecraft/Hotkey Wheel/Main Plugin/1.0.7+26.3/hotkey-wheel-1.0.7+26.3.jar",
+          "sha256": "3095b28e981dd995aabc582b7abe785baeccfdc4ac00128eabd6bda0d5a55fd6"
+        },
+        {
+          "source": "/home/thenathe/SSDC/Plugins/WP Plugin Dev/Builds/Minecraft/Buildprint/Feature Addon - Blocktone Toning/0.1.24/buildprint-toning-0.1.24.jar",
+          "sha256": "b9c42fd4679f9c70c584a6f8a888e51911c0dfe90f10dddd92c4e427efec5940"
+        },
+        {
+          "source": "/home/thenathe/SSDC/Plugins/WP Plugin Dev/Builds/Minecraft/Buildprint/Main Plugin/0.1.19+26.x/buildprint-fabric-0.1.19+26.x.jar",
+          "sha256": "bd60814e7ba944d7a67bfbf9831a8fa156223277345dc87569cd358a326e3f1f"
+        },
+        {
+          "source": "/home/thenathe/.local/share/ModrinthApp/profiles/Vanilla Fast/mods/yet_another_config_lib_v3-3.9.7+26.3-fabric.jar",
+          "sha256": "c52d41d444522d9abba994cd4c4ee2e71a065d7c31010f92a9959b80ccb4b0f5"
+        }
+      ],
+      "client_audit_sha256": "242066cace250473062fde8bc8a5d7df719d486fa0140efa47dd2623c2691788",
+      "server_audit_sha256": "c85a47c399d7c3846f1583fbc6df824ba2bf2f49a505c26b0228cac554f30100",
+      "result": "connected/final-suite144-polymer-fill_grid-20261013/result.json",
+      "source": "connected/final-suite144-polymer-fill_grid-20261013/executed-source/"
+    }
+  ],
+  "scope": "Exact packaged all-four native clients connected to isolated suite servers, with and without supported Polymer 0.18.2. Both leather/netherite capacities and 2x2/3x3 grids; repeated ordinary/max crafting, 272 planks, 68 output tables, full player storage, real result transfers, wide/narrow UI and settings Save/Cancel, authoritative conservation, holder components and cursor checks. Synthetic delayed predicates exercise acknowledgement guard; they do not claim packet-loss simulation."
+}

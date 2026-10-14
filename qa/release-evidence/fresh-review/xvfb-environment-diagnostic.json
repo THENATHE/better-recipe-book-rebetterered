@@ -1,0 +1,12 @@
+{
+  "status": "graphics environment limitation",
+  "gameplay_executed": false,
+  "display": ":99",
+  "software_rendering": true,
+  "errors": [
+    "OpenGL: Could not retrieve OpenGL functions",
+    "Vulkan: Device missing capabilities"
+  ],
+  "console_sha256": "6686f4a2eede12a66e4c15c16dce05a5315b71cc2032ce7e5216ec771bb80af5",
+  "scope": "Failed before creating the Minecraft window/test world. Does not establish a plugin failure or passing integration result. A separate hardware-display run is required."
+}

@@ -1,12 +1,12 @@
-# Better Recipe Book: Rebetterered 1.11.1+26.3
+# Better Recipe Book: Rebetterered 1.11.7+26.3
 
 Unofficial Fabric 26.3 port of marshmallow's original Better Recipe Book, with new grouping and crafting controls. MIT licensed. Original source and release are preserved separately in ../upstream/.
 
-Requires Minecraft 26.3, Java 25+, Fabric Loader 0.19.5+ and Fabric API 0.161.0+26.3. Cloth Config 26.3.159 is included. Architectury is removed. Mod Menu is optional. Install `better-recipe-book-rebetterered-1.11.1+26.3.jar` in the client’s `mods/` folder; a server does not need this mod. Its mod ID remains `brb`, preserving existing settings and pins. Install only one BRB variant at a time.
+Requires Minecraft 26.3, Java 25+, Fabric Loader 0.19.5+ and Fabric API 0.161.0+26.3. Cloth Config 26.3.159 is included. Architectury is removed. Mod Menu is optional. Install `better-recipe-book-rebetterered-1.11.7+26.3.jar` in the client’s `mods/` folder; a server does not need this mod. Its mod ID remains `brb`, preserving existing settings and pins. Install only one BRB variant at a time.
 
 Recipe display settings offer Vanilla, Expandable and All. Creative display offers Vanilla and Expandable. Expansion headers only change visibility. Expanded recipe variants do not cycle. Left-click places ingredients; Shift-left fills the grid normally. Right-click crafts one batch into inventory; Shift-right continues while materials and storage permit. Press the configured pin key over a recipe to pin its exact display variant.
 
-Brewing and smithing retain recipe panels. Brewing and smelting use their vanilla processing durations; direct crafting applies to crafting grids and smithing. Smithing preserves native item components and trims. Pins are stored atomically; legacy native recipe IDs remain retained while exact display identities are added. Inventory transfers exclude equipment, never drop overflow, and cancel when the menu changes or synchronization fails.
+Brewing and smithing retain recipe panels and independently save their open/closed and Show craftable choices. Brewing and smelting use their vanilla processing durations; direct crafting applies to crafting grids and smithing. Smithing preserves native item components and trims. Pins are stored atomically; legacy native recipe IDs remain retained while exact display identities are added. Inventory transfers exclude equipment and cancel when the menu changes or synchronization fails. Maximum crafting offers One at a time or Fill grid; overflow defaults to Stop before dropping, with explicit Drop and continue and Stop after first drop options. Ordinary right-click always requires enough storage.
 
 Vanilla multiplayer does not transmit the full recipe registry. Singleplayer uses an immutable server snapshot rebased to client registries; multiplayer undiscovered/brewing/smithing previews use installed vanilla and mod recipe data. Unknown server-only datapack recipes cannot be previewed before the server shares their recipe displays. All crafting remains server-authoritative, including limited-crafting rules.
 

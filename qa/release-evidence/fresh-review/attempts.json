@@ -1,0 +1,31 @@
+[
+  {
+    "run": "qa/packaged-all4-final-20261013",
+    "status": "environment initialization failure",
+    "scope": "Xvfb/software renderer diagnostic; RenderPearl could not initialize required graphics context; no gameplay assertions executed."
+  },
+  {
+    "run": "qa/packaged-all4-hardware-final-20261013",
+    "status": "fixture assumption failure",
+    "suite": "1.4.3+26.3",
+    "scope": "Creative fixture counted simple_smithing_overhaul:broken_anvil by path alone as a vanilla anvil. Production resource group correctly only selects minecraft namespace; fixture now requires exact vanilla membership and preserves custom items individually."
+  },
+  {
+    "run": "qa/packaged-all4-hardware2-final-20261013",
+    "status": "intentionally stopped",
+    "suite": "1.4.3+26.3",
+    "scope": "Released display at root request for HUD investigation; no completed full-client claim."
+  },
+  {
+    "run": "qa/packaged-all4-suite144-final-20261013",
+    "status": "synthetic recipe fixture failure",
+    "suite": "1.4.4+26.3",
+    "scope": "Searching minecraft: did not retain the assumed 25 arbitrary unlocked recipes. Original selected IDs were not recorded. The synthetic fixture now explicitly chooses 25 Minecraft output variants to match this search query; the full final controlled run passes. No production BRBR change was made."
+  },
+  {
+    "run": "qa/packaged-all4-suite144-final2-20261013",
+    "status": "passed",
+    "suite": "1.4.4+26.3",
+    "scope": "Exact final candidate; 1968 recorded checks, 26 screenshots, exit 0."
+  }
+]

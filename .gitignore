@@ -7,6 +7,7 @@
 /qa/*
 !/qa/REMOTE-QA.md
 !/qa/run_remote_client.py
+!/qa/run_packaged_client.py
 !/qa/vanilla_client.py
 !/qa/craft-tests/
 !/qa/tests/
@@ -24,5 +25,6 @@
 !/qa/creative/CreativeRuleChecks.java
 /qa/remote-inputs/*
 !/qa/remote-inputs/34.json
+!/qa/remote-inputs/34-e787e8afd149a4cefa89d341b91f5aed8f5d93a0.json
 /upstream/*.jar
 /upstream/original-source.tar.gz

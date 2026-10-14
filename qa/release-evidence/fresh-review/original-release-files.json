@@ -1,0 +1,50 @@
+{
+  "better-recipe-book-rebetterered-1.11.7+26.3-source.zip": {
+    "sha256": "a4fd5b10924f604ae34294b5b671fe0d80bf1f0c1e21f4c8281e1d6490cc5ef1",
+    "bytes": 2388272
+  },
+  "icon.png": {
+    "sha256": "6c8ac0a6886fcb891f1aa138734f9b8e06202144d081c294619a3c7595b01587",
+    "bytes": 26233
+  },
+  "SOURCE_MANIFEST.sha256": {
+    "sha256": "51021639da1f853d769ed96126e2bc52137090d632fcbe42ba8a2949ca0209bb",
+    "bytes": 61999
+  },
+  "CHANGELOG.md": {
+    "sha256": "d0270bd57ead8bb4a10bb99da3ad8f38e43e73acdb35e5940f8f83e34a034c24",
+    "bytes": 5035
+  },
+  "VALIDATION.md": {
+    "sha256": "03c4da33a9d5e668c990f564d10a93fa7ca74124721b85748312139deabd8855",
+    "bytes": 3095
+  },
+  "better-recipe-book-rebetterered-1.11.7+26.3.jar": {
+    "sha256": "28868f38950057d850d634364881855503093dcd8e70064faf7febcecb81621f",
+    "bytes": 1278116
+  },
+  "CREATIVE-GROUPS.md": {
+    "sha256": "5b5df147356b8ed65995323b48d5e06b3cbfd4207eceb876a9f4e4be6a38cddf",
+    "bytes": 1909
+  },
+  "PROVENANCE.json": {
+    "sha256": "c55ff0890280b0d312b37dfadf9a4bea3c0875a6fc8145d3d84f9e321118d581",
+    "bytes": 4756
+  },
+  "SHA256SUMS.sha256": {
+    "sha256": "5a18f9c1cae67be8bd9422818c31dff6aa905d92268545ddcb92a5c358d47007",
+    "bytes": 2448
+  },
+  "qa-evidence.zip": {
+    "sha256": "41675953a8a83b2fc0e871b68fa8a8807688237aadcd83d5dd357c2303788e42",
+    "bytes": 618656
+  },
+  "README.md": {
+    "sha256": "5ed3033e0380079ac6310c8fce39cce188f219ebfb07a12d37c7e75b6c7c31c0",
+    "bytes": 12466
+  },
+  "better-recipe-book-rebetterered-1.11.7+26.3-sources.jar": {
+    "sha256": "efdf216b9e7223c41595929685287c26291fba11708e5998d32ea18bc8beb8b2",
+    "bytes": 514206
+  }
+}

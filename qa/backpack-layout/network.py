@@ -27,7 +27,13 @@ def main():
     parser.add_argument('--label', required=True)
     parser.add_argument('--profiles', default='suite')
     parser.add_argument('--without-polymer', action='store_true')
+    parser.add_argument('--polymer-jar', type=Path,
+                        help='Exact Polymer server JAR; defaults to the retained 0.18.2 profile')
     parser.add_argument('--brbr', type=Path)
+    parser.add_argument('--client-mod', type=Path, action='append', default=[],
+                        help='Additional exact client mod JAR, repeat for combined integration profiles')
+    parser.add_argument('--jdk', type=Path, default=Path.home() / '.gradle/jdks/microsoft-25-amd64-linux.2',
+                        help='Complete Java 25 JDK used to compile and run the isolated fixture')
     parser.add_argument('--backpack', action='store_true')
     parser.add_argument('--delay-grid', action='store_true')
     parser.add_argument('--output-to-backpack', action='store_true', help='Fill player storage to test output transfers into the backpack')
@@ -38,12 +44,24 @@ def main():
     parser.add_argument('--craft-all-method', choices=('single_batches', 'fill_grid'), default='single_batches')
     parser.add_argument('--compile-only', action='store_true', help='Compile/package observation fixtures without launching any runtime')
     args = parser.parse_args()
+    args.client_mod = [path.resolve(strict=True) for path in args.client_mod]
     if args.bucket_overflow and (args.baseline or not args.brbr): parser.error('--bucket-overflow requires --brbr and native backpack menus')
     if args.ingredients <= 0 or args.ingredients > 1024: parser.error('Ingredient count must be 1..1024')
     if args.output_to_backpack and not args.backpack: parser.error('--output-to-backpack requires --backpack')
     if args.profiles != 'suite': parser.error('This fixture requires the native suite client; vanilla boundary is tested separately')
     if args.without_polymer and args.profiles != 'suite': parser.error('Without Polymer requires the suite-only profile')
     run = FIXTURES / 'runs' / args.label; run.mkdir(parents=True, exist_ok=False)
+    client_sources = []
+    client_inputs = run / 'client-inputs'; client_inputs.mkdir()
+    for index, path in enumerate(args.client_mod):
+        target = client_inputs / (str(index) + '-' + path.name)
+        shutil.copy2(path, target)
+        client_sources.append({'source': str(path), 'sha256': sha(target)})
+        args.client_mod[index] = target.resolve()
+    if args.brbr:
+        target = client_inputs / args.brbr.name
+        shutil.copy2(args.brbr.resolve(), target)
+        args.brbr = target.resolve()
     control = run / 'control'; control.mkdir()
     fixtures = run / 'fixtures'; fixtures.mkdir(); classes = fixtures / 'classes'; classes.mkdir()
     executed = run / 'executed-source'; executed.mkdir()
@@ -55,7 +73,7 @@ def main():
         'fabric-language-kotlin-1.14.1+kotlin.2.4.20.jar', 'fzzy_config-0.7.7+fix3+26.3.jar', 'mixson-2.2.1-multiloader.jar')]
     api = launch.artifact('net.fabricmc.fabric-api', 'fabric-api', '0.161.0+26.3')
     dependencies += [api, launch.artifact('me.shedaniel.cloth', 'cloth-config-fabric', '26.3.159')]
-    polymer = WORKSPACE / 'Builds/Minecraft/Polymer/Main Plugin/0.18.2+26.3/polymer-bundled-0.18.2+26.3.jar'
+    polymer = (args.polymer_jar or WORKSPACE / 'Builds/Minecraft/Polymer/Main Plugin/0.18.2+26.3/polymer-bundled-0.18.2+26.3.jar').resolve(strict=True)
     server_audit, client_audit = launch.audits()
     paths = launch.cp(server_audit['command']) + launch.cp(client_audit['command']) + list(map(str, [suite, *dependencies, polymer]))
     paths += [str(launch.artifact('io.github.llamalad7', 'mixinextras-fabric', '0.5.5'))]
@@ -67,7 +85,7 @@ def main():
                     content = archive.read(name); target = fixtures / (hashlib.sha256(content).hexdigest()[:12] + '-' + Path(name).name)
                     if not target.exists(): target.write_bytes(content); paths.append(str(target)); nested(target)
     for jar in [suite, *dependencies, polymer]: nested(jar)
-    subprocess.run(['/usr/lib/jvm/java-27-openjdk/bin/javac', '--release', '25', '-proc:none', '-cp', os.pathsep.join(dict.fromkeys(paths)), '-d', str(classes), *map(str, FIXTURES.glob('CraftingNetwork*.java'))], check=True)
+    subprocess.run([str(args.jdk / 'bin/javac'), '--release', '25', '-proc:none', '-cp', os.pathsep.join(dict.fromkeys(paths)), '-d', str(classes), *map(str, FIXTURES.glob('CraftingNetwork*.java'))], check=True)
     for side in ('server', 'client'):
         entry = 'CraftingNetwork' + side.title()
         metadata = {'schemaVersion': 1, 'id': 'suite_feature_network_qa_' + side, 'version': '1', 'environment': side,
@@ -109,7 +127,7 @@ def main():
     try:
         directory=run/'server';directory.mkdir();port=freeport();launch.copy_accepted_eula(directory)
         (directory/'server.properties').write_text(f'server-ip=127.0.0.1\nserver-port={port}\nonline-mode=false\nwhite-list=false\nenforce-secure-profile=false\nspawn-protection=0\nview-distance=2\nsimulation-distance=2\ndifficulty=peaceful\nlevel-type=minecraft:flat\ngenerator-settings={{"layers":[{{"block":"minecraft:bedrock","height":1}}],"biome":"minecraft:plains"}}\ngenerate-structures=false\n')
-        command=launch.base_command('server',directory,port);command[0]='/usr/lib/jvm/java-25-openjdk/bin/java';command.insert(1,'-Dcrafting.qa.control='+str(control))
+        command=launch.base_command('server',directory,port);command[0]=str(args.jdk / 'bin/java');command.insert(1,'-Dcrafting.qa.control='+str(control))
         server=start(directory,command,[suite,*dependencies,fixtures/'server.jar'] + ([] if args.without_polymer else [polymer]))
         wait(lambda:'Done (' in (directory/'console.log').read_text(),server,'server startup')
         for profile in args.profiles.split(','):
@@ -117,10 +135,11 @@ def main():
             save_server(clientdir/'servers.dat',port,'decline')
             (clientdir/'options.txt').write_text('tutorialStep:none\npauseOnLostFocus:false\nguiScale:2\ngraphicsMode:0\nrenderDistance:2\nmaxFps:25\nmaxFpsInactive:25\nsoundCategory_master:0.0\njoinedFirstServer:true\n')
             mods=[api,fixtures/'client.jar'] if profile=='fabric' else [suite,*dependencies,fixtures/'client.jar']
-            command=launch.base_command('native',clientdir,port);command[0]='/usr/lib/jvm/java-25-openjdk/bin/java';command.insert(1,'-Dcrafting.qa.control='+str(control))
+            command=launch.base_command('native',clientdir,port);command[0]=str(args.jdk / 'bin/java');command.insert(1,'-Dcrafting.qa.control='+str(control))
             command[command.index('--username')+1]=name
             command.insert(1, '-Dcrafting.qa.craftAllMethod='+args.craft_all_method)
             if args.brbr: mods.append(args.brbr.resolve())
+            mods.extend(args.client_mod)
             if args.delay_grid: command.insert(1, '-Dcrafting.qa.delayGrid=true')
             client=start(clientdir,command,mods)
             wait(lambda:read(name,'client').get('ticks',0)>=40,client,name+' connected')
@@ -216,7 +235,7 @@ def main():
         stop(server,True)
         delayed_checks=sum((run/('FeatureNet'+profile.title())/'console.log').read_text().count('CRAFTING_QA_DELAYED_GRID') for profile in args.profiles.split(','))
         if args.delay_grid: assert delayed_checks >= 3, 'synthetic unsettled-grid mode did not execute'
-        (run/'result.json').write_text(json.dumps({'passed':True,'version':version,'bundle_sha256':sha(suite),'backpack_ingredients':args.backpack,'delayed_grid':args.delay_grid,'delayed_predicate_checks':delayed_checks,'baseline':args.baseline,'bucket_overflow':args.bucket_overflow,'cycles':args.cycles,'craft_all_method':args.craft_all_method,'output_to_backpack':args.output_to_backpack,'ingredients':args.ingredients,'brbr_sha256':sha(args.brbr) if args.brbr else None,'polymer':not args.without_polymer,'profiles':args.profiles.split(','),'observations':observations,'scope':'Pinned tabs follow the native book origin and their mouse selection restores crafting tabs without changing storage. Selected craft-all strategy is recorded. BRB buttons follow the actual backpack recipe-book origin in wide and narrow layouts; mouse settings Save/Cancel and instant-toggle preserve storage. Connected recipe placement/crafting and server ingredient conservation.'},indent=2)+'\n')
+        (run/'result.json').write_text(json.dumps({'passed':True,'version':version,'bundle_sha256':sha(suite),'backpack_ingredients':args.backpack,'delayed_grid':args.delay_grid,'delayed_predicate_checks':delayed_checks,'baseline':args.baseline,'bucket_overflow':args.bucket_overflow,'cycles':args.cycles,'craft_all_method':args.craft_all_method,'output_to_backpack':args.output_to_backpack,'ingredients':args.ingredients,'brbr_sha256':sha(args.brbr) if args.brbr else None,'client_mods':client_sources,'polymer':not args.without_polymer,'profiles':args.profiles.split(','),'observations':observations,'scope':'Pinned tabs follow the native book origin and their mouse selection restores crafting tabs without changing storage. Selected craft-all strategy is recorded. BRB buttons follow the actual backpack recipe-book origin in wide and narrow layouts; mouse settings Save/Cancel and instant-toggle preserve storage. Connected recipe placement/crafting and server ingredient conservation.'},indent=2)+'\n')
         print('PASS backpack crafting GUI checks',flush=True)
     finally:
         for process,log in reversed(children):

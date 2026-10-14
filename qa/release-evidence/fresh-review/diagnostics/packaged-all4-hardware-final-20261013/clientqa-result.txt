@@ -1,0 +1,768 @@
+PASS: real recipe grouping, pagination, scrolling and exact pins
+PASS: creative model groups matching variants without discarding duplicates
+PASS: creative model expands a real header
+PASS: expanded creative children retain exact stack objects and component identity
+PASS: creative model refuses child and out-of-range toggles
+PASS: creative vanilla mode preserves duplicates and original interleaving
+PASS: creative expansion choice survives a source refresh
+PASS: empty creative lists remain empty
+PASS: invalid resource-pack group capture is rejected safely
+SCREENSHOT: /home/thenathe/SSDC/Plugins/WP Plugin Dev/Minecraft/better-recipe-book-26.3/qa/packaged-all4-hardware-final-20261013/screenshots/0002_brb-creative-collapsed.png
+PASS: colored creative tab has stable expandable headers
+PASS: creative expansion inserts every child, including the representative
+PASS: creative header click never takes an item
+PASS: creative group representative does not cycle or change on expansion
+PASS: expanded child uses the vanilla creative pickup path
+PASS: Shift-click collapses creative header without a vanilla shift action
+PASS: header drag/release outside preserves an already-carried stack
+PASS: Enter expands a hovered creative header
+PASS: Space collapses a hovered creative header
+PASS: number-key shortcut cannot put a group header into the hotbar
+PASS: creative grouped scrolling stays finite
+PASS: scrolled creative entry maps to visible slot 0
+PASS: scrolled creative entry maps to visible slot 1
+PASS: scrolled creative entry maps to visible slot 2
+PASS: scrolled creative entry maps to visible slot 3
+PASS: scrolled creative entry maps to visible slot 4
+PASS: scrolled creative entry maps to visible slot 5
+PASS: scrolled creative entry maps to visible slot 6
+PASS: scrolled creative entry maps to visible slot 7
+PASS: scrolled creative entry maps to visible slot 8
+PASS: scrolled creative entry maps to visible slot 9
+PASS: scrolled creative entry maps to visible slot 10
+PASS: scrolled creative entry maps to visible slot 11
+PASS: scrolled creative entry maps to visible slot 12
+PASS: scrolled creative entry maps to visible slot 13
+PASS: scrolled creative entry maps to visible slot 14
+PASS: scrolled creative entry maps to visible slot 15
+PASS: scrolled creative entry maps to visible slot 16
+PASS: scrolled creative entry maps to visible slot 17
+PASS: scrolled creative entry maps to visible slot 18
+PASS: scrolled creative entry maps to visible slot 19
+PASS: scrolled creative entry maps to visible slot 20
+PASS: scrolled creative entry maps to visible slot 21
+PASS: scrolled creative entry maps to visible slot 22
+PASS: scrolled creative entry maps to visible slot 23
+PASS: scrolled creative entry maps to visible slot 24
+PASS: scrolled creative entry maps to visible slot 25
+PASS: scrolled creative entry maps to visible slot 26
+PASS: scrolled creative entry maps to visible slot 27
+PASS: scrolled creative entry maps to visible slot 28
+PASS: scrolled creative entry maps to visible slot 29
+PASS: scrolled creative entry maps to visible slot 30
+PASS: scrolled creative entry maps to visible slot 31
+PASS: scrolled creative entry maps to visible slot 32
+PASS: scrolled creative entry maps to visible slot 33
+PASS: scrolled creative entry maps to visible slot 34
+PASS: scrolled creative entry maps to visible slot 35
+PASS: scrolled creative entry maps to visible slot 36
+PASS: scrolled creative entry maps to visible slot 37
+PASS: scrolled creative entry maps to visible slot 38
+PASS: scrolled creative entry maps to visible slot 39
+PASS: scrolled creative entry maps to visible slot 40
+PASS: scrolled creative entry maps to visible slot 41
+PASS: scrolled creative entry maps to visible slot 42
+PASS: scrolled creative entry maps to visible slot 43
+PASS: scrolled creative entry maps to visible slot 44
+PASS: typed creative search reveals fixed individual matches
+PASS: grouped mode preserves vanilla search results and order exactly
+PASS: vanilla creative mode preserves every original tab entry and order
+SCREENSHOT: /home/thenathe/SSDC/Plugins/WP Plugin Dev/Minecraft/better-recipe-book-26.3/qa/packaged-all4-hardware-final-20261013/screenshots/0003_brb-creative-vanilla.png
+SCREENSHOT: /home/thenathe/SSDC/Plugins/WP Plugin Dev/Minecraft/better-recipe-book-26.3/qa/packaged-all4-hardware-final-20261013/screenshots/0004_brb-creative-expanded.png
+PASS: wood:poplar has multiple real vanilla tab members
+PASS: wood:poplar collapses all expected tab members under one header
+PASS: wood:poplar has no visible children while collapsed
+PASS: wood:poplar collapsed tooltip shows the translated gray action hint
+PASS: wood:poplar expands exact vanilla children in order without omissions or duplicates
+PASS: wood:poplar expanded keeps every scrolled slot aligned with its group entry
+PASS: wood:poplar expanded tooltip shows the translated gray action hint
+PASS: wood:poplar mouse toggle restores collapsed contents without changing the carried stack
+PASS: wood:poplar collapsed keeps every scrolled slot aligned with its group entry
+PASS: building:cobblestone has multiple real vanilla tab members
+PASS: building:cobblestone collapses all expected tab members under one header
+PASS: building:cobblestone has no visible children while collapsed
+PASS: building:cobblestone collapsed tooltip shows the translated gray action hint
+PASS: building:cobblestone expands exact vanilla children in order without omissions or duplicates
+PASS: building:cobblestone expanded keeps every scrolled slot aligned with its group entry
+PASS: building:cobblestone expanded tooltip shows the translated gray action hint
+PASS: building:cobblestone mouse toggle restores collapsed contents without changing the carried stack
+PASS: building:cobblestone collapsed keeps every scrolled slot aligned with its group entry
+PASS: building:stone has multiple real vanilla tab members
+PASS: building:stone collapses all expected tab members under one header
+PASS: building:stone has no visible children while collapsed
+PASS: building:stone collapsed tooltip shows the translated gray action hint
+PASS: building:stone expands exact vanilla children in order without omissions or duplicates
+PASS: building:stone expanded keeps every scrolled slot aligned with its group entry
+PASS: building:stone expanded tooltip shows the translated gray action hint
+PASS: building:stone mouse toggle restores collapsed contents without changing the carried stack
+PASS: building:stone collapsed keeps every scrolled slot aligned with its group entry
+PASS: building:deepslate has multiple real vanilla tab members
+PASS: building:deepslate collapses all expected tab members under one header
+PASS: building:deepslate has no visible children while collapsed
+PASS: building:deepslate collapsed tooltip shows the translated gray action hint
+PASS: building:deepslate expands exact vanilla children in order without omissions or duplicates
+PASS: building:deepslate expanded keeps every scrolled slot aligned with its group entry
+PASS: building:deepslate expanded tooltip shows the translated gray action hint
+PASS: building:deepslate mouse toggle restores collapsed contents without changing the carried stack
+PASS: building:deepslate collapsed keeps every scrolled slot aligned with its group entry
+PASS: building:blackstone has multiple real vanilla tab members
+PASS: building:blackstone collapses all expected tab members under one header
+PASS: building:blackstone has no visible children while collapsed
+PASS: building:blackstone collapsed tooltip shows the translated gray action hint
+PASS: building:blackstone expands exact vanilla children in order without omissions or duplicates
+PASS: building:blackstone expanded keeps every scrolled slot aligned with its group entry
+PASS: building:blackstone expanded tooltip shows the translated gray action hint
+PASS: building:blackstone mouse toggle restores collapsed contents without changing the carried stack
+PASS: building:blackstone collapsed keeps every scrolled slot aligned with its group entry
+PASS: building:tuff has multiple real vanilla tab members
+PASS: building:tuff collapses all expected tab members under one header
+PASS: building:tuff has no visible children while collapsed
+PASS: building:tuff collapsed tooltip shows the translated gray action hint
+PASS: building:tuff expands exact vanilla children in order without omissions or duplicates
+PASS: building:tuff expanded keeps every scrolled slot aligned with its group entry
+PASS: building:tuff expanded tooltip shows the translated gray action hint
+PASS: building:tuff mouse toggle restores collapsed contents without changing the carried stack
+PASS: building:tuff collapsed keeps every scrolled slot aligned with its group entry
+PASS: building:quartz has multiple real vanilla tab members
+PASS: building:quartz collapses all expected tab members under one header
+PASS: building:quartz has no visible children while collapsed
+PASS: building:quartz collapsed tooltip shows the translated gray action hint
+PASS: building:quartz expands exact vanilla children in order without omissions or duplicates
+PASS: building:quartz expanded keeps every scrolled slot aligned with its group entry
+PASS: building:quartz expanded tooltip shows the translated gray action hint
+PASS: building:quartz mouse toggle restores collapsed contents without changing the carried stack
+PASS: building:quartz collapsed keeps every scrolled slot aligned with its group entry
+PASS: building:prismarine has multiple real vanilla tab members
+PASS: building:prismarine collapses all expected tab members under one header
+PASS: building:prismarine has no visible children while collapsed
+PASS: building:prismarine collapsed tooltip shows the translated gray action hint
+PASS: building:prismarine expands exact vanilla children in order without omissions or duplicates
+PASS: building:prismarine expanded keeps every scrolled slot aligned with its group entry
+PASS: building:prismarine expanded tooltip shows the translated gray action hint
+PASS: building:prismarine mouse toggle restores collapsed contents without changing the carried stack
+PASS: building:prismarine collapsed keeps every scrolled slot aligned with its group entry
+PASS: building:basalt has multiple real vanilla tab members
+PASS: building:basalt collapses all expected tab members under one header
+PASS: building:basalt has no visible children while collapsed
+PASS: building:basalt collapsed tooltip shows the translated gray action hint
+PASS: building:basalt expands exact vanilla children in order without omissions or duplicates
+PASS: building:basalt expanded keeps every scrolled slot aligned with its group entry
+PASS: building:basalt expanded tooltip shows the translated gray action hint
+PASS: building:basalt mouse toggle restores collapsed contents without changing the carried stack
+PASS: building:basalt collapsed keeps every scrolled slot aligned with its group entry
+PASS: building:purpur has multiple real vanilla tab members
+PASS: building:purpur collapses all expected tab members under one header
+PASS: building:purpur has no visible children while collapsed
+PASS: building:purpur collapsed tooltip shows the translated gray action hint
+PASS: building:purpur expands exact vanilla children in order without omissions or duplicates
+PASS: building:purpur expanded keeps every scrolled slot aligned with its group entry
+PASS: building:purpur expanded tooltip shows the translated gray action hint
+PASS: building:purpur mouse toggle restores collapsed contents without changing the carried stack
+PASS: building:purpur collapsed keeps every scrolled slot aligned with its group entry
+PASS: building:end_stone has multiple real vanilla tab members
+PASS: building:end_stone collapses all expected tab members under one header
+PASS: building:end_stone has no visible children while collapsed
+PASS: building:end_stone collapsed tooltip shows the translated gray action hint
+PASS: building:end_stone expands exact vanilla children in order without omissions or duplicates
+PASS: building:end_stone expanded keeps every scrolled slot aligned with its group entry
+PASS: building:end_stone expanded tooltip shows the translated gray action hint
+PASS: building:end_stone mouse toggle restores collapsed contents without changing the carried stack
+PASS: building:end_stone collapsed keeps every scrolled slot aligned with its group entry
+PASS: building:nether_bricks has multiple real vanilla tab members
+PASS: building:nether_bricks collapses all expected tab members under one header
+PASS: building:nether_bricks has no visible children while collapsed
+PASS: building:nether_bricks collapsed tooltip shows the translated gray action hint
+PASS: building:nether_bricks expands exact vanilla children in order without omissions or duplicates
+PASS: building:nether_bricks expanded keeps every scrolled slot aligned with its group entry
+PASS: building:nether_bricks expanded tooltip shows the translated gray action hint
+PASS: building:nether_bricks mouse toggle restores collapsed contents without changing the carried stack
+PASS: building:nether_bricks collapsed keeps every scrolled slot aligned with its group entry
+PASS: building:mud has multiple real vanilla tab members
+PASS: building:mud collapses all expected tab members under one header
+PASS: building:mud has no visible children while collapsed
+PASS: building:mud collapsed tooltip shows the translated gray action hint
+PASS: building:mud expands exact vanilla children in order without omissions or duplicates
+PASS: building:mud expanded keeps every scrolled slot aligned with its group entry
+PASS: building:mud expanded tooltip shows the translated gray action hint
+PASS: building:mud mouse toggle restores collapsed contents without changing the carried stack
+PASS: building:mud collapsed keeps every scrolled slot aligned with its group entry
+PASS: building:granite has multiple real vanilla tab members
+PASS: building:granite collapses all expected tab members under one header
+PASS: building:granite has no visible children while collapsed
+PASS: building:granite collapsed tooltip shows the translated gray action hint
+PASS: building:granite expands exact vanilla children in order without omissions or duplicates
+PASS: building:granite expanded keeps every scrolled slot aligned with its group entry
+PASS: building:granite expanded tooltip shows the translated gray action hint
+PASS: building:granite mouse toggle restores collapsed contents without changing the carried stack
+PASS: building:granite collapsed keeps every scrolled slot aligned with its group entry
+PASS: building:diorite has multiple real vanilla tab members
+PASS: building:diorite collapses all expected tab members under one header
+PASS: building:diorite has no visible children while collapsed
+PASS: building:diorite collapsed tooltip shows the translated gray action hint
+PASS: building:diorite expands exact vanilla children in order without omissions or duplicates
+PASS: building:diorite expanded keeps every scrolled slot aligned with its group entry
+PASS: building:diorite expanded tooltip shows the translated gray action hint
+PASS: building:diorite mouse toggle restores collapsed contents without changing the carried stack
+PASS: building:diorite collapsed keeps every scrolled slot aligned with its group entry
+PASS: building:andesite has multiple real vanilla tab members
+PASS: building:andesite collapses all expected tab members under one header
+PASS: building:andesite has no visible children while collapsed
+PASS: building:andesite collapsed tooltip shows the translated gray action hint
+PASS: building:andesite expands exact vanilla children in order without omissions or duplicates
+PASS: building:andesite expanded keeps every scrolled slot aligned with its group entry
+PASS: building:andesite expanded tooltip shows the translated gray action hint
+PASS: building:andesite mouse toggle restores collapsed contents without changing the carried stack
+PASS: building:andesite collapsed keeps every scrolled slot aligned with its group entry
+PASS: building:cinnabar has multiple real vanilla tab members
+PASS: building:cinnabar collapses all expected tab members under one header
+PASS: building:cinnabar has no visible children while collapsed
+PASS: building:cinnabar collapsed tooltip shows the translated gray action hint
+PASS: building:cinnabar expands exact vanilla children in order without omissions or duplicates
+PASS: building:cinnabar expanded keeps every scrolled slot aligned with its group entry
+PASS: building:cinnabar expanded tooltip shows the translated gray action hint
+PASS: building:cinnabar mouse toggle restores collapsed contents without changing the carried stack
+PASS: building:cinnabar collapsed keeps every scrolled slot aligned with its group entry
+PASS: building:sulfur has multiple real vanilla tab members
+PASS: building:sulfur collapses all expected tab members under one header
+PASS: building:sulfur has no visible children while collapsed
+PASS: building:sulfur collapsed tooltip shows the translated gray action hint
+PASS: building:sulfur expands exact vanilla children in order without omissions or duplicates
+PASS: building:sulfur expanded keeps every scrolled slot aligned with its group entry
+PASS: building:sulfur expanded tooltip shows the translated gray action hint
+PASS: building:sulfur mouse toggle restores collapsed contents without changing the carried stack
+PASS: building:sulfur collapsed keeps every scrolled slot aligned with its group entry
+PASS: building:sandstone has multiple real vanilla tab members
+PASS: building:sandstone collapses all expected tab members under one header
+PASS: building:sandstone has no visible children while collapsed
+PASS: building:sandstone collapsed tooltip shows the translated gray action hint
+PASS: building:sandstone expands exact vanilla children in order without omissions or duplicates
+PASS: building:sandstone expanded keeps every scrolled slot aligned with its group entry
+PASS: building:sandstone expanded tooltip shows the translated gray action hint
+PASS: building:sandstone mouse toggle restores collapsed contents without changing the carried stack
+PASS: building:sandstone collapsed keeps every scrolled slot aligned with its group entry
+PASS: building:red_sandstone has multiple real vanilla tab members
+PASS: building:red_sandstone collapses all expected tab members under one header
+PASS: building:red_sandstone has no visible children while collapsed
+PASS: building:red_sandstone collapsed tooltip shows the translated gray action hint
+PASS: building:red_sandstone expands exact vanilla children in order without omissions or duplicates
+PASS: building:red_sandstone expanded keeps every scrolled slot aligned with its group entry
+PASS: building:red_sandstone expanded tooltip shows the translated gray action hint
+PASS: building:red_sandstone mouse toggle restores collapsed contents without changing the carried stack
+PASS: building:red_sandstone collapsed keeps every scrolled slot aligned with its group entry
+PASS: building:bricks has multiple real vanilla tab members
+PASS: building:bricks collapses all expected tab members under one header
+PASS: building:bricks has no visible children while collapsed
+PASS: building:bricks collapsed tooltip shows the translated gray action hint
+PASS: building:bricks expands exact vanilla children in order without omissions or duplicates
+PASS: building:bricks expanded keeps every scrolled slot aligned with its group entry
+PASS: building:bricks expanded tooltip shows the translated gray action hint
+PASS: building:bricks mouse toggle restores collapsed contents without changing the carried stack
+PASS: building:bricks collapsed keeps every scrolled slot aligned with its group entry
+PASS: building:resin has multiple real vanilla tab members
+PASS: building:resin collapses all expected tab members under one header
+PASS: building:resin has no visible children while collapsed
+PASS: building:resin collapsed tooltip shows the translated gray action hint
+PASS: building:resin expands exact vanilla children in order without omissions or duplicates
+PASS: building:resin expanded keeps every scrolled slot aligned with its group entry
+PASS: building:resin expanded tooltip shows the translated gray action hint
+PASS: building:resin mouse toggle restores collapsed contents without changing the carried stack
+PASS: building:resin collapsed keeps every scrolled slot aligned with its group entry
+SCREENSHOT: /home/thenathe/SSDC/Plugins/WP Plugin Dev/Minecraft/better-recipe-book-26.3/qa/packaged-all4-hardware-final-20261013/screenshots/0005_brb-creative-building-collapsed.png
+SCREENSHOT: /home/thenathe/SSDC/Plugins/WP Plugin Dev/Minecraft/better-recipe-book-26.3/qa/packaged-all4-hardware-final-20261013/screenshots/0006_brb-creative-poplar-expanded.png
+SCREENSHOT: /home/thenathe/SSDC/Plugins/WP Plugin Dev/Minecraft/better-recipe-book-26.3/qa/packaged-all4-hardware-final-20261013/screenshots/0007_brb-creative-cobblestone-expanded.png
+PASS: wool:white has multiple real vanilla tab members
+PASS: wool:white collapses all expected tab members under one header
+PASS: wool:white has no visible children while collapsed
+PASS: wool:white collapsed tooltip shows the translated gray action hint
+PASS: wool:white expands exact vanilla children in order without omissions or duplicates
+PASS: wool:white expanded keeps every scrolled slot aligned with its group entry
+PASS: wool:white expanded tooltip shows the translated gray action hint
+PASS: wool:white mouse toggle restores collapsed contents without changing the carried stack
+PASS: wool:white collapsed keeps every scrolled slot aligned with its group entry
+PASS: concrete:white has multiple real vanilla tab members
+PASS: concrete:white collapses all expected tab members under one header
+PASS: concrete:white has no visible children while collapsed
+PASS: concrete:white collapsed tooltip shows the translated gray action hint
+PASS: concrete:white expands exact vanilla children in order without omissions or duplicates
+PASS: concrete:white expanded keeps every scrolled slot aligned with its group entry
+PASS: concrete:white expanded tooltip shows the translated gray action hint
+PASS: concrete:white mouse toggle restores collapsed contents without changing the carried stack
+PASS: concrete:white collapsed keeps every scrolled slot aligned with its group entry
+PASS: wool:orange has multiple real vanilla tab members
+PASS: wool:orange collapses all expected tab members under one header
+PASS: wool:orange has no visible children while collapsed
+PASS: wool:orange collapsed tooltip shows the translated gray action hint
+PASS: wool:orange expands exact vanilla children in order without omissions or duplicates
+PASS: wool:orange expanded keeps every scrolled slot aligned with its group entry
+PASS: wool:orange expanded tooltip shows the translated gray action hint
+PASS: wool:orange mouse toggle restores collapsed contents without changing the carried stack
+PASS: wool:orange collapsed keeps every scrolled slot aligned with its group entry
+PASS: concrete:orange has multiple real vanilla tab members
+PASS: concrete:orange collapses all expected tab members under one header
+PASS: concrete:orange has no visible children while collapsed
+PASS: concrete:orange collapsed tooltip shows the translated gray action hint
+PASS: concrete:orange expands exact vanilla children in order without omissions or duplicates
+PASS: concrete:orange expanded keeps every scrolled slot aligned with its group entry
+PASS: concrete:orange expanded tooltip shows the translated gray action hint
+PASS: concrete:orange mouse toggle restores collapsed contents without changing the carried stack
+PASS: concrete:orange collapsed keeps every scrolled slot aligned with its group entry
+PASS: wool:magenta has multiple real vanilla tab members
+PASS: wool:magenta collapses all expected tab members under one header
+PASS: wool:magenta has no visible children while collapsed
+PASS: wool:magenta collapsed tooltip shows the translated gray action hint
+PASS: wool:magenta expands exact vanilla children in order without omissions or duplicates
+PASS: wool:magenta expanded keeps every scrolled slot aligned with its group entry
+PASS: wool:magenta expanded tooltip shows the translated gray action hint
+PASS: wool:magenta mouse toggle restores collapsed contents without changing the carried stack
+PASS: wool:magenta collapsed keeps every scrolled slot aligned with its group entry
+PASS: concrete:magenta has multiple real vanilla tab members
+PASS: concrete:magenta collapses all expected tab members under one header
+PASS: concrete:magenta has no visible children while collapsed
+PASS: concrete:magenta collapsed tooltip shows the translated gray action hint
+PASS: concrete:magenta expands exact vanilla children in order without omissions or duplicates
+PASS: concrete:magenta expanded keeps every scrolled slot aligned with its group entry
+PASS: concrete:magenta expanded tooltip shows the translated gray action hint
+PASS: concrete:magenta mouse toggle restores collapsed contents without changing the carried stack
+PASS: concrete:magenta collapsed keeps every scrolled slot aligned with its group entry
+PASS: wool:light_blue has multiple real vanilla tab members
+PASS: wool:light_blue collapses all expected tab members under one header
+PASS: wool:light_blue has no visible children while collapsed
+PASS: wool:light_blue collapsed tooltip shows the translated gray action hint
+PASS: wool:light_blue expands exact vanilla children in order without omissions or duplicates
+PASS: wool:light_blue expanded keeps every scrolled slot aligned with its group entry
+PASS: wool:light_blue expanded tooltip shows the translated gray action hint
+PASS: wool:light_blue mouse toggle restores collapsed contents without changing the carried stack
+PASS: wool:light_blue collapsed keeps every scrolled slot aligned with its group entry
+PASS: concrete:light_blue has multiple real vanilla tab members
+PASS: concrete:light_blue collapses all expected tab members under one header
+PASS: concrete:light_blue has no visible children while collapsed
+PASS: concrete:light_blue collapsed tooltip shows the translated gray action hint
+PASS: concrete:light_blue expands exact vanilla children in order without omissions or duplicates
+PASS: concrete:light_blue expanded keeps every scrolled slot aligned with its group entry
+PASS: concrete:light_blue expanded tooltip shows the translated gray action hint
+PASS: concrete:light_blue mouse toggle restores collapsed contents without changing the carried stack
+PASS: concrete:light_blue collapsed keeps every scrolled slot aligned with its group entry
+PASS: wool:yellow has multiple real vanilla tab members
+PASS: wool:yellow collapses all expected tab members under one header
+PASS: wool:yellow has no visible children while collapsed
+PASS: wool:yellow collapsed tooltip shows the translated gray action hint
+PASS: wool:yellow expands exact vanilla children in order without omissions or duplicates
+PASS: wool:yellow expanded keeps every scrolled slot aligned with its group entry
+PASS: wool:yellow expanded tooltip shows the translated gray action hint
+PASS: wool:yellow mouse toggle restores collapsed contents without changing the carried stack
+PASS: wool:yellow collapsed keeps every scrolled slot aligned with its group entry
+PASS: concrete:yellow has multiple real vanilla tab members
+PASS: concrete:yellow collapses all expected tab members under one header
+PASS: concrete:yellow has no visible children while collapsed
+PASS: concrete:yellow collapsed tooltip shows the translated gray action hint
+PASS: concrete:yellow expands exact vanilla children in order without omissions or duplicates
+PASS: concrete:yellow expanded keeps every scrolled slot aligned with its group entry
+PASS: concrete:yellow expanded tooltip shows the translated gray action hint
+PASS: concrete:yellow mouse toggle restores collapsed contents without changing the carried stack
+PASS: concrete:yellow collapsed keeps every scrolled slot aligned with its group entry
+PASS: wool:lime has multiple real vanilla tab members
+PASS: wool:lime collapses all expected tab members under one header
+PASS: wool:lime has no visible children while collapsed
+PASS: wool:lime collapsed tooltip shows the translated gray action hint
+PASS: wool:lime expands exact vanilla children in order without omissions or duplicates
+PASS: wool:lime expanded keeps every scrolled slot aligned with its group entry
+PASS: wool:lime expanded tooltip shows the translated gray action hint
+PASS: wool:lime mouse toggle restores collapsed contents without changing the carried stack
+PASS: wool:lime collapsed keeps every scrolled slot aligned with its group entry
+PASS: concrete:lime has multiple real vanilla tab members
+PASS: concrete:lime collapses all expected tab members under one header
+PASS: concrete:lime has no visible children while collapsed
+PASS: concrete:lime collapsed tooltip shows the translated gray action hint
+PASS: concrete:lime expands exact vanilla children in order without omissions or duplicates
+PASS: concrete:lime expanded keeps every scrolled slot aligned with its group entry
+PASS: concrete:lime expanded tooltip shows the translated gray action hint
+PASS: concrete:lime mouse toggle restores collapsed contents without changing the carried stack
+PASS: concrete:lime collapsed keeps every scrolled slot aligned with its group entry
+PASS: wool:pink has multiple real vanilla tab members
+PASS: wool:pink collapses all expected tab members under one header
+PASS: wool:pink has no visible children while collapsed
+PASS: wool:pink collapsed tooltip shows the translated gray action hint
+PASS: wool:pink expands exact vanilla children in order without omissions or duplicates
+PASS: wool:pink expanded keeps every scrolled slot aligned with its group entry
+PASS: wool:pink expanded tooltip shows the translated gray action hint
+PASS: wool:pink mouse toggle restores collapsed contents without changing the carried stack
+PASS: wool:pink collapsed keeps every scrolled slot aligned with its group entry
+PASS: concrete:pink has multiple real vanilla tab members
+PASS: concrete:pink collapses all expected tab members under one header
+PASS: concrete:pink has no visible children while collapsed
+PASS: concrete:pink collapsed tooltip shows the translated gray action hint
+PASS: concrete:pink expands exact vanilla children in order without omissions or duplicates
+PASS: concrete:pink expanded keeps every scrolled slot aligned with its group entry
+PASS: concrete:pink expanded tooltip shows the translated gray action hint
+PASS: concrete:pink mouse toggle restores collapsed contents without changing the carried stack
+PASS: concrete:pink collapsed keeps every scrolled slot aligned with its group entry
+PASS: wool:gray has multiple real vanilla tab members
+PASS: wool:gray collapses all expected tab members under one header
+PASS: wool:gray has no visible children while collapsed
+PASS: wool:gray collapsed tooltip shows the translated gray action hint
+PASS: wool:gray expands exact vanilla children in order without omissions or duplicates
+PASS: wool:gray expanded keeps every scrolled slot aligned with its group entry
+PASS: wool:gray expanded tooltip shows the translated gray action hint
+PASS: wool:gray mouse toggle restores collapsed contents without changing the carried stack
+PASS: wool:gray collapsed keeps every scrolled slot aligned with its group entry
+PASS: concrete:gray has multiple real vanilla tab members
+PASS: concrete:gray collapses all expected tab members under one header
+PASS: concrete:gray has no visible children while collapsed
+PASS: concrete:gray collapsed tooltip shows the translated gray action hint
+PASS: concrete:gray expands exact vanilla children in order without omissions or duplicates
+PASS: concrete:gray expanded keeps every scrolled slot aligned with its group entry
+PASS: concrete:gray expanded tooltip shows the translated gray action hint
+PASS: concrete:gray mouse toggle restores collapsed contents without changing the carried stack
+PASS: concrete:gray collapsed keeps every scrolled slot aligned with its group entry
+PASS: wool:light_gray has multiple real vanilla tab members
+PASS: wool:light_gray collapses all expected tab members under one header
+PASS: wool:light_gray has no visible children while collapsed
+PASS: wool:light_gray collapsed tooltip shows the translated gray action hint
+PASS: wool:light_gray expands exact vanilla children in order without omissions or duplicates
+PASS: wool:light_gray expanded keeps every scrolled slot aligned with its group entry
+PASS: wool:light_gray expanded tooltip shows the translated gray action hint
+PASS: wool:light_gray mouse toggle restores collapsed contents without changing the carried stack
+PASS: wool:light_gray collapsed keeps every scrolled slot aligned with its group entry
+PASS: concrete:light_gray has multiple real vanilla tab members
+PASS: concrete:light_gray collapses all expected tab members under one header
+PASS: concrete:light_gray has no visible children while collapsed
+PASS: concrete:light_gray collapsed tooltip shows the translated gray action hint
+PASS: concrete:light_gray expands exact vanilla children in order without omissions or duplicates
+PASS: concrete:light_gray expanded keeps every scrolled slot aligned with its group entry
+PASS: concrete:light_gray expanded tooltip shows the translated gray action hint
+PASS: concrete:light_gray mouse toggle restores collapsed contents without changing the carried stack
+PASS: concrete:light_gray collapsed keeps every scrolled slot aligned with its group entry
+PASS: wool:cyan has multiple real vanilla tab members
+PASS: wool:cyan collapses all expected tab members under one header
+PASS: wool:cyan has no visible children while collapsed
+PASS: wool:cyan collapsed tooltip shows the translated gray action hint
+PASS: wool:cyan expands exact vanilla children in order without omissions or duplicates
+PASS: wool:cyan expanded keeps every scrolled slot aligned with its group entry
+PASS: wool:cyan expanded tooltip shows the translated gray action hint
+PASS: wool:cyan mouse toggle restores collapsed contents without changing the carried stack
+PASS: wool:cyan collapsed keeps every scrolled slot aligned with its group entry
+PASS: concrete:cyan has multiple real vanilla tab members
+PASS: concrete:cyan collapses all expected tab members under one header
+PASS: concrete:cyan has no visible children while collapsed
+PASS: concrete:cyan collapsed tooltip shows the translated gray action hint
+PASS: concrete:cyan expands exact vanilla children in order without omissions or duplicates
+PASS: concrete:cyan expanded keeps every scrolled slot aligned with its group entry
+PASS: concrete:cyan expanded tooltip shows the translated gray action hint
+PASS: concrete:cyan mouse toggle restores collapsed contents without changing the carried stack
+PASS: concrete:cyan collapsed keeps every scrolled slot aligned with its group entry
+PASS: wool:purple has multiple real vanilla tab members
+PASS: wool:purple collapses all expected tab members under one header
+PASS: wool:purple has no visible children while collapsed
+PASS: wool:purple collapsed tooltip shows the translated gray action hint
+PASS: wool:purple expands exact vanilla children in order without omissions or duplicates
+PASS: wool:purple expanded keeps every scrolled slot aligned with its group entry
+PASS: wool:purple expanded tooltip shows the translated gray action hint
+PASS: wool:purple mouse toggle restores collapsed contents without changing the carried stack
+PASS: wool:purple collapsed keeps every scrolled slot aligned with its group entry
+PASS: concrete:purple has multiple real vanilla tab members
+PASS: concrete:purple collapses all expected tab members under one header
+PASS: concrete:purple has no visible children while collapsed
+PASS: concrete:purple collapsed tooltip shows the translated gray action hint
+PASS: concrete:purple expands exact vanilla children in order without omissions or duplicates
+PASS: concrete:purple expanded keeps every scrolled slot aligned with its group entry
+PASS: concrete:purple expanded tooltip shows the translated gray action hint
+PASS: concrete:purple mouse toggle restores collapsed contents without changing the carried stack
+PASS: concrete:purple collapsed keeps every scrolled slot aligned with its group entry
+PASS: wool:blue has multiple real vanilla tab members
+PASS: wool:blue collapses all expected tab members under one header
+PASS: wool:blue has no visible children while collapsed
+PASS: wool:blue collapsed tooltip shows the translated gray action hint
+PASS: wool:blue expands exact vanilla children in order without omissions or duplicates
+PASS: wool:blue expanded keeps every scrolled slot aligned with its group entry
+PASS: wool:blue expanded tooltip shows the translated gray action hint
+PASS: wool:blue mouse toggle restores collapsed contents without changing the carried stack
+PASS: wool:blue collapsed keeps every scrolled slot aligned with its group entry
+PASS: concrete:blue has multiple real vanilla tab members
+PASS: concrete:blue collapses all expected tab members under one header
+PASS: concrete:blue has no visible children while collapsed
+PASS: concrete:blue collapsed tooltip shows the translated gray action hint
+PASS: concrete:blue expands exact vanilla children in order without omissions or duplicates
+PASS: concrete:blue expanded keeps every scrolled slot aligned with its group entry
+PASS: concrete:blue expanded tooltip shows the translated gray action hint
+PASS: concrete:blue mouse toggle restores collapsed contents without changing the carried stack
+PASS: concrete:blue collapsed keeps every scrolled slot aligned with its group entry
+PASS: wool:brown has multiple real vanilla tab members
+PASS: wool:brown collapses all expected tab members under one header
+PASS: wool:brown has no visible children while collapsed
+PASS: wool:brown collapsed tooltip shows the translated gray action hint
+PASS: wool:brown expands exact vanilla children in order without omissions or duplicates
+PASS: wool:brown expanded keeps every scrolled slot aligned with its group entry
+PASS: wool:brown expanded tooltip shows the translated gray action hint
+PASS: wool:brown mouse toggle restores collapsed contents without changing the carried stack
+PASS: wool:brown collapsed keeps every scrolled slot aligned with its group entry
+PASS: concrete:brown has multiple real vanilla tab members
+PASS: concrete:brown collapses all expected tab members under one header
+PASS: concrete:brown has no visible children while collapsed
+PASS: concrete:brown collapsed tooltip shows the translated gray action hint
+PASS: concrete:brown expands exact vanilla children in order without omissions or duplicates
+PASS: concrete:brown expanded keeps every scrolled slot aligned with its group entry
+PASS: concrete:brown expanded tooltip shows the translated gray action hint
+PASS: concrete:brown mouse toggle restores collapsed contents without changing the carried stack
+PASS: concrete:brown collapsed keeps every scrolled slot aligned with its group entry
+PASS: wool:green has multiple real vanilla tab members
+PASS: wool:green collapses all expected tab members under one header
+PASS: wool:green has no visible children while collapsed
+PASS: wool:green collapsed tooltip shows the translated gray action hint
+PASS: wool:green expands exact vanilla children in order without omissions or duplicates
+PASS: wool:green expanded keeps every scrolled slot aligned with its group entry
+PASS: wool:green expanded tooltip shows the translated gray action hint
+PASS: wool:green mouse toggle restores collapsed contents without changing the carried stack
+PASS: wool:green collapsed keeps every scrolled slot aligned with its group entry
+PASS: concrete:green has multiple real vanilla tab members
+PASS: concrete:green collapses all expected tab members under one header
+PASS: concrete:green has no visible children while collapsed
+PASS: concrete:green collapsed tooltip shows the translated gray action hint
+PASS: concrete:green expands exact vanilla children in order without omissions or duplicates
+PASS: concrete:green expanded keeps every scrolled slot aligned with its group entry
+PASS: concrete:green expanded tooltip shows the translated gray action hint
+PASS: concrete:green mouse toggle restores collapsed contents without changing the carried stack
+PASS: concrete:green collapsed keeps every scrolled slot aligned with its group entry
+PASS: wool:red has multiple real vanilla tab members
+PASS: wool:red collapses all expected tab members under one header
+PASS: wool:red has no visible children while collapsed
+PASS: wool:red collapsed tooltip shows the translated gray action hint
+PASS: wool:red expands exact vanilla children in order without omissions or duplicates
+PASS: wool:red expanded keeps every scrolled slot aligned with its group entry
+PASS: wool:red expanded tooltip shows the translated gray action hint
+PASS: wool:red mouse toggle restores collapsed contents without changing the carried stack
+PASS: wool:red collapsed keeps every scrolled slot aligned with its group entry
+PASS: concrete:red has multiple real vanilla tab members
+PASS: concrete:red collapses all expected tab members under one header
+PASS: concrete:red has no visible children while collapsed
+PASS: concrete:red collapsed tooltip shows the translated gray action hint
+PASS: concrete:red expands exact vanilla children in order without omissions or duplicates
+PASS: concrete:red expanded keeps every scrolled slot aligned with its group entry
+PASS: concrete:red expanded tooltip shows the translated gray action hint
+PASS: concrete:red mouse toggle restores collapsed contents without changing the carried stack
+PASS: concrete:red collapsed keeps every scrolled slot aligned with its group entry
+PASS: wool:black has multiple real vanilla tab members
+PASS: wool:black collapses all expected tab members under one header
+PASS: wool:black has no visible children while collapsed
+PASS: wool:black collapsed tooltip shows the translated gray action hint
+PASS: wool:black expands exact vanilla children in order without omissions or duplicates
+PASS: wool:black expanded keeps every scrolled slot aligned with its group entry
+PASS: wool:black expanded tooltip shows the translated gray action hint
+PASS: wool:black mouse toggle restores collapsed contents without changing the carried stack
+PASS: wool:black collapsed keeps every scrolled slot aligned with its group entry
+PASS: concrete:black has multiple real vanilla tab members
+PASS: concrete:black collapses all expected tab members under one header
+PASS: concrete:black has no visible children while collapsed
+PASS: concrete:black collapsed tooltip shows the translated gray action hint
+PASS: concrete:black expands exact vanilla children in order without omissions or duplicates
+PASS: concrete:black expanded keeps every scrolled slot aligned with its group entry
+PASS: concrete:black expanded tooltip shows the translated gray action hint
+PASS: concrete:black mouse toggle restores collapsed contents without changing the carried stack
+PASS: concrete:black collapsed keeps every scrolled slot aligned with its group entry
+PASS: color:terracotta has multiple real vanilla tab members
+PASS: color:terracotta collapses all expected tab members under one header
+PASS: color:terracotta has no visible children while collapsed
+PASS: color:terracotta collapsed tooltip shows the translated gray action hint
+PASS: color:terracotta expands exact vanilla children in order without omissions or duplicates
+PASS: color:terracotta expanded keeps every scrolled slot aligned with its group entry
+PASS: color:terracotta expanded tooltip shows the translated gray action hint
+PASS: color:terracotta mouse toggle restores collapsed contents without changing the carried stack
+PASS: color:terracotta collapsed keeps every scrolled slot aligned with its group entry
+PASS: color:glazed_terracotta has multiple real vanilla tab members
+PASS: color:glazed_terracotta collapses all expected tab members under one header
+PASS: color:glazed_terracotta has no visible children while collapsed
+PASS: color:glazed_terracotta collapsed tooltip shows the translated gray action hint
+PASS: color:glazed_terracotta expands exact vanilla children in order without omissions or duplicates
+PASS: color:glazed_terracotta expanded keeps every scrolled slot aligned with its group entry
+PASS: color:glazed_terracotta expanded tooltip shows the translated gray action hint
+PASS: color:glazed_terracotta mouse toggle restores collapsed contents without changing the carried stack
+PASS: color:glazed_terracotta collapsed keeps every scrolled slot aligned with its group entry
+SCREENSHOT: /home/thenathe/SSDC/Plugins/WP Plugin Dev/Minecraft/better-recipe-book-26.3/qa/packaged-all4-hardware-final-20261013/screenshots/0008_brb-creative-material-colors-collapsed.png
+SCREENSHOT: /home/thenathe/SSDC/Plugins/WP Plugin Dev/Minecraft/better-recipe-book-26.3/qa/packaged-all4-hardware-final-20261013/screenshots/0009_brb-creative-group-tooltip.png
+PASS: color:stained_glass has multiple real vanilla tab members
+PASS: color:stained_glass collapses all expected tab members under one header
+PASS: color:stained_glass has no visible children while collapsed
+PASS: color:stained_glass collapsed tooltip shows the translated gray action hint
+PASS: color:stained_glass expands exact vanilla children in order without omissions or duplicates
+PASS: color:stained_glass expanded keeps every scrolled slot aligned with its group entry
+PASS: color:stained_glass expanded tooltip shows the translated gray action hint
+PASS: color:stained_glass mouse toggle restores collapsed contents without changing the carried stack
+PASS: color:stained_glass collapsed keeps every scrolled slot aligned with its group entry
+PASS: color:stained_glass is covered in its real creative category
+PASS: color:stained_glass_pane has multiple real vanilla tab members
+PASS: color:stained_glass_pane collapses all expected tab members under one header
+PASS: color:stained_glass_pane has no visible children while collapsed
+PASS: color:stained_glass_pane collapsed tooltip shows the translated gray action hint
+PASS: color:stained_glass_pane expands exact vanilla children in order without omissions or duplicates
+PASS: color:stained_glass_pane expanded keeps every scrolled slot aligned with its group entry
+PASS: color:stained_glass_pane expanded tooltip shows the translated gray action hint
+PASS: color:stained_glass_pane mouse toggle restores collapsed contents without changing the carried stack
+PASS: color:stained_glass_pane collapsed keeps every scrolled slot aligned with its group entry
+PASS: color:stained_glass_pane is covered in its real creative category
+PASS: color:shulker_box has multiple real vanilla tab members
+PASS: color:shulker_box collapses all expected tab members under one header
+PASS: color:shulker_box has no visible children while collapsed
+PASS: color:shulker_box collapsed tooltip shows the translated gray action hint
+PASS: color:shulker_box expands exact vanilla children in order without omissions or duplicates
+PASS: color:shulker_box expanded keeps every scrolled slot aligned with its group entry
+PASS: color:shulker_box expanded tooltip shows the translated gray action hint
+PASS: color:shulker_box mouse toggle restores collapsed contents without changing the carried stack
+PASS: color:shulker_box collapsed keeps every scrolled slot aligned with its group entry
+PASS: color:shulker_box has multiple real vanilla tab members
+PASS: color:shulker_box collapses all expected tab members under one header
+PASS: color:shulker_box has no visible children while collapsed
+PASS: color:shulker_box collapsed tooltip shows the translated gray action hint
+PASS: color:shulker_box expands exact vanilla children in order without omissions or duplicates
+PASS: color:shulker_box expanded keeps every scrolled slot aligned with its group entry
+PASS: color:shulker_box expanded tooltip shows the translated gray action hint
+PASS: color:shulker_box mouse toggle restores collapsed contents without changing the carried stack
+PASS: color:shulker_box collapsed keeps every scrolled slot aligned with its group entry
+PASS: color:shulker_box is covered in its real creative category
+PASS: color:cushion has multiple real vanilla tab members
+PASS: color:cushion collapses all expected tab members under one header
+PASS: color:cushion has no visible children while collapsed
+PASS: color:cushion collapsed tooltip shows the translated gray action hint
+PASS: color:cushion expands exact vanilla children in order without omissions or duplicates
+PASS: color:cushion expanded keeps every scrolled slot aligned with its group entry
+PASS: color:cushion expanded tooltip shows the translated gray action hint
+PASS: color:cushion mouse toggle restores collapsed contents without changing the carried stack
+PASS: color:cushion collapsed keeps every scrolled slot aligned with its group entry
+PASS: color:cushion is covered in its real creative category
+PASS: color:candle has multiple real vanilla tab members
+PASS: color:candle collapses all expected tab members under one header
+PASS: color:candle has no visible children while collapsed
+PASS: color:candle collapsed tooltip shows the translated gray action hint
+PASS: color:candle expands exact vanilla children in order without omissions or duplicates
+PASS: color:candle expanded keeps every scrolled slot aligned with its group entry
+PASS: color:candle expanded tooltip shows the translated gray action hint
+PASS: color:candle mouse toggle restores collapsed contents without changing the carried stack
+PASS: color:candle collapsed keeps every scrolled slot aligned with its group entry
+PASS: color:candle has multiple real vanilla tab members
+PASS: color:candle collapses all expected tab members under one header
+PASS: color:candle has no visible children while collapsed
+PASS: color:candle collapsed tooltip shows the translated gray action hint
+PASS: color:candle expands exact vanilla children in order without omissions or duplicates
+PASS: color:candle expanded keeps every scrolled slot aligned with its group entry
+PASS: color:candle expanded tooltip shows the translated gray action hint
+PASS: color:candle mouse toggle restores collapsed contents without changing the carried stack
+PASS: color:candle collapsed keeps every scrolled slot aligned with its group entry
+PASS: color:candle is covered in its real creative category
+PASS: color:bundle has multiple real vanilla tab members
+PASS: color:bundle collapses all expected tab members under one header
+PASS: color:bundle has no visible children while collapsed
+PASS: color:bundle collapsed tooltip shows the translated gray action hint
+PASS: color:bundle expands exact vanilla children in order without omissions or duplicates
+PASS: color:bundle expanded keeps every scrolled slot aligned with its group entry
+PASS: color:bundle expanded tooltip shows the translated gray action hint
+PASS: color:bundle mouse toggle restores collapsed contents without changing the carried stack
+PASS: color:bundle collapsed keeps every scrolled slot aligned with its group entry
+PASS: color:bundle is covered in its real creative category
+PASS: color:harness has multiple real vanilla tab members
+PASS: color:harness collapses all expected tab members under one header
+PASS: color:harness has no visible children while collapsed
+PASS: color:harness collapsed tooltip shows the translated gray action hint
+PASS: color:harness expands exact vanilla children in order without omissions or duplicates
+PASS: color:harness expanded keeps every scrolled slot aligned with its group entry
+PASS: color:harness expanded tooltip shows the translated gray action hint
+PASS: color:harness mouse toggle restores collapsed contents without changing the carried stack
+PASS: color:harness collapsed keeps every scrolled slot aligned with its group entry
+PASS: color:harness is covered in its real creative category
+PASS: natural:leaves has multiple real vanilla tab members
+PASS: natural:leaves collapses all expected tab members under one header
+PASS: natural:leaves has no visible children while collapsed
+PASS: natural:leaves collapsed tooltip shows the translated gray action hint
+PASS: natural:leaves expands exact vanilla children in order without omissions or duplicates
+PASS: natural:leaves expanded keeps every scrolled slot aligned with its group entry
+PASS: natural:leaves expanded tooltip shows the translated gray action hint
+PASS: natural:leaves mouse toggle restores collapsed contents without changing the carried stack
+PASS: natural:leaves collapsed keeps every scrolled slot aligned with its group entry
+PASS: natural:logs has multiple real vanilla tab members
+PASS: natural:logs collapses all expected tab members under one header
+PASS: natural:logs has no visible children while collapsed
+PASS: natural:logs collapsed tooltip shows the translated gray action hint
+PASS: natural:logs expands exact vanilla children in order without omissions or duplicates
+PASS: natural:logs expanded keeps every scrolled slot aligned with its group entry
+PASS: natural:logs expanded tooltip shows the translated gray action hint
+PASS: natural:logs mouse toggle restores collapsed contents without changing the carried stack
+PASS: natural:logs collapsed keeps every scrolled slot aligned with its group entry
+PASS: natural:ores has multiple real vanilla tab members
+PASS: natural:ores collapses all expected tab members under one header
+PASS: natural:ores has no visible children while collapsed
+PASS: natural:ores collapsed tooltip shows the translated gray action hint
+PASS: natural:ores expands exact vanilla children in order without omissions or duplicates
+PASS: natural:ores expanded keeps every scrolled slot aligned with its group entry
+PASS: natural:ores expanded tooltip shows the translated gray action hint
+PASS: natural:ores mouse toggle restores collapsed contents without changing the carried stack
+PASS: natural:ores collapsed keeps every scrolled slot aligned with its group entry
+PASS: Natural Blocks shows global logs and leaves instead of individual tree families
+PASS: coral:tube has multiple real vanilla tab members
+PASS: coral:tube collapses all expected tab members under one header
+PASS: coral:tube has no visible children while collapsed
+PASS: coral:tube collapsed tooltip shows the translated gray action hint
+PASS: coral:tube expands exact vanilla children in order without omissions or duplicates
+PASS: coral:tube expanded keeps every scrolled slot aligned with its group entry
+PASS: coral:tube expanded tooltip shows the translated gray action hint
+PASS: coral:tube mouse toggle restores collapsed contents without changing the carried stack
+PASS: coral:tube collapsed keeps every scrolled slot aligned with its group entry
+PASS: coral:tube is covered in its real creative category
+PASS: coral:brain has multiple real vanilla tab members
+PASS: coral:brain collapses all expected tab members under one header
+PASS: coral:brain has no visible children while collapsed
+PASS: coral:brain collapsed tooltip shows the translated gray action hint
+PASS: coral:brain expands exact vanilla children in order without omissions or duplicates
+PASS: coral:brain expanded keeps every scrolled slot aligned with its group entry
+PASS: coral:brain expanded tooltip shows the translated gray action hint
+PASS: coral:brain mouse toggle restores collapsed contents without changing the carried stack
+PASS: coral:brain collapsed keeps every scrolled slot aligned with its group entry
+PASS: coral:brain is covered in its real creative category
+PASS: coral:bubble has multiple real vanilla tab members
+PASS: coral:bubble collapses all expected tab members under one header
+PASS: coral:bubble has no visible children while collapsed
+PASS: coral:bubble collapsed tooltip shows the translated gray action hint
+PASS: coral:bubble expands exact vanilla children in order without omissions or duplicates
+PASS: coral:bubble expanded keeps every scrolled slot aligned with its group entry
+PASS: coral:bubble expanded tooltip shows the translated gray action hint
+PASS: coral:bubble mouse toggle restores collapsed contents without changing the carried stack
+PASS: coral:bubble collapsed keeps every scrolled slot aligned with its group entry
+PASS: coral:bubble is covered in its real creative category
+PASS: coral:fire has multiple real vanilla tab members
+PASS: coral:fire collapses all expected tab members under one header
+PASS: coral:fire has no visible children while collapsed
+PASS: coral:fire collapsed tooltip shows the translated gray action hint
+PASS: coral:fire expands exact vanilla children in order without omissions or duplicates
+PASS: coral:fire expanded keeps every scrolled slot aligned with its group entry
+PASS: coral:fire expanded tooltip shows the translated gray action hint
+PASS: coral:fire mouse toggle restores collapsed contents without changing the carried stack
+PASS: coral:fire collapsed keeps every scrolled slot aligned with its group entry
+PASS: coral:fire is covered in its real creative category
+PASS: coral:horn has multiple real vanilla tab members
+PASS: coral:horn collapses all expected tab members under one header
+PASS: coral:horn has no visible children while collapsed
+PASS: coral:horn collapsed tooltip shows the translated gray action hint
+PASS: coral:horn expands exact vanilla children in order without omissions or duplicates
+PASS: coral:horn expanded keeps every scrolled slot aligned with its group entry
+PASS: coral:horn expanded tooltip shows the translated gray action hint
+PASS: coral:horn mouse toggle restores collapsed contents without changing the carried stack
+PASS: coral:horn collapsed keeps every scrolled slot aligned with its group entry
+PASS: coral:horn is covered in its real creative category
+PASS: pottery:sherds has multiple real vanilla tab members
+PASS: pottery:sherds collapses all expected tab members under one header
+PASS: pottery:sherds has no visible children while collapsed
+PASS: pottery:sherds collapsed tooltip shows the translated gray action hint
+PASS: pottery:sherds expands exact vanilla children in order without omissions or duplicates
+PASS: pottery:sherds expanded keeps every scrolled slot aligned with its group entry
+PASS: pottery:sherds expanded tooltip shows the translated gray action hint
+PASS: pottery:sherds mouse toggle restores collapsed contents without changing the carried stack
+PASS: pottery:sherds collapsed keeps every scrolled slot aligned with its group entry
+PASS: pottery:sherds is covered in its real creative category
+PASS: patterns:banner_patterns has multiple real vanilla tab members
+PASS: patterns:banner_patterns collapses all expected tab members under one header
+PASS: patterns:banner_patterns has no visible children while collapsed
+PASS: patterns:banner_patterns collapsed tooltip shows the translated gray action hint
+PASS: patterns:banner_patterns expands exact vanilla children in order without omissions or duplicates
+PASS: patterns:banner_patterns expanded keeps every scrolled slot aligned with its group entry
+PASS: patterns:banner_patterns expanded tooltip shows the translated gray action hint
+PASS: patterns:banner_patterns mouse toggle restores collapsed contents without changing the carried stack
+PASS: patterns:banner_patterns collapsed keeps every scrolled slot aligned with its group entry
+PASS: patterns:banner_patterns is covered in its real creative category
+PASS: utility:anvils has multiple real vanilla tab members
+RESULT: FAIL; java.lang.AssertionError: utility:anvils collapses all expected tab members under one header
