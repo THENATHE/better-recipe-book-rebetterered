@@ -1,0 +1,13 @@
+{
+  "recovery": "repaired",
+  "settingsText": "f6fbb780aa1fc146b221d3771a7d99452a81dbb887efea00af262d78a69f498d",
+  "settings": {
+    "instantCraft.overflow": "STOP_BEFORE_DROP",
+    "recipeDisplayMode": "EXPANDABLE",
+    "instantCraft.craftAllMethod": "FILL_GRID",
+    "keepCentered": "true",
+    "creativeDisplayMode": "VANILLA",
+    "smithingBookCraftableOnly": "true",
+    "scrolling.scrollAround": "true"
+  }
+}

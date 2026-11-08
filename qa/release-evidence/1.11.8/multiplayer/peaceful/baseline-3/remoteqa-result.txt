@@ -1,0 +1,69 @@
+PASS: connected without an integrated server
+PASS: fixture is restricted to the owned loopback server
+PASS: optional Mod Menu registers BRB settings
+PASS: Mod Menu creates the retained Cloth Config screen
+PASS: packaged vanilla recipe catalogue loads remotely: 2042 recipes
+PASS: remote brewing and smithing catalogues are populated: 279/5754
+PASS: scenario runs in survival: left-click normal placement
+PASS: recipe display provenance matches scenario: left-click normal placement
+PASS: real recipe widget consumes left-click normal placement
+PASS: cursor is empty after left-click normal placement
+PASS: vanilla server confirms authoritative item counts for left-click normal placement
+PASS: server menu closure preserves every unconsumed input for left-click normal placement
+PASS: scenario runs in survival: Shift-left-click maximum placement
+PASS: recipe display provenance matches scenario: Shift-left-click maximum placement
+PASS: real recipe widget consumes Shift-left-click maximum placement
+PASS: cursor is empty after Shift-left-click maximum placement
+PASS: vanilla server confirms authoritative item counts for Shift-left-click maximum placement
+PASS: server menu closure preserves every unconsumed input for Shift-left-click maximum placement
+PASS: scenario runs in survival: right-click one batch
+PASS: recipe display provenance matches scenario: right-click one batch
+PASS: real recipe widget consumes right-click one batch
+PASS: cursor is empty after right-click one batch
+PASS: vanilla server confirms authoritative item counts for right-click one batch
+PASS: server menu closure preserves every unconsumed input for right-click one batch
+PASS: scenario runs in survival: Shift-right-click maximum crafting
+PASS: recipe display provenance matches scenario: Shift-right-click maximum crafting
+PASS: real recipe widget consumes Shift-right-click maximum crafting
+PASS: cursor is empty after Shift-right-click maximum crafting
+PASS: vanilla server confirms authoritative item counts for Shift-right-click maximum crafting
+PASS: server menu closure preserves every unconsumed input for Shift-right-click maximum crafting
+PASS: scenario runs in survival: undiscovered local placement
+PASS: recipe display provenance matches scenario: undiscovered local placement
+PASS: real recipe widget consumes undiscovered local placement
+PASS: cursor is empty after undiscovered local placement
+PASS: vanilla server confirms authoritative item counts for undiscovered local placement
+PASS: server menu closure preserves every unconsumed input for undiscovered local placement
+PASS: scenario runs in survival: undiscovered local right-click crafting
+PASS: recipe display provenance matches scenario: undiscovered local right-click crafting
+PASS: real recipe widget consumes undiscovered local right-click crafting
+PASS: cursor is empty after undiscovered local right-click crafting
+PASS: vanilla server confirms authoritative item counts for undiscovered local right-click crafting
+PASS: server menu closure preserves every unconsumed input for undiscovered local right-click crafting
+PASS: scenario runs in survival: single-batch undiscovered local craft-all
+PASS: recipe display provenance matches scenario: single-batch undiscovered local craft-all
+PASS: real recipe widget consumes single-batch undiscovered local craft-all
+PASS: cursor is empty after single-batch undiscovered local craft-all
+PASS: vanilla server confirms authoritative item counts for single-batch undiscovered local craft-all
+PASS: server menu closure preserves every unconsumed input for single-batch undiscovered local craft-all
+PASS: scenario runs in survival: fill-grid right-click stays one batch
+PASS: recipe display provenance matches scenario: fill-grid right-click stays one batch
+PASS: real recipe widget consumes fill-grid right-click stays one batch
+PASS: cursor is empty after fill-grid right-click stays one batch
+PASS: vanilla server confirms authoritative item counts for fill-grid right-click stays one batch
+PASS: server menu closure preserves every unconsumed input for fill-grid right-click stays one batch
+PASS: scenario runs in survival: fill-grid native craft-all reloads after 64 batches
+PASS: recipe display provenance matches scenario: fill-grid native craft-all reloads after 64 batches
+PASS: real recipe widget consumes fill-grid native craft-all reloads after 64 batches
+PASS: cursor is empty after fill-grid native craft-all reloads after 64 batches
+PASS: Fill grid sends exactly two Shift-output transfers and no individual pickups for fill-grid native craft-all reloads after 64 batches
+PASS: vanilla server confirms authoritative item counts for fill-grid native craft-all reloads after 64 batches
+PASS: server menu closure preserves every unconsumed input for fill-grid native craft-all reloads after 64 batches
+PASS: scenario runs in survival: fill-grid undiscovered local craft-all reloads after 64 batches
+PASS: recipe display provenance matches scenario: fill-grid undiscovered local craft-all reloads after 64 batches
+PASS: real recipe widget consumes fill-grid undiscovered local craft-all reloads after 64 batches
+PASS: cursor is empty after fill-grid undiscovered local craft-all reloads after 64 batches
+PASS: Fill grid sends exactly two Shift-output transfers and no individual pickups for fill-grid undiscovered local craft-all reloads after 64 batches
+PASS: vanilla server confirms authoritative item counts for fill-grid undiscovered local craft-all reloads after 64 batches
+PASS: server menu closure preserves every unconsumed input for fill-grid undiscovered local craft-all reloads after 64 batches
+RESULT: PASS; 68 assertions

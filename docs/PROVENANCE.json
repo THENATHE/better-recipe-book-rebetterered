@@ -1,6 +1,6 @@
 {
   "name": "Better Recipe Book: Rebetterered",
-  "version": "1.11.7+26.3",
+  "version": "1.11.8+26.3",
   "mod_id": "brb",
   "minecraft": "26.3",
   "loader": "Fabric",
@@ -11,83 +11,115 @@
   "implementation_base": "original BRB; Extended API/behavior reference only",
   "dependencies": {
     "fabric-loader": {
-      "version": "0.19.5",
-      "sha256": "93044e4dd46de5d8136701292f05e868da096d2c9fddb4793e4fdbcc63efc695",
-      "usage": "required external"
+      "version": "0.20.1",
+      "sha256": "d0c5a082e07410aaff9de7ab196aa6b4236002870f9ba3ad5c1260fcce5110ad",
+      "usage": "build and full-client QA; runtime minimum >=0.19.5 (multiplayer and connected QA ran on 0.19.5)"
     },
     "fabric-api": {
-      "version": "0.161.0+26.3",
-      "sha256": "86f16178a3cecc887a85a4cfe9a79d92fa7341d8f39b5951a4d6ad800ab657a6",
-      "usage": "required external"
+      "version": "0.165.2+26.3",
+      "modrinth_version_id": "nJlcvFfj",
+      "sha256": "2612a078a5daa06d9a14cabad40fe66de36b8cb22ee8cdf346d5d9894478c392",
+      "usage": "required external, >=0.165.2+26.3"
     },
     "cloth-config-fabric": {
       "version": "26.3.159",
+      "modrinth_version_id": "fg2uyxOW",
       "sha256": "1716b9964f90d2b885f9bd3887f8824b71b55c32a4123a5853486e722f7c2e4b",
-      "usage": "bundled"
+      "usage": "bundled; latest 26.3 release"
     },
     "modmenu": {
       "version": "21.0.0",
+      "modrinth_version_id": "kyy7dbrZ",
       "sha256": "837812c6c98d66141db7b5dcae668f27fb78d557e8f4c0c89912985fc26a5e6f",
-      "usage": "optional tested"
+      "usage": "optional tested; latest 26.3 release"
+    },
+    "mouse-wheelie": {
+      "version": "1.13.3+mc1.20.4",
+      "usage": "compile-only compat mixin; no 26.3 release exists; untested"
+    },
+    "fabric-client-gametest-api-v1": {
+      "version": "6.0.12+131f8d475d",
+      "sha256": "6b4911a09e8d965f0b2c13c04db7b63bf8f71df1fa12830c53c319eefdf1c029",
+      "usage": "QA fixture only"
     }
   },
   "architectury_removed": true,
   "local_only": false,
-  "installable_sha256": "28868f38950057d850d634364881855503093dcd8e70064faf7febcecb81621f",
+  "installable_sha256": "f02f61c6b710fc9ae04503dd245bb4283ef323ccfa278408fad58467ecbd9e16",
   "source": "Minecraft/better-recipe-book-26.3/ported",
   "validation": {
-    "workstation_checks": 245,
-    "settings_checks": 261,
-    "settings_controls": 15,
+    "full_client_checks": 1968,
+    "full_client_screenshots": 26,
     "packaged_multiplayer": 68,
     "packaged_multiplayer_scenarios": 10,
-    "source_rebuild_byte_identical": true,
+    "multiplayer_runs": {
+      "candidate": 8,
+      "candidate_passed": 6,
+      "baseline_1_11_7": 4,
+      "baseline_passed": 4,
+      "failures": [
+        "one conservative stop after maximum placement (easy world, cause not isolated, no item loss)",
+        "one player death to a slime (easy world, environmental)"
+      ]
+    },
+    "connected_backpack_profiles": 4,
+    "delayed_predicate_checks": 96,
+    "upgrade_from_1_11_7": {
+      "settings": 20,
+      "pins": 5,
+      "pin_key": true,
+      "settings_file_identical": true
+    },
+    "settings_recovery_checks": 23,
+    "standard_settings_checks": 15,
+    "backpack_contract_checks": 12,
     "standard_container_sequences": 131072,
     "standard_ingredient_assignments": 6,
     "standard_pin_checks": 11,
     "standard_creative_selectors": 1155,
-    "public_delivery_checks": "Performed after upload; packaged evidence covers the tested candidate",
+    "source_rebuild_byte_identical": true,
+    "display": "Xvfb, Mesa llvmpipe OpenGL 4.6",
     "previous_release": {
-      "version": "1.11.6+26.3",
-      "installable_sha256": "c129d74ee023c0de60b17fc960e14abe475d0f8035482d58ce98810eb704ea36",
-      "validation_url": "https://github.com/THENATHE/better-recipe-book-rebetterered/releases/tag/v1.11.6%2B26.3",
-      "combined_client": 1893,
-      "backpack_native_scenarios": 16,
-      "backpack_polymer_scenarios": 16,
-      "scope": "Historical full-client and backpack validation; not fresh exact-JAR verification for 1.11.7"
-    },
-    "workstation_filter_persistence_checks": 50,
-    "source_build_input_file_count": 161,
-    "source_build_input_manifest_sha256": "aa1ba00c1d4fe10d2d254f0f20601a5d6d51331b7857fa3d80c905f6f5da3f94",
-    "visual_screenshots": 6
+      "version": "1.11.7+26.3",
+      "installable_sha256": "28868f38950057d850d634364881855503093dcd8e70064faf7febcecb81621f",
+      "sources_sha256": "efdf216b9e7223c41595929685287c26291fba11708e5998d32ea18bc8beb8b2",
+      "validation_url": "https://github.com/THENATHE/better-recipe-book-rebetterered/releases/tag/v1.11.7%2B26.3",
+      "scope": "Historical; see the 1.11.7 release folder and COMBINED-QA-2026-10-13.md"
+    }
   },
   "repository": "https://github.com/THENATHE/better-recipe-book-rebetterered",
-  "tag": "v1.11.7+26.3",
+  "tag": "v1.11.8+26.3 (not created; awaiting review)",
   "changes": {
-    "expanded_child_tint": "0x40000000",
-    "expanded_header_tint": "0x99000000",
-    "native_crafting_pins": "Exact variant tab with native grid selection, search and craftable filtering",
-    "craft_all_method_default": "SINGLE_BATCHES",
-    "craft_all_method_optional": "FILL_GRID; actual result QUICK_MOVE for supported crafting, remainders, smithing and known backpack storage groups, with complete confirmed snapshots before refill",
-    "crafting_overflow_default": "STOP_BEFORE_DROP",
-    "crafting_overflow_options": [
-      "STOP_BEFORE_DROP",
-      "DROP_AND_CONTINUE",
-      "STOP_AFTER_DROP"
-    ],
-    "overflow_transfer": "Bulk result THROW when storage is full and dropping is allowed; one result PICKUP at the first-dropping-batch edge for STOP_AFTER_DROP",
-    "bulk_guarded_cases": "Conservative stop for unequal consumed ingredient counts, optional unused smithing inputs, unsupported reusable/multi-count remainders, untracked offhand merges, ambiguous identical backpacks and partial-capacity loads that would spill under STOP_BEFORE_DROP; no silent per-batch fallback",
-    "crafting_overflow_display_labels": [
-      "Stop before dropping",
-      "Drop and continue",
-      "Stop after first drop"
-    ],
-    "backpack_holder_sync": "Apply output-addition callbacks so backpack holder components match authoritative bag contents across repeated crafts; remainders retain vanilla player/grid handling",
-    "untracked_offhand_guard": "Conservative refusal applies to bulk and single-batch overflow planning; switching to SINGLE_BATCHES does not bypass unobservable remainder merges",
-    "workstation_craftable_filter": "Independent persisted brewingBookCraftableOnly and smithingBookCraftableOnly fields; false defaults preserve prior behavior; filter click saves and new panels restore the choice; fields are excluded from the settings GUI."
+    "settings_serializer": "AtomicConfigSerializer: Cloth TOML via brb.saving.toml and atomic move; unreadable brb.toml copied to brb.toml.unreadable-<millis> before first replacement; all read failures reported as SerializationException",
+    "settings_repair": "Config.validatePostLoad restores defaults for unknown enum values or missing sections only",
+    "instant_toggle": "configHolder null check before save",
+    "pinned_tab_icon": "cached ItemStack"
   },
-  "sources_sha256": "efdf216b9e7223c41595929685287c26291fba11708e5998d32ea18bc8beb8b2",
-  "fresh_combined_review": {
+  "sources_sha256": "5438ff7fbdec4521676276d631f863fa8d1a4822b1061f4a8cee654805a21996",
+  "upstream_review": {
+    "date": "2026-11-08",
+    "repository": "https://github.com/mrshmllow/BetterRecipeBook",
+    "archived": true,
+    "main_head": "ea7c7872d6270d07e3a696e0b56b1e2043028887",
+    "newer_commits": 0,
+    "taken": [],
+    "notes": "Side branches are older-version lines or already merged; see docs/AUDIT-2026-11-08.md"
+  },
+  "integrations": {
+    "vanilla_plus_plus": {
+      "tested": "1.4.5+26.3",
+      "sha256": "2b8da007d555b55512c1e8fb08ce5db3be419bb5f3a47d61a1e13d577f67b97b",
+      "contract": "qa/tests/BackpackCraftingContractChecks.java"
+    },
+    "tiered_backpacks": {
+      "reviewed": "1.0.21+26.3",
+      "modrinth_version_id": "Fh8qqxFD",
+      "sha256": "23bbe0221d9a8ffa6145bc37155340ab6b8ebe6da14bc7a36d097b4fcd322b5c",
+      "runtime_tested": "1.0.20 bundled in Vanilla++ 1.4.5",
+      "scope": "1.0.21 source review only until a suite build bundles it"
+    }
+  },
+  "previous_combined_review_1_11_7": {
     "date": "2026-10-13",
     "status": "passed",
     "production_changes": false,

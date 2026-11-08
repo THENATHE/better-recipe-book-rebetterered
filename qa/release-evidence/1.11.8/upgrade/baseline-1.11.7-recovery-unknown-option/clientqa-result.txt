@@ -1,0 +1,2 @@
+PASS: repaired: settings stay registered with Cloth Config
+RESULT: FAIL; java.lang.AssertionError: repaired: instantCraft.overflow = STOP_BEFORE_DROP

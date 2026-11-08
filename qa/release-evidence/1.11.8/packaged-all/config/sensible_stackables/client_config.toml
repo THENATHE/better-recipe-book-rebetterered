@@ -1,0 +1,5 @@
+# Don't change this! Version used to track needed updates.
+version = 1
+itemCountShortening = true
+itemCountScaling = true
+itemCountTooltip = true

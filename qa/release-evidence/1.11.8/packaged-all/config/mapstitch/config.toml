@@ -1,0 +1,68 @@
+# Don't change this! Version used to track needed updates.
+version = 1
+maxAtlasItems = 16384
+keepAtlasOnDeath = false
+
+[itemRequirements]
+compass = [
+    "minimap",
+    "playerMarker",
+    "grid",
+    "coordinates",
+    "biome"
+]
+clock = [
+    "time",
+    "weather"
+]
+compassAndClockScan = [
+    "mainHand",
+    "offhand",
+    "hotbar",
+    "inventory",
+    "bundles",
+    "containerItems",
+    "shulkerBoxes",
+    "accessories"
+]
+worldMapAtlasScan = [
+    "mainHand",
+    "offhand",
+    "hotbar",
+    "inventory",
+    "accessories"
+]
+minimapAtlasScan = [
+    "mainHand",
+    "offhand",
+    "hotbar",
+    "accessories"
+]
+
+[mapRecipe]
+cheaperRecipe = true
+replaceVanillaRecipe = true
+
+[netherMap]
+mode = "DYNAMIC"
+staticModeHeight = 40
+dynamicModeCeilingOffset = 32
+allowedDimensions = [
+    "minecraft:the_nether"
+]
+
+[globetrotter]
+enabled = true
+chance = 50
+
+[accessorySlots]
+atlasSlot = true
+compassSlot = true
+clockSlot = false
+
+[minimapInfo]
+allowRealTime = true
+allowGameTime = false
+allowCoordinates = false
+allowBiome = false
+allowWeather = false

@@ -1,0 +1,8 @@
+PASS: unreadable: settings stay registered with Cloth Config
+PASS: unreadable: defaults are used
+PASS: unreadable: startup leaves the original file untouched
+PASS: unreadable: settings screen opens and instant-craft toggles save
+PASS: unreadable: exactly one preserved copy after two saves
+PASS: unreadable: preserved copy keeps the original bytes
+PASS: unreadable: settings file is replaced with a complete saved file
+RESULT: PASS; 7 recorded checks

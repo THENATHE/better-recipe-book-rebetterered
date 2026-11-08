@@ -1,0 +1,26 @@
+enableBook = true
+creativeDisplayMode = "VANILLA"
+enablePinning = true
+keepCentered = true
+settingsButton = false
+brewingBookOpen = true
+smithingBookOpen = true
+brewingBookCraftableOnly = true
+smithingBookCraftableOnly = true
+
+[newRecipes]
+unlockAll = false
+enableBounce = true
+
+[instantCraft]
+showButton = false
+enabled = false
+craftAllMethod = "FILL_GRID"
+
+[alternativeRecipes]
+onHover = false
+noGrouped = false
+
+[scrolling]
+enableScrolling = false
+scrollAround = true

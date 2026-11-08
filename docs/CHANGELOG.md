@@ -1,3 +1,11 @@
+# 1.11.8+26.3
+
+- Keep your settings when `brb.toml` cannot be read. The unreadable file is copied to `brb.toml.unreadable-<time>` before defaults replace it, and saves now go through a temporary file so an interrupted save cannot truncate it.
+- Fix the settings button, Mod Menu entry and instant-craft toggle failing after a truncated or mistyped settings file left the settings unregistered.
+- Restore the default for an unknown option value in an edited settings file instead of leaving it unset. An unknown Craft all overflow value no longer allows drops.
+- Update to Fabric API 0.165.2+26.3, built and tested with Fabric Loader 0.20.1. Fabric Loader 0.19.5 or newer is still supported. Cloth Config 26.3.159 and optional Mod Menu 21.0.0 are already the latest 26.3 releases.
+- Settings, pins and the pin key from 1.11.7 load unchanged.
+
 # 1.11.7+26.3
 
 - Remember the Show craftable filter separately for smithing and brewing. Restore it when reopening a workstation or loading saved client settings.

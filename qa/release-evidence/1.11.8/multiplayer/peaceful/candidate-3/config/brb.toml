@@ -1,0 +1,28 @@
+enableBook = true
+recipeDisplayMode = "EXPANDABLE"
+creativeDisplayMode = "EXPANDABLE"
+enablePinning = true
+keepCentered = false
+settingsButton = true
+brewingBookOpen = false
+smithingBookOpen = false
+brewingBookCraftableOnly = false
+smithingBookCraftableOnly = false
+
+[newRecipes]
+unlockAll = true
+enableBounce = false
+
+[instantCraft]
+showButton = true
+enabled = true
+craftAllMethod = "SINGLE_BATCHES"
+overflow = "STOP_BEFORE_DROP"
+
+[alternativeRecipes]
+onHover = true
+noGrouped = false
+
+[scrolling]
+enableScrolling = true
+scrollAround = false

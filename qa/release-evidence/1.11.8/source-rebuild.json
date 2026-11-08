@@ -1,0 +1,21 @@
+{
+  "date": "2026-11-08",
+  "jdk": "Microsoft OpenJDK 25.0.4.1+1-LTS",
+  "command": "JAVA_HOME=~/.gradle/jdks/microsoft-25-amd64-linux.2 bash gradlew --no-daemon clean check build clientqaJar",
+  "independent_export": "git ls-files --cached --others --exclude-standard copied to a scratch folder",
+  "artifacts": {
+    "better-recipe-book-rebetterered-1.11.8+26.3.jar": "f02f61c6b710fc9ae04503dd245bb4283ef323ccfa278408fad58467ecbd9e16",
+    "better-recipe-book-rebetterered-1.11.8+26.3-sources.jar": "5438ff7fbdec4521676276d631f863fa8d1a4822b1061f4a8cee654805a21996",
+    "brb-client-qa-1.jar": "7d426ae7c6b15da98a2a3d97df7a549b73ffe7fd1b61145ac9afa212327da8af"
+  },
+  "byte_identical": true,
+  "standard_regressions": {
+    "sequence_assertions": 131072,
+    "ingredient_assignment": 6,
+    "creative_rule_assertions": 1155,
+    "pin_checks": 11,
+    "settings_checks": 15,
+    "backpack_contract_checks": 12
+  },
+  "status": "passed"
+}

@@ -1,0 +1,14 @@
+enableBook = true
+recipeDisplayMode = "ALL"
+creativeDisplayMode = "VANILLA"
+enablePinning = true
+keepCentered = true
+settingsButton = false
+brewingBookOpen = true
+smithingBookOpen = true
+brewingBookCraftableOnly = true
+smithingBookCraftableOnly = true
+
+[newRecipe
+[instantCraft
+showButton = tr

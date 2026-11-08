@@ -1,0 +1,10 @@
+PASS: repaired: settings stay registered with Cloth Config
+PASS: repaired: instantCraft.overflow = STOP_BEFORE_DROP
+PASS: repaired: recipeDisplayMode = EXPANDABLE
+PASS: repaired: instantCraft.craftAllMethod = FILL_GRID
+PASS: repaired: keepCentered = true
+PASS: repaired: creativeDisplayMode = VANILLA
+PASS: repaired: smithingBookCraftableOnly = true
+PASS: repaired: scrolling.scrollAround = true
+PASS: repaired: a loadable file is not copied aside
+RESULT: PASS; 9 recorded checks

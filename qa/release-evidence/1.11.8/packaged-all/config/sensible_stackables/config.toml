@@ -1,0 +1,23 @@
+# Don't change this! Version used to track needed updates.
+version = 2
+items = [
+    [ "minecraft:saddle", 16 ],
+    [ "minecraft:snowball", 64 ],
+    [ "#minecraft:harnesses", 16 ],
+    [ "#sensible_stackables:minecarts", 16 ],
+    [ "#c:foods/soup", 16 ],
+    [ "#c:music_discs", 64 ],
+    [ "#c:eggs", 64 ],
+    [ "#c:potions", 3 ],
+    [ "#minecraft:cushions", 64 ],
+    [ "minecraft:cake", 16 ],
+    [ "#minecraft:beds", 16 ],
+    [ "#minecraft:boats", 16 ],
+    [ "minecraft:ender_pearl", 64 ],
+    [ "#sensible_stackables:banner_patterns", 64 ],
+    [ "minecraft:enchanted_book", 64 ],
+    [ "#c:armors/horse", 64 ]
+]
+splashPotionCooldown = 1
+uncapStackSize = false
+commonStackSize = 64

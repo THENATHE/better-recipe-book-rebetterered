@@ -1,0 +1,58 @@
+[
+  {
+    "path": "ported/src/clientqa/java/marsh/town/brb/clientqa/ClientQa.java",
+    "sha256": "c01f3ae19c2afe3053c00cccc1b8cb17ee3e9401c90668ebd9ddb2d8d7e342be"
+  },
+  {
+    "path": "ported/src/clientqa/java/marsh/town/brb/clientqa/ConfigScreenChecks.java",
+    "sha256": "49ad06bedefbdb5c30c8faa4c2e7117e87fa7dd529eb3ba3d456b01f1d7e8f2f"
+  },
+  {
+    "path": "ported/src/clientqa/java/marsh/town/brb/clientqa/CraftingChecks.java",
+    "sha256": "909feb1ee6b7c6b7fc2945d6a2502035644b6ff527bf6d3906d65213afc853a3"
+  },
+  {
+    "path": "ported/src/clientqa/java/marsh/town/brb/clientqa/CreativeChecks.java",
+    "sha256": "568351ddbc39b6d4611d6dbd86817ca0f5bfe8c6ca4d50143ce9c99f3521b0e3"
+  },
+  {
+    "path": "ported/src/clientqa/java/marsh/town/brb/clientqa/PinnedTabChecks.java",
+    "sha256": "bf9a460e74fbf70ccd19a37d45ebdb871a03b52754c92052c6239fbfdc978ab3"
+  },
+  {
+    "path": "ported/src/clientqa/java/marsh/town/brb/clientqa/RecipeLifecycleChecks.java",
+    "sha256": "dbecdb890e76d492a7ef2b4b389af9bd824b28d7dc68f56e0b4d9fdfcae8c55c"
+  },
+  {
+    "path": "ported/src/clientqa/java/marsh/town/brb/clientqa/RecipeModeChecks.java",
+    "sha256": "805876587e1d23b5ba1c722598b4b0fcf1e8f223214fa8e28420768d5c9f88f7"
+  },
+  {
+    "path": "ported/src/clientqa/java/marsh/town/brb/clientqa/RemoteClientQa.java",
+    "sha256": "b141dc62f4e3f1d0e9b0b2e1bbd2bbf43a04bda0ae684cb6c885db0dbd5cd2e6"
+  },
+  {
+    "path": "ported/src/clientqa/java/marsh/town/brb/clientqa/UpgradeChecks.java",
+    "sha256": "e1b255f4ca049fdc23d7040f8fcba53a6e8d5de9bc4aadafd37ce8f92db6d6cd"
+  },
+  {
+    "path": "ported/src/clientqa/java/marsh/town/brb/clientqa/WorkstationChecks.java",
+    "sha256": "f7a0d22c854c915ea6392c84f0f94ad7ae228db722c7590a8adb543b7f1a6ac8"
+  },
+  {
+    "path": "ported/src/clientqa/resources/fabric.mod.json",
+    "sha256": "aeef0a6df345c24d86ecd7622749e183943c6798d489ba007c60175bad86c357"
+  },
+  {
+    "path": "qa/run_packaged_client.py",
+    "sha256": "feb48556f4761c57579004332550249c1074d49db625500251cbfe0fec7ea5c3"
+  },
+  {
+    "path": "qa/run_remote_client.py",
+    "sha256": "d2cd9e4c81aae5998ae9bba9f7b25f98eeb7a8aadaa76a85fc999c5d98343979"
+  },
+  {
+    "path": "qa/vanilla_client.py",
+    "sha256": "4cda92400af9bd5f4fd9d8e359943ef96a259263260085cc155a1dd1f70ba1b8"
+  }
+]
