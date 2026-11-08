@@ -1,11 +1,11 @@
 package marsh.town.brb;
 
 import com.mojang.blaze3d.platform.InputConstants;
+import marsh.town.brb.config.AtomicConfigSerializer;
 import marsh.town.brb.config.Config;
 import marsh.town.brb.recipegroups.RecipeDisplayMode;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.ConfigHolder;
-import me.shedaniel.autoconfig.serializer.Toml4jConfigSerializer;
 import net.fabricmc.fabric.api.client.keymapping.v1.KeyMappingHelper;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.resources.Identifier;
@@ -28,7 +28,7 @@ public class BetterRecipeBook {
 
     public static void init() {
         try {
-            AutoConfig.register(Config.class, Toml4jConfigSerializer::new);
+            AutoConfig.register(Config.class, AtomicConfigSerializer::new);
             configHolder = AutoConfig.getConfigHolder(Config.class);
             config = configHolder.getConfig();
             if (config.alternativeRecipes.noGrouped) {

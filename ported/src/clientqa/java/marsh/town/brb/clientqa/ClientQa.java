@@ -36,6 +36,9 @@ public final class ClientQa implements FabricClientGameTest {
             if (suite.equals("all") || suite.equals("workstation")) WorkstationChecks.run(context, world, evidence);
             if (suite.equals("all") || suite.equals("lifecycle")) RecipeLifecycleChecks.run(context, world, evidence);
             if (suite.equals("all") || suite.equals("config")) ConfigScreenChecks.run(context, evidence);
+            if (suite.equals("upgrade-seed")) UpgradeChecks.seed(context, evidence);
+            if (suite.equals("upgrade-verify")) UpgradeChecks.verify(context, evidence);
+            if (suite.equals("upgrade-recovery")) UpgradeChecks.recover(context, evidence);
             evidence.add("RESULT: PASS; " + evidence.stream().filter(line -> line.startsWith("PASS:")).count() + " recorded checks");
             Files.write(Path.of("clientqa-result.txt"), evidence);
         } catch (Throwable failure) {

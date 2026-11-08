@@ -10,7 +10,7 @@ import subprocess
 import sys
 import zipfile
 
-from run_remote_client import PROJECT, JDK, artifact, sha256, retained_asset_index
+from run_remote_client import PROJECT, JDK, LOADER, FABRIC_API, GAMETEST_API, artifact, sha256, retained_asset_index
 
 
 def main():
@@ -22,12 +22,23 @@ def main():
     parser.add_argument('--java', type=Path, default=JDK)
     parser.add_argument('--asset-index', type=Path, help='Exact official asset index; defaults to a checksum-matching retained index.')
     parser.add_argument('--suite', default='all',
-                        choices=('all', 'recipes', 'creative', 'crafting', 'pins', 'workstation', 'lifecycle', 'config'))
+                        choices=('all', 'recipes', 'creative', 'crafting', 'pins', 'workstation', 'lifecycle', 'config',
+                                 'upgrade-seed', 'upgrade-verify', 'upgrade-recovery'))
+    parser.add_argument('--loader', default=LOADER, help='Retained Fabric Loader version.')
+    parser.add_argument('--fabric-api', default=FABRIC_API, help='Retained Fabric API version.')
+    parser.add_argument('--gametest-api', default=GAMETEST_API,
+                        help='Retained fabric-client-gametest-api-v1 module matching --fabric-api.')
+    parser.add_argument('--seed-from', type=Path,
+                        help='Earlier upgrade-seed run whose settings, pins and pin key are copied in first.')
     parser.add_argument('--timeout', type=int, default=900)
     parser.add_argument('--prepare-only', action='store_true')
     args = parser.parse_args()
     if args.timeout <= 0:
         parser.error('--timeout must be positive')
+    if not args.prepare_only and not os.environ.get('DISPLAY'):
+        parser.error('Set DISPLAY to a private X server, for example with xvfb-run.')
+    if (args.suite in ('upgrade-verify', 'upgrade-recovery')) != (args.seed_from is not None):
+        parser.error('upgrade-verify and upgrade-recovery require --seed-from, and only they use it')
     run = args.run.resolve()
     run.mkdir(parents=True, exist_ok=False)
     production = args.jar.resolve(strict=True)
@@ -55,7 +66,7 @@ def main():
     command[command.index('net.minecraft.client.main.Main')] = 'net.fabricmc.loader.impl.launch.knot.KnotClient'
     command[1:1] = ['-Dfabric.client.gametest', '-Dbrb.qaSuite=' + args.suite,
                     '-XX:ActiveProcessorCount=2']
-    loader = artifact('net.fabricmc', 'fabric-loader', '0.19.5')
+    loader = artifact('net.fabricmc', 'fabric-loader', args.loader)
     libraries = [loader]
     with zipfile.ZipFile(loader) as archive:
         profile = json.loads(archive.read('fabric-installer.json'))
@@ -68,8 +79,8 @@ def main():
     command[index] = os.pathsep.join([*map(str, libraries), command[index]])
     mods = run / 'mods'
     mods.mkdir()
-    sources = [production, artifact('net.fabricmc.fabric-api', 'fabric-api', '0.161.0+26.3'),
-               artifact('net.fabricmc.fabric-api', 'fabric-client-gametest-api-v1', '6.0.7+4be74c3f5d'),
+    sources = [production, artifact('net.fabricmc.fabric-api', 'fabric-api', args.fabric_api),
+               artifact('net.fabricmc.fabric-api', 'fabric-client-gametest-api-v1', args.gametest_api),
                args.fixture.resolve(strict=True),
                *[path.resolve(strict=True) for path in args.client_mod]]
     audits = []
@@ -86,12 +97,26 @@ def main():
         identities.add(mod['id'])
         audits.append({'id': mod['id'], 'version': mod['version'], 'source': str(source),
                        'file': source.name, 'sha256': sha256(destination)})
-    (run / 'options.txt').write_text('tutorialStep:none\npauseOnLostFocus:false\nrenderDistance:2\n'
-                                    'simulationDistance:5\nmaxFps:30\nsoundCategory_master:0.0\n')
+    options = ('tutorialStep:none\npauseOnLostFocus:false\nrenderDistance:2\n'
+               'simulationDistance:5\nmaxFps:30\nsoundCategory_master:0.0\n')
+    seeded = []
+    if args.seed_from:
+        seed = args.seed_from.resolve(strict=True)
+        for name in ('config/brb.toml', 'brb.pins', 'upgrade-expected.json'):
+            (run / name).parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(seed / name, run / name)
+            seeded.append({'path': name, 'sha256': sha256(run / name)})
+        # Keep the saved data version, otherwise vanilla treats key names as a pre-LWJGL3 file.
+        seeded_options = (seed / 'options.txt').read_text().splitlines()
+        options = ''.join(line + '\n' for line in seeded_options if line.startswith('version:')) + options
+        options += ''.join(line + '\n' for line in seeded_options if line.startswith('key_key.brb.'))
+    (run / 'options.txt').write_text(options)
     environment = os.environ.copy()
-    environment.update(DISPLAY=environment.get('DISPLAY', ':1'), SDL_VIDEODRIVER='x11',
+    environment.pop('WAYLAND_DISPLAY', None)
+    environment.update(SDL_VIDEODRIVER='x11',
                        SDL_VIDEO_X11_XINPUT2='0', LP_NUM_THREADS='2')
-    audit = {'command': command, 'mods': audits, 'suite': args.suite,
+    audit = {'command': command, 'mods': audits, 'suite': args.suite, 'loader': args.loader,
+             'seeded_from': str(args.seed_from) if args.seed_from else None, 'seeded_files': seeded,
              'release_version': metadata['version'],
              'environment': {key: environment.get(key) for key in
                              ('DISPLAY', 'LIBGL_ALWAYS_SOFTWARE', 'SDL_VIDEODRIVER', 'LP_NUM_THREADS')},

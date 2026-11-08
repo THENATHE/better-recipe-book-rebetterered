@@ -26,5 +26,6 @@
 /qa/remote-inputs/*
 !/qa/remote-inputs/34.json
 !/qa/remote-inputs/34-e787e8afd149a4cefa89d341b91f5aed8f5d93a0.json
+!/qa/remote-inputs/34-331e5c80937c9cd79647ab34bdc1cbb5ef09f456.json
 /upstream/*.jar
 /upstream/original-source.tar.gz

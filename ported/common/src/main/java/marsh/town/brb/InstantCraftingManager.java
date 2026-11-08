@@ -691,7 +691,7 @@ public class InstantCraftingManager {
     public boolean toggleEnabled() {
         BetterRecipeBook.config.instantCraft.enabled = !BetterRecipeBook.config.instantCraft.enabled;
         if (!isEnabled()) cancelPending();
-        BetterRecipeBook.configHolder.save();
+        if (BetterRecipeBook.configHolder != null) BetterRecipeBook.configHolder.save();
         return isEnabled();
     }
 

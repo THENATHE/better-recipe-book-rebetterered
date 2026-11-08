@@ -18,6 +18,10 @@ PROJECT = Path(__file__).resolve().parents[1]
 WORKSPACE = PROJECT.parents[1]
 CACHE = Path.home() / '.gradle/caches/modules-2/files-2.1'
 JDK = Path.home() / '.gradle/jdks/microsoft-25-amd64-linux.2/bin/java'
+LOADER = '0.20.1'
+FABRIC_API = '0.165.2+26.3'
+GAMETEST_API = '6.0.12+131f8d475d'
+MODMENU = '21.0.0'
 
 
 def artifact(group, name, version):
@@ -50,6 +54,8 @@ def main():
     parser.add_argument('--asset-index', type=Path, help='Exact official asset index; defaults to a checksum-matching retained index.')
     parser.add_argument('--launch', action='store_true')
     parser.add_argument('--modmenu', action='store_true', help='Also verify the optional Mod Menu integration.')
+    parser.add_argument('--loader', default=LOADER, help='Retained Fabric Loader version.')
+    parser.add_argument('--fabric-api', default=FABRIC_API, help='Retained Fabric API version.')
     args = parser.parse_args()
     run = args.run.resolve()
     release = args.jar.resolve()
@@ -66,7 +72,7 @@ def main():
     command = vanilla_audit['command']
     command[command.index('net.minecraft.client.main.Main')] = 'net.fabricmc.loader.impl.launch.knot.KnotClient'
     command[1:1] = ['-Dbrb.remoteQa=true', '-XX:ActiveProcessorCount=2']
-    loader = artifact('net.fabricmc', 'fabric-loader', '0.19.5')
+    loader = artifact('net.fabricmc', 'fabric-loader', args.loader)
     libraries = [str(loader)]
     with zipfile.ZipFile(loader) as archive:
         profile = json.loads(archive.read('fabric-installer.json'))
@@ -79,12 +85,12 @@ def main():
     command[index] = os.pathsep.join(libraries + command[index].split(os.pathsep))
     mods = run / 'mods'
     mods.mkdir(exist_ok=True)
-    api = WORKSPACE / 'Builds/Minecraft/Fabric API/Main Plugin/0.161.0+26.3/fabric-api-0.161.0+26.3.jar'
+    api = WORKSPACE / 'Builds/Minecraft/Fabric API/Main Plugin' / args.fabric_api / ('fabric-api-' + args.fabric_api + '.jar')
     if not api.is_file():
-        api = artifact('net.fabricmc.fabric-api', 'fabric-api', '0.161.0+26.3')
+        api = artifact('net.fabricmc.fabric-api', 'fabric-api', args.fabric_api)
     sources = [release, api]
     if args.modmenu:
-        sources.append(artifact('maven.modrinth', 'modmenu', '21.0.0'))
+        sources.append(artifact('maven.modrinth', 'modmenu', MODMENU))
     mod_audit = []
     for source in sources:
         shutil.copy2(source, mods / source.name)
@@ -102,7 +108,7 @@ def main():
             'depends': {'brb': '*', 'fabric-api': '*', 'fabricloader': '>=0.19.5'}}))
         for path in fixture_classes:
             archive.write(path, path.relative_to(classes))
-    audit = {'command': command, 'mods': mod_audit, 'fixture_sha256': sha256(fixture),
+    audit = {'command': command, 'mods': mod_audit, 'fixture_sha256': sha256(fixture), 'loader': args.loader,
              'server': args.server, 'username': args.username, 'release_version': metadata['version'],
              'status': 'launch requested' if args.launch else 'prepared only; no connection performed'}
     (run / 'launch-audit.json').write_text(json.dumps(audit, indent=2) + '\n')
@@ -111,6 +117,10 @@ def main():
         print('Prepared only; Minecraft has not been launched.', flush=True)
         return 0
     environment = os.environ.copy()
+    if not environment.get('DISPLAY'):
+        print('Set DISPLAY to a private X server, for example with xvfb-run.', file=sys.stderr)
+        return 1
+    environment.pop('WAYLAND_DISPLAY', None)
     environment['SDL_VIDEODRIVER'] = 'x11'
     with (run / 'console.log').open('w') as log:
         process = subprocess.Popen(command, cwd=run, env=environment, stdout=log, stderr=subprocess.STDOUT)

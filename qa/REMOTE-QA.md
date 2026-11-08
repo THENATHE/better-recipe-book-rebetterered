@@ -7,13 +7,16 @@ The fixture checks that no integrated server exists, loads the packaged vanilla 
 Prepare or run with a fresh directory:
 
 ```sh
-python3 qa/run_remote_client.py \
+xvfb-run -a -s "-screen 0 1280x720x24 +extension GLX +render -noreset" \
+  python3 qa/run_remote_client.py \
   --server 127.0.0.1:25593 \
   --username brbremoteqa \
   --run qa/remote-packaged-final \
-  --jar ported/build/libs/better-recipe-book-rebetterered-1.11.7+26.3.jar \
+  --jar ported/build/libs/better-recipe-book-rebetterered-1.11.8+26.3.jar \
   --launch
 ```
+
+The launchers refuse to start Minecraft without `DISPLAY`. Use a private X server such as `xvfb-run`; Mesa's llvmpipe provides the OpenGL 4.6 core profile the 26.3 client needs. `--loader` and `--fabric-api` select retained versions (defaults 0.20.1 and 0.165.2+26.3); `run_packaged_client.py` also takes `--gametest-api` for the matching gametest module.
 
 Omit `--launch` to prepare and audit without connecting. Compile `compileClientqaJava` and build the intended production JAR first. The launcher uses a full retained JDK 25, verifies the Mojang client and 66 official libraries against the local Mojang manifest, verifies the official asset index, and records the SHA-256 of the exact production JAR and separately packaged fixture. Architectury is not supplied; Cloth Config must be nested in the release.
 
@@ -22,5 +25,7 @@ The retained Loom asset index had equivalent JSON objects with different raw byt
 The fresh review also retains the subsequently referenced official index as `34-e787e8afd149a4cefa89d341b91f5aed8f5d93a0.json`, verified against its filename SHA-1. Both launchers now select a retained index that matches the local Mojang manifest's required checksum; `--asset-index` can explicitly select a matching file. The earlier index remains preserved with its historical evidence. Neither launcher skips the exact official checksum check.
 
 Preparation passed. A connection result is only established by the chosen run directory's `remoteqa-result.txt` and matching `launch-audit.json`. The fixture has a 4,000-tick deadline; the launcher terminates a stuck process after 240 seconds.
+
+The `upgrade-seed`, `upgrade-verify` and `upgrade-recovery` suites check release upgrades. Run `upgrade-seed` with the previous release JAR and its dependency versions. Then run `upgrade-verify --seed-from <seed run>` with the candidate; it copies the saved settings, pins and pin key in first and requires every value to load unchanged. `upgrade-recovery` starts from a prepared unreadable or partly invalid `brb.toml` described by that folder's `upgrade-expected.json`.
 
 For full packaged singleplayer checks, run `run_packaged_client.py --run <fresh-directory> --jar <exact-installable.jar>`. Build `clientqaJar` first; optionally pass `--fixture` to an independently compiled fixture. Repeat `--client-mod <exact.jar>` for each integration and its dependencies. `--prepare-only` verifies and records the launch without starting Minecraft. Runtime checks include both crafting strategies, server-authoritative ingredient/remainder/overflow conservation, full inventories, occupied cursors, menu closure, grouping, pins, workstation preferences and settings Save/Cancel. The fixture also simulates rejected predicted container transfers before a real server correction, checking that maximum crafting cancels and the client restores all authoritative ingredients and storage. Actual results require `clientqa-result.txt` and a passed `launch-audit.json` from that specific run.

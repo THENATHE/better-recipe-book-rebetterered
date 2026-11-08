@@ -43,6 +43,9 @@ def main():
     parser.add_argument('--ingredients', type=int, default=12, help='Number of planks supplied; 272 checks bulk refill after 64 recipes')
     parser.add_argument('--craft-all-method', choices=('single_batches', 'fill_grid'), default='single_batches')
     parser.add_argument('--compile-only', action='store_true', help='Compile/package observation fixtures without launching any runtime')
+    parser.add_argument('--fabric-api', default='0.165.2+26.3', help='Retained Fabric API version for both sides')
+    parser.add_argument('--suite-libs', type=Path, default=ROOT / 'libs',
+                        help='Folder holding the exact suite library JARs, e.g. a snapshot matching --jar')
     args = parser.parse_args()
     args.client_mod = [path.resolve(strict=True) for path in args.client_mod]
     if args.bucket_overflow and (args.baseline or not args.brbr): parser.error('--bucket-overflow requires --brbr and native backpack menus')
@@ -68,10 +71,10 @@ def main():
     for source in FIXTURES.glob('CraftingNetwork*.java'): shutil.copy2(source, executed / source.name)
     shutil.copy2(Path(__file__), executed / 'network.py')
     launch = mapstitch_launch(WORKSPACE); suite = run / args.jar.name; shutil.copy2(args.jar.resolve(), suite)
-    dependencies = [ROOT / 'libs' / name for name in (
+    dependencies = [args.suite_libs.resolve() / name for name in (
         'codecui-26.3-1.4.3-fabric.jar',
         'fabric-language-kotlin-1.14.1+kotlin.2.4.20.jar', 'fzzy_config-0.7.7+fix3+26.3.jar', 'mixson-2.2.1-multiloader.jar')]
-    api = launch.artifact('net.fabricmc.fabric-api', 'fabric-api', '0.161.0+26.3')
+    api = launch.artifact('net.fabricmc.fabric-api', 'fabric-api', args.fabric_api)
     dependencies += [api, launch.artifact('me.shedaniel.cloth', 'cloth-config-fabric', '26.3.159')]
     polymer = (args.polymer_jar or WORKSPACE / 'Builds/Minecraft/Polymer/Main Plugin/0.18.2+26.3/polymer-bundled-0.18.2+26.3.jar').resolve(strict=True)
     server_audit, client_audit = launch.audits()
@@ -100,7 +103,9 @@ def main():
         print('PASS observation fixtures compiled; no runtime launched',flush=True); return
     with zipfile.ZipFile(suite) as archive: version=json.loads(archive.read('fabric.mod.json'))['version']
     children=[]; observations=[]; env=os.environ.copy()
-    env.update(DISPLAY=env.get('DISPLAY', ':1'), SDL_VIDEODRIVER='x11', SDL_VIDEO_X11_XINPUT2='0', LP_NUM_THREADS='2')
+    if not env.get('DISPLAY'): raise SystemExit('Set DISPLAY to a private X server, for example with xvfb-run.')
+    env.pop('WAYLAND_DISPLAY', None)
+    env.update(SDL_VIDEODRIVER='x11', SDL_VIDEO_X11_XINPUT2='0', LP_NUM_THREADS='2')
     def start(directory,command,mods):
         (directory/'mods').mkdir(parents=True,exist_ok=True)
         for jar in mods: shutil.copy2(jar,directory/'mods'/jar.name)

@@ -56,11 +56,13 @@ public abstract class RecipeBookComponentMixin implements PinnedRecipeBook {
         if (menu.getRecipeBookType() != RecipeBookType.CRAFTING) return;
         brb$pinnedTab = new ImageButton(0, 0, 35, 27, BRBTextures.RECIPE_BOOK_TAB_SPRITES,
                 ignored -> brb$selectPinnedTab(), Component.translatable("brb.gui.workstation.pins")) {
+            private final ItemStack icon = new ItemStack(Items.KNOWLEDGE_BOOK);
+
             @Override
             public void extractContents(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float delta) {
                 int left = getX() - (brb$pinnedSelected ? 2 : 0);
                 graphics.blitSprite(RenderPipelines.GUI_TEXTURED, sprites.get(true, brb$pinnedSelected), left, getY(), width, height);
-                graphics.fakeItem(new ItemStack(Items.KNOWLEDGE_BOOK), left + 9, getY() + 5);
+                graphics.fakeItem(icon, left + 9, getY() + 5);
                 graphics.text(Minecraft.getInstance().font, "★", left + 6, getY() + 3, 0xFFFFD66A, false);
                 if (isFocused()) graphics.outline(left + 2, getY() + 2, width - 4, height - 4, 0xFFFFFFFF);
             }
