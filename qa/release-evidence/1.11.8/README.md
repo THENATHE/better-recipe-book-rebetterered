@@ -14,3 +14,11 @@ Exact installable JAR `f02f61c6b710fc9ae04503dd245bb4283ef323ccfa278408fad58467e
 | `build-1.11.8.log` | `gradlew clean check build clientqaJar` with all standard regressions. |
 
 Worlds, runtime mods, assets and Minecraft libraries are excluded.
+
+## Vanilla++ 1.5.0 retest
+
+| Folder | What it shows |
+| --- | --- |
+| `vpp-1.5.0/packaged-all/` | Full client fixture with Vanilla++ 1.5.0+26.3 (Tiered Backpacks 1.0.21) and its installation-pack dependencies: 1,968 checks. |
+| `vpp-1.5.0/connected/` | Four connected profiles: native and Polymer 0.18.7+26.3 servers, Single batches and Fill grid. |
+| `vpp-1.5.0/fabric-api-0.161.0-floor/` | The unchanged JAR on Fabric API 0.161.0 with Loader 0.19.5, loaded through the test-only `fabric_loader_dependencies.json` override in this folder: 1,967 checks. This answers whether 1.11.8 needs 0.165.2; it does not change the shipped requirement. |

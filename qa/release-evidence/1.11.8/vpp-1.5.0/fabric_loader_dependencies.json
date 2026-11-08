@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "overrides": {
+    "brb": {
+      "-depends": {
+        "fabric-api": "*"
+      },
+      "+depends": {
+        "fabric-api": ">=0.161.0+26.3"
+      }
+    }
+  }
+}

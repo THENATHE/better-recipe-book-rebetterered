@@ -28,6 +28,8 @@ def main():
     parser.add_argument('--fabric-api', default=FABRIC_API, help='Retained Fabric API version.')
     parser.add_argument('--gametest-api', default=GAMETEST_API,
                         help='Retained fabric-client-gametest-api-v1 module matching --fabric-api.')
+    parser.add_argument('--loader-override', type=Path,
+                        help='Fabric Loader dependency override file, installed as config/fabric_loader_dependencies.json.')
     parser.add_argument('--seed-from', type=Path,
                         help='Earlier upgrade-seed run whose settings, pins and pin key are copied in first.')
     parser.add_argument('--timeout', type=int, default=900)
@@ -111,12 +113,16 @@ def main():
         options = ''.join(line + '\n' for line in seeded_options if line.startswith('version:')) + options
         options += ''.join(line + '\n' for line in seeded_options if line.startswith('key_key.brb.'))
     (run / 'options.txt').write_text(options)
+    if args.loader_override:
+        (run / 'config').mkdir(exist_ok=True)
+        shutil.copy2(args.loader_override.resolve(strict=True), run / 'config/fabric_loader_dependencies.json')
     environment = os.environ.copy()
     environment.pop('WAYLAND_DISPLAY', None)
     environment.update(SDL_VIDEODRIVER='x11',
                        SDL_VIDEO_X11_XINPUT2='0', LP_NUM_THREADS='2')
     audit = {'command': command, 'mods': audits, 'suite': args.suite, 'loader': args.loader,
              'seeded_from': str(args.seed_from) if args.seed_from else None, 'seeded_files': seeded,
+             'loader_override': args.loader_override.read_text() if args.loader_override else None,
              'release_version': metadata['version'],
              'environment': {key: environment.get(key) for key in
                              ('DISPLAY', 'LIBGL_ALWAYS_SOFTWARE', 'SDL_VIDEODRIVER', 'LP_NUM_THREADS')},

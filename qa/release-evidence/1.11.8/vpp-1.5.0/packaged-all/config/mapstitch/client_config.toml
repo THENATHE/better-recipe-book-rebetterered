@@ -1,0 +1,35 @@
+# Don't change this! Version used to track needed updates.
+version = 1
+
+[minimap]
+mode = "CENTERED"
+lockMarkerNorth = false
+position = "TOP_RIGHT"
+size = 19
+background = "CLEAR"
+backgroundOpacity = 50
+preventEffectOverlap = true
+xOffset = 0
+yOffset = 0
+
+[worldMap]
+textHighlightColor = "YELLOW"
+textBackgroundOpacity = 50
+checkerboard = true
+buttons = true
+help = true
+
+[minimapInfo]
+realTime = false
+realTimeFormat = "H24"
+gameTime = false
+coordinates = false
+biome = false
+weather = false
+
+[playerMarkers]
+colorOwn = true
+colorOthers = true
+
+[sounds]
+atlasMapCreation = true

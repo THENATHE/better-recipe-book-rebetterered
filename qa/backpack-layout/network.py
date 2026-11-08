@@ -71,9 +71,12 @@ def main():
     for source in FIXTURES.glob('CraftingNetwork*.java'): shutil.copy2(source, executed / source.name)
     shutil.copy2(Path(__file__), executed / 'network.py')
     launch = mapstitch_launch(WORKSPACE); suite = run / args.jar.name; shutil.copy2(args.jar.resolve(), suite)
-    dependencies = [args.suite_libs.resolve() / name for name in (
-        'codecui-26.3-1.4.3-fabric.jar',
-        'fabric-language-kotlin-1.14.1+kotlin.2.4.20.jar', 'fzzy_config-0.7.7+fix3+26.3.jar', 'mixson-2.2.1-multiloader.jar')]
+    # One exact JAR of each suite library; the suite release decides which versions.
+    dependencies = []
+    for pattern in ('codecui-*.jar', 'fabric-language-kotlin-*.jar', 'fzzy_config-*.jar', 'mixson-*.jar'):
+        matches = sorted(args.suite_libs.resolve().glob(pattern))
+        if len(matches) != 1: parser.error(f'Expected one {pattern} in {args.suite_libs}, found {len(matches)}')
+        dependencies.append(matches[0])
     api = launch.artifact('net.fabricmc.fabric-api', 'fabric-api', args.fabric_api)
     dependencies += [api, launch.artifact('me.shedaniel.cloth', 'cloth-config-fabric', '26.3.159')]
     polymer = (args.polymer_jar or WORKSPACE / 'Builds/Minecraft/Polymer/Main Plugin/0.18.2+26.3/polymer-bundled-0.18.2+26.3.jar').resolve(strict=True)

@@ -22,10 +22,22 @@ All results below are fresh runs of the exact installable JAR above, on a privat
 
 ## Scope and limits
 
-- Tiered Backpacks 1.0.21+26.3 was checked against its published source (`DataComponents.CONTAINER` storage and menu slots unchanged). Vanilla++ 1.4.5 still bundles Tiered Backpacks 1.0.20, so 1.0.21 has not run with BRBR yet. It will need the next suite build and the combined check.
+- Tiered Backpacks 1.0.21+26.3 has now run with BRBR through Vanilla++ 1.5.0; see the retest below. The 1.4.5 runs above used its bundled 1.0.20.
 - Hotkey Wheel, Blocktone and Buildprint were not loaded in this run; their owners are updating them, and the combined check covers them together. The 1.11.7 combined record in [COMBINED-QA-2026-10-13.md](COMBINED-QA-2026-10-13.md) is historical.
 - Open observation: one multiplayer run in eight stopped after a maximum placement without crafting. Pending crafts are cancelled whenever an unmatched full inventory update arrives, so items stay safe, but the cause was not isolated. It did not recur in the next seven runs.
 - Mouse Wheelie remains preserved but untested: no 26.3 release exists. Recipe previews cannot know undisclosed server-only recipe changes. Brewing and smelting keep normal durations. This is not exhaustive modpack certification.
+
+## Retest with Vanilla++ 1.5.0+26.3 and Tiered Backpacks 1.0.21
+
+Run 2026-11-08 with the same unchanged JAR (`f02f61c6…9e16`) and fixture (`7d426ae7…a8af`), after the suite moved to its new upstream releases.
+
+- **Suite**: Vanilla++ 1.5.0+26.3, `2bc95d4b0ad0d41a18b1e1100371e548b6c0dc4a994fa057af48fc9029de8c3c`, source `db3eeac`. It bundles Tiered Backpacks 1.0.21+26.3 and backpack crafting 1.1.0+26.3. Client dependencies come from its installation pack, every file matching the pack's index hashes: codecui 26.3-1.4.3, Fabric Language Kotlin 1.14.2+kotlin.2.4.21, fzzy_config 0.7.7+fix3+26.3, mixson 2.2.1 and Mod Menu 21.0.0.
+- **Contract**: the suite's `backpack_crafting_brbr` mixins are unchanged at `db3eeac` and in the shipped nested `thenathe-suite-backpack-crafting-1.1.0+26.3.jar`. They still target the members that `BackpackCraftingContractChecks` guards, and `BackpackCraftingMenu` still has `getStorageStart`, `getInventoryStart` and `getBackpack`.
+- **Full packaged client**: **1,968 checks passed** with Vanilla++ 1.5.0, Fabric API 0.165.2+26.3 and Loader 0.20.1. The suite's required BRBR mixins applied at startup.
+- **Connected backpack profiles**: **all four passed** with Tiered Backpacks 1.0.21 loaded on the server: native and Polymer **0.18.7+26.3** (`b18b0bb6…538b`), each with Single batches and Fill grid. They cover leather and netherite backpacks, 2x2/3x3 grids, 272-ingredient refills into a full inventory's backpack, eight prepared-cake remainder cases per profile, layout, settings and pin-tab controls, and 96 delayed-predicate checks across the two Fill grid profiles. Server Loader 0.19.5, Fabric API 0.165.2.
+- **Fabric API floor (question only, nothing changed)**: nothing in 1.11.8 needs Fabric API 0.165.2. The JAR references the same 12 Fabric API members as 1.11.7: client tick, play-connection disconnect, server lifecycle and data-pack reload events, and `KeyMappingHelper.registerKeyMapping`. All of them exist in 0.161.0. The 0.165.2 floor only records the tested version. To confirm, the unchanged JAR ran on **Fabric API 0.161.0+26.3** with Loader 0.19.5 and Mod Menu, using a test-only Fabric Loader dependency override (`qa/fapi-floor/fabric_loader_dependencies.json`): **1,967 checks passed**. The one check fewer than the suite run needs an item from Vanilla++ (Simple Smithing Overhaul's broken anvil), which that run did not load. The `fabric.mod.json` floor stays at `>=0.165.2+26.3` until the user decides.
+
+Evidence: `qa/release-evidence/1.11.8/vpp-1.5.0/`.
 
 Requirements: Minecraft 26.3, Java 25+, Fabric Loader 0.19.5+, Fabric API 0.165.2+26.3. Cloth Config 26.3.159 is bundled; Mod Menu 21.0.0 is optional. Install the main JAR on the client.
 

@@ -1,0 +1,5 @@
+# Don't change this! Version used to track needed updates.
+version = 1
+transmitWhenNamed = true
+transmitWhenTiedToMap = true
+bannerTransmitRange = 6.0E7

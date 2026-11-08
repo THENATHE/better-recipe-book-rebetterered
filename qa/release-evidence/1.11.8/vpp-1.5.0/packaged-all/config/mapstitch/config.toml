@@ -1,0 +1,71 @@
+# Don't change this! Version used to track needed updates.
+version = 2
+maxAtlasItems = 16384
+keepAtlasOnDeath = false
+
+[atlasPins]
+item = true
+shareRequestTimeout = 60
+
+[playerMarkers]
+showOthers = true
+
+[mapRecipe]
+cheaperRecipe = true
+replaceVanillaRecipe = true
+
+[netherMap]
+mode = "DYNAMIC"
+staticModeHeight = 40
+dynamicModeCeilingOffset = 32
+allowedDimensions = [
+    "minecraft:the_nether"
+]
+
+[globetrotter]
+enabled = true
+chance = 50
+lootTables = [
+    "minecraft:chests/stronghold_library",
+    "minecraft:chests/stronghold/library_bookshelf",
+    "enderscape:stronghold/chest/library"
+]
+
+[accessorySlots]
+atlasSlot = false
+compassSlot = false
+clockSlot = false
+
+[minimapInfo]
+allowRealTime = true
+allowGameTime = true
+allowCoordinates = true
+allowBiome = true
+allowWeather = true
+
+[itemRequirements]
+compass = [  ]
+clock = [  ]
+compassAndClockScan = [
+    "mainHand",
+    "offhand",
+    "hotbar",
+    "inventory",
+    "bundles",
+    "containerItems",
+    "shulkerBoxes",
+    "accessories"
+]
+worldMapAtlasScan = [
+    "mainHand",
+    "offhand",
+    "hotbar",
+    "inventory",
+    "accessories"
+]
+minimapAtlasScan = [
+    "mainHand",
+    "offhand",
+    "hotbar",
+    "accessories"
+]

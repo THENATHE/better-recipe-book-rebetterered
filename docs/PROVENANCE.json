@@ -115,8 +115,25 @@
       "reviewed": "1.0.21+26.3",
       "modrinth_version_id": "Fh8qqxFD",
       "sha256": "23bbe0221d9a8ffa6145bc37155340ab6b8ebe6da14bc7a36d097b4fcd322b5c",
-      "runtime_tested": "1.0.20 bundled in Vanilla++ 1.4.5",
-      "scope": "1.0.21 source review only until a suite build bundles it"
+      "runtime_tested": "1.0.21 through Vanilla++ 1.5.0 (retest); 1.0.20 through Vanilla++ 1.4.5",
+      "scope": "Source review plus runtime retest through Vanilla++ 1.5.0"
+    },
+    "vanilla_plus_plus_retest": {
+      "version": "1.5.0+26.3",
+      "sha256": "2bc95d4b0ad0d41a18b1e1100371e548b6c0dc4a994fa057af48fc9029de8c3c",
+      "source_commit": "db3eeac",
+      "bundled": {
+        "tiered_backpacks": "1.0.21+26.3",
+        "vpp_backpack_crafting": "1.1.0+26.3"
+      },
+      "polymer": {
+        "version": "0.18.7+26.3",
+        "sha256": "b18b0bb66fc8455fbf43f8a54e226952c630ab0cfee433e6585520c0e591538b"
+      },
+      "full_client_checks": 1968,
+      "connected_backpack_profiles": 4,
+      "delayed_predicate_checks": 96,
+      "contract_unchanged": true
     }
   },
   "previous_combined_review_1_11_7": {
